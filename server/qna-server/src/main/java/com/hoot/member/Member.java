@@ -23,6 +23,8 @@ public class Member {
 
     public String name;
 
+    public String avatarLink;
+
     public String displayName;
 
     public LocalDateTime createdDate = LocalDateTime.now();
