@@ -1,16 +1,16 @@
 package com.hoot.question;
 
+import com.hoot.audit.Timestamped;
 import com.hoot.member.Member;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 @Getter
 @NoArgsConstructor
-public class Question {
+public class Question extends Timestamped {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long questionId;
@@ -20,10 +20,6 @@ public class Question {
     public String content;
 
     public int viewCount;
-
-    public LocalDateTime createdDate = LocalDateTime.now();
-
-    public LocalDateTime updateDate;
 
     @ManyToOne
     @JoinColumn(name = "member-id")
