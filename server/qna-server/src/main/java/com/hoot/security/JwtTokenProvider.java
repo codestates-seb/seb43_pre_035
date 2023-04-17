@@ -21,15 +21,16 @@ import java.util.Date;
 import java.util.List;
 
 @Component
-@RequiredArgsConstructor
 public class JwtTokenProvider {
     private final Logger LOGGER = LoggerFactory.getLogger(JwtTokenProvider.class);
     private final UserDetailsService userDetailsService;
 
+    public JwtTokenProvider(UserDetailsService userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
+
     @Value("${jwt.key}")
     private String secretKey;
-    byte[] secretKeyBytes = secretKey.getBytes(StandardCharsets.UTF_8);
-    Key key = new SecretKeySpec(secretKeyBytes, SignatureAlgorithm.HS256.getValue());
 
     @Value("${jwt.access-token-expiration-minutes}")
     private long accessTokenExpirationMinutes;
@@ -38,7 +39,7 @@ public class JwtTokenProvider {
     @PostConstruct
     protected void init() {
         LOGGER.info("[init] JwtTokenProvider 내 secretKey 초기화 시작");
-        secretKey = Base64.getEncoder().encodeToString(secretKeyBytes);
+        secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes(StandardCharsets.UTF_8));
         LOGGER.info("[init] JwtTokenProvider 내 secretKey 초기화 완료");
     }
 
@@ -53,7 +54,7 @@ public class JwtTokenProvider {
                 .setClaims(claims)
                 .setIssuedAt(now)
                 .setExpiration(new Date(now.getTime() + accessTokenExpirationMinutes))
-                .signWith(key)
+                .signWith(getKey())
                 .compact();
 
         LOGGER.info("[createToken] 토큰 생성 완료");
@@ -72,7 +73,7 @@ public class JwtTokenProvider {
     // JWT 토큰에서 회원 구별 정보 추출
     private String getUserEmail(String token) {
         LOGGER.info("[getUsername] 토큰 기반 회원 구별 정보 추출");
-        String info = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody().getSubject();
+        String info = Jwts.parserBuilder().setSigningKey(getKey()).build().parseClaimsJws(token).getBody().getSubject();
         LOGGER.info("[getUsername] 토큰 기반 회원 구별 정보 추출 완료, info : {}", info);
 
         return info;
@@ -87,12 +88,18 @@ public class JwtTokenProvider {
     // JWT 토큰의 유효성 + 만료일 체크
     public boolean validateToken(String token) {
         try {
-            Jws<Claims> claims = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
+            Jws<Claims> claims = Jwts.parserBuilder().setSigningKey(getKey()).build().parseClaimsJws(token);
             LOGGER.info("[validateToken] 토큰 유효 체크 완료");
             return !claims.getBody().getExpiration().before(new Date());
         } catch (JwtException e) {
             LOGGER.info("[validateToken] 토큰 유효 체크 예외 발생");
             return false;
         }
+    }
+
+    private Key getKey() {
+        byte[] secretKeyBytes = secretKey.getBytes(StandardCharsets.UTF_8);
+        Key key = new SecretKeySpec(secretKeyBytes, SignatureAlgorithm.HS256.getValue());
+        return key;
     }
 }
