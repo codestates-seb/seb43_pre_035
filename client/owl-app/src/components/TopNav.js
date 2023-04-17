@@ -1,35 +1,48 @@
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
+import { FaRegUserCircle } from 'react-icons/fa';
+import { BiLogInCircle } from 'react-icons/bi';
+import { AiOutlineQuestionCircle } from 'react-icons/ai';
+
 
 const TopnavTemplate = styled.div`
-    padding : 20px;
+    padding : 10px;
     width: 100%;
-    height: 100px;
+    height: 7rem;
+    background: linear-gradient(45deg, #9D5353, #4F3F48);;
     display: flex;
     justify-content: space-around;
+    align-items: center;
+`
+
+const LogoTemplate = styled.div`
+    padding: 20px;
+    width: 10rem;
+    height: 7rem;
 `
 
 const TopnavInput = styled.input`
-    padding: 20px;
-    width: 840px;
-    height: 0.01rem;
+    padding: 10px;
+    width: 80rem;
+    height: 0.4rem;
+    background-color: #F8F3E6;
 `
-// git pull test
-// git pull test 2
+
 
 const TopNav = () => {
     return (
         <div>
-                 <p>TOP NAV</p>
                  <TopnavTemplate>
-                    <span> Logo </span>
-                    <TopnavInput type='text'></TopnavInput>
+                    <LogoTemplate>owl-time</LogoTemplate>
+                    <TopnavInput 
+                    type='text'
+                    placeholder='Search'
+                    ></TopnavInput>
+                    
+                 <Link to = '/'><FaRegUserCircle size={40} color='#F8F8F8'/></Link>
+                 <Link to = '/login'><BiLogInCircle size={50} color='#F8F8F8'/></Link>
+                 <Link to = '/signup'><AiOutlineQuestionCircle size={50} color='#F8F8F8'/></Link>
                 </TopnavTemplate>
-                 <Link to = '/'>Home</Link>
-                 -
-                 <Link to = '/login'>Login</Link>
-                 -
-                 <Link to = '/signup'>SignUp</Link>
         </div>
 
 
