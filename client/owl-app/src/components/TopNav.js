@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const TopnavTemplate = styled.div`
     padding : 20px;
@@ -14,13 +14,24 @@ const TopnavInput = styled.input`
     width: 840px;
     height: 0.01rem;
 `
+// git pull test
 
 const TopNav = () => {
     return (
-        <TopnavTemplate>
-                 <span> Logo </span>
-                 <TopnavInput type='text'></TopnavInput>
-        </TopnavTemplate>
+        <div>
+                 <p>TOP NAV</p>
+                 <TopnavTemplate>
+                    <span> Logo </span>
+                    <TopnavInput type='text'></TopnavInput>
+                </TopnavTemplate>
+                 <Link to = '/'>Home</Link>
+                 -
+                 <Link to = '/login'>Login</Link>
+                 -
+                 <Link to = '/signup'>SignUp</Link>
+        </div>
+
+
     )
 }
 
