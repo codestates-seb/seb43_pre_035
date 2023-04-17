@@ -3,6 +3,7 @@ import styled, {css} from 'styled-components';
 import { FaRegUserCircle } from 'react-icons/fa';
 import { BiLogInCircle } from 'react-icons/bi';
 import { AiOutlineQuestionCircle } from 'react-icons/ai';
+import { AiOutlineSearch } from 'react-icons/ai';
 
 
 const TopnavTemplate = styled.div`
@@ -13,12 +14,14 @@ const TopnavTemplate = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: center;
+    position: fixed;
 `
 
 const LogoTemplate = styled.div`
     padding: 20px;
     width: 10rem;
     height: 7rem;
+    font-size: 20px;
 `
 
 const TopnavInput = styled.input`
@@ -38,7 +41,7 @@ const TopNav = () => {
                     type='text'
                     placeholder='Search'
                     ></TopnavInput>
-                    
+                    <AiOutlineSearch size={80} color='#F8F8F8'></AiOutlineSearch>
                  <Link to = '/'><FaRegUserCircle size={40} color='#F8F8F8'/></Link>
                  <Link to = '/login'><BiLogInCircle size={50} color='#F8F8F8'/></Link>
                  <Link to = '/signup'><AiOutlineQuestionCircle size={50} color='#F8F8F8'/></Link>
