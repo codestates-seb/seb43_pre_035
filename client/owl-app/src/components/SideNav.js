@@ -1,15 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const SideNav = () => {
-  return (
-    <SideNavContainer>
-      <SideNavItem>Home</SideNavItem>
-      <SideNavItem>Public</SideNavItem>
-      <SideNavItem>Tags</SideNavItem>
-    </SideNavContainer>
-  );
-};
+
 
 const SideNavContainer = styled.div`
   background-color: #f2f2f2;
@@ -29,5 +21,15 @@ const SideNavItem = styled.div`
     font-weight: bold;
   }
 `;
+
+const SideNav = () => {
+  return (
+    <SideNavContainer>
+      <SideNavItem>Home</SideNavItem>
+      <SideNavItem>Public</SideNavItem>
+      <SideNavItem>Tags</SideNavItem>
+    </SideNavContainer>
+  );
+};
 
 export default SideNav;
