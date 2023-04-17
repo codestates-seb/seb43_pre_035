@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 import styled, {css} from 'styled-components';
-import { FaUserPlus } from 'react-icons/fa';
-import { BiLogInCircle } from 'react-icons/bi';
+import { FaRegUserCircle } from 'react-icons/fa';
+import { MdLogout } from 'react-icons/md';
 import { AiOutlineQuestionCircle } from 'react-icons/ai';
 import { AiOutlineSearch } from 'react-icons/ai';
 
 
-const TopnavTemplate = styled.div`
+const TopNavloggedTemplate = styled.div`
     padding : 10px;
     width: 100%;
     height: 7rem;
@@ -17,14 +17,14 @@ const TopnavTemplate = styled.div`
     position: fixed;
 `
 
-const LogoTemplate = styled.div`
+const LogologgedTemplate = styled.div`
     padding: 20px;
     width: 10rem;
     height: 7rem;
     font-size: 20px;
 `
 
-const TopnavInput = styled.input`
+const TopNavloggedInput = styled.input`
     padding: 10px;
     width: 80rem;
     height: 0.4rem;
@@ -32,24 +32,24 @@ const TopnavInput = styled.input`
 `
 
 
-const TopNav = () => {
+const TopNavlogged = () => {
     return (
         <>
-                <TopnavTemplate>
-                <Link to = '/'><LogoTemplate>owl-time</LogoTemplate></Link>
-                    <TopnavInput 
+                <TopNavloggedTemplate>
+                <Link to = '/'><LogologgedTemplate>owl-time</LogologgedTemplate></Link>
+                    <TopNavloggedInput
                     type='text'
                     placeholder='Search'
-                    ></TopnavInput>
+                    ></TopNavloggedInput>
                     <AiOutlineSearch size={100} color='#F8F8F8'></AiOutlineSearch>
-                    <Link to = '/login'><BiLogInCircle size={50} color='#F8F8F8'/></Link>
-                    <Link to = '/signup'><FaUserPlus size={50} color='#F8F8F8'/></Link>
+                    <Link to = '/login'><FaRegUserCircle size={50} color='#F8F8F8'/></Link>
+                    <Link to = '/signup'><MdLogout size={50} color='#F8F8F8'/></Link>
                     <AiOutlineQuestionCircle size={100} color='#F8F8F8'/>
-                </TopnavTemplate>
+                </TopNavloggedTemplate>
         </>
 
 
     )
 }
 
-export default TopNav;
+export default TopNavlogged;
