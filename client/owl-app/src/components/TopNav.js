@@ -20,11 +20,6 @@ const TopNav = () => {
         <TopnavTemplate>
                  <span> Logo </span>
                  <TopnavInput type='text'></TopnavInput>
-                 <Link to = '/'>Home</Link>
-                 -
-                 <Link to = '/login'>Login</Link>
-                 -
-                 <Link to = '/signup'>SignUp</Link>
         </TopnavTemplate>
     )
 }
