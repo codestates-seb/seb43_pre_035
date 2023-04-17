@@ -2,14 +2,18 @@ package com.hoot.question;
 
 import com.hoot.audit.Timestamped;
 import com.hoot.member.Member;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Getter
+@Setter
+@AllArgsConstructor
 @NoArgsConstructor
 public class Question extends Timestamped {
     @Id
@@ -23,14 +27,14 @@ public class Question extends Timestamped {
     private int viewCount;
 
     @ManyToOne
-    @JoinColumn(name = "member-id")
+    @JoinColumn(name = "member_id")
     private Member member;
 
     public void addMember(Member member){
         this.member = member;
     }
     @Enumerated(EnumType.STRING)
-    private QuestionStatus questionStatus;
+    private QuestionStatus questionStatus = QuestionStatus.QUESTION_REGISTRATION;
 
     public enum QuestionStatus{
         QUESTION_REGISTRATION ("질문 등록 상태"),
