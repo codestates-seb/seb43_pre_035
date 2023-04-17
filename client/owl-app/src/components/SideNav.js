@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
+
 const SideNavContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -30,8 +31,10 @@ const SideNavItem = styled.div`
 `;
 
 
+
 const SideNav = () => {
   return (
+
     <SideNavContainer>
       <SideNavItem>Home</SideNavItem>
       <SideNavItem>Public</SideNavItem>
@@ -39,5 +42,10 @@ const SideNav = () => {
     </SideNavContainer>
   );
 };
+
+      <p> This is the Side Nav. </p>
+  )
+}
+
 
 export default SideNav;
