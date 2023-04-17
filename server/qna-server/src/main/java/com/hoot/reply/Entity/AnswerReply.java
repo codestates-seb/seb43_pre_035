@@ -24,10 +24,10 @@ public class AnswerReply extends Timestamped {
     private String content;
 
     @ManyToOne
-    @JoinColumn(name = "member-id")
+    @JoinColumn(name = "member_id")
     private Member member;
 
     @ManyToOne
-    @JoinColumn(name = "answer-id")
+    @JoinColumn(name = "answer_id")
     private Answer answer;
 }

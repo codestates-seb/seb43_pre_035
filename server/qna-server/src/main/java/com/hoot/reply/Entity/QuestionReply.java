@@ -23,11 +23,11 @@ public class QuestionReply extends Timestamped {
     private String content;
 
     @ManyToOne
-    @JoinColumn(name = "member-id")
+    @JoinColumn(name = "member_id")
     private Member member;
 
     @ManyToOne
-    @JoinColumn(name = "question-id")
+    @JoinColumn(name = "question_id")
     private Question question;
 
 }
