@@ -1,28 +1,33 @@
-package com.hoot.reply;
+package com.hoot.reply.Entity;
 
 import com.hoot.answer.Answer;
 import com.hoot.audit.Timestamped;
 import com.hoot.member.Member;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor
-public class Reply extends Timestamped {
+public class AnswerReply extends Timestamped {
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public long answerId;
+    private long answerReplyId;
 
-    public String content;
+    @Column(length = 100, nullable = false)
+    private String content;
 
     @ManyToOne
     @JoinColumn(name = "member-id")
-    public Member member;
+    private Member member;
 
     @ManyToOne
     @JoinColumn(name = "answer-id")
-    public Answer answer;
+    private Answer answer;
 }
