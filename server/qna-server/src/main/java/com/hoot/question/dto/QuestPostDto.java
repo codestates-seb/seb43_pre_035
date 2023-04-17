@@ -10,4 +10,5 @@ import lombok.Setter;
 public class QuestPostDto {
 	private String title;
 	private String content;
+
 }

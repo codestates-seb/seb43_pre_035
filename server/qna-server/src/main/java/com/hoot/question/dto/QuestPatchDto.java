@@ -11,4 +11,5 @@ public class QuestPatchDto {
 	private long questionId;
 	private String title;
 	private String content;
+
 }

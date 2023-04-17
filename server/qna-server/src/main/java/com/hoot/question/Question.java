@@ -36,7 +36,6 @@ public class Question extends Timestamped {
         QUESTION_REGISTRATION ("질문 등록 상태"),
         QUESTION_ANSWERED("답변 완료 상태"),
         QUESTION_DELETE("질문 삭제 상태");
-
         @Getter
         private String questDec;
         QuestionStatus(String questDec) {
