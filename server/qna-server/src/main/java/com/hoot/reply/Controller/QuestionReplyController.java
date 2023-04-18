@@ -4,7 +4,6 @@ import com.hoot.reply.Dto.QuestionReplyDto.QuestionReplyPatchDto;
 import com.hoot.reply.Dto.QuestionReplyDto.QuestionReplyPostDto;
 import com.hoot.reply.Entity.QuestionReply;
 import com.hoot.reply.Mapper.QuestionReplyMapper;
-import com.hoot.reply.Repository.QuestionReplyRepository;
 import com.hoot.reply.Service.QuestionReplyService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
