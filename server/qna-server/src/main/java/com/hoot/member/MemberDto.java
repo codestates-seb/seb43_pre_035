@@ -3,6 +3,8 @@ package com.hoot.member;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 public class MemberDto {
     @Getter
     public static class Post {
@@ -18,8 +20,17 @@ public class MemberDto {
     }
 
     @Getter
+    public static class Login {
+        private String email;
+
+        private String password;
+    }
+
+    @Getter
     @Setter
     public static class Response {
+        private Long memberId;
+
         private String email;
 
         private String name;
@@ -27,6 +38,8 @@ public class MemberDto {
         private String avatarLink;
 
         private String displayName;
+
+        private List<String> roles;
     }
 
 }

@@ -19,10 +19,12 @@ public class MemberMapper {
     public MemberDto.Response entityToResponse(Member member) {
         MemberDto.Response response = new MemberDto.Response();
 
+        response.setMemberId(member.getMemberId());
         response.setEmail(member.getEmail());
         response.setName(member.getName());
         response.setDisplayName(member.getDisplayName());
         response.setAvatarLink(member.getAvatarLink());
+        response.setRoles(member.getRoles());
 
         return response;
     }
