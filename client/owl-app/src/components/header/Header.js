@@ -11,7 +11,7 @@ const HeaderBlock = styled.header`
     left : 0;
     width: 100%;
     height: 135px;
-    z-index: 10;
+    z-index: 1000;
     background: linear-gradient(45deg, #9D5353, #4F3F48);
 `
 

@@ -1,12 +1,26 @@
 import styled from "styled-components"
 
+// export const TopnavTemplate = styled.div`
+//     padding : 10px;
+//     width: 100%;
+//     height: 100px;
+//     display: flex;
+//     align-items: center;
+//     position: relative;
+// `
+
 export const TopnavTemplate = styled.div`
-    padding : 10px;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    min-width: auto;
     width: 100%;
-    height: 100px;
+    height: 173px;
+    background: linear-gradient(45deg, #9D5353, #4F3F48);;
     display: flex;
+    justify-content: space-around;
     align-items: center;
-    position: relative;
+    z-index: 1000;
 `
 
 export const LogoWrap = styled.div`
