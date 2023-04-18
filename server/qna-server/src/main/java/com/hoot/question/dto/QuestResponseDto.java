@@ -4,11 +4,15 @@ import com.hoot.member.Member;
 import com.hoot.question.Question;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
+@Setter
 public class QuestResponseDto {
-	private long questionId;
+	private Long questionId;
 	private String title;
 	private String content;
 	private int viewCont;
