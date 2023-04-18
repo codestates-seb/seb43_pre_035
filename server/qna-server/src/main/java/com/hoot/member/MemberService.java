@@ -2,6 +2,7 @@ package com.hoot.member;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,14 @@ public class MemberService {
         member.setRoles(createRoles(postDto.getEmail()));
         Member save = memberRepository.save(member);
         return mapper.entityToResponse(save);
+    }
+
+    public MemberDto.Response login(MemberDto.Login loginDto) {
+        Member member = memberRepository.findByEmail(loginDto.getEmail());
+        if (!passwordEncoder.matches(loginDto.getPassword(), member.getPassword())) {
+            throw new UsernameNotFoundException("이메일 또는 비밀번호를 확인해주세요.");
+        }
+        return mapper.entityToResponse(member);
     }
 
     private List<String> createRoles(String email) {
