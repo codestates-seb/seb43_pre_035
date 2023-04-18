@@ -4,21 +4,20 @@ import Threads from '../components/Threads';
 import styled from "styled-components";
 
 const Main = styled.div`
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+    margin: 0 auto;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     flex-direction: row;
-    align-items: flex-start;
-    height: 100%;
     width: 100%;
+    position: relative;
+    flex: 1 0 auto;
+    z-index: 900;
 `
-const Home = ({threads}) => {
+const Home = ({threads, toggleLogin}) => {
     return (
         <Main>
-            <SideNav />
-            <Threads threads={threads}/>
+            <SideNav toggleLogin={toggleLogin}/>
+            <Threads threads={threads} />
         </Main>
     )
 }

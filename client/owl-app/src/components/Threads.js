@@ -8,6 +8,7 @@ const ThreadBox = styled.div`
     flex-direction: column;
     flex-basis: 1;
     color: white;
+    ${'' /* z-index: 0; */}
 `
 
 const Threads = ({threads}) => {
