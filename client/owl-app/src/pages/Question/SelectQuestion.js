@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Title from "./Title";
+import QuestionContent from "./QuestionContent"
 
 const SelectedWrap = styled.div`
     padding: 10px;
@@ -7,10 +8,6 @@ const SelectedWrap = styled.div`
     color: white;
 `
 
-const QuestionForm = styled.div`
-    padding: 20px;
-    width: 50rem;
-`
 
 const AskanyTingButton = styled.button`
     border-radius: 1px;
@@ -24,7 +21,7 @@ const SelectQuestion = () => {
         <SelectedWrap>
             <AskanyTingButton></AskanyTingButton>
             <Title>Title!</Title>
-            <QuestionForm></QuestionForm>
+            <QuestionContent></QuestionContent>
         </SelectedWrap>
         </>
     )
