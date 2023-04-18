@@ -24,6 +24,7 @@ public class MemberMapper {
         response.setName(member.getName());
         response.setDisplayName(member.getDisplayName());
         response.setAvatarLink(member.getAvatarLink());
+        response.setRoles(member.getRoles());
 
         return response;
     }
