@@ -9,6 +9,11 @@ const Container = styled.div`
   background-color:#322A28 ;
 `;
 
+const Logo = styled.img`
+  width: 100px;
+  margin-bottom: 20px;
+`;
+
 const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -41,8 +46,8 @@ const GoogleButtonLogo = styled.img`
 `;
 
 const GoogleButtonText = styled.span`
-  margin-right: 80px;
-  margin-left: -20px;
+  margin-right: 100px;
+  margin-left: -5px;
 `;
 
 const KakaoButton = styled.button`
@@ -71,7 +76,7 @@ const KakaoButtonLogo = styled.img`
 `;
 
 const KakaoButtonText = styled.span`
-  margin-right: 60px;
+  margin-right: 80px;
   margin-left: -10px;
 `;
 
@@ -101,12 +106,12 @@ const GithubButtonLogo = styled.img`
 `;
 
 const GithubButtonText = styled.span`
-  margin-right: 85px;
-  margin-left: 0px;
+  margin-right: 100px;
+  margin-left: -5px;
 `;
 
 
-const SignUpcontainer = styled.form`
+const Logincontainer = styled.form`
  border: 2px solid #9D5353;
  display: flex;
  flex-direction: column;
@@ -121,7 +126,7 @@ const InputContainer = styled.div`
  display: flex;
  flex-direction: column;
  width: 100%;
- margin-bottom: 15px;
+ margin-bottom: 10px;
 `;
 
 const InputLabel = styled.label`
@@ -137,17 +142,17 @@ const Input = styled.input`
 `;
 
 
-const Guide = styled.div`
-text-align: left;
- margin-bottom: 10px;
- font-size: 12px;
+const ForgotPassword = styled.div`
+text-align: right;
+ margin-bottom: 5px;
+ font-size: 14px;
  cursor: pointer;
  width: 300px;
- color: #fff;
+ color: #9D5353;
 `;
 
 
-const BeforeLogin = styled.div`
+const BeforeSignUp = styled.div`
  font-size: 14px;
  text-align: right;
  width: 240px;
@@ -156,7 +161,7 @@ const BeforeLogin = styled.div`
 `;
 
 
-const Login = styled.div`
+const SignUp = styled.div`
  font-size: 14px;
  text-align: left;
  width: 50px;
@@ -170,7 +175,7 @@ const Login = styled.div`
 `;
 
 
-const SignUpButton = styled.button`
+const LoginButton = styled.button`
  background-color: #000;
  color: #fff;
  font-size: 16px;
@@ -185,6 +190,7 @@ const SignUpButton = styled.button`
   }
 `;
 
+
 const SignUpContainer = styled.div`
  display: flex;
  justify-content: flex-end;
@@ -194,25 +200,22 @@ const SignUpContainer = styled.div`
 function App() {
 return (
 <Container>
+<Logo src="logo.svg" alt="Logo" />
 <ButtonContainer>
 <GoogleButton>
       <GoogleButtonLogo src="glogo.svg" />
-      <GoogleButtonText>Sign up with Google</GoogleButtonText>
+      <GoogleButtonText>Login with Google</GoogleButtonText>
 </GoogleButton>
 <KakaoButton>
       <KakaoButtonLogo src="kakaotalk.svg" />
-      <KakaoButtonText>Sign up with KakaoTalk</KakaoButtonText>
+      <KakaoButtonText>Login with KakaoTalk</KakaoButtonText>
 </KakaoButton>
 <GithubButton>
     <GithubButtonLogo src="github.svg" />
-    <GithubButtonText>Sign up with Github</GithubButtonText>
+    <GithubButtonText>Login with Github</GithubButtonText>
 </GithubButton>
 </ButtonContainer>
-<SignUpcontainer>
-<InputContainer>
-<InputLabel htmlFor="DisplayName">Display name</InputLabel>
-<Input type="DisplayName" id="DisplayName" />
-</InputContainer>
+<Logincontainer>
 <InputContainer>
 <InputLabel htmlFor="email">Email</InputLabel>
 <Input type="email" id="email" />
@@ -221,13 +224,12 @@ return (
 <InputLabel htmlFor="password">Password</InputLabel>
 <Input type="password" id="password" />
 </InputContainer>
-<Guide>Passwords must contain at least eight characters, including at least 1 letter and 1 number.</Guide>
-<SignUpButton>Sign Up</SignUpButton>
-<Guide>By clicking “Sign up”, you agree to our terms of service, privacy policy and cookie policy</Guide>
-</SignUpcontainer>
+<ForgotPassword>Forgot password?</ForgotPassword>
+<LoginButton>Log In</LoginButton>
+</Logincontainer>
 <SignUpContainer>
-<BeforeLogin>Already have an account?</BeforeLogin>
-<Login>Log in</Login>
+<BeforeSignUp>Don’t have an account?</BeforeSignUp>
+<SignUp>Sign up</SignUp>
 </SignUpContainer>
 </Container>
 );
