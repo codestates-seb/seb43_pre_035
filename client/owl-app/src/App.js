@@ -6,10 +6,12 @@ import TopNav from './components/TopNav';
 import SideNav from './components/SideNav';
 import Threads from './components/Threads';
 //import pages
+import QuestionDetail from './pages/Question/QuestionDetail';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import TopNavlogged from './components/TopNavlogged'
+import styled from 'styled-components';
 
 function App() {
 
@@ -20,20 +22,19 @@ function App() {
   } 
 
   return (
-    
     <Router>
       <button onClick={handleClicknav}>{nav ? <TopNav /> : <TopNavlogged/> }</button>
       <Routes>
             <Route path ="/" element = {<Home />} />
             <Route path ="/login" element = {<Login />} />
             <Route path ="/signup" element = {<SignUp />} />
+            <Route path='/question' element = {<QuestionDetail/>} />
                  {/* <p> This is the Top Navigation Pane. </p>
                  <Link to = '/'>Home</Link>
                  <Link to = '/login'>Login</Link>
                  <Link to = '/signup'>SignUp</Link> */}
         </Routes>
-    </Router>
-
+    </Router>           
   );
 }
 

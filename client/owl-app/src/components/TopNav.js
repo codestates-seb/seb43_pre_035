@@ -37,10 +37,10 @@ const TopNav = () => {
                     type='text'
                     placeholder='Search'
                     ></TopnavInput>
-                    <AiOutlineSearch size={100} color='#F8F8F8'></AiOutlineSearch>
+                    <AiOutlineSearch size={50} color='#F8F8F8'></AiOutlineSearch>
                     <Link to = '/login'><BiLogInCircle size={50} color='#F8F8F8'/></Link>
                     <Link to = '/signup'><FaUserPlus size={50} color='#F8F8F8'/></Link>
-                    <AiOutlineQuestionCircle size={100} color='#F8F8F8'/>
+                    <AiOutlineQuestionCircle size={50} color='#F8F8F8'/>
                 </TopnavTemplate>
         </>
 

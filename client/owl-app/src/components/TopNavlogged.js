@@ -34,10 +34,10 @@ const TopNavlogged = () => {
                     type='text'
                     placeholder='Search'
                     ></TopNavloggedInput>
-                    <AiOutlineSearch size={100} color='#F8F8F8'></AiOutlineSearch>
+                    <AiOutlineSearch size={50} color='#F8F8F8'></AiOutlineSearch>
                     <Link to = '/login'><FaRegUserCircle size={50} color='#F8F8F8'/></Link>
                     <Link to = '/signup'><MdLogout size={50} color='#F8F8F8'/></Link>
-                    <AiOutlineQuestionCircle size={100} color='#F8F8F8'/>
+                    <AiOutlineQuestionCircle size={50} color='#F8F8F8'/>
                 </TopNavloggedTemplate>
         </>
 
