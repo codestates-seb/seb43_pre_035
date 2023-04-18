@@ -17,6 +17,7 @@ public class MemberDto {
         private String displayName;
     }
 
+    @Getter
     @Setter
     public static class Response {
         private String email;

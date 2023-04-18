@@ -1,5 +1,8 @@
 package com.hoot.member;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class MemberMapper {
     public Member postDtoToEntity(MemberDto.Post postDto) {
         Member member = new Member();
