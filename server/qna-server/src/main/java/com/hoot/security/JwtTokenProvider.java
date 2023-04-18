@@ -73,7 +73,7 @@ public class JwtTokenProvider {
     // JWT 토큰에서 회원 구별 정보 추출
     private String getUserEmail(String token) {
         LOGGER.info("[getUsername] 토큰 기반 회원 구별 정보 추출");
-        String info = Jwts.parserBuilder().setSigningKey(getKey()).build().parseClaimsJws(token).getBody().getSubject();
+        String info = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
         LOGGER.info("[getUsername] 토큰 기반 회원 구별 정보 추출 완료, info : {}", info);
 
         return info;
@@ -88,7 +88,7 @@ public class JwtTokenProvider {
     // JWT 토큰의 유효성 + 만료일 체크
     public boolean validateToken(String token) {
         try {
-            Jws<Claims> claims = Jwts.parserBuilder().setSigningKey(getKey()).build().parseClaimsJws(token);
+            Jws<Claims> claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
             LOGGER.info("[validateToken] 토큰 유효 체크 완료");
             return !claims.getBody().getExpiration().before(new Date());
         } catch (Exception e) {
