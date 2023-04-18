@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Title from "./Title";
 import QuestionContent from "./QuestionContent"
+import AddComment from "./AddComment"
 
 const SelectedWrap = styled.div`
     padding: 10px;
@@ -22,6 +23,7 @@ const SelectQuestion = () => {
             <AskanyTingButton></AskanyTingButton>
             <Title>Title!</Title>
             <QuestionContent></QuestionContent>
+            <AddComment></AddComment>
         </SelectedWrap>
         </>
     )
