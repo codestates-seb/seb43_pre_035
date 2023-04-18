@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class QuestionReplyMapper {
 
-    public QuestionReply questionReplyPostToQuestionReply(QuestionReplyPostDto questionReplyPostDto) {
+    public QuestionReply questionReplyPostDtoToQuestionReply(QuestionReplyPostDto questionReplyPostDto) {
         QuestionReply questionReply = new QuestionReply();
 
         questionReply.setContent(questionReplyPostDto.getContent());
@@ -17,7 +17,7 @@ public class QuestionReplyMapper {
         return questionReply;
     }
 
-    public QuestionReply questionReplyPatchToQuestionReply(QuestionReplyPatchDto questionReplyPatchDto) {
+    public QuestionReply questionReplyPatchDtoToQuestionReply(QuestionReplyPatchDto questionReplyPatchDto) {
         QuestionReply questionReply = new QuestionReply();
 
         questionReply.setQuestionReplyId(questionReply.getQuestionReplyId());
