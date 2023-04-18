@@ -1,11 +1,14 @@
-import React from "react";
 import styled from "styled-components";
 
-
+const SideNavBox = styled.div`
+  display: flex;
+  margin: 0 50px 0 0;
+  flex-basis: 2;
+`
 
 const SideNav = () => {
   return (
-      <p> This is the Side Nav. </p>
+      <SideNavBox> Side Nav. </SideNavBox>
   )
 }
 

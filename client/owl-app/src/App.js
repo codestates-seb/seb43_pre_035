@@ -1,27 +1,27 @@
-// import React from 'react';
 import './App.css';
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useState } from 'react';
+import styled from 'styled-components';
 //import components
 import TopNav from './components/TopNav';
-import SideNav from './components/SideNav';
-import Threads from './components/Threads';
 //import pages
 import Home from './pages/Home';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 
+import { initialData } from './data/dummyThreads';
+
+
 function App() {
+
+  const [threads, setThreads] = useState(initialData.threads);
   return (
     <Router>
       <TopNav />
       <Routes>
-            <Route path ="/" element = {<Home />} />
+            <Route path ="/" element = {<Home threads={threads}/>} />
             <Route path ="/login" element = {<Login />} />
             <Route path ="/signup" element = {<SignUp />} />
-                 {/* <p> This is the Top Navigation Pane. </p>
-                 <Link to = '/'>Home</Link>
-                 <Link to = '/login'>Login</Link>
-                 <Link to = '/signup'>SignUp</Link> */}
         </Routes>
 
     </Router>
