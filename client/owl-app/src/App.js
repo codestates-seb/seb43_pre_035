@@ -1,3 +1,5 @@
+
+import React, {useState} from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
@@ -8,23 +10,29 @@ import TopNav from './components/TopNav';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
+import TopNavlogged from './components/TopNavlogged'
 
 import { initialData } from './data/dummyThreads';
 
 
 function App() {
+  const [nav,setLogednav] = useState(false)
 
+  const handleClicknav = () => {
+    setLogednav(!nav)
+  } 
   const [threads, setThreads] = useState(initialData.threads);
   return (
+    
     <Router>
-      <TopNav />
+      <button onClick={handleClicknav}>{nav ? <TopNav /> : <TopNavlogged/> }</button>
       <Routes>
             <Route path ="/" element = {<Home threads={threads}/>} />
             <Route path ="/login" element = {<Login />} />
             <Route path ="/signup" element = {<SignUp />} />
         </Routes>
-
     </Router>
+
   );
 }
 
