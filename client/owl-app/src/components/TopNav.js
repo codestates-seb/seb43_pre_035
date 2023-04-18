@@ -27,7 +27,6 @@ const TopnavInput = styled.input`
     background-color: #F8F3E6;
 `
 
-
 const TopNav = () => {
     return (
         <>

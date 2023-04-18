@@ -1,6 +1,4 @@
-import React from "react";
 import styled from "styled-components";
-
 
 const SideNavContainer = styled.div`
     display: flex;
@@ -30,8 +28,6 @@ const SideNavItem = styled.div`
   }
 `;
 
-
-
 const SideNav = () => {
   return (
 
@@ -43,9 +39,6 @@ const SideNav = () => {
   );
 };
 
-      <p> This is the Side Nav. </p>
-  )
-}
 
 
 export default SideNav;
