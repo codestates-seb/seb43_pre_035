@@ -5,6 +5,7 @@ const SideNavContainer = styled.div`
   flex-shrink: 0;
 `
 
+
 const SideNavStickyContainer = styled.div`
     position: sticky;
     position: -webkit-sticky;
