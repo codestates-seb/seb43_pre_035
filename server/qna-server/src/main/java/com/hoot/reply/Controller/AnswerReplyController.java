@@ -13,7 +13,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 
 @RestController
-@RequestMapping("/answer_reply")
+@RequestMapping("/answer_replies")
 public class AnswerReplyController {
     private AnswerReplyService answerReplyService;
     private AnswerReplyMapper mapper;

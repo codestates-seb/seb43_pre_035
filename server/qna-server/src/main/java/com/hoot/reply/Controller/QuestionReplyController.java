@@ -13,7 +13,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/question_replies")
 public class QuestionReplyController {
     private final QuestionReplyService questionReplyService;
     private final QuestionReplyMapper mapper;
@@ -26,7 +26,7 @@ public class QuestionReplyController {
     @PostMapping
     public ResponseEntity createQuestionReply(@Valid @RequestBody QuestionReplyPostDto questionReplyPostDto) {
         QuestionReply questionReply
-                = questionReplyService.createQuestionReply(mapper.questionReplyPostToQuestionReply(questionReplyPostDto));
+                = questionReplyService.createQuestionReply(mapper.questionReplyPostDtoToQuestionReply(questionReplyPostDto));
 
         return new ResponseEntity<>(mapper.questionReplyToQuestionReplyResponseDto(questionReply),HttpStatus.CREATED);
     }
@@ -35,7 +35,7 @@ public class QuestionReplyController {
     public ResponseEntity updateQuestionReply(@PathVariable("question-reply-id") @Positive Long questionReplyId,
                                               @RequestBody QuestionReplyPatchDto questionReplyPatchDto) {
         QuestionReply questionReply
-                = questionReplyService.updateQuestionReply(mapper.questionReplyPatchToQuestionReply(questionReplyPatchDto));
+                = questionReplyService.updateQuestionReply(mapper.questionReplyPatchDtoToQuestionReply(questionReplyPatchDto));
 
 
         return new ResponseEntity<>(mapper.questionReplyToQuestionReplyResponseDto(questionReply) , HttpStatus.OK);
