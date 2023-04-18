@@ -4,12 +4,14 @@ import { FaUserPlus } from 'react-icons/fa';
 import { BiLogInCircle } from 'react-icons/bi';
 import { AiOutlineQuestionCircle } from 'react-icons/ai';
 import { AiOutlineSearch } from 'react-icons/ai';
+import owltime  from '../owltime.png';
+
 
 
 const TopnavTemplate = styled.div`
     padding : 10px;
     width: 100%;
-    height: 7rem;
+    height: 160px;
     background: linear-gradient(45deg, #9D5353, #4F3F48);;
     display: flex;
     justify-content: space-around;
@@ -17,17 +19,11 @@ const TopnavTemplate = styled.div`
     position: fixed;
 `
 
-const LogoTemplate = styled.div`
-    padding: 20px;
-    width: 10rem;
-    height: 7rem;
-    font-size: 20px;
-`
 
 const TopnavInput = styled.input`
     padding: 10px;
     width: 80rem;
-    height: 0.4rem;
+    height: 2rem;
     background-color: #F8F3E6;
 `
 
@@ -36,7 +32,7 @@ const TopNav = () => {
     return (
         <>
                 <TopnavTemplate>
-                <Link to = '/'><LogoTemplate>owl-time</LogoTemplate></Link>
+                <Link to = '/'><img src={owltime} alt='logo image'/></Link>
                     <TopnavInput 
                     type='text'
                     placeholder='Search'
