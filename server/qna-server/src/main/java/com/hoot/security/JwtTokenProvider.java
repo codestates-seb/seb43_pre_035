@@ -54,7 +54,7 @@ public class JwtTokenProvider {
                 .setClaims(claims)
                 .setIssuedAt(now)
                 .setExpiration(new Date(now.getTime() + accessTokenExpirationMinutes))
-                .signWith(getKey())
+                .signWith(SignatureAlgorithm.HS256, secretKey)
                 .compact();
 
         LOGGER.info("[createToken] 토큰 생성 완료");
