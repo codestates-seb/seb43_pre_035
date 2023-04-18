@@ -26,7 +26,7 @@ public class AnswerReplyMapper {
         return answerReply;
     }
 
-    public AnswerReplyResponseDto answerReplyResponseDtoToAnswer(AnswerReply answerReply) {
+    public AnswerReplyResponseDto answerReplyToAnswerReplyResponseDto(AnswerReply answerReply) {
         AnswerReplyResponseDto answerReplyResponseDto = new AnswerReplyResponseDto();
 
         answerReplyResponseDto.setAnswerReplyId(answerReply.getAnswerReplyId());
