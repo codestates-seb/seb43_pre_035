@@ -8,7 +8,7 @@
 body {
   display: flex;
   justify-content: center;
-  padding-top: var(--spacing-topnav);
+  padding-top: 173px;
   /* width: 100vw; */
   /* height: 100vh; */
   /* min-height: 100%; */
