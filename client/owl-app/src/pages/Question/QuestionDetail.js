@@ -1,15 +1,28 @@
 import styled from "styled-components";
-import TopNav from "../../components/TopNav";
+import SelectQuestion from "./SelectQuestion";
 
 const QuestionWrap = styled.div`
     padding: 10px;
-    
+    width: 100%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `
 
 const QuestionDetail = () => {
 
     return (
-        <div>Question Page!</div>
+        <>
+
+        <QuestionWrap>Question Page!</QuestionWrap>
+        <QuestionWrap>Question Page!</QuestionWrap>
+        <QuestionWrap>Question Page!</QuestionWrap>
+        <QuestionWrap>
+            <SelectQuestion/>
+        </QuestionWrap>
+
+        </>
     )
 }
 

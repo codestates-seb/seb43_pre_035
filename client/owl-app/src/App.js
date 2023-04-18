@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import styled, { createGlobalStyle } from 'styled-components';
 import './App.css';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 //import components
@@ -11,9 +12,24 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import TopNavlogged from './components/TopNavlogged'
-import styled from 'styled-components';
 
 function App() {
+
+  const GlobalWrap = styled.div`
+    background-color: #322A28;
+    height: 1300px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-around; */
+    button {
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    background-color: inherit;
+    cursor: pointer;
+  }
+  `
 
   const [nav,setLogednav] = useState(false)
 
@@ -22,19 +38,19 @@ function App() {
   } 
 
   return (
+    
+  <GlobalWrap>
     <Router>
-      <button onClick={handleClicknav}>{nav ? <TopNav /> : <TopNavlogged/> }</button>
+       <TopNav />
       <Routes>
             <Route path ="/" element = {<Home />} />
             <Route path ="/login" element = {<Login />} />
             <Route path ="/signup" element = {<SignUp />} />
-            <Route path='/question' element = {<QuestionDetail/>} />
-                 {/* <p> This is the Top Navigation Pane. </p>
-                 <Link to = '/'>Home</Link>
-                 <Link to = '/login'>Login</Link>
-                 <Link to = '/signup'>SignUp</Link> */}
         </Routes>
-    </Router>           
+    </Router>
+      <QuestionDetail></QuestionDetail>
+  </GlobalWrap>
+
   );
 }
 
