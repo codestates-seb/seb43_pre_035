@@ -91,7 +91,7 @@ public class JwtTokenProvider {
             Jws<Claims> claims = Jwts.parserBuilder().setSigningKey(getKey()).build().parseClaimsJws(token);
             LOGGER.info("[validateToken] 토큰 유효 체크 완료");
             return !claims.getBody().getExpiration().before(new Date());
-        } catch (JwtException e) {
+        } catch (Exception e) {
             LOGGER.info("[validateToken] 토큰 유효 체크 예외 발생");
             return false;
         }

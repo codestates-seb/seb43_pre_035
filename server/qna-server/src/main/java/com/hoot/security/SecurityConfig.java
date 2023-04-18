@@ -28,8 +28,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 // request 에 대한 인증 및 권한 부여 설정
                 .authorizeRequests()
-                .antMatchers("/user/signup", "/user/login").permitAll()
-                .antMatchers("/user/**").hasRole("USER")
+                .antMatchers("/users/signup", "/users/login").permitAll()
+                .antMatchers("/users/**").hasRole("USER")
                 .antMatchers(HttpMethod.POST,"/questions/**").hasRole("USER")
                 .antMatchers(HttpMethod.PATCH,"/questions/**").hasRole("USER")
                 .antMatchers(HttpMethod.DELETE,"/questions/**").hasRole("USER")
