@@ -9,14 +9,18 @@ import owltime  from '../owltime.png';
 
 
 const TopnavTemplate = styled.div`
-    padding : 10px;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+
+    min-width: auto;
     width: 100%;
-    height: 160px;
+    height: 173px;
     background: linear-gradient(45deg, #9D5353, #4F3F48);;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    position: fixed;
+    z-index: 1000;
 `
 
 
@@ -32,7 +36,7 @@ const TopNav = () => {
         <>
                 <TopnavTemplate>
                 <Link to = '/'><img src={owltime} alt='logo image'/></Link>
-                    <TopnavInput 
+                    <TopnavInput
                     type='text'
                     placeholder='Search'
                     ></TopnavInput>

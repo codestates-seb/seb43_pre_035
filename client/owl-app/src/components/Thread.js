@@ -14,10 +14,6 @@ const AvatarStyle = styled.img`
 
 
 const Thread = ({thread}) => {
-
-
-
-
     return (
         <ThreadStyle>
             <span>{thread.title} </span>

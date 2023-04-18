@@ -1,15 +1,24 @@
-
-body {
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+
+body {
   display: flex;
   justify-content: center;
-  width: 100vw;
-  height: 100vh;
+  padding-top: var(--spacing-topnav);
+  /* width: 100vw; */
+  /* height: 100vh; */
+  /* min-height: 100%; */
   background: #322A28;
 }
 
+/* * {
+  flex: display;
+  justify-content: center;
+} */
 /* .App {
   text-align: center;
 }
