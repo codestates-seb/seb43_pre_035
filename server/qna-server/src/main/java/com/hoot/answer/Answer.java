@@ -19,10 +19,10 @@ public class Answer extends Timestamped {
     public String content;
 
     @ManyToOne
-    @JoinColumn(name = "member-id")
+    @JoinColumn(name = "member_id")
     public Member member;
 
     @ManyToOne
-    @JoinColumn(name = "question-id")
+    @JoinColumn(name = "question_id")
     public Question question;
 }
