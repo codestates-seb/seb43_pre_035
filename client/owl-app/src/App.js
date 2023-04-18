@@ -1,4 +1,4 @@
-// import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 //import components
@@ -9,11 +9,20 @@ import Threads from './components/Threads';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
+import TopNavlogged from './components/TopNavlogged'
 
 function App() {
+
+  const [nav,setLogednav] = useState(false)
+
+  const handleClicknav = () => {
+    setLogednav(!nav)
+  } 
+
   return (
+    
     <Router>
-      <TopNav />
+      <button onClick={handleClicknav}>{nav ? <TopNav /> : <TopNavlogged/> }</button>
       <Routes>
             <Route path ="/" element = {<Home />} />
             <Route path ="/login" element = {<Login />} />
@@ -23,8 +32,8 @@ function App() {
                  <Link to = '/login'>Login</Link>
                  <Link to = '/signup'>SignUp</Link> */}
         </Routes>
-
     </Router>
+
   );
 }
 
