@@ -24,7 +24,6 @@ public class QuestionService {
 		question.setTitle("제목입니다.");
 		question.setContent("내용입니다.");
 		question.setQuestionStatus(Question.QuestionStatus.QUESTION_REGISTRATION);
-
 		return question;
 	}
 

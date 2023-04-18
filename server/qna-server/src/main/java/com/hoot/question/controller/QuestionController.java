@@ -28,7 +28,6 @@ public class QuestionController {
 		this.questionService = questionService;
 		this.mapper = mapper;
 	}
-
 	@PostMapping
 	public ResponseEntity postQuestion(@Valid @RequestBody QuestPostDto questPostDto){
 		Question response = questionService.createQuestion(mapper.questPostDtoToQuestion(questPostDto));
@@ -47,7 +46,6 @@ public class QuestionController {
 		Question response = questionService.findQuestion(questionId);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
-
 	@GetMapping
 	public ResponseEntity getQuestions(){
 
