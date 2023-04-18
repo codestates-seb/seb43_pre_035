@@ -15,7 +15,7 @@ const QuestionDetail = () => {
     return (
         <>
 
-        <QuestionWrap>Question Page!</QuestionWrap>
+        
         <QuestionWrap>Question Page!</QuestionWrap>
         <QuestionWrap>Question Page!</QuestionWrap>
         <QuestionWrap>

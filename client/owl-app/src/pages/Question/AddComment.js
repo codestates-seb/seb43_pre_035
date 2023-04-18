@@ -49,7 +49,9 @@ const AddComment = () => {
 
     return (
         <>
-        <AddCommentWrap onClick={commentHandleClick}>{setComment ? <div>Add a Comment </div> :<CommentInput/>}</AddCommentWrap>
+            <AddCommentWrap onClick={commentHandleClick}>
+            {setComment ? <div>Add a Comment </div> :<CommentInput/>}
+            </AddCommentWrap>
             <CommentCreatWrap>
                 <CommentDetail>Comment</CommentDetail>
                 <CommentUser>닉네임</CommentUser>
