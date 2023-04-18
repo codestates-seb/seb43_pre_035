@@ -17,8 +17,8 @@ public class MemberService {
 
     @Value("${email.address.admin}")
     private String adminEmail;
-    private final List<String> ADMIN_ROLES_STRING = List.of("ADMIN", "USER");
-    private final List<String> USER_ROLES_STRING = List.of("USER");
+    private final List<String> ADMIN_ROLES_STRING = List.of("ROLE_ADMIN", "ROLE_USER");
+    private final List<String> USER_ROLES_STRING = List.of("ROLE_USER");
 
     public MemberDto.Response signup(MemberDto.Post postDto) {
         Member member = mapper.postDtoToEntity(postDto);

@@ -25,7 +25,7 @@ public class MemberController {
 
         String token = jwtTokenProvider.createToken(response.getEmail(), response.getRoles());
         HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add("Authorization", "Bearer" + token);
+        httpHeaders.add("Authorization", "Bearer " + token);
 
         return new ResponseEntity<>(response, httpHeaders, HttpStatus.OK);
     }
