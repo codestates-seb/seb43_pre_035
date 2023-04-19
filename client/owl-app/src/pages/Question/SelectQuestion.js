@@ -9,7 +9,9 @@ import CommentList from "./Comment/CommentList";
 
 const SelectedWrap = styled.div`
     padding: 10px;
-    top : 500px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
     color: white;
 `
 
@@ -25,14 +27,13 @@ const SelectQuestion = ({question}) => {
     return (
         <>
         <SelectedWrap>
-            <AskanyTingButton></AskanyTingButton>
-                <Title question={question}></Title>
+            <Title question={question}></Title>
             <QuestionContent question={question}></QuestionContent>
-            <CommentList  question={question}></CommentList>
-            <AddComment></AddComment>
-            <Answerlist question={question}></Answerlist>
-            <AddComment></AddComment>
-            <AnswerCreate></AnswerCreate>
+                <CommentList  question={question}></CommentList>
+                <AddComment></AddComment>
+                <Answerlist  Answerlist question={question}></Answerlist>
+                <AddComment></AddComment>
+                <AnswerCreate></AnswerCreate>
         </SelectedWrap>
         </>
     )

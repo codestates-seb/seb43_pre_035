@@ -66,6 +66,19 @@ export const initialData = {
                     }
                 ]
                 },
+                {
+                    "id" : "3",
+                    "member" : "zeereo",
+                    "content" : "이건 이렇게 하는거에요",
+                    "updateDate" : "2023-04-19" ,
+                    "answerReply" : [
+                    {
+                        "id" : "1",
+                        "content" : "그거 아닌데요?",
+                        "updateDate" : "2023-04-19"
+                    }
+                ]
+                }
          ]
         },
         

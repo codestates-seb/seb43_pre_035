@@ -5,8 +5,8 @@ import { useState } from "react";
 const CommentListWrap = styled.div`
     padding: 10px;
     width: 750px;
-    height: 45px;
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     align-items: center;
     border-bottom: 2px solid white;

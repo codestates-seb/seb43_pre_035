@@ -6,7 +6,6 @@ import CommentCreated from "./CommentCreated";
 const AddCommentWrap = styled.div`
     padding: 10px;
     width: 750;
-    height: 40px;
     border-bottom : 2px solid #FFFFFF;
     color: #9D5353;
     cursor: pointer;
@@ -19,6 +18,7 @@ const AddCommentWrap = styled.div`
 const AddComment = () => {
 
     const [comment,setComment] = useState(true)
+    console.log(comment)
 
     const commentHandleClick = ()=>{
         setComment(!comment)
@@ -27,7 +27,7 @@ const AddComment = () => {
     return (
         <>
             <AddCommentWrap onClick={commentHandleClick}>
-            {setComment ? <div>Add a Comment </div> :<CommentInput/>}
+            {comment ? <div> Add a Comment </div> :<CommentInput/>}
             </AddCommentWrap>
         </>
     )

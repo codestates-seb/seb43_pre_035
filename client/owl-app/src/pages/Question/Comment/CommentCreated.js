@@ -12,19 +12,19 @@ const CommentWrap = styled.div`
 
 const CommentDetail = styled.div`
     padding: 10px;
-    width: 540px;
+    width: 60vw;
     height: 30px;
 `
 
 const CommentUser = styled.div`
     padding: 10px;
-    width: 100px;
+    width: 20vw;
     height: 15px;
 `
 
 const CommentDate = styled.div`
     padding: 10px;
-    width: 120px;
+    width: 20vw;
     height: 15px;
 `
 

@@ -11,6 +11,7 @@ const QuestionWrap = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
 `
 
 const QuestionDetail = () => {
