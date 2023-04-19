@@ -1,15 +1,15 @@
-package com.hoot.reply.Mapper;
+package com.hoot.reply.mapper;
 
-import com.hoot.reply.Dto.QuestionReplyDto.QuestionReplyPatchDto;
-import com.hoot.reply.Dto.QuestionReplyDto.QuestionReplyPostDto;
-import com.hoot.reply.Dto.QuestionReplyDto.QuestionReplyResponseDto;
-import com.hoot.reply.Entity.QuestionReply;
+import com.hoot.reply.dto.question_reply_dto.QuestionReplyPatchDto;
+import com.hoot.reply.dto.question_reply_dto.QuestionReplyPostDto;
+import com.hoot.reply.dto.question_reply_dto.QuestionReplyResponseDto;
+import com.hoot.reply.entity.QuestionReply;
 import org.springframework.stereotype.Component;
 
 @Component
 public class QuestionReplyMapper {
 
-    public QuestionReply questionReplyPostToQuestionReply(QuestionReplyPostDto questionReplyPostDto) {
+    public QuestionReply questionReplyPostDtoToQuestionReply(QuestionReplyPostDto questionReplyPostDto) {
         QuestionReply questionReply = new QuestionReply();
 
         questionReply.setContent(questionReplyPostDto.getContent());
@@ -17,7 +17,7 @@ public class QuestionReplyMapper {
         return questionReply;
     }
 
-    public QuestionReply questionReplyPatchToQuestionReply(QuestionReplyPatchDto questionReplyPatchDto) {
+    public QuestionReply questionReplyPatchDtoToQuestionReply(QuestionReplyPatchDto questionReplyPatchDto) {
         QuestionReply questionReply = new QuestionReply();
 
         questionReply.setQuestionReplyId(questionReply.getQuestionReplyId());

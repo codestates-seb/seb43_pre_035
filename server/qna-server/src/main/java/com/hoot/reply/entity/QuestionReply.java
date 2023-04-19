@@ -1,4 +1,4 @@
-package com.hoot.reply.Entity;
+package com.hoot.reply.entity;
 
 import com.hoot.audit.Timestamped;
 import com.hoot.member.Member;
