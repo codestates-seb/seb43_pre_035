@@ -7,11 +7,13 @@ import com.hoot.reply.Mapper.AnswerReplyMapper;
 import com.hoot.reply.Service.AnswerReplyService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 
+@Validated
 @RestController
 @RequestMapping("/answer_replies")
 public class AnswerReplyController {
@@ -24,7 +26,7 @@ public class AnswerReplyController {
     }
 
     @PostMapping
-    private ResponseEntity createAnswerReply(@Valid @RequestBody AnswerReplyPostDto answerReplyPostDto) {
+    public ResponseEntity createAnswerReply(@Valid @RequestBody AnswerReplyPostDto answerReplyPostDto) {
         AnswerReply answerReply
                 = answerReplyService.createAnswerReply(mapper.answerReplyPostDtoToAnswerReply(answerReplyPostDto));
 
@@ -32,8 +34,11 @@ public class AnswerReplyController {
     }
 
     @PatchMapping("/{answer-reply-id}")
-    private ResponseEntity updateAnswerReply(@PathVariable("answer-reply-id") @Positive long answerReplyId,
-                                             @RequestBody AnswerReplyPatchDto answerReplyPatchDto) {
+    public ResponseEntity updateAnswerReply(@PathVariable("answer-reply-id") @Positive long answerReplyId,
+                                             @Valid @RequestBody AnswerReplyPatchDto answerReplyPatchDto) {
+
+        answerReplyPatchDto.setAnswerReplyId(answerReplyId);
+
         AnswerReply answerReply
                 = answerReplyService.updateAnswerReply(mapper.answerReplyPatchDtoToAnswerReply(answerReplyPatchDto));
 
@@ -41,7 +46,7 @@ public class AnswerReplyController {
     }
 
     @DeleteMapping("/{answer-reply-id}")
-    private ResponseEntity deleteAnswerReply(@PathVariable("answer-reply-id") @Positive Long answerReplyId) {
+    public ResponseEntity deleteAnswerReply(@PathVariable("answer-reply-id") @Positive Long answerReplyId) {
         answerReplyService.deleteAnswerReply(answerReplyId);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

@@ -7,11 +7,13 @@ import com.hoot.reply.Mapper.QuestionReplyMapper;
 import com.hoot.reply.Service.QuestionReplyService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 
+@Validated
 @RestController
 @RequestMapping("/question_replies")
 public class QuestionReplyController {
@@ -33,7 +35,10 @@ public class QuestionReplyController {
 
     @PatchMapping("/{question-reply-id}")
     public ResponseEntity updateQuestionReply(@PathVariable("question-reply-id") @Positive Long questionReplyId,
-                                              @RequestBody QuestionReplyPatchDto questionReplyPatchDto) {
+                                              @Valid @RequestBody QuestionReplyPatchDto questionReplyPatchDto) {
+
+        questionReplyPatchDto.setQuestionReplyId(questionReplyId);
+
         QuestionReply questionReply
                 = questionReplyService.updateQuestionReply(mapper.questionReplyPatchDtoToQuestionReply(questionReplyPatchDto));
 
