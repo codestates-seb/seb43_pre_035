@@ -1,4 +1,4 @@
-package com.hoot.reply.Dto.AnswerReplyDto;
+package com.hoot.reply.dto.question_reply_dto;
 
 import com.hoot.member.Member;
 import lombok.Getter;
@@ -8,9 +8,8 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-public class AnswerReplyResponseDto {
-
-    private Long answerReplyId;
+public class QuestionReplyResponseDto {
+    private Long questionReplyId;
     private Member member;
     private String content;
     private LocalDateTime createdDate;

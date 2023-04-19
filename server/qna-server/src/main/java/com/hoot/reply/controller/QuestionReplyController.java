@@ -1,10 +1,10 @@
-package com.hoot.reply.Controller;
+package com.hoot.reply.controller;
 
-import com.hoot.reply.Dto.QuestionReplyDto.QuestionReplyPatchDto;
-import com.hoot.reply.Dto.QuestionReplyDto.QuestionReplyPostDto;
-import com.hoot.reply.Entity.QuestionReply;
-import com.hoot.reply.Mapper.QuestionReplyMapper;
-import com.hoot.reply.Service.QuestionReplyService;
+import com.hoot.reply.dto.question_reply_dto.QuestionReplyPatchDto;
+import com.hoot.reply.dto.question_reply_dto.QuestionReplyPostDto;
+import com.hoot.reply.entity.QuestionReply;
+import com.hoot.reply.mapper.QuestionReplyMapper;
+import com.hoot.reply.service.QuestionReplyService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;

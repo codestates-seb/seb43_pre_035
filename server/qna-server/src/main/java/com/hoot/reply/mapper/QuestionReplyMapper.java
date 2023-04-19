@@ -1,9 +1,9 @@
-package com.hoot.reply.Mapper;
+package com.hoot.reply.mapper;
 
-import com.hoot.reply.Dto.QuestionReplyDto.QuestionReplyPatchDto;
-import com.hoot.reply.Dto.QuestionReplyDto.QuestionReplyPostDto;
-import com.hoot.reply.Dto.QuestionReplyDto.QuestionReplyResponseDto;
-import com.hoot.reply.Entity.QuestionReply;
+import com.hoot.reply.dto.question_reply_dto.QuestionReplyPatchDto;
+import com.hoot.reply.dto.question_reply_dto.QuestionReplyPostDto;
+import com.hoot.reply.dto.question_reply_dto.QuestionReplyResponseDto;
+import com.hoot.reply.entity.QuestionReply;
 import org.springframework.stereotype.Component;
 
 @Component

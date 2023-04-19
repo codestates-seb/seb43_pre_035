@@ -1,9 +1,9 @@
-package com.hoot.reply.Service;
+package com.hoot.reply.service;
 
 import com.hoot.exception.BusinessLogicException;
 import com.hoot.exception.ExceptionCode;
-import com.hoot.reply.Entity.AnswerReply;
-import com.hoot.reply.Repository.AnswerReplyRepository;
+import com.hoot.reply.entity.AnswerReply;
+import com.hoot.reply.repository.AnswerReplyRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
