@@ -47,15 +47,21 @@ const ThreadTitle = styled.h1`
 const ThreadContribution = styled.div`
     display: flex;
     align-self: flex-end;
+    ${'' /* width: 100%;
+    text-align: right; */}
     font-size: 0.8em;
     font-weight: var(--fonts-weight-default);
     color: var(--colors-text-contributor);
     word-break: keep-all;
 `
 
+const TextAlign = styled.div`
+    text-align: left;
+`
+
 const Contributor = styled.span`
-    ${'' /* color: var(--colors-lightbrown); */}
     font-weight: var(--fonts-weight-semibold);
+    height: 14px;
 
     &:hover {
         color: var(--colors-yellow);
@@ -77,7 +83,7 @@ const ThreadStats = styled.div`
     font-size: var(--fonts-size-icons);
 `
 
-const Stat = styled.div`
+const Stat = styled.span`
     padding: 0 8px;
 `
 
@@ -93,7 +99,10 @@ const Thread = ({thread}) => {
             <ThreadContent>
                 <ThreadTitle>{thread.title}</ThreadTitle>
                 <ThreadContribution>
-                    <Contributor>{thread.author} </Contributor>님께서 {thread.createdDate}에 질문 </ThreadContribution>
+                    <TextAlign>
+                        <Contributor>{thread.author} </Contributor><span>님께서 {thread.createdDate}에 질문 </span>
+                    </TextAlign>
+                </ThreadContribution>
             </ThreadContent>
             <AvatarImg src={thread.avatarUrl} />
             <ThreadStats>
