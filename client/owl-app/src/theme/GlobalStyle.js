@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
 
-@import url('https://fonts.googleapis.com/css2?family=Atomic+Age&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+${'' /* @import url('https://fonts.googleapis.com/css2?family=Atomic+Age&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap'); */}
 
 :root {
     --colors-bg: #322A28;
@@ -32,6 +32,7 @@ const GlobalStyle = createGlobalStyle`
     --fonts-weight-default: 100;
     --fonts-weight-semibold: 500;
     --fonts-weight-bold: 700;
+    --fonts-size-icons: 15px;
 
 
 }

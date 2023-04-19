@@ -1,5 +1,7 @@
 import styled from 'styled-components';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBinoculars } from '@fortawesome/free-solid-svg-icons';
+import { faCommentDots } from '@fortawesome/free-regular-svg-icons';
 
 const ThreadContainer = styled.li`
     display: flex;
@@ -67,6 +69,23 @@ const AvatarImg = styled.img`
     border-radius: 50%;
 `
 
+const ThreadStats = styled.div`
+    display: flex;
+    flex-direction: row;
+    color: var(--colors-lightbrown);
+    margin: 0 10px;
+    font-size: var(--fonts-size-icons);
+`
+
+const Stat = styled.div`
+    padding: 0 8px;
+`
+
+const StyledIcon = styled(FontAwesomeIcon)`
+    color: var(--colors-yellow);
+    padding-right: 6px;
+`
+
 
 const Thread = ({thread}) => {
     return (
@@ -77,8 +96,16 @@ const Thread = ({thread}) => {
                     <Contributor>{thread.author} </Contributor>님께서 {thread.createdDate}에 질문 </ThreadContribution>
             </ThreadContent>
             <AvatarImg src={thread.avatarUrl} />
-            <span>{thread.viewCount}</span>
-            <span>{thread.answerCount}</span>
+            <ThreadStats>
+                <Stat>
+                    <StyledIcon icon={faBinoculars} />
+                    <span>{thread.viewCount}</span>
+                </Stat>
+                <Stat>
+                    <StyledIcon icon={faCommentDots} />
+                    <span>{thread.answerCount}</span>
+                </Stat>
+            </ThreadStats>
         </ThreadContainer>
     )
 }
