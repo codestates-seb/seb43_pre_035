@@ -9,6 +9,7 @@ import CommentList from "./Comment/CommentList";
 
 const SelectedWrap = styled.div`
     padding: 10px;
+    height: 100%;
     display: flex;
     justify-content: center;
     flex-direction: column;
