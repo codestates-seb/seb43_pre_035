@@ -3,6 +3,7 @@ import Title from "./Title";
 import QuestionContent from "./QuestionContent"
 import AddComment from "./AddComment"
 import Answerlist from "./AnswerList";
+import AnswerCreate from "./AnswerCreate";
 
 const SelectedWrap = styled.div`
     padding: 10px;
@@ -27,7 +28,7 @@ const SelectQuestion = () => {
             <AddComment></AddComment>
             <Answerlist></Answerlist>
             <AddComment></AddComment>
-
+            <AnswerCreate></AnswerCreate>
         </SelectedWrap>
         </>
     )
