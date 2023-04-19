@@ -22,6 +22,7 @@ public class QuestionReplyService {
 
     public QuestionReply updateQuestionReply(QuestionReply questionReply) {
         QuestionReply findQuestionReply =
+
                 findVerifiedQuestionReply(questionReply.getQuestionReplyId());
 
         Optional.ofNullable(questionReply.getContent())

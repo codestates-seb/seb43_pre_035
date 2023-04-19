@@ -11,10 +11,10 @@ import javax.validation.constraints.NotBlank;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class QuestPostDto {
-	@NotBlank(message = "제목은 공백이 아니어야 합니다.")
+public class QuestPostDto  {
+	@NotBlank(message = "제목을 입력해주세요.")
 	private String title;
-	@NotBlank(message = "내용은 공백이 아니어야 합니다.")
+	@NotBlank(message = "내용을 입력해주세요.")
 	private String content;
 
 }
