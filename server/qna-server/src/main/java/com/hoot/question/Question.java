@@ -23,7 +23,7 @@ public class Question extends Timestamped {
     private String title;
     @Column(nullable = false, length = 200)
     private String content;
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "integer default 0")
     private int viewCount;
 
     @ManyToOne
@@ -37,23 +37,20 @@ public class Question extends Timestamped {
     private QuestionStatus questionStatus = QuestionStatus.QUESTION_REGISTRATION;
 
     public enum QuestionStatus{
-        QUESTION_REGISTRATION ("질문 등록 상태"),
-        QUESTION_ANSWERED("답변 완료 상태"),
-        QUESTION_DELETE("질문 삭제 상태");
+        QUESTION_REGISTRATION (1,"질문 등록 상태"),
+        QUESTION_ANSWERED(2,"답변 완료 상태"),
+        QUESTION_DELETE(3,"질문 삭제 상태");
+
         @Getter
+        private int stepNum;
         private String questDec;
-        QuestionStatus(String questDec) {
+        QuestionStatus(int stepNum, String questDec) {
+            this.stepNum = stepNum;
             this.questDec = questDec;
         }
     }
-
-    @Override
-    public LocalDateTime getCreatedDate() {
-        return super.getCreatedDate();
+    public void increaseViewCount(){
+        this.viewCount++;
     }
 
-    @Override
-    public LocalDateTime getUpdateDate() {
-        return super.getUpdateDate();
-    }
 }

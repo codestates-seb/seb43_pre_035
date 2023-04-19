@@ -1,6 +1,6 @@
 package com.hoot.reply.entity;
 
-import com.hoot.answer.Answer;
+import com.hoot.answer.entity.Answer;
 import com.hoot.audit.Timestamped;
 import com.hoot.member.Member;
 import lombok.Getter;
