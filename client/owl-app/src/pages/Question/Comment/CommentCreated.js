@@ -1,11 +1,13 @@
 import styled from "styled-components"
 
-const CommentCreatWrap = styled.div`
+const CommentWrap = styled.div`
     padding: 10px;
     width: 750px;
     height: 45px;
     display: flex;
     justify-content: space-around;
+    align-items: center;
+    border-bottom: 2px solid white;
 `
 
 const CommentDetail = styled.div`
@@ -26,15 +28,16 @@ const CommentDate = styled.div`
     height: 15px;
 `
 
-const CommentCreated = ()=>{
+const CommentCreated = ({comments})=>{
 
     return(
+        
+        <CommentWrap>
+            <CommentDetail>{comments.content}</CommentDetail>
+            <CommentUser>{comments.member}</CommentUser>
+            <CommentDate>{comments.updateDate}</CommentDate>
+        </CommentWrap>
 
-            <CommentCreatWrap>
-                <CommentDetail>Comment</CommentDetail>
-                <CommentUser>닉네임</CommentUser>
-                <CommentDate>0분 전 작성</CommentDate>
-            </CommentCreatWrap>
     )
 }
 

@@ -13,9 +13,7 @@ import QuestionDetail from './pages/Question/QuestionDetail';
 import Header from './components/header/Header';
 import TopNav from './components/header/TopNav';
 import TopNavlogged from './components/header/TopNavlogged';
-
 import { initialData } from './data/dummyThreads';
-
 
 const GlobalStyle = createGlobalStyle`
 :root{
@@ -26,14 +24,16 @@ const GlobalStyle = createGlobalStyle`
 
 
 function App() {
+  
   const [nav,setLogednav] = useState(false)
 
   const handleClicknav = () => {
     setLogednav(!nav)
   }
   const [threads, setThreads] = useState(initialData.threads);
+  
   return (
-
+    
     
     <Router>
       {/* <Header></Header> */}
@@ -43,7 +43,7 @@ function App() {
             <Route path ="/" element = {<Home threads={threads} toggleLogin={handleClicknav}/>} />
             <Route path ="/login" element = {<Login />} />
             <Route path ="/signup" element = {<SignUp />} />
-            <Route path ="/question" element = {<QuestionDetail/> } />
+            <Route path ="/question" element = {<QuestionDetail /> } />
         </Routes>
     </Router>
     

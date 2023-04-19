@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import SelectQuestion from "./SelectQuestion";
-import SideNav from "../../components/SideNav";
-import Answerlist from "./AnswerList";
-
+import { initialData } from "../../data/dummyQuestion";
+import { useState } from "react";
 
 const QuestionWrap = styled.div`
     padding: 10px;
@@ -15,11 +14,15 @@ const QuestionWrap = styled.div`
 `
 
 const QuestionDetail = () => {
+    const [questions,setQuestions] = useState(initialData.questions)
 
+    
+    
     return (
         <>
         <QuestionWrap>
-            <SelectQuestion/>
+            {questions.map((question, idx) => <SelectQuestion question={question} key={idx}/>)}
+            {/* <SelectQuestion questions={questions}/> */}
         </QuestionWrap>
         </>
     )

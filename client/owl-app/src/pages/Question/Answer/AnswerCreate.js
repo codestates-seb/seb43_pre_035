@@ -5,7 +5,7 @@ const CreateWrap = styled.div`
     width: 750px;
     height: 370px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
 `
 
 const CreateBlock = styled.div`
@@ -18,12 +18,21 @@ const CreateHeader = styled.div`
     border-bottom: 2px solid white;
 
 `
-const CreateEditor = styled.div`
+const CreateEditorLogout = styled.div`
     height: 200px;
     padding: 10px;
     background-color: #777777;
 `
-const CreateButton = styled.button`
+
+const CreateEditorLogIn = styled.div`
+    height: 200px;
+    padding: 10px;
+    border: 2px solid #9C9E91;
+    background-color: #493E3B;
+`
+
+
+const CreateButtonLogout = styled.button`
     width: 100px;
     height: 30px;
     margin-top: 10px;
@@ -32,8 +41,16 @@ const CreateButton = styled.button`
     border-radius: 15px;
 `
 
-const ButtonBlock = styled.div`
+const CreateButtonLogin = styled.button`
+    width: 100px;
+    height: 30px;
+    margin-top: 10px;
+    background-color: #9D5353;
+    color: white;
+    border-radius: 15px;
+`
 
+const ButtonBlock = styled.div`
     width: 120px;
     height: 20px;
     display: flex;
@@ -47,7 +64,6 @@ const LoginButton = styled.button`
     font-size: 10px;
     background-color: #322A28;
     color: white;
-
 `
 
 const SignupButton = styled.button`
@@ -57,21 +73,25 @@ const SignupButton = styled.button`
     margin-top: 10px;
     background-color: #322A28;
     color: white;
-
 `
 
 const AnswerCreate = () =>{
 
     return (
         <CreateWrap>
-            <CreateBlock>
+            {/* <CreateBlock>
                 <CreateHeader>답변작성</CreateHeader>
-                <CreateEditor>로그인해야 답변가능합니다.</CreateEditor>
+                <CreateEditorLogout>로그인해야 답변가능합니다.</CreateEditorLogout>
                 <CreateButton>답변하기</CreateButton>
                 <ButtonBlock>
                     <LoginButton>로그인</LoginButton>
                     <SignupButton>회원가입</SignupButton>
                 </ButtonBlock>
+            </CreateBlock> */}
+            <CreateBlock>
+                <CreateHeader>답변작성</CreateHeader>
+                <CreateEditorLogIn>답변을 작성해 주세요</CreateEditorLogIn>
+                <CreateButtonLogin>작성하기</CreateButtonLogin>
             </CreateBlock>
         </CreateWrap>
 

@@ -26,12 +26,12 @@ const CreateDate = styled.div`
     justify-content: space-around;
 `
 
-const Title = () =>{
+const Title = ({question}) =>{
 
     return (
         <TitleWrap>
-            <TitleName>제목</TitleName>
-            <CreateDate>2023년 04월 16일</CreateDate>
+            <TitleName>{question.title}</TitleName>
+            <CreateDate>{question.createdDate}</CreateDate>
         </TitleWrap>
     )
 }

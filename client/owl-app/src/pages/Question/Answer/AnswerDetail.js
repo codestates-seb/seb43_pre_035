@@ -3,8 +3,9 @@ import styled from "styled-components";
 const AnswerContent = styled.div`
     padding: 10px;
     width: 600px;
+    color: white;
 `
-const CreateUser = styled.div`
+const CreateUserA = styled.div`
     padding-top: 150px;
     width: 130px;
     height: 100px;
@@ -12,14 +13,14 @@ const CreateUser = styled.div`
 `
 
 
-const AnswerDetail = ()=>{
+const AnswerDetail = ({answers})=>{
 
 
     
     return (
         <>
-        <AnswerContent>답변입니다.</AnswerContent>
-        <CreateUser>user</CreateUser>
+            <AnswerContent>{answers.content}</AnswerContent>
+            <CreateUserA>{answers.member}</CreateUserA>
         </>
 
         )

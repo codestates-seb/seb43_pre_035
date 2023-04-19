@@ -24,13 +24,13 @@ const CreateUser = styled.div`
     font-size: 15px;
 `
 
-const QuestionContent = () =>{
+const QuestionContent = ({question}) =>{
 
     return (
         <>
         <ContentWrap>
-        <ContentDetail>content</ContentDetail>
-        <CreateUser>username</CreateUser>
+        <ContentDetail>{question.content}</ContentDetail>
+        <CreateUser>{question.member}</CreateUser>
         </ContentWrap>
         </>
     )
