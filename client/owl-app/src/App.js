@@ -18,7 +18,12 @@ import { initialData } from './data/dummyThreads_sung';
 import { Fragment } from 'react';
 
 
-
+//function to convert date
+//ISO-8601 -> if today, how long before current time. or yesterday
+//if this year, only return month/date, if not, include year: 2022년 12월 3일
+const convertDate = (string) => {
+  return `${string.substring(0, 4)}년 ${String(Number(string.substring(5, 7)))}월 ${String(Number(string.substring(8, 10)))}일`
+}
 
 function App() {
   const [nav,setLogednav] = useState(false)
@@ -26,7 +31,13 @@ function App() {
   const handleClicknav = () => {
     setLogednav(!nav)
   }
-  const [threads, setThreads] = useState(initialData.threads);
+
+  const cleanedDateThreads = initialData.threads;
+  cleanedDateThreads.forEach(el => {
+    el.createdDate = convertDate(el.createdDate);
+  })
+
+  const [threads, setThreads] = useState(cleanedDateThreads);
 
   return (
       <Fragment>

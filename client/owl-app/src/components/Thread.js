@@ -28,24 +28,37 @@ const ThreadContent = styled.div`
 const ThreadTitle = styled.h1`
     padding: 10px 0;
     font-size: 1.2em;
-    font-weight: var(--fonts--thread-title-weight);
+    font-weight: var(--fonts-thread-title-weight);
     line-height: 1.5;
     min-width: 200px;
     color: var(--colors-text-title);
     word-break: break-all;
+    opacity: 85%;
+
+    &:hover {
+        color: var(--colors-text-bright);
+        opacity: 100%;
+        cursor: pointer;
+    }
 `
 
 const ThreadContribution = styled.div`
     display: flex;
     align-self: flex-end;
-    font-size: 0.7em;
+    font-size: 0.8em;
+    font-weight: var(--fonts-weight-default);
     color: var(--colors-text-contributor);
     word-break: keep-all;
 `
 
 const Contributor = styled.span`
+    ${'' /* color: var(--colors-lightbrown); */}
+    font-weight: var(--fonts-weight-semibold);
 
-    font-weight: bold;
+    &:hover {
+        color: var(--colors-yellow);
+        cursor: pointer;
+    }
 `
 
 const AvatarImg = styled.img`

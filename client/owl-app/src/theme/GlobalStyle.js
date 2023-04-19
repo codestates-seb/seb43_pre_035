@@ -8,9 +8,12 @@ const GlobalStyle = createGlobalStyle`
     --colors-bg: #322A28;
     --colors-bg-temp: #4F3F48;
     --colors-green: #605E4D;
+    --colors-yellow: #EFAA52;
+    --colors-lightbrown: #DACC96;
     --colors-border: #8D7B68;
-    --colors-text-default: #FFFFFF;
-    --colors-text-title: #FFFFFF;
+    --colors-text-default: #F8F8F8;
+    --colors-text-title: F8F8F8;
+    --colors-text-bright: #FFFFFF;
     --colors-text-contributor: #8D7B68;
     --colors-text-filter: #EFAA52;
     --colors-text-numbers: #DACC96;
@@ -25,7 +28,10 @@ const GlobalStyle = createGlobalStyle`
     --size-sidenavitem-minwidth: 170px;
     --size-thread-avatar: 40px;
 
-    --fonts--thread-title-weight: 400;
+    --fonts-thread-title-weight: 400;
+    --fonts-weight-default: 100;
+    --fonts-weight-semibold: 500;
+    --fonts-weight-bold: 700;
 
 
 }

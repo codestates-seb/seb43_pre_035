@@ -68,8 +68,8 @@ const SideNav = ({toggleLogin}) => {
     <SideNavContainer>
       <SideNavStickyContainer>
         <SideNavItem className="selected">Home</SideNavItem>
-        <SideNavItem>Public</SideNavItem>
         <SideNavItem>Tags</SideNavItem>
+        <SideNavItem>Users</SideNavItem>
         <LoginCheckBtn onClick={toggleLogin}>Login Toggle </LoginCheckBtn>
       </SideNavStickyContainer>
     </SideNavContainer>
