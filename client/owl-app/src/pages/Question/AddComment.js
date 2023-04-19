@@ -5,8 +5,10 @@ import CommentCreated from "./CommentCreated";
 
 const AddCommentWrap = styled.div`
     padding: 10px;
-    width: 200px;
-    height: 20px;
+    width: 750;
+    height: 40px;
+    border-bottom : 2px solid #FFFFFF;
+    color: #9D5353;
     cursor: pointer;
     .hover {
 

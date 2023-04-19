@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Title from "./Title";
 import QuestionContent from "./QuestionContent"
 import AddComment from "./AddComment"
+import Answerlist from "./AnswerList";
 
 const SelectedWrap = styled.div`
     padding: 10px;
@@ -24,6 +25,9 @@ const SelectQuestion = () => {
             <Title>Title!</Title>
             <QuestionContent></QuestionContent>
             <AddComment></AddComment>
+            <Answerlist></Answerlist>
+            <AddComment></AddComment>
+
         </SelectedWrap>
         </>
     )

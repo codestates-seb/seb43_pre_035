@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import SelectQuestion from "./SelectQuestion";
 import SideNav from "../../components/SideNav";
+import Answerlist from "./AnswerList";
 
 
 const QuestionWrap = styled.div`
@@ -17,9 +18,7 @@ const QuestionDetail = () => {
 
     return (
         <>
-        {/* <SideNav/> */}
         <QuestionWrap>
-            <SelectQuestion/>
             <SelectQuestion/>
         </QuestionWrap>
         </>
