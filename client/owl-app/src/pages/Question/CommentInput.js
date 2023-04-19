@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+
 const CommentInputWrap = styled.div`
     padding: 10px;
     width: 750px;
@@ -38,7 +39,6 @@ const CommentInput = ()=>{
             <CreatButton>작성하기</CreatButton>
         </CommentInputWrap>
         </>
-
     )
 }
 

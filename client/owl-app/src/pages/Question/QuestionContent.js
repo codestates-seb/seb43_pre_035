@@ -18,7 +18,7 @@ const ContentDetail = styled.div`
 
 
 const CreateUser = styled.div`
-    padding-top: 130px;
+    padding-top: 100px;
     width: 130px;
     height: 70px;
     font-size: 15px;

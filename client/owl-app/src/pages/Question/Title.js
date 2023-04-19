@@ -5,6 +5,9 @@ const TitleWrap = styled.div`
     height: 109px;
     padding: 20px;
     border-bottom: 2px solid #FFFFFF;
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
 `
 
 const TitleName = styled.h1`
@@ -15,7 +18,7 @@ const TitleName = styled.h1`
 `
 
 const CreateDate = styled.div`
-    padding: 10px;
+    padding-top: 15px;
     width: 240px;
     height: 20px;
     font-size: 15px;

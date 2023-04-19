@@ -1,6 +1,7 @@
 import styled, {css} from "styled-components";
 import {useState} from 'react'
 import CommentInput from "./CommentInput"
+import CommentCreated from "./CommentCreated";
 
 const AddCommentWrap = styled.div`
     padding: 10px;
@@ -12,32 +13,6 @@ const AddCommentWrap = styled.div`
     }
 `
 
-
-const CommentCreatWrap = styled.div`
-    padding: 10px;
-    width: 750px;
-    height: 45px;
-    display: flex;
-    justify-content: space-around;
-`
-
-const CommentDetail = styled.div`
-    padding: 10px;
-    width: 540px;
-    height: 15px;
-`
-
-const CommentUser = styled.div`
-    padding: 10px;
-    width: 60px;
-    height: 15px;
-`
-
-const CommentDate = styled.div`
-    padding: 10px;
-    width: 100px;
-    height: 15px;
-`
 
 const AddComment = () => {
 
@@ -52,11 +27,6 @@ const AddComment = () => {
             <AddCommentWrap onClick={commentHandleClick}>
             {setComment ? <div>Add a Comment </div> :<CommentInput/>}
             </AddCommentWrap>
-            <CommentCreatWrap>
-                <CommentDetail>Comment</CommentDetail>
-                <CommentUser>닉네임</CommentUser>
-                <CommentDate>0분 전 작성</CommentDate>
-            </CommentCreatWrap>
         </>
     )
 }
