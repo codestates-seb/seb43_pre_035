@@ -1,6 +1,6 @@
-package com.hoot.reply.Repository;
+package com.hoot.reply.repository;
 
-import com.hoot.reply.Entity.QuestionReply;
+import com.hoot.reply.entity.QuestionReply;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

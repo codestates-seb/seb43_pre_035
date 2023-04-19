@@ -1,5 +1,7 @@
 package com.hoot.member;
 
+import com.hoot.answer.Answer;
+import com.hoot.question.Question;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -42,4 +44,32 @@ public class MemberDto {
         private List<String> roles;
     }
 
+    @Getter
+    @Setter
+    public static class Get {
+        private Long memberId;
+
+        private String email;
+
+        private String name;
+
+        private String displayName;
+
+        private String avatarLink;
+
+        private List<String> roles;
+
+        private Answer answer;
+
+        private Question question;
+    }
+
+    @Getter
+    public static class Patch {
+        private String password;
+
+        private String name;
+
+        private String displayName;
+    }
 }

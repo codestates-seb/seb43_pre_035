@@ -1,19 +1,21 @@
-package com.hoot.reply.Controller;
+package com.hoot.reply.controller;
 
-import com.hoot.reply.Dto.QuestionReplyDto.QuestionReplyPatchDto;
-import com.hoot.reply.Dto.QuestionReplyDto.QuestionReplyPostDto;
-import com.hoot.reply.Entity.QuestionReply;
-import com.hoot.reply.Mapper.QuestionReplyMapper;
-import com.hoot.reply.Service.QuestionReplyService;
+import com.hoot.reply.dto.question_reply_dto.QuestionReplyPatchDto;
+import com.hoot.reply.dto.question_reply_dto.QuestionReplyPostDto;
+import com.hoot.reply.entity.QuestionReply;
+import com.hoot.reply.mapper.QuestionReplyMapper;
+import com.hoot.reply.service.QuestionReplyService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 
+@Validated
 @RestController
-@RequestMapping("/")
+@RequestMapping("/question_replies")
 public class QuestionReplyController {
     private final QuestionReplyService questionReplyService;
     private final QuestionReplyMapper mapper;
@@ -26,16 +28,19 @@ public class QuestionReplyController {
     @PostMapping
     public ResponseEntity createQuestionReply(@Valid @RequestBody QuestionReplyPostDto questionReplyPostDto) {
         QuestionReply questionReply
-                = questionReplyService.createQuestionReply(mapper.questionReplyPostToQuestionReply(questionReplyPostDto));
+                = questionReplyService.createQuestionReply(mapper.questionReplyPostDtoToQuestionReply(questionReplyPostDto));
 
         return new ResponseEntity<>(mapper.questionReplyToQuestionReplyResponseDto(questionReply),HttpStatus.CREATED);
     }
 
     @PatchMapping("/{question-reply-id}")
     public ResponseEntity updateQuestionReply(@PathVariable("question-reply-id") @Positive Long questionReplyId,
-                                              @RequestBody QuestionReplyPatchDto questionReplyPatchDto) {
+                                              @Valid @RequestBody QuestionReplyPatchDto questionReplyPatchDto) {
+
+        questionReplyPatchDto.setQuestionReplyId(questionReplyId);
+
         QuestionReply questionReply
-                = questionReplyService.updateQuestionReply(mapper.questionReplyPatchToQuestionReply(questionReplyPatchDto));
+                = questionReplyService.updateQuestionReply(mapper.questionReplyPatchDtoToQuestionReply(questionReplyPatchDto));
 
 
         return new ResponseEntity<>(mapper.questionReplyToQuestionReplyResponseDto(questionReply) , HttpStatus.OK);

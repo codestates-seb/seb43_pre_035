@@ -1,8 +1,8 @@
-package com.hoot.reply.Entity;
+package com.hoot.reply.entity;
 
-import com.hoot.answer.entity.Answer;
 import com.hoot.audit.Timestamped;
 import com.hoot.member.Member;
+import com.hoot.question.Question;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,12 +13,11 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
-public class AnswerReply extends Timestamped {
-
+public class QuestionReply extends Timestamped {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long answerReplyId;
+    private long questionReplyId;
 
     @Column(length = 100, nullable = false)
     private String content;
@@ -28,6 +27,7 @@ public class AnswerReply extends Timestamped {
     private Member member;
 
     @ManyToOne
-    @JoinColumn(name = "answer_id")
-    private Answer answer;
+    @JoinColumn(name = "question_id")
+    private Question question;
+
 }
