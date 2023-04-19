@@ -63,4 +63,13 @@ public class MemberDto {
 
         private Question question;
     }
+
+    @Getter
+    public static class Patch {
+        private String password;
+
+        private String name;
+
+        private String displayName;
+    }
 }

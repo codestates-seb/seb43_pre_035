@@ -1,10 +1,12 @@
 package com.hoot.member;
 
 import com.hoot.security.JwtTokenProvider;
+import com.hoot.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -33,5 +35,12 @@ public class MemberController {
     @GetMapping("/{user_id}")
     public ResponseEntity<MemberDto.Get> getMember(@PathVariable("user_id") long memberId) {
         return new ResponseEntity<>(memberService.getMember(memberId), HttpStatus.OK);
+    }
+
+    @PatchMapping("/{user_id}")
+    public ResponseEntity<MemberDto.Get> modifyMember(@AuthenticationPrincipal UserDetailsImpl user,
+                                                      @PathVariable("user_id") long memberId,
+                                                      @RequestBody MemberDto.Patch patchDto) {
+        return new ResponseEntity<>(memberService.modifyMember(user, memberId, patchDto), HttpStatus.OK);
     }
 }

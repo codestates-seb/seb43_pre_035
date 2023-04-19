@@ -2,6 +2,7 @@ package com.hoot.member;
 
 import com.hoot.exception.BusinessLogicException;
 import com.hoot.exception.ExceptionCode;
+import com.hoot.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -52,6 +53,24 @@ public class MemberService {
         Member findMember = findVerifiedMemberById(memberId);
         MemberDto.Get response = mapper.entityToGet(findMember);
         return response;
+    }
+
+    public MemberDto.Get modifyMember(UserDetailsImpl user, long memberId, MemberDto.Patch patchDto) {
+        Member findMember = findVerifiedMemberById(user.getMemberId());
+
+        Optional.ofNullable(patchDto.getPassword())
+                        .ifPresent(password -> {
+                            findMember.setPassword(patchDto.getPassword());
+                            findMember.encodePassword(passwordEncoder);
+                        });
+        Optional.ofNullable(patchDto.getName())
+                        .ifPresent(findMember::setName);
+        Optional.ofNullable(patchDto.getDisplayName())
+                        .ifPresent(findMember::setDisplayName);
+
+        Member save = memberRepository.save(findMember);
+
+        return mapper.entityToGet(save);
     }
 
     public Member findVerifiedMemberById(long memberId) {
