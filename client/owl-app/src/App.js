@@ -1,25 +1,23 @@
-
 import React, {useState} from 'react';
-import './App.css';
+// import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
+import GlobalStyle from './theme/GlobalStyle';
 //import components
-import TopNav from './components/TopNav';
+
+import styled, { createGlobalStyle } from 'styled-components';
+
 //import pages
 import Home from './pages/Home';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
-import TopNavlogged from './components/TopNavlogged'
+import QuestionDetail from './pages/Question/QuestionDetail';
+import Header from './components/header/Header';
 
-import { initialData } from './data/dummyThreads';
-import { createGlobalStyle } from 'styled-components';
+//import data
+import { initialData } from './data/dummyThreads_sung';
+import { Fragment } from 'react';
 
-const GlobalStyle = createGlobalStyle`
-:root{
-  ${'' /* spacing */}
-  --spacing-topnav: 173px;
-}
-`
+
 
 
 function App() {
@@ -29,17 +27,23 @@ function App() {
     setLogednav(!nav)
   }
   const [threads, setThreads] = useState(initialData.threads);
-  return (
 
-    <Router>
-        {nav ? <TopNav /> : <TopNavlogged/>}
-      {/* <button onClick={handleClicknav}>{nav ? }</button> */}
-      <Routes>
-            <Route path ="/" element = {<Home threads={threads} toggleLogin={handleClicknav}/>} />
-            <Route path ="/login" element = {<Login />} />
-            <Route path ="/signup" element = {<SignUp />} />
-        </Routes>
-    </Router>
+  return (
+      <Fragment>
+        <GlobalStyle />
+        <Router>
+            <Header></Header>
+              {/* {nav ? <TopNav /> : <TopNavlogged/>} */}
+            {/* <button onClick={handleClicknav}>{nav ? }</button> */}
+            <Routes>
+                  <Route path ="/" element = {<Home threads={threads} toggleLogin={handleClicknav}/>} />
+                  <Route path ="/login" element = {<Login />} />
+                  <Route path ="/signup" element = {<SignUp />} />
+                  <Route path ="/question" element = {<QuestionDetail/> } />
+            </Routes>
+        </Router>
+      </Fragment>
+
 
   );
 }

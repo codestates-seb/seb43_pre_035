@@ -2,23 +2,21 @@
 import Thread from './Thread';
 import styled from "styled-components";
 
-const ThreadBox = styled.div`
+const ThreadsContainer = styled.ul`
     display: flex;
-    justify-content: flex-start;
     flex-direction: column;
-    flex-basis: 1;
-    color: white;
+    justify-content: center;
+    align-items: center;
+    flex-basis: 70%;
+    flex-grow: 1;
     ${'' /* z-index: 0; */}
 `
 
 const Threads = ({threads}) => {
-
-
-
     return (
-        <ThreadBox>
+        <ThreadsContainer>
          {threads.map((thread, idx) => <Thread thread={thread} key={idx}/>)}
-        </ThreadBox>
+        </ThreadsContainer>
     )
 }
 

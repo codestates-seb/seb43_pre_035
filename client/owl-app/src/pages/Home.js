@@ -4,13 +4,15 @@ import Threads from '../components/Threads';
 import styled from "styled-components";
 
 const Main = styled.div`
-    margin: 0 auto;
     display: flex;
-    justify-content: space-between;
     flex-direction: row;
-    width: 100%;
+    justify-content: space-between;
+    ${'' /* height: 100vh; */}
+    ${'' /* width: 100vw; */}
+    width: 90%;
+    margin: 0 auto;
+    flex: 3 0 auto;
     position: relative;
-    flex: 1 0 auto;
     z-index: 900;
 `
 const Home = ({threads, toggleLogin}) => {
