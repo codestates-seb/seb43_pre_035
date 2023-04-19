@@ -2,14 +2,13 @@ package com.hoot.member;
 
 import com.hoot.exception.BusinessLogicException;
 import com.hoot.exception.ExceptionCode;
+import com.hoot.security.CustomAuthorityUtils;
 import com.hoot.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -18,16 +17,12 @@ public class MemberService {
     private final MemberRepository memberRepository;
     private final MemberMapper mapper;
     private final PasswordEncoder passwordEncoder;
-
-    @Value("${email.address.admin}")
-    private String adminEmail;
-    private final List<String> ADMIN_ROLES_STRING = List.of("ROLE_ADMIN", "ROLE_USER");
-    private final List<String> USER_ROLES_STRING = List.of("ROLE_USER");
+    private final CustomAuthorityUtils customAuthorityUtils;
 
     public MemberDto.Response signup(MemberDto.Post postDto) {
         Member member = mapper.postDtoToEntity(postDto);
         member.encodePassword(passwordEncoder);
-        member.setRoles(createRoles(postDto.getEmail()));
+        member.setRoles(customAuthorityUtils.createRoles(postDto.getEmail()));
         Member save = memberRepository.save(member);
         return mapper.entityToResponse(save);
     }
@@ -40,13 +35,6 @@ public class MemberService {
         }
 
         return mapper.entityToResponse(findMember);
-    }
-
-    private List<String> createRoles(String email) {
-        if (email.equals(adminEmail)) {
-            return ADMIN_ROLES_STRING;
-        }
-        return USER_ROLES_STRING;
     }
 
     public MemberDto.Get getMember(UserDetailsImpl user, long memberId) {
