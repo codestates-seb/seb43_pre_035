@@ -28,12 +28,12 @@ const SideNavStickyContainer = styled.div`
 
 const SideNavItem = styled.div`
     display: block;
-    min-width: 200px;
-    padding: 5px 10px 5px 20px;
-    margin-bottom: 8px;
+    min-width: var(--size-sidenavitem-minwidth);
+    padding: 3px 10px 3px 20px;
+    margin-bottom: 10px;
     color: var(--colors-text-default);
     text-decoration: none;
-    font-family: 'Atomic Age', cursive;
+    font-family: 'Atomic Age';
     text-transform: uppercase;
     font-size: 1.25rem;
     cursor: pointer;

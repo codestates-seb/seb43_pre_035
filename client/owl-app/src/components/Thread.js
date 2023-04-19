@@ -28,6 +28,7 @@ const ThreadContent = styled.div`
 const ThreadTitle = styled.h1`
     padding: 10px 0;
     font-size: 1.2em;
+    font-weight: var(--fonts--thread-title-weight);
     line-height: 1.5;
     min-width: 200px;
     color: var(--colors-text-title);
@@ -48,8 +49,8 @@ const Contributor = styled.span`
 `
 
 const AvatarImg = styled.img`
-    width: 40px;
-    height: 40px;
+    width: var(--size-thread-avatar);
+    height: var(--size-thread-avatar);
     border-radius: 50%;
 `
 
@@ -60,7 +61,7 @@ const Thread = ({thread}) => {
             <ThreadContent>
                 <ThreadTitle>{thread.title}</ThreadTitle>
                 <ThreadContribution>
-                    <Contributor>{thread.author} </Contributor>- {thread.createdDate} </ThreadContribution>
+                    <Contributor>{thread.author} </Contributor>님께서 {thread.createdDate}에 질문 </ThreadContribution>
             </ThreadContent>
             <AvatarImg src={thread.avatarUrl} />
             <span>{thread.viewCount}</span>
