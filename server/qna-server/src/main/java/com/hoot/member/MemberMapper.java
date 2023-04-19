@@ -28,4 +28,21 @@ public class MemberMapper {
 
         return response;
     }
+
+    public MemberDto.Get entityToGet(Member member) {
+        MemberDto.Get response = new MemberDto.Get();
+
+        response.setMemberId(member.getMemberId());
+        response.setEmail(member.getEmail());
+        response.setName(member.getName());
+        response.setDisplayName(member.getDisplayName());
+        response.setAvatarLink(member.getAvatarLink());
+        response.setRoles(member.getRoles());
+        /**
+         * Answer, Question 구현 완료 시, 추가 */
+//        response.setAnswer();
+//        response.setQuestion();
+
+        return response;
+    }
 }

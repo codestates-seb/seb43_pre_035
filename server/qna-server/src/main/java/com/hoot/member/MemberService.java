@@ -1,5 +1,7 @@
 package com.hoot.member;
 
+import com.hoot.exception.BusinessLogicException;
+import com.hoot.exception.ExceptionCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -7,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -29,11 +32,13 @@ public class MemberService {
     }
 
     public MemberDto.Response login(MemberDto.Login loginDto) {
-        Member member = memberRepository.findByEmail(loginDto.getEmail());
-        if (!passwordEncoder.matches(loginDto.getPassword(), member.getPassword())) {
+        Member findMember = findVerifiedMemberByEmail(loginDto.getEmail());
+
+        if (!passwordEncoder.matches(loginDto.getPassword(), findMember.getPassword())) {
             throw new UsernameNotFoundException("이메일 또는 비밀번호를 확인해주세요.");
         }
-        return mapper.entityToResponse(member);
+
+        return mapper.entityToResponse(findMember);
     }
 
     private List<String> createRoles(String email) {
@@ -41,5 +46,23 @@ public class MemberService {
             return ADMIN_ROLES_STRING;
         }
         return USER_ROLES_STRING;
+    }
+
+    public MemberDto.Get getMember(long memberId) {
+        Member findMember = findVerifiedMemberById(memberId);
+        MemberDto.Get response = mapper.entityToGet(findMember);
+        return response;
+    }
+
+    public Member findVerifiedMemberById(long memberId) {
+        Optional<Member> optionalMember = memberRepository.findById(memberId);
+        Member findMember = optionalMember.orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
+        return findMember;
+    }
+
+    public Member findVerifiedMemberByEmail(String email) {
+        Optional<Member> optionalMember = memberRepository.findByEmail(email);
+        Member findMember = optionalMember.orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
+        return findMember;
     }
 }

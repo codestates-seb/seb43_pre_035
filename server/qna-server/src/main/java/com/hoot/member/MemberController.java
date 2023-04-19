@@ -29,4 +29,9 @@ public class MemberController {
 
         return new ResponseEntity<>(response, httpHeaders, HttpStatus.OK);
     }
+
+    @GetMapping("/{user_id}")
+    public ResponseEntity<MemberDto.Get> getMember(@PathVariable("user_id") long memberId) {
+        return new ResponseEntity<>(memberService.getMember(memberId), HttpStatus.OK);
+    }
 }
