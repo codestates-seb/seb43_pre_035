@@ -9,6 +9,7 @@ import java.util.List;
 
 public class MemberDto {
     @Getter
+    @Setter
     public static class Post {
         private String email;
 
