@@ -73,6 +73,11 @@ public class MemberService {
         return mapper.entityToGet(save);
     }
 
+    public void deleteMember(long memberId) {
+        Member findMember = findVerifiedMemberById(memberId);
+        memberRepository.delete(findMember);
+    }
+
     public Member findVerifiedMemberById(long memberId) {
         Optional<Member> optionalMember = memberRepository.findById(memberId);
         Member findMember = optionalMember.orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));

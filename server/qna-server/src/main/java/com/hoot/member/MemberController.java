@@ -43,4 +43,10 @@ public class MemberController {
                                                       @RequestBody MemberDto.Patch patchDto) {
         return new ResponseEntity<>(memberService.modifyMember(user, memberId, patchDto), HttpStatus.OK);
     }
+
+    @DeleteMapping("/{user_id}")
+    public ResponseEntity deleteMember(@PathVariable("user_id") long memberId) {
+        memberService.deleteMember(memberId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }
