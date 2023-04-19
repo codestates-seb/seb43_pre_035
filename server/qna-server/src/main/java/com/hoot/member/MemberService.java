@@ -56,7 +56,7 @@ public class MemberService {
     }
 
     public MemberDto.Get modifyMember(UserDetailsImpl user, long memberId, MemberDto.Patch patchDto) {
-        Member findMember = findVerifiedMemberById(user.getMemberId());
+        Member findMember = verifyLogInMemberMatchesMember(user.getMemberId(), memberId);
 
         Optional.ofNullable(patchDto.getPassword())
                         .ifPresent(password -> {
@@ -73,9 +73,17 @@ public class MemberService {
         return mapper.entityToGet(save);
     }
 
-    public void deleteMember(long memberId) {
-        Member findMember = findVerifiedMemberById(memberId);
+    public void deleteMember(UserDetailsImpl user, long memberId) {
+        Member findMember = verifyLogInMemberMatchesMember(user.getMemberId(), memberId);
         memberRepository.delete(findMember);
+    }
+
+    private Member verifyLogInMemberMatchesMember(long loginMemberId, long memberId) {
+        Member loginMember = findVerifiedMemberById(loginMemberId);
+        Member findMember = findVerifiedMemberById(memberId);
+
+        if (!findMember.equals(loginMember)) throw new RuntimeException("자신의 정보만 수정 및 삭제할 수 있습니다.");
+        return findMember;
     }
 
     public Member findVerifiedMemberById(long memberId) {
