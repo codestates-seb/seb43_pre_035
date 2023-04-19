@@ -33,8 +33,9 @@ public class MemberController {
     }
 
     @GetMapping("/{user_id}")
-    public ResponseEntity<MemberDto.Get> getMember(@PathVariable("user_id") long memberId) {
-        return new ResponseEntity<>(memberService.getMember(memberId), HttpStatus.OK);
+    public ResponseEntity<MemberDto.Get> getMember(@AuthenticationPrincipal UserDetailsImpl user,
+                                                   @PathVariable("user_id") long memberId) {
+        return new ResponseEntity<>(memberService.getMember(user, memberId), HttpStatus.OK);
     }
 
     @PatchMapping("/{user_id}")

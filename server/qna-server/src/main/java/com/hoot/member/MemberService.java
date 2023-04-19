@@ -49,8 +49,8 @@ public class MemberService {
         return USER_ROLES_STRING;
     }
 
-    public MemberDto.Get getMember(long memberId) {
-        Member findMember = findVerifiedMemberById(memberId);
+    public MemberDto.Get getMember(UserDetailsImpl user, long memberId) {
+        Member findMember = verifyLogInMemberMatchesMember(user.getMemberId(), memberId);
         MemberDto.Get response = mapper.entityToGet(findMember);
         return response;
     }
