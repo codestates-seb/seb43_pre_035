@@ -18,7 +18,6 @@ const AnswerCreate = () =>{
            {log ? <AnswerLogin logClick={logClick}/> : <AnswerLogout logClick={logClick}/>}
         </CreateWrap>
         </>
-
     )
 }
 
