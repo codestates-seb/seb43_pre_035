@@ -1,6 +1,6 @@
 package com.hoot.member;
 
-import com.hoot.answer.Answer;
+import com.hoot.answer.entity.Answer;
 import com.hoot.question.Question;
 import lombok.Getter;
 import lombok.Setter;
