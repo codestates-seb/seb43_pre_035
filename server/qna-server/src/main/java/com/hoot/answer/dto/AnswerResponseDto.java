@@ -18,4 +18,5 @@ public class AnswerResponseDto {
 	private String content;
 	private LocalDateTime createdDate;
 	private LocalDateTime updateDate;
+	private Boolean selection = false;
 }
