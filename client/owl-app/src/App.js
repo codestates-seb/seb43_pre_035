@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, Fragment} from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import GlobalStyle from './theme/GlobalStyle';
 
@@ -8,10 +8,10 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import QuestionDetail from './pages/Question/QuestionDetail';
 import Header from './components/header/Header';
+import CreateThread from './pages/CreateThread';
 
 //import data
 import { initialData } from './data/dummyThreads_sung';
-import { Fragment } from 'react';
 
 
 //function to convert date
@@ -29,12 +29,37 @@ function App() {
     setLogednav(!nav)
   }
 
-  const cleanedDateThreads = initialData.threads;
-  cleanedDateThreads.forEach(el => {
-    el.createdDate = convertDate(el.createdDate);
-  })
+  // const cleanedDateThreads = initialData.threads;
+  // cleanedDateThreads.forEach(el => {
+  //   el.createdDate = convertDate(el.createdDate);
+  // })
+  // cleanedDateThreads.sort((a, b) => b.createdDate.localeCompare(a.createdDate));
 
-  const [threads, setThreads] = useState(cleanedDateThreads);
+  const [threads, setThreads] = useState(initialData.threads);
+  // const [addedThreads, setAddedThreads] = useState(0);
+
+  // useEffect(()=> {
+  //   const cleanedDateThreads = initialData.threads;
+  //   cleanedDateThreads.forEach(el => {
+  //     el.createdDate = convertDate(el.createdDate);
+  //   })
+  //   cleanedDateThreads.sort((a, b) => b.createdDate.localeCompare(a.createdDate));
+  //   setThreads(cleanedDateThreads);
+  // }, []);
+
+
+  useEffect(() => {
+    console.log("last thread:");
+    console.log(threads);
+  })
+  useEffect(()=> {
+    console.log("thread updated!");
+    console.log(threads[threads.length - 1]);
+    const newThreads = threads;
+    // newThreads[newThreads.length - 1].createdDate = convertDate(newThreads[newThreads.length - 1].createdDate);
+    // newThreads[newThreads.length - 1].modifiedDate = convertDate(newThreads[newThreads.length - 1].modifiedDate);
+    setThreads(newThreads.sort((a, b) => b.createdDate.localeCompare(a.createdDate)));
+  }, [threads]);
 
   return (
       <Fragment>
@@ -47,7 +72,7 @@ function App() {
                   <Route path ="/" element = {<Home threads={threads} toggleLogin={handleClicknav}/>} />
                   <Route path ="/login" element = {<Login />} />
                   <Route path ="/signup" element = {<SignUp />} />
-                  {/* <Route path ="/ask" element =  */}
+                  <Route path ="/ask" element = {<CreateThread threads={threads} setThreads={setThreads} />} />
                   <Route path ="/question" element = {<QuestionDetail/> } />
             </Routes>
         </Router>

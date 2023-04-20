@@ -92,7 +92,9 @@ const StyledIcon = styled(FontAwesomeIcon)`
     padding-right: 6px;
 `
 
-
+const convertDate = (string) => {
+    return `${string.substring(0, 4)}년 ${String(Number(string.substring(5, 7)))}월 ${String(Number(string.substring(8, 10)))}일`
+  }
 const Thread = ({thread}) => {
     return (
         <ThreadContainer>
@@ -100,7 +102,7 @@ const Thread = ({thread}) => {
                 <ThreadTitle>{thread.title}</ThreadTitle>
                 <ThreadContribution>
                     <TextAlign>
-                        <Contributor>{thread.author} </Contributor><span>님께서 {thread.createdDate}에 질문 </span>
+                        <Contributor>{thread.author} </Contributor><span>님께서 {convertDate(thread.createdDate)}에 질문 </span>
                     </TextAlign>
                 </ThreadContribution>
             </ThreadContent>

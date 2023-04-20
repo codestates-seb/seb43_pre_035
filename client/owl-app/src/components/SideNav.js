@@ -8,6 +8,8 @@ const SideNavContainer = styled.aside`
   ${'' /* flex: 1 0 25%; */}
   width: var(--size-sidenav-container);
   margin-right: var(--spacing-sidenav-right);
+  ${'' /* overflow-x: visible; */}
+  ${'' /* overflow-y: hidden; */}
 
 `
 
@@ -24,7 +26,8 @@ const SideNavStickyContainer = styled.div`
     display: flex;
     flex-direction: column;
     padding: 10px 40px 10px 10px;
-
+    overflow-x: visible;
+    overflow-y: hidden;
 `;
 
 const SideNavItem = styled.div`
@@ -45,10 +48,13 @@ const SideNavItem = styled.div`
   }
 
   &.selected {
-    margin-top: 30px;
     padding-left: 20px;
     background: var(--colors-green);
     border-radius: 20px;
+  }
+
+  &.top {
+    margin-top: 30px;
   }
 
 `;
@@ -65,14 +71,17 @@ const LoginCheckBtn = styled.button`
     max-width: 100px;
 `
 
-const SideNav = ({toggleLogin, clickHomeHandler, clickTagsHandler, clickUsersHandler}) => {
+const SideNav = ({toggleLogin, sidebarStatus, clickHomeHandler, clickTagsHandler, clickUsersHandler}) => {
 
   return (
     <SideNavContainer>
       <SideNavStickyContainer>
-        <SideNavItem className="selected" onClick={clickHomeHandler}>Home</SideNavItem>
-        <SideNavItem onClick={clickTagsHandler}>Tags</SideNavItem>
-        <SideNavItem onClick={clickUsersHandler}>Users</SideNavItem>
+        <SideNavItem className={`top ${sidebarStatus.homeOn ? 'selected' : ''}`}
+                      onClick={clickHomeHandler}>Home</SideNavItem>
+        <SideNavItem className={sidebarStatus.tagsOn ? 'selected' : ''}
+                      onClick={clickTagsHandler}>Tags</SideNavItem>
+        <SideNavItem className={sidebarStatus.usersOn ? 'selected' : ''}
+                      onClick={clickUsersHandler}>Users</SideNavItem>
         <LoginCheckBtn onClick={toggleLogin}>Login Toggle </LoginCheckBtn>
       </SideNavStickyContainer>
     </SideNavContainer>

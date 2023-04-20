@@ -1,8 +1,16 @@
 import { Fragment, useEffect } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+
+import { ClickButton } from '../../styles/UIStyles.js';
 
 import Thread from './Thread';
 import Filters from './Filters';
+
+//findIndex, find... tempQuestion = //새로운퀘스천 (새로운 답변이 들어가있는것)
+//tempQuestions = [...questions, ]
+//const tempQuestions = questions.map((el)=> if(el.idx === 1) questions.answer = answers)
+//setQuestions(tempQuestions);
 
 //change into semantic html later
 const ThreadsWrapper = styled.section`
@@ -21,27 +29,6 @@ const HeaderContainer = styled.div`
     width: 100%;
     padding: 30px 10px;
 `
-
-const AskButton = styled.button`
-    outline: none;
-    background: var(--colors-button-bg-default);
-    color: var(--colors-text-default);
-    border-radius: 25px;
-    border: 1px solid transparent;
-    ${'' /* box-shadow: inset 0 1px 0 0 hsla(0,0%,100%,0.2); */}
-    padding: 10px 15px;
-    min-width: 120px;
-
-    font-size: var(--size-text-button);
-    font-weight: var(--fonts-weight-bold);
-    text-transform: uppercase;
-
-    &:hover {
-        background: var(--colors-button-bg-active);
-        cursor: pointer;
-    }
-`
-
 
 const ThreadsContainer = styled.ul`
     display: flex;
@@ -72,7 +59,9 @@ const Threads = ({threads, dimensionsHandler, refContainer}) => {
         <ThreadsWrapper>
             <HeaderContainer>
                 <Filters />
-                <AskButton>Ask Anything</AskButton>
+                <Link to ='/ask'>
+                     <ClickButton>Ask Anything</ClickButton>
+                </Link>
             </HeaderContainer>
             <ThreadsContainer ref={refContainer}>
             {threads.map((thread, idx) => <Thread thread={thread} key={idx}/>)}
@@ -81,4 +70,4 @@ const Threads = ({threads, dimensionsHandler, refContainer}) => {
     )
 }
 
-export {Threads, TempContainer};
+export {Threads, TempContainer, ThreadsWrapper};
