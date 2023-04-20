@@ -48,7 +48,7 @@ public class MemberService {
 
         Optional.ofNullable(patchDto.getPassword())
                         .ifPresent(password -> {
-                            findMember.setPassword(patchDto.getPassword());
+                            findMember.setPassword(password);
                             findMember.encodePassword(passwordEncoder);
                         });
         Optional.ofNullable(patchDto.getName())
