@@ -20,7 +20,7 @@ public class QuestionReplyMapper {
     public QuestionReply questionReplyPatchDtoToQuestionReply(QuestionReplyPatchDto questionReplyPatchDto) {
         QuestionReply questionReply = new QuestionReply();
 
-        questionReply.setQuestionReplyId(questionReply.getQuestionReplyId());
+        questionReply.setQuestionReplyId(questionReplyPatchDto.getQuestionReplyId());
         questionReply.setContent(questionReplyPatchDto.getContent());
 
         return questionReply;
