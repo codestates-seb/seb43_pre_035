@@ -36,6 +36,7 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
         MemberDto.Post postDto = new MemberDto.Post();
         postDto.setEmail(email);
         postDto.setPassword("password123!!");
+        postDto.setName("임시 이름(수정이 필요합니다)");
         memberService.signup(postDto);
 
         redirect(request, response, email, roles);
