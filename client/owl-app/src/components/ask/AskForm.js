@@ -5,7 +5,7 @@ import { ClickButton } from '../../styles/UIStyles.js';
 
 import { initialData } from '../../data/dummyThreads_sung';
 
-const FormWrapper = styled.section`
+const FormWrapper = styled.form`
     display: flex;
     flex-direction: column;
     justify-content: center;

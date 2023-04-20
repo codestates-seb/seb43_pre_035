@@ -84,7 +84,9 @@ const ThreadStats = styled.div`
 `
 
 const Stat = styled.span`
-    padding: 0 8px;
+    padding-left: 8px;
+    width: 63.5px;
+
 `
 
 const StyledIcon = styled(FontAwesomeIcon)`
