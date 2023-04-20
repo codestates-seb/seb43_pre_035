@@ -10,7 +10,12 @@ ${'' /* @import url('https://fonts.googleapis.com/css2?family=Atomic+Age&family=
     --colors-green: #605E4D;
     --colors-yellow: #EFAA52;
     --colors-lightbrown: #DACC96;
+    --colors-darkred: #AB3E16;
     --colors-border: #8D7B68;
+    --colors-button-bg-default: #AB3E16;
+    ${'' /* --colors-button-bg-default: #b92b27; */}
+    --colors-button-bg-active: #A82723;
+    ${'' /* --colors-button-bg-active: #7E2B0D; */}
     --colors-text-default: #F8F8F8;
     --colors-text-title: F8F8F8;
     --colors-text-bright: #FFFFFF;
@@ -18,15 +23,22 @@ ${'' /* @import url('https://fonts.googleapis.com/css2?family=Atomic+Age&family=
     --colors-text-filter: #EFAA52;
     --colors-text-numbers: #DACC96;
     --colors-icons-yellow: #EFAA52;
+    --colors-filter-border: rgba(239, 170, 82, 0.5);
+    ${'' /* --colors-filter-bg:  */}
+    --colors-filter-text-active: #EFAA52;
+    --colors-filter-text-inactive: rgba(239, 170, 82, 0.37);
 
-    --opacity-text-inactive: 37%;
+    ${'' /* --opacity-text-inactive: 37%; */}
+    ${'' /* --opacity-filter-border: 50%; */}
 
     --spacing-topnav: 173px;
+    --spacing-sidenav-top: 173px;
     --spacing-sidenav-right: 30px;
 
     --size-sidenav-container: 180px;
     --size-sidenavitem-minwidth: 170px;
     --size-thread-avatar: 40px;
+    --size-text-button: 0.9rem;
 
     --fonts-thread-title-weight: 400;
     --fonts-weight-default: 100;

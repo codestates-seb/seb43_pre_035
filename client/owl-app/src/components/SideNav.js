@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 
-const SideNavContainer = styled.div`
+const SideNavContainer = styled.aside`
   ${'' /* width: 200px; */}
   display: flex;
   justify-content: flex-start;
@@ -14,7 +14,7 @@ const SideNavContainer = styled.div`
 const SideNavStickyContainer = styled.div`
     position: sticky;
     position: -webkit-sticky;
-    top: var(--spacing-topnav);
+    top: var(--spacing-sidenav-top);
     left: 0;
     width: 100%;
     height: 25vh;
@@ -45,6 +45,7 @@ const SideNavItem = styled.div`
   }
 
   &.selected {
+    margin-top: 30px;
     padding-left: 20px;
     background: var(--colors-green);
     border-radius: 20px;
