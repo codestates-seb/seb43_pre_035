@@ -46,6 +46,7 @@ function App() {
                   <Route path ="/" element = {<Home threads={threads} toggleLogin={handleClicknav}/>} />
                   <Route path ="/login" element = {<Login />} />
                   <Route path ="/signup" element = {<SignUp />} />
+                  {/* <Route path ="/ask" element =  */}
                   <Route path ="/question" element = {<QuestionDetail/> } />
             </Routes>
         </Router>
