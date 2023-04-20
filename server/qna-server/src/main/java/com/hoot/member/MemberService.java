@@ -66,7 +66,7 @@ public class MemberService {
         memberRepository.delete(findMember);
     }
 
-    private Member verifyLogInMemberMatchesMember(long loginMemberId, long memberId) {
+    public Member verifyLogInMemberMatchesMember(long loginMemberId, long memberId) {
         Member loginMember = findVerifiedMemberById(loginMemberId);
         Member findMember = findVerifiedMemberById(memberId);
 
