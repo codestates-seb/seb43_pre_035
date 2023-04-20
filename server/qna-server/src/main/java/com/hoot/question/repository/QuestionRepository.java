@@ -9,5 +9,7 @@ import java.util.List;
 
 @Repository
 public interface QuestionRepository extends JpaRepository <Question, Long>{
-    List<Question> findByMember(Member member);
+	List<Question> findByTitleContaining(String keyword);
+  List<Question> findByMember(Member member);
+
 }

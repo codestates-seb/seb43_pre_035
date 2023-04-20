@@ -2,12 +2,16 @@ package com.hoot.question.service;
 
 import com.hoot.exception.BusinessLogicException;
 import com.hoot.exception.ExceptionCode;
+import com.hoot.member.Member;
+import com.hoot.member.MemberRepository;
 import com.hoot.question.Question;
 import com.hoot.question.repository.QuestionRepository;
+import com.hoot.security.UserDetailsImpl;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -17,15 +21,18 @@ import java.util.Optional;
 public class QuestionService {
 
 	private final QuestionRepository questionRepository;
+	private final MemberRepository memberRepository;
 
-	public QuestionService(QuestionRepository questionRepository) {
+	public QuestionService(QuestionRepository questionRepository, MemberRepository memberRepository) {
 		this.questionRepository = questionRepository;
+		this.memberRepository = memberRepository;
 	}
 
-	public Question createQuestion(Question question){
+	public Question createQuestion(Question question, UserDetailsImpl user){
+		Optional<Member> findUserName = memberRepository.findByEmail(user.getUsername());
+		question.setMember(findUserName.get());
 		return questionRepository.save(question);
 	}
-
 	public Question updateQuestion(Question question){
 		Question findQuestion = findVerifiedQuestion(question.getQuestionId());
 
@@ -63,6 +70,7 @@ public class QuestionService {
 
 
 	public List<Question> findQuestions(){
+
 		return questionRepository.findAll();
 	}
 
@@ -80,6 +88,12 @@ public class QuestionService {
 		Question findQuestion = optionalQuestion.orElseThrow(() ->
                            new BusinessLogicException(ExceptionCode.QUESTION_NOT_FOUND));
 		return findQuestion;
+	}
+
+	@Transactional
+	public List<Question> search(String keyword){
+		List<Question> questionsList = questionRepository.findByTitleContaining(keyword);
+		return questionsList;
 	}
 
 
