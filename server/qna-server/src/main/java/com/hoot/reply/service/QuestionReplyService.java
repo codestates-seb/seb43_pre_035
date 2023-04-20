@@ -2,6 +2,7 @@ package com.hoot.reply.service;
 
 import com.hoot.exception.BusinessLogicException;
 import com.hoot.exception.ExceptionCode;
+import com.hoot.reply.entity.AnswerReply;
 import com.hoot.reply.entity.QuestionReply;
 import com.hoot.reply.repository.QuestionReplyRepository;
 import org.springframework.stereotype.Service;
@@ -21,15 +22,11 @@ public class QuestionReplyService {
     }
 
     public QuestionReply updateQuestionReply(QuestionReply questionReply) {
-        QuestionReply findQuestionReply =
-
-                findVerifiedQuestionReply(questionReply.getQuestionReplyId());
+        QuestionReply findQuestionReply
+                = findVerifiedQuestionReply(questionReply.getQuestionReplyId());
 
         Optional.ofNullable(questionReply.getContent())
                 .ifPresent(content -> findQuestionReply.setContent(content));
-
-//        Optional.ofNullable(questionReply.getQuestionReplyStatus())
-//                .ifPresent(questionReplyStatus -> findQuestionReply.setQuestionReplyStatus(questionReplyStatus));
 
         return questionReplyRepository.save(findQuestionReply);
     }
@@ -37,9 +34,6 @@ public class QuestionReplyService {
     public void deleteQuestionReply(long questionReplyId) {
         QuestionReply questionReply = findVerifiedQuestionReply(questionReplyId);
         questionReplyRepository.delete(questionReply);
-
-//        Optional.ofNullable(questionReply.getQuestionReplyStatus())
-//                .ifPresent(questionReplyStatus -> questionReply.setQuestionReplyStatus(questionReplyStatus));
     }
 
     private QuestionReply findVerifiedQuestionReply(Long questionReplyId) {
@@ -48,5 +42,4 @@ public class QuestionReplyService {
                 = optionalQuestionReply.orElseThrow(() -> new BusinessLogicException(ExceptionCode.QUESTION_REPLY_NOT_FOUND));
         return questionReply;
     }
-
 }
