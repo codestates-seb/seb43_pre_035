@@ -12,6 +12,7 @@ import java.util.List;
 
 public class MemberDto {
     @Getter
+    @Setter
     public static class Post {
         @NotBlank(message = "내용을 입력해주세요")
         @Email(message = "이메일 형식으로 작성해주세요.")
