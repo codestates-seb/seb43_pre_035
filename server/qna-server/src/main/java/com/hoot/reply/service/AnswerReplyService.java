@@ -4,6 +4,7 @@ import com.hoot.exception.BusinessLogicException;
 import com.hoot.exception.ExceptionCode;
 import com.hoot.member.Member;
 import com.hoot.member.MemberRepository;
+import com.hoot.member.MemberService;
 import com.hoot.reply.entity.AnswerReply;
 import com.hoot.reply.repository.AnswerReplyRepository;
 import com.hoot.security.UserDetailsImpl;
@@ -16,10 +17,12 @@ public class AnswerReplyService {
 
     private final AnswerReplyRepository answerReplyRepository;
     private final MemberRepository memberRepository;
+    private final MemberService memberService;
 
-    public AnswerReplyService(AnswerReplyRepository answerReplyRepository, MemberRepository memberRepository) {
+    public AnswerReplyService(AnswerReplyRepository answerReplyRepository, MemberRepository memberRepository, MemberService memberService) {
         this.answerReplyRepository = answerReplyRepository;
         this.memberRepository = memberRepository;
+        this.memberService = memberService;
     }
 
     public AnswerReply createAnswerReply(UserDetailsImpl user, AnswerReply answerReply) {
@@ -28,7 +31,7 @@ public class AnswerReplyService {
     }
 
     public AnswerReply updateAnswerReply(UserDetailsImpl user, AnswerReply answerReply) {
-        verifyLogInMemberMatchAnswerReplyMember(user, answerReply);
+        memberService.verifyLogInMemberMatchesMember(user.getMemberId(), answerReply.getMember().getMemberId());
 
         AnswerReply findAnswerReply
                 = findVerifiedAnswerReply(answerReply.getAnswerReplyId());
@@ -42,7 +45,7 @@ public class AnswerReplyService {
     public void deleteAnswerReply(UserDetailsImpl user, long answerReplyId) {
         AnswerReply answerReply = findVerifiedAnswerReply(answerReplyId);
 
-        verifyLogInMemberMatchAnswerReplyMember(user, answerReply);
+        memberService.verifyLogInMemberMatchesMember(user.getMemberId(), answerReply.getMember().getMemberId());
 
         answerReplyRepository.delete(answerReply);
     }
@@ -60,11 +63,11 @@ public class AnswerReplyService {
         answerReply.setMember(member);
     }
 
-    private void verifyLogInMemberMatchAnswerReplyMember(UserDetailsImpl user, AnswerReply answerReply) {
-        Optional<Member> optionalUserMember = memberRepository.findById(user.getMemberId());
-        Optional<Member> optionalFindMember = memberRepository.findById(answerReply.getMember().getMemberId());
-        Member userMember = optionalUserMember.orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
-        Member findMember = optionalFindMember.orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
-        if (!findMember.equals(userMember)) throw new RuntimeException("자신의 댓글만 수정 및 삭제할 수 있습니다.");
-    }
+//    private void verifyLogInMemberMatchAnswerReplyMember(UserDetailsImpl user, AnswerReply answerReply) {
+//        Optional<Member> optionalUserMember = memberRepository.findById(user.getMemberId());
+//        Optional<Member> optionalFindMember = memberRepository.findById(answerReply.getMember().getMemberId());
+//        Member userMember = optionalUserMember.orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
+//        Member findMember = optionalFindMember.orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
+//        if (!findMember.equals(userMember)) throw new RuntimeException("자신의 댓글만 수정 및 삭제할 수 있습니다.");
+//    }
 }
