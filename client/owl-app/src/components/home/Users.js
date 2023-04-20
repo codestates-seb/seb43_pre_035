@@ -24,14 +24,13 @@ const Users = ({dimensions}) => {
     }
 
     useEffect(()=> {
-        axios
-            .post(url_signup, {email: 'sunga.jlh@gmail.com', password: 'asdfasdf1*', displayName: 'sungster', name: '장성아'})
-            .then((response) => {
-                console.log("axios post sent! success");
-                console.log(response.data);
-                // setUserInfo({email: response.data.email, })
-            })
-            .catch(err => console.log(err));
+        // axios
+        //     .post(url_signup, {email: 'sunga.jlh@gmail.com', password: 'asdfasdf1*', displayName: 'sungster', name: '장성아'})
+        //     .then((response) => {
+        //         console.log("axios post sent! success");
+        //         console.log(response.data);
+        //     })
+        //     .catch(err => console.log(err));
         // axios
         //     .get(url)
         //     .then((response) => {
