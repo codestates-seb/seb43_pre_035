@@ -19,14 +19,17 @@ public class Member extends Timestamped {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long memberId;
 
+    @Column(nullable = false, unique = true)
     private String email;
 
+    @Column(nullable = false)
     private String password;
 
     private String name;
 
     private String avatarLink;
 
+    @Column(unique = true)
     private String displayName;
 
     @ElementCollection(fetch = FetchType.EAGER)
