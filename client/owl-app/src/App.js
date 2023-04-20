@@ -1,18 +1,21 @@
-
 import React, {useState} from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
 //import components
-import TopNav from './components/TopNav';
+import styled, { createGlobalStyle } from 'styled-components';
+import SideNav from './components/SideNav';
+import Threads from './components/Threads';
 //import pages
 import Home from './pages/Home';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
-import TopNavlogged from './components/TopNavlogged'
+import QuestionDetail from './pages/Question/QuestionDetail';
+import Header from './components/header/Header';
+import TopNav from './components/header/TopNav';
+import TopNavlogged from './components/header/TopNavlogged';
 
 import { initialData } from './data/dummyThreads';
-import { createGlobalStyle } from 'styled-components';
+
 
 const GlobalStyle = createGlobalStyle`
 :root{
@@ -31,15 +34,19 @@ function App() {
   const [threads, setThreads] = useState(initialData.threads);
   return (
 
+
     <Router>
-        {nav ? <TopNav /> : <TopNavlogged/>}
+      <Header></Header>
+        {/* {nav ? <TopNav /> : <TopNavlogged/>} */}
       {/* <button onClick={handleClicknav}>{nav ? }</button> */}
       <Routes>
             <Route path ="/" element = {<Home threads={threads} toggleLogin={handleClicknav}/>} />
             <Route path ="/login" element = {<Login />} />
             <Route path ="/signup" element = {<SignUp />} />
+            <Route path ="/question" element = {<QuestionDetail/> } />
         </Routes>
     </Router>
+
 
   );
 }
