@@ -1,5 +1,6 @@
 import styled from "styled-components"
 
+
 export const CreateWrap = styled.div`
     padding: 10px;
     width: 750px;

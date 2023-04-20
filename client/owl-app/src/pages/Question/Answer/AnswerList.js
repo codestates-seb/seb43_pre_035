@@ -19,7 +19,6 @@ const Answerlist = ({question})=>{
         <AnswerWrap>
             {answers.map((answer,idx) => <AnswerDetail answers={answer} key={idx}/>)}
         </AnswerWrap>
-
         )
 }
 
