@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -23,6 +24,7 @@ public class QuestionService {
 	}
 
 	public Question createQuestion(Question question){
+
 		return questionRepository.save(question);
 	}
 
@@ -63,6 +65,7 @@ public class QuestionService {
 
 
 	public List<Question> findQuestions(){
+
 		return questionRepository.findAll();
 	}
 
@@ -80,6 +83,12 @@ public class QuestionService {
 		Question findQuestion = optionalQuestion.orElseThrow(() ->
                            new BusinessLogicException(ExceptionCode.QUESTION_NOT_FOUND));
 		return findQuestion;
+	}
+
+	@Transactional
+	public List<Question> search(String keyword){
+		List<Question> questionsList = questionRepository.findByTitleContaining(keyword);
+		return questionsList;
 	}
 
 
