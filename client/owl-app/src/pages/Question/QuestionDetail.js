@@ -3,6 +3,7 @@ import SelectQuestion from "./SelectQuestion";
 import { initialData } from "../../data/dummyQuestion";
 import { useState } from "react";
 
+
 const QuestionWrap = styled.div`
     padding: 10px;
     width: 100%;
@@ -11,7 +12,6 @@ const QuestionWrap = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
 `
 
 const QuestionDetail = () => {
@@ -26,6 +26,7 @@ const QuestionDetail = () => {
             {/* <SelectQuestion questions={questions}/> */}
         </QuestionWrap>
     </>
+
     )
 }
 

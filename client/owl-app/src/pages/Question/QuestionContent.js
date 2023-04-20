@@ -8,6 +8,7 @@ const ContentWrap = styled.div`
     border-bottom: 2px solid #FFFFFF;
     display: flex;
     justify-content: center;
+
 `
 
 const ContentDetail = styled.div`
@@ -25,6 +26,7 @@ const CreateUser = styled.div`
 `
 
 const QuestionContent = ({question}) =>{
+
 
     return (
         <>

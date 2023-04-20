@@ -8,6 +8,7 @@ const TitleWrap = styled.div`
     display: flex;
     justify-content: start;
     flex-direction: column;
+
 `
 
 const TitleName = styled.h1`

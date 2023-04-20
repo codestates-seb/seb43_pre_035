@@ -33,11 +33,10 @@ function App() {
   const [threads, setThreads] = useState(initialData.threads);
   
   return (
-    
-    
+
+
     <Router>
-      {/* <Header></Header> */}
-      {/* {nav ? <TopNav /> : <TopNavlogged/>} */}
+
       {/* <button onClick={handleClicknav}>{nav ? }</button> */}
       <Routes>
             <Route path ="/" element = {<Home threads={threads} toggleLogin={handleClicknav}/>} />
@@ -48,6 +47,7 @@ function App() {
     </Router>
     
     
+
 
   );
 }
