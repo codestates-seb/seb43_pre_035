@@ -1,6 +1,9 @@
-package com.hoot.security;
+package com.hoot.security.config;
 
 import com.hoot.member.MemberService;
+import com.hoot.security.CustomAuthorityUtils;
+import com.hoot.security.jwt.JwtAuthenticationFilter;
+import com.hoot.security.jwt.JwtTokenProvider;
 import com.hoot.security.oauth2.OAuth2MemberSuccessHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -10,10 +13,11 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @RequiredArgsConstructor
@@ -36,7 +40,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/oauth2/**").permitAll()
                 .antMatchers("/users/signup", "/users/login").permitAll()
-                .antMatchers("/users/**").hasRole("USER")
+                .antMatchers(HttpMethod.GET,"/users/**").hasRole("USER")
+                .antMatchers(HttpMethod.PATCH,"/users/**").hasRole("USER")
+                .antMatchers(HttpMethod.DELETE,"/users/**").hasRole("USER")
                 .antMatchers(HttpMethod.GET,"/questions/**").permitAll()
                 .antMatchers(HttpMethod.POST,"/questions/**").hasRole("USER")
                 .antMatchers(HttpMethod.PATCH,"/questions/**").hasRole("USER")
@@ -50,6 +56,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 // OAuth2 로 로그인을 실행한다
                 .oauth2Login(oauth2 -> oauth2.successHandler(new OAuth2MemberSuccessHandler(jwtTokenProvider, authorityUtils, memberService)));
+    }
+
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.addAllowedOrigin("*");
+        configuration.addAllowedMethod("*");
+        configuration.addAllowedHeader("*");
+        configuration.setAllowCredentials(true);
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+
+        return source;
     }
 
     public class CustomFilterConfigurer extends AbstractHttpConfigurer<CustomFilterConfigurer, HttpSecurity> {

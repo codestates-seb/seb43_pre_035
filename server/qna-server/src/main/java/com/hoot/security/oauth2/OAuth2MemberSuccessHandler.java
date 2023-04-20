@@ -3,7 +3,7 @@ package com.hoot.security.oauth2;
 import com.hoot.member.MemberDto;
 import com.hoot.member.MemberService;
 import com.hoot.security.CustomAuthorityUtils;
-import com.hoot.security.JwtTokenProvider;
+import com.hoot.security.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.user.OAuth2User;

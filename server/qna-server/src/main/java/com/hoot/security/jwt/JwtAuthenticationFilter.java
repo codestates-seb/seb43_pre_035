@@ -1,4 +1,4 @@
-package com.hoot.security;
+package com.hoot.security.jwt;
 
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
