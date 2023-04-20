@@ -4,7 +4,7 @@ import {CreateWrap} from './AnswerStyle'
 import AnswerLogin from "./AnswerLogin"
 import AnswerLogout from "./AnswerLogout"
 
-const AnswerCreate = () =>{
+const AnswerCreate = ({addAnswerHandler}) =>{
 
     const [log,setLog] = useState(true)
 
@@ -15,7 +15,7 @@ const AnswerCreate = () =>{
     return (
         <>
         <CreateWrap>
-           {log ? <AnswerLogin logClick={logClick}/> : <AnswerLogout logClick={logClick}/>}
+           {log ? <AnswerLogin addAnswerHandler={addAnswerHandler}logClick={logClick}/> : <AnswerLogout logClick={logClick}/>}
         </CreateWrap>
         </>
     )

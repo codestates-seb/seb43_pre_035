@@ -8,9 +8,9 @@ import { initialData } from "../../../data/dummyQuestion";
 
 
 const EditorBlock =styled.div`
-    min-height: 500px;
+    height: 500px;
     .ck.ck-editor__editable:not(.ck-editor__nested-editable) {
-  min-height: 500px;
+  min-height: 400px;
   margin-bottom: 30px;
   color : black
 }
@@ -19,39 +19,23 @@ const EditorBlock =styled.div`
 
 
 
-const AnswerLogin = () => {
-    
-    const newSubmitData = initialData.questions
+const AnswerLogin = ({addAnswerHandler}) => {
 
-    const [newData,setnewData] = useState({
-        "answer" : [{
+    const [addnew,setAddnew] = useState("")
 
-            "id" : '',
-            "content" : ''
-        },
-    ]
-    })
+    const onClickSubmit = ()=> {
 
-    
+        let newAnswer = {
+            "id" : "1",
+            "member" : "zeereo",
+            "content" : "addnew"
+        };
 
-    const handlSubmit = () => {
-
-            setViewContent(viewContent.concat({...newData}))
+        addAnswerHandler(newAnswer)
     }
-
-    const [viewContent, setViewContent] = useState([initialData.questions])
-
-    console.log(viewContent);
-    // const getValue = e => {
     
-    //     const { name, value } = e.target;
-    //     setnewData({
-    //         ...newData,
-    //         [name]: value
-    //     })
-    //     console.log(newData);
-    // };
-
+   
+   
 
     return (
         <>
@@ -67,12 +51,9 @@ const AnswerLogin = () => {
                     console.log( 'Editor is ready to use!', editor );
                 } }
                 onChange={ ( event, editor ) => {
-                    const data = editor.getData();;
-                    setnewData({
-                        ...newData,
-                        content: data
-                    })
-                    console.log(newData)
+                    const data = editor.getData();
+                    
+                    console.log(data)
                 } }
                 onBlur={ ( event, editor ) => {
 
@@ -82,7 +63,7 @@ const AnswerLogin = () => {
                 } }
             />
                 </EditorBlock>
-                <CreateButtonLogin onClick={handlSubmit}>작성하기</CreateButtonLogin>
+                <CreateButtonLogin onClick={onClickSubmit}>작성하기</CreateButtonLogin>
             </CreateBlock>
         </CreateWrap>
         </>

@@ -19,14 +19,14 @@ const CreateUserA = styled.div`
 `
 
 
-const AnswerDetail = ({answers})=>{
+const AnswerDetail = ({answer})=>{
 
 
     
     return (
         <AnswerBlock>
-            <AnswerContent>{answers.content}</AnswerContent>
-            <CreateUserA>{answers.member}</CreateUserA>
+            <AnswerContent>{answer.content}</AnswerContent>
+            <CreateUserA>{answer.member}</CreateUserA>
         </AnswerBlock>
 
         )

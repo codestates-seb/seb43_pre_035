@@ -22,8 +22,7 @@ const AskanyTingButton = styled.button`
     color: white;
 `
 
-const SelectQuestion = ({question}) => {
-
+const SelectQuestion = ({question,setQuestion}) => {
 
     return (
         <>
@@ -32,9 +31,11 @@ const SelectQuestion = ({question}) => {
             <QuestionContent question={question}></QuestionContent>
                 <CommentList  question={question}></CommentList>
                 <AddComment></AddComment>
-                <Answerlist  Answerlist question={question}></Answerlist>
-                <AddComment></AddComment>
-                <AnswerCreate></AnswerCreate>
+                <Answerlist question={question}setQuestion={setQuestion}>
+                    
+                </Answerlist>
+                {/* <AddComment></AddComment> */}
+                {/* <AnswerCreate></AnswerCreate> */}
         </SelectedWrap>
         </>
     )
