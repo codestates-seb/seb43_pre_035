@@ -2,12 +2,11 @@ package com.hoot.question.service;
 
 import com.hoot.exception.BusinessLogicException;
 import com.hoot.exception.ExceptionCode;
-import com.hoot.member.Member;
-import com.hoot.member.MemberRepository;
 import com.hoot.question.Question;
-import com.hoot.question.dto.QuestResponseDto;
 import com.hoot.question.repository.QuestionRepository;
-import com.hoot.security.UserDetailsImpl;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,24 +18,13 @@ import java.util.Optional;
 public class QuestionService {
 
 	private final QuestionRepository questionRepository;
-	private final MemberRepository memberRepository;
 
-
-	public QuestionService(QuestionRepository questionRepository, MemberRepository memberRepository) {
+	public QuestionService(QuestionRepository questionRepository) {
 		this.questionRepository = questionRepository;
-		this.memberRepository = memberRepository;
-
-
 	}
 
-//	public Question createQuestion(Question question){
-//
-//		return questionRepository.save(question);
-//	}
+	public Question createQuestion(Question question){
 
-	public Question createQuestion(Question question, UserDetailsImpl user){
-		Optional<Member> findUserName = memberRepository.findByEmail(user.getUsername());
-		question.setMember(findUserName.get());
 		return questionRepository.save(question);
 	}
 
