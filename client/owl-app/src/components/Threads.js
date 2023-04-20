@@ -1,4 +1,4 @@
-// import {useState} from 'react';
+import { useEffect } from 'react';
 import Thread from './Thread';
 import styled from "styled-components";
 
@@ -12,12 +12,20 @@ const ThreadsContainer = styled.ul`
     ${'' /* z-index: 0; */}
 `
 
-const Threads = ({threads}) => {
+const Threads = ({threads, dimensionsHandler, refContainer}) => {
+
+    useEffect(() => {
+        if (refContainer.current) {
+          dimensionsHandler(refContainer.current.offsetWidth, refContainer.current.offsetHeight);
+        }
+      }, []);
+
+
     return (
-        <ThreadsContainer>
+        <ThreadsContainer ref={refContainer}>
          {threads.map((thread, idx) => <Thread thread={thread} key={idx}/>)}
         </ThreadsContainer>
     )
 }
 
-export default Threads;
+export {Threads, ThreadsContainer};

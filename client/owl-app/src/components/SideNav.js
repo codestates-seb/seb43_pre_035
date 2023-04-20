@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+
 const SideNavContainer = styled.div`
   ${'' /* width: 200px; */}
   display: flex;
@@ -63,13 +64,14 @@ const LoginCheckBtn = styled.button`
     max-width: 100px;
 `
 
-const SideNav = ({toggleLogin}) => {
+const SideNav = ({toggleLogin, clickHomeHandler, clickTagsHandler, clickUsersHandler}) => {
+
   return (
     <SideNavContainer>
       <SideNavStickyContainer>
-        <SideNavItem className="selected">Home</SideNavItem>
-        <SideNavItem>Tags</SideNavItem>
-        <SideNavItem>Users</SideNavItem>
+        <SideNavItem className="selected" onClick={clickHomeHandler}>Home</SideNavItem>
+        <SideNavItem onClick={clickTagsHandler}>Tags</SideNavItem>
+        <SideNavItem onClick={clickUsersHandler}>Users</SideNavItem>
         <LoginCheckBtn onClick={toggleLogin}>Login Toggle </LoginCheckBtn>
       </SideNavStickyContainer>
     </SideNavContainer>

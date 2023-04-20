@@ -51,6 +51,7 @@ body {
   background: var(--colors-bg);
   padding-top: var(--spacing-topnav);
   font-family: 'TheJamsil', 'Noto Sans KR', sans-serif;
+  color: var(--colors-text-default);
 }
 
 ul, li {
