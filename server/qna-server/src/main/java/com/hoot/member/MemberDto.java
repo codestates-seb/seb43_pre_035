@@ -59,9 +59,9 @@ public class MemberDto {
 
         private List<String> roles;
 
-        private Answer answer;
+        private List<Answer> answer;
 
-        private Question question;
+        private List<Question> question;
     }
 
     @Getter
