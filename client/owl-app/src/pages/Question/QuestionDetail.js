@@ -20,12 +20,12 @@ const QuestionDetail = () => {
     
     
     return (
-        <>
+    <>
         <QuestionWrap>
             {questions.map((question, idx) => <SelectQuestion question={question} key={idx}/>)}
             {/* <SelectQuestion questions={questions}/> */}
         </QuestionWrap>
-        </>
+    </>
     )
 }
 

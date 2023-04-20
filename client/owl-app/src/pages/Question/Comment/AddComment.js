@@ -18,7 +18,7 @@ const AddCommentWrap = styled.div`
 const AddComment = () => {
 
     const [comment,setComment] = useState(true)
-    console.log(comment)
+
 
     const commentHandleClick = ()=>{
         setComment(!comment)

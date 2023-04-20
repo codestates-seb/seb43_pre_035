@@ -15,7 +15,6 @@ const CommentListWrap = styled.div`
 const CommentList = ({question}) => {
 
     const [comments,setComments] = useState(question.question_reply)
-    console.log(comments)
 
     return (
         <CommentListWrap>
