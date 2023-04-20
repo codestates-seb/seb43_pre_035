@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 
+@CrossOrigin
 @Validated
 @RestController
 @RequestMapping("/question_replies")

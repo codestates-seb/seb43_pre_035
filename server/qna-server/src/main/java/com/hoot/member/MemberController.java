@@ -1,6 +1,6 @@
 package com.hoot.member;
 
-import com.hoot.security.JwtTokenProvider;
+import com.hoot.security.jwt.JwtTokenProvider;
 import com.hoot.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/users")
 @RequiredArgsConstructor
