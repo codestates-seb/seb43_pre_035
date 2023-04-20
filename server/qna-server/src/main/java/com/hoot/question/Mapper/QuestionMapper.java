@@ -35,6 +35,7 @@ public class QuestionMapper {
 		questResponseDto.setUpdateDate(question.getUpdateDate());
 		questResponseDto.setQuestionStatus(question.getQuestionStatus());
 		questResponseDto.setViewCont(question.getViewCount());
+		questResponseDto.setMember(question.getMember());
 
 		return questResponseDto;
 	}
