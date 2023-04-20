@@ -5,13 +5,16 @@ import com.hoot.question.Question;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 public class MemberDto {
     @Getter
     public static class Post {
+        @NotBlank(message = "내용을 입력해주세요")
         private String email;
 
+        @NotBlank(message = "내용을 입력해주세요")
         private String password;
 
         private String name;
@@ -23,8 +26,10 @@ public class MemberDto {
 
     @Getter
     public static class Login {
+        @NotBlank(message = "내용을 입력해주세요")
         private String email;
 
+        @NotBlank(message = "내용을 입력해주세요")
         private String password;
     }
 
