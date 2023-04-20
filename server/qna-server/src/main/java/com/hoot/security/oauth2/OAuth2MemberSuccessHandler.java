@@ -35,7 +35,7 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
 
         MemberDto.Post postDto = new MemberDto.Post();
         postDto.setEmail(email);
-        postDto.setPassword("password");
+        postDto.setPassword("password123!!");
         memberService.signup(postDto);
 
         redirect(request, response, email, roles);
