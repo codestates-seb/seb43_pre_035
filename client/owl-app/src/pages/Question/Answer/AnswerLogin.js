@@ -1,10 +1,9 @@
-import styled, {css} from "styled-components"
-import {CreateWrap,CreateBlock, CreateHeader,CreateEditorLogIn,CreateButtonLogin} from './AnswerStyle'
-import React, {Component} from "react"
+import styled from "styled-components"
+import {CreateWrap,CreateBlock, CreateHeader,CreateButtonLogin} from './AnswerStyle'
+import React,{useState} from "react"
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { useState,useEffect } from "react";
-import { initialData } from "../../../data/dummyQuestion";
+
 
 
 const EditorBlock =styled.div`
@@ -20,18 +19,22 @@ const EditorBlock =styled.div`
 
 
 const AnswerLogin = ({addAnswerHandler}) => {
-
-    const [addnew,setAddnew] = useState("")
+    const [newAnswerContent, setNewAnswerContent] = useState("")
+    
+    // const onTextChange = (e) => {
+    //     setNewAnswerContent(e.target.value);
+    //   };
 
     const onClickSubmit = ()=> {
 
         let newAnswer = {
             "id" : "1",
             "member" : "zeereo",
-            "content" : "addnew"
+            "content" : newAnswerContent
         };
 
         addAnswerHandler(newAnswer)
+        console.log(newAnswer)
     }
     
    
@@ -52,7 +55,7 @@ const AnswerLogin = ({addAnswerHandler}) => {
                 } }
                 onChange={ ( event, editor ) => {
                     const data = editor.getData();
-                    
+                    // onTextChange(event)
                     console.log(data)
                 } }
                 onBlur={ ( event, editor ) => {

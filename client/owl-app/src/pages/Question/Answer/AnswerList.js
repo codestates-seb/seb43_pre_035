@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import AnswerDetail from "./AnswerDetail";
-import { useState,useEffect } from "react";
+import { useState } from "react";
 import AnswerCreate from "./AnswerCreate";
 import AddComment from "../Comment/AddComment";
-import { initialData } from "../../../data/dummyQuestion";
+
 
 const AnswerWrap = styled.div`
     padding-top: 10px;
@@ -17,16 +17,19 @@ const Answerlist = ({question,setQuestion})=>{
 
     const [answers,setAnswers] = useState(question.answer)
 
+
     // setanswer add 만들기
     const addAnswerHandler = (newAnswer) => {
-        setAnswers([...answers, newAnswer])
+        
+
+        setAnswers(...answers,newAnswer)
         }
 
     
     return (
         <>
         <AnswerWrap>
-            {answers.map((answer,idx) => <AnswerDetail answer={answer} key={idx}><AddComment/></AnswerDetail>)}
+            {answers.map((answer,idx) => <AnswerDetail answer={answer} key={idx}></AnswerDetail>)}
             <AddComment/>
         </AnswerWrap>
             <AnswerCreate 

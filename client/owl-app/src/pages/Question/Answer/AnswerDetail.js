@@ -20,6 +20,8 @@ const CreateUserA = styled.div`
 
 
 const AnswerDetail = ({answer})=>{
+   
+
 
 
     

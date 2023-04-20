@@ -3,8 +3,6 @@ import Title from "./Title";
 import QuestionContent from "./QuestionContent"
 import AddComment from "./Comment/AddComment"
 import Answerlist from "./Answer/AnswerList"
-import AnswerCreate from "./Answer/AnswerCreate";
-import CommentCreated from './Comment/CommentCreated';
 import CommentList from "./Comment/CommentList";
 
 const SelectedWrap = styled.div`
@@ -17,10 +15,7 @@ const SelectedWrap = styled.div`
 `
 
 
-const AskanyTingButton = styled.button`
-    border-radius: 1px;
-    color: white;
-`
+
 
 const SelectQuestion = ({question,setQuestion}) => {
 
@@ -30,8 +25,7 @@ const SelectQuestion = ({question,setQuestion}) => {
             <Title question={question}></Title>
             <QuestionContent question={question}></QuestionContent>
                 <CommentList  question={question}></CommentList>
-                <AddComment></AddComment>
-                <Answerlist question={question}setQuestion={setQuestion}>
+                <Answerlist question={question} setQuestion={setQuestion}>
                 </Answerlist>
                 {/* <AddComment></AddComment> */}
                 {/* <AnswerCreate></AnswerCreate> */}

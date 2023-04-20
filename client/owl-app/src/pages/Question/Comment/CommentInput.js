@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import React,{useState} from "react"
 
 const CommentInputWrap = styled.div`
     padding: 10px;
@@ -30,13 +30,31 @@ const CreatButton = styled.button`
     background-color: #BF8B67;
 `
 
-const CommentInput = ()=>{
+const CommentInput = ({addCommentHandler})=>{
+    const [newCommentContent, setNewCommentContent] = useState([])
+
+    const onTextChange = (e) => {
+        setNewCommentContent(e.target.value);
+      };
+    
+    const onClickCommentSubmit = ()=>{
+        let newComment = {
+            "id" : "1",
+            "member" : "새로운 사람",
+            "content" : newCommentContent,
+            "updateDate" : "0분 전"
+        }
+        addCommentHandler(newComment)
+        console.log(newComment)
+    }
 
     return (
         <>
         <CommentInputWrap>
-            <CommentInputCompo type="text" placeholder="Comment를 달아주세요"/>
-            <CreatButton>작성하기</CreatButton>
+            <CommentInputCompo type="text" placeholder="Comment를 달아주세요"
+            onChange={onTextChange}
+            />
+            <CreatButton onClick={onClickCommentSubmit}>작성하기</CreatButton>
         </CommentInputWrap>
         </>
     )

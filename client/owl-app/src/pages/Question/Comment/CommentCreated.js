@@ -1,5 +1,6 @@
 import styled from "styled-components"
 
+
 const CommentWrap = styled.div`
     padding: 10px;
     width: 750px;
@@ -28,15 +29,16 @@ const CommentDate = styled.div`
     height: 15px;
 `
 
-const CommentCreated = ({comments})=>{
+const CommentCreated = ({comment})=>{
 
     return(
-        
+        <>
         <CommentWrap>
-            <CommentDetail>{comments.content}</CommentDetail>
-            <CommentUser>{comments.member}</CommentUser>
-            <CommentDate>{comments.updateDate}</CommentDate>
+            <CommentDetail>{comment.content}</CommentDetail>
+            <CommentUser>{comment.member}</CommentUser>
+            <CommentDate>{comment.updateDate}</CommentDate>
         </CommentWrap>
+        </>
 
     )
 }

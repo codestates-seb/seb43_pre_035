@@ -18,14 +18,8 @@ const QuestionDetail = () => {
 
     const [question,setQuestion] = useState(initialData.questions[0])
 
-
-
-    // useEffect(()=>{
-
     
 
-    // } ,[questions])
-    
     return (
     <>
         <QuestionWrap>

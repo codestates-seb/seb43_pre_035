@@ -1,7 +1,7 @@
-import styled, {css} from "styled-components";
+import styled from "styled-components";
 import {useState} from 'react'
 import CommentInput from "./CommentInput"
-import CommentCreated from "./CommentCreated";
+
 
 const AddCommentWrap = styled.div`
     padding: 10px;
@@ -15,19 +15,15 @@ const AddCommentWrap = styled.div`
 `
 
 
-const AddComment = () => {
+const AddComment = ({addCommentHandler}) => {
 
     const [comment,setComment] = useState(true)
 
 
-    const commentHandleClick = ()=>{
-        setComment(!comment)
-    }
-
     return (
         <>
-            <AddCommentWrap onClick={commentHandleClick}>
-            {comment ? <div> Add a Comment </div> :<CommentInput/>}
+            <AddCommentWrap onClick={()=>{setComment(false)}}>
+            {comment ? <div> Add a Comment </div> :<CommentInput addCommentHandler={addCommentHandler}/>}
             </AddCommentWrap>
         </>
     )
