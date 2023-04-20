@@ -65,11 +65,4 @@ public class QuestionReplyService {
         questionReply.setMember(member);
     }
 
-//    private void verifyLogInMemberMatchQuestionReplyMember(UserDetailsImpl user, QuestionReply questionReply) {
-//        Optional<Member> optionalUserMember = memberRepository.findById(user.getMemberId());
-//        Optional<Member> optionalFindMember = memberRepository.findById(questionReply.getMember().getMemberId());
-//        Member userMember = optionalUserMember.orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
-//        Member findMember = optionalFindMember.orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
-//        if (!findMember.equals(userMember)) throw new RuntimeException("자신의 댓글만 수정 및 삭제할 수 있습니다.");
-//    }
 }
