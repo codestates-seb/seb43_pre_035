@@ -7,7 +7,8 @@ const ContentWrap = styled.div`
     padding: 20px;
     border-bottom: 2px solid #FFFFFF;
     display: flex;
-    
+    justify-content: center;
+
 `
 
 const ContentDetail = styled.div`
@@ -18,19 +19,20 @@ const ContentDetail = styled.div`
 
 
 const CreateUser = styled.div`
-    padding-top: 130px;
+    padding-top: 100px;
     width: 130px;
     height: 70px;
     font-size: 15px;
 `
 
-const QuestionContent = () =>{
+const QuestionContent = ({question}) =>{
+
 
     return (
         <>
         <ContentWrap>
-        <ContentDetail>content</ContentDetail>
-        <CreateUser>username</CreateUser>
+        <ContentDetail>{question.content}</ContentDetail>
+        <CreateUser>{question.member}</CreateUser>
         </ContentWrap>
         </>
     )

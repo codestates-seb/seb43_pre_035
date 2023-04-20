@@ -1,11 +1,19 @@
 import styled from "styled-components";
 import Title from "./Title";
 import QuestionContent from "./QuestionContent"
-import AddComment from "./AddComment"
+import AddComment from "./Comment/AddComment"
+import Answerlist from "./Answer/AnswerList"
+import AnswerCreate from "./Answer/AnswerCreate";
+import CommentCreated from './Comment/CommentCreated';
+import CommentList from "./Comment/CommentList";
 
 const SelectedWrap = styled.div`
     padding: 10px;
-    top : 500px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
     color: white;
 `
 
@@ -15,15 +23,18 @@ const AskanyTingButton = styled.button`
     color: white;
 `
 
-const SelectQuestion = () => {
+const SelectQuestion = ({question}) => {
 
     return (
         <>
         <SelectedWrap>
-            <AskanyTingButton></AskanyTingButton>
-            <Title>Title!</Title>
-            <QuestionContent></QuestionContent>
-            <AddComment></AddComment>
+            <Title question={question}></Title>
+            <QuestionContent question={question}></QuestionContent>
+                <CommentList  question={question}></CommentList>
+                <AddComment></AddComment>
+                <Answerlist  Answerlist question={question}></Answerlist>
+                <AddComment></AddComment>
+                <AnswerCreate></AnswerCreate>
         </SelectedWrap>
         </>
     )
