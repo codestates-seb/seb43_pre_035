@@ -1,10 +1,6 @@
 import React, {useState} from 'react';
-// import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import GlobalStyle from './theme/GlobalStyle';
-//import components
-
-import styled, { createGlobalStyle } from 'styled-components';
 
 //import pages
 import Home from './pages/Home';

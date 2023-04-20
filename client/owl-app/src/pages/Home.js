@@ -1,9 +1,9 @@
 import SideNav from '../components/SideNav';
-import { Threads } from '../components/Threads';
-import Tags from '../components/Tags';
-import Users from '../components/Users';
+import { Threads } from '../components/home/Threads';
+import Tags from '../components/home/Tags';
+import Users from '../components/home/Users';
 
-import styled from "styled-components";
+import styled from 'styled-components';
 import { useState, useRef } from 'react';
 
 
@@ -40,21 +40,21 @@ const Home = ({threads, toggleLogin}) => {
 
     //refactor this handler into a reusable component
     const clickHomeHandler = () => {
-        console.log("home on");
+        // console.log("home on");
         setHomeOn(true);
         setTagsOn(false);
         setUsersOn(false);
     }
 
     const clickTagsHandler = () => {
-        console.log("tags on");
+        // console.log("tags on");
         setHomeOn(false);
         setTagsOn(true);
         setUsersOn(false);
     }
 
     const clickUsersHandler = () => {
-        console.log("users on");
+        // console.log("users on");
         setHomeOn(false);
         setTagsOn(false);
         setUsersOn(true);

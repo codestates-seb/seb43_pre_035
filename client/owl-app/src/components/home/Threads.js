@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import Thread from './Thread';
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const ThreadsContainer = styled.ul`
     display: flex;
@@ -9,7 +9,12 @@ const ThreadsContainer = styled.ul`
     align-items: center;
     flex-basis: 70%;
     flex-grow: 1;
-    ${'' /* z-index: 0; */}
+`
+
+const TempContainer = styled(ThreadsContainer)`
+    justify-content: flex-start;
+    width: ${(props) => props.width}px;
+    padding-top: 20px;
 `
 
 const Threads = ({threads, dimensionsHandler, refContainer}) => {
@@ -28,4 +33,4 @@ const Threads = ({threads, dimensionsHandler, refContainer}) => {
     )
 }
 
-export {Threads, ThreadsContainer};
+export {Threads, TempContainer};
