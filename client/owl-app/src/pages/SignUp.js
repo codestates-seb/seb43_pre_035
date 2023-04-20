@@ -2,7 +2,6 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import HandleSignup from '../components/HandleSignup';
 import { Link } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
 
 const Container = styled.div`
   display: flex;
@@ -31,7 +30,7 @@ const GoogleButton = styled.button`
   justify-content: space-between;
   margin: 0 0 10px;
   padding: 10px;
-  width: 340px;
+  width: 300px;
   background-color: rgba(157, 83, 83, 0.2);
   &:hover {
     cursor: pointer;
@@ -41,11 +40,11 @@ const GoogleButton = styled.button`
 const GoogleButtonLogo = styled.img`
   height: 25px;
   margin-right: 10px;
-  margin-left: 40px;
+  margin-left: 10px;
 `;
 
 const GoogleButtonText = styled.span`
-  margin-right: 80px;
+  margin-right: 50px;
   margin-left: -20px;
 `;
 
@@ -60,7 +59,7 @@ const KakaoButton = styled.button`
   justify-content: space-between;
   margin: 0 0 10px;
   padding: 10px;
-  width: 340px;
+  width: 300px;
   background-color: rgba(157, 83, 83, 0.2);
 
   &:hover {
@@ -70,13 +69,13 @@ const KakaoButton = styled.button`
 
 const KakaoButtonLogo = styled.img`
   height: 25px;
-  margin-right: 15px;
-  margin-left: 40px;
+  margin-right: 30px;
+  margin-left: 10px;
 `;
 
 const KakaoButtonText = styled.span`
-  margin-right: 60px;
-  margin-left: -10px;
+  margin-right: 30px;
+  margin-left: 0px;
 `;
 
 const GithubButton = styled.button`
@@ -90,7 +89,7 @@ const GithubButton = styled.button`
   justify-content: space-between;
   margin: 0 0 10px;
   padding: 10px;
-  width: 340px;
+  width: 300px;
   background-color: rgba(157, 83, 83, 0.2);
 
   &:hover {
@@ -100,13 +99,13 @@ const GithubButton = styled.button`
 
 const GithubButtonLogo = styled.img`
   height: 25px;
-  margin-right: 10px;
-  margin-left: 40px;
+  margin-right: 0px;
+  margin-left: 10px;
 `;
 
 const GithubButtonText = styled.span`
-  margin-right: 85px;
-  margin-left: 0px;
+  margin-right: 50px;
+  margin-left: 10px;
 `;
 
 
@@ -142,8 +141,10 @@ const Input = styled.input`
 
 
 const Guide = styled.div`
-text-align: left;
+ text-align: left;
  margin-bottom: 10px;
+ margin-left: 30px;
+ margin-right: 5px;
  font-size: 12px;
  cursor: pointer;
  width: 300px;
@@ -183,7 +184,7 @@ const SignUpButton = styled.button`
  border-radius: 5px;
  border: none;
  margin-bottom: 10px;
- width: 300px;
+ width: 280px;
  &:hover {
     cursor: pointer;
   }
