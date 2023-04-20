@@ -34,7 +34,7 @@ public class QuestionReplyController {
     }
 
     @PatchMapping("/{question-reply-id}")
-    public ResponseEntity updateQuestionReply(@PathVariable("question-reply-id") @Positive Long questionReplyId,
+    public ResponseEntity updateQuestionReply(@PathVariable("question-reply-id") @Positive long questionReplyId,
                                               @Valid @RequestBody QuestionReplyPatchDto questionReplyPatchDto) {
 
         questionReplyPatchDto.setQuestionReplyId(questionReplyId);
