@@ -32,7 +32,6 @@ const SelectQuestion = ({question,setQuestion}) => {
                 <CommentList  question={question}></CommentList>
                 <AddComment></AddComment>
                 <Answerlist question={question}setQuestion={setQuestion}>
-                    
                 </Answerlist>
                 {/* <AddComment></AddComment> */}
                 {/* <AnswerCreate></AnswerCreate> */}

@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import SelectQuestion from "./SelectQuestion";
 import { initialData } from "../../data/dummyQuestion";
-import { useState,useEffect } from "react";
+import { useState } from "react";
+
 
 const QuestionWrap = styled.div`
     padding: 10px;

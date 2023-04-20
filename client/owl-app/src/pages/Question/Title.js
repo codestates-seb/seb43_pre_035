@@ -9,9 +9,13 @@ const TitleWrap = styled.div`
     justify-content: start;
     flex-direction: column;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 3d7755d6c4308e87ec03fd98dc82d8a562421103
+=======
+
+>>>>>>> a18dfe33f7c23aaf24656a07047060ee84c5ce76
 `
 
 const TitleName = styled.h1`
