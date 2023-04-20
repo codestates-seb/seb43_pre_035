@@ -1,7 +1,7 @@
 package com.hoot.reply.controller;
 
-import com.hoot.reply.dto.answer_reply_Dto.AnswerReplyPatchDto;
-import com.hoot.reply.dto.answer_reply_Dto.AnswerReplyPostDto;
+import com.hoot.reply.dto.answer_reply_dto.AnswerReplyPatchDto;
+import com.hoot.reply.dto.answer_reply_dto.AnswerReplyPostDto;
 import com.hoot.reply.entity.AnswerReply;
 import com.hoot.reply.mapper.AnswerReplyMapper;
 import com.hoot.reply.service.AnswerReplyService;

@@ -1,4 +1,4 @@
-package com.hoot.reply.dto.answer_reply_Dto;
+package com.hoot.reply.dto.answer_reply_dto;
 
 import com.hoot.member.Member;
 import lombok.Getter;
