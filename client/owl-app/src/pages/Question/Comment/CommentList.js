@@ -18,6 +18,8 @@ const CommentList = ({question}) => {
 
     const [comment,setComment] = useState(question.question_reply)
 
+
+
     const addCommentHandler = (newComment) => {
         setComment([...comment, newComment])
         }
@@ -27,7 +29,7 @@ const CommentList = ({question}) => {
         <CommentListWrap>
             {comment.map((comment, idx)=><CommentCreated comment={comment} key={idx} />)}
         </CommentListWrap>
-            <AddComment addCommentHandler={addCommentHandler}></AddComment>
+            <AddComment addCommentHandler={addCommentHandler} ></AddComment>
         </>
 
     )   

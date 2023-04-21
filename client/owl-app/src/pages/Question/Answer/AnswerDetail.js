@@ -1,10 +1,20 @@
 import styled from "styled-components";
+import AddCommentInput from './../Comment/AddCommentInput'
+import AnswerCommentList from '../Comment/AnswerCommentList'
+import { useState } from "react";
 
 
 const AnswerBlock = styled.div`
     display: flex;
     padding: 10px;
+    flex-direction: column;
 `
+
+const AnsweruserBlock = styled.div`
+    display: flex;
+    padding: 10px;
+    border-bottom: 1px solid white;
+`   
 
 const AnswerContent = styled.div`
     padding: 10px;
@@ -21,15 +31,30 @@ const CreateUserA = styled.div`
 
 const AnswerDetail = ({answer})=>{
    
+    const answerComment = answer.answerReply
+    
+    const [addanswerComment,setAddAnswerComment] = useState(answerComment)
 
+    console.log(addanswerComment)
+    
 
+    const answerCommentHandler = (newComment) => {
+        setAddAnswerComment([...addanswerComment, newComment])
+        }
 
     
     return (
+        <>
         <AnswerBlock>
+            <AnsweruserBlock>
             <AnswerContent>{answer.content}</AnswerContent>
             <CreateUserA>{answer.member}</CreateUserA>
+            </AnsweruserBlock>
+            <AnswerCommentList addanswerComment={addanswerComment}></AnswerCommentList>
         </AnswerBlock>
+        <AddCommentInput answerCommentHandler={answerCommentHandler} ></AddCommentInput>
+        </>
+
 
         )
 }

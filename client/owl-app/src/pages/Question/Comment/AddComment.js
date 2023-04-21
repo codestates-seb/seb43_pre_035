@@ -6,7 +6,7 @@ import CommentInput from "./CommentInput"
 const AddCommentWrap = styled.div`
     padding: 10px;
     width: 750;
-    border-bottom : 2px solid #FFFFFF;
+    border : 2px solid #FFFFFF;
     color: #9D5353;
     cursor: pointer;
     .hover {
@@ -15,7 +15,7 @@ const AddCommentWrap = styled.div`
 `
 
 
-const AddComment = ({addCommentHandler}) => {
+const AddComment = ({addCommentHandler,AnswerCommentHandler}) => {
 
     const [comment,setComment] = useState(true)
 

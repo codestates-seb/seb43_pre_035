@@ -2,7 +2,6 @@ import styled from "styled-components";
 import AnswerDetail from "./AnswerDetail";
 import { useState } from "react";
 import AnswerCreate from "./AnswerCreate";
-import AddComment from "../Comment/AddComment";
 
 
 const AnswerWrap = styled.div`
@@ -24,13 +23,11 @@ const Answerlist = ({question,setQuestion})=>{
 
         setAnswers(...answers,newAnswer)
         }
-
     
     return (
         <>
         <AnswerWrap>
             {answers.map((answer,idx) => <AnswerDetail answer={answer} key={idx}></AnswerDetail>)}
-            <AddComment/>
         </AnswerWrap>
             <AnswerCreate 
             addAnswerHandler={addAnswerHandler}

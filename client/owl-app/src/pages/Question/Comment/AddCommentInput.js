@@ -30,22 +30,22 @@ const CreatButton = styled.button`
     background-color: #BF8B67;
 `
 
-const CommentInput = ({addCommentHandler, AnswerCommentHandler})=>{
-    const [newCommentContent, setNewCommentContent] = useState([])
-
+const CommentInput = ({addCommentHandler, answerCommentHandler})=>{
+    
+    const [answerCommentContent, setAnswerCommentContent] =useState([])
     const onTextChange = (e) => { 
-        setNewCommentContent(e.target.value);
+        setAnswerCommentContent(e.target.value);
       };
     
     const onClickCommentSubmit = ()=>{
         let newComment = {
             "id" : "1",
             "member" : "새로운 사람",
-            "content" : newCommentContent,
+            "content" : answerCommentContent,
             "updateDate" : "0분 전"
         }
 
-        addCommentHandler(newComment)
+        answerCommentHandler(newComment)
     }
     
     return (
