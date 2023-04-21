@@ -16,6 +16,7 @@ public class AnswerMapper {
 
 	public Answer answerPostToDtoToAnswer(AnswerPostDto answerPostDto){
 		Answer answer = new Answer();
+//		answer.setMember(answerPostDto.getMember());
 		answer.setContent(answerPostDto.getContent());
 		return answer ;
 	}
@@ -30,7 +31,7 @@ public class AnswerMapper {
 	public AnswerResponseDto answerToAnswerResponseDto(Answer answer){
 
 		AnswerResponseDto answerResponseDto = new AnswerResponseDto();
-
+		answerResponseDto.setQuestionId(answer.getQuestion().getQuestionId());
 		answerResponseDto.setAnswerId(answer.getAnswerId());
 		answerResponseDto.setMember(mapper.entityToResponse(answer.getMember()));
 		answerResponseDto.setContent(answer.getContent());
