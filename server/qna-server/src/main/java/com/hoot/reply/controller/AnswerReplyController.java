@@ -21,6 +21,7 @@ import javax.validation.constraints.Positive;
 @RequestMapping("/answers/{answer_id}")
 public class AnswerReplyController {
     private AnswerReplyService answerReplyService;
+
     private AnswerReplyMapper mapper;
 
     public AnswerReplyController(AnswerReplyService answerReplyService, AnswerReplyMapper mapper) {
