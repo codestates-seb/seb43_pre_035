@@ -62,10 +62,11 @@ public class QuestionController {
 
 	//전체목록조회하기
 	@GetMapping
-	public ResponseEntity<Page<Question>> getQuestions(@RequestParam(defaultValue = "0") int pageNumber,
+	public ResponseEntity<Page<QuestResponseDto>> getQuestions(@RequestParam(defaultValue = "0") int pageNumber,
 	                                                   @RequestParam(defaultValue = "10") int pageSize) {
-		Page<Question> page = questionService.getQuestions(pageNumber, pageSize);
-		return new ResponseEntity<>(page, HttpStatus.OK);
+		Page<Question> questionPage = questionService.getQuestions(pageNumber, pageSize);
+		Page<QuestResponseDto> questResponsePage = mapper.questPageToQuestResponsePage(questionPage);
+		return new ResponseEntity<>(questResponsePage, HttpStatus.OK);
 	}
 
 	@GetMapping("/search")
@@ -73,8 +74,10 @@ public class QuestionController {
 	                                                    @RequestParam String content,
 	                                                    @PageableDefault(size = 10, sort = "questionId") org.springframework.data.domain.Pageable pageRequest){
 
-		Page<QuestResponseDto> pagingList = questionService.searchQuestions(title, content, pageRequest);
-		return new ResponseEntity<>(pagingList, HttpStatus.OK);
+		Page<Question> questionPage = questionService.searchQuestions(title, content, pageRequest);
+		Page<QuestResponseDto> questResponsePage = mapper.questPageToQuestResponsePage(questionPage);
+
+		return new ResponseEntity<>(questResponsePage, HttpStatus.OK);
 	}
 
 
