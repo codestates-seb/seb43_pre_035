@@ -1,6 +1,7 @@
 package com.hoot.question.dto;
 
 import com.hoot.member.Member;
+import com.hoot.member.MemberDto;
 import com.hoot.question.Question;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,6 +22,6 @@ public class QuestResponseDto {
 	private LocalDateTime createdDate;
 	private LocalDateTime updateDate;
 	private Question.QuestionStatus questionStatus;
-	private Member member;
+	private MemberDto.Response member;
 }
 
