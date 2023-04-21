@@ -21,6 +21,7 @@ public class AnswerMapper {
 
     public Answer answerPostToDtoToAnswer(AnswerPostDto answerPostDto) {
         Answer answer = new Answer();
+        // answer.setMember(answerPostDto.getMember());
         answer.setContent(answerPostDto.getContent());
         return answer;
     }
@@ -38,25 +39,19 @@ public class AnswerMapper {
 
         AnswerResponseDto answerResponseDto = new AnswerResponseDto();
 
+        answerResponseDto.setQuestionId(answer.getQuestion().getQuestionId());
         answerResponseDto.setAnswerId(answer.getAnswerId());
         answerResponseDto.setMember(mapper.entityToResponse(answer.getMember()));
         answerResponseDto.setContent(answer.getContent());
         answerResponseDto.setCreatedDate(answer.getCreatedDate());
         answerResponseDto.setUpdateDate(answer.getUpdateDate());
+        answerResponseDto.setSelection(answer.getSelection());
 
         return answerResponseDto;
     }
 
     public List<AnswerResponseDto> answerListToAnswerResponseList(List<Answer> answerList) {
-        List<AnswerResponseDto> map = answerList.stream().map(
-                answer -> new AnswerResponseDto(
-                        answer.getAnswerId(),
-                        mapper.entityToResponse(answer.getMember()),
-                        answer.getContent(),
-                        answer.getCreatedDate(),
-                        answer.getUpdateDate(),
-                        answer.getSelection()
-                )).collect(Collectors.toList());
+        List<AnswerResponseDto> map = answerList.stream().map(answer -> answerToAnswerResponseDto(answer)).collect(Collectors.toList());
 
         return map;
     }
