@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 public class MailService {
     private final JavaMailSender mailSender;
 
-    @Value("${spring.mail.username}")
-    private static String FROM_ADDRESS;
+    @Value("${email.from.address}")
+    private String FROM_ADDRESS;
 
     public MailService(JavaMailSender mailSender) {
         this.mailSender = mailSender;
