@@ -67,14 +67,13 @@ public class QuestionService {
 		}
 	}
 	//페이지 조회
-	public Page<Question> searchQuestions(String title, String content, Pageable pageRequest) {
-		Page<Question> questionPage = questionRepository.findAllSearch(title, content, pageRequest);
+	public Page<Question> searchQuestions(String title, String content, Pageable pageable) {
+		Page<Question> questionPage = questionRepository.findAllSearch(title, content, pageable);
 
 		return questionPage;
 	}
 
-	public Page<Question> getQuestions(int pageNumber, int pageSize){
-		Pageable pageable = PageRequest.of(pageNumber, pageSize, Sort.by("questionId").descending());
+	public Page<Question> getQuestions(Pageable pageable){
 		Page<Question> questionPage = questionRepository.findByQuestionStatusNot(Question.QuestionStatus.QUESTION_DELETE, pageable);
 
 		return questionPage;
