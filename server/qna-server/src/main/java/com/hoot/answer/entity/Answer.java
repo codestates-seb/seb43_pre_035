@@ -33,4 +33,7 @@ public class Answer extends Timestamped {
     @ManyToOne
     @JoinColumn(name = "question_id")
     private Question question;
+//
+//    @OneToMany(mappedBy = "answer")
+//    private List<AnswerReply> answerReplies;
 }
