@@ -2,10 +2,7 @@ package com.hoot.question.service;
 
 import com.hoot.exception.BusinessLogicException;
 import com.hoot.exception.ExceptionCode;
-import com.hoot.member.Member;
-import com.hoot.member.MemberDto;
-import com.hoot.member.MemberRepository;
-import com.hoot.member.MemberService;
+import com.hoot.member.*;
 import com.hoot.question.Question;
 import com.hoot.question.dto.PagingDto;
 import com.hoot.question.dto.QuestResponseDto;
@@ -70,31 +67,17 @@ public class QuestionService {
 		}
 	}
 	//페이지 조회
-	public Page<QuestResponseDto> searchQuestions(String title, String content, Pageable pageRequest) {
+	public Page<Question> searchQuestions(String title, String content, Pageable pageRequest) {
 		Page<Question> questionPage = questionRepository.findAllSearch(title, content, pageRequest);
-		Page<QuestResponseDto> map = questionPage.map(questResponseDto -> new QuestResponseDto(
-				questResponseDto.getQuestionId(),
-				questResponseDto.getTitle(),
-				questResponseDto.getContent(),
-				questResponseDto.getViewCount(),
-				questResponseDto.getCreatedDate(),
-				questResponseDto.getUpdateDate(),
-				questResponseDto.getQuestionStatus(),
-				new MemberDto.Response(
-						questResponseDto.getMember().getMemberId(),
-						questResponseDto.getMember().getEmail(),
-						questResponseDto.getMember().getName(),
-						questResponseDto.getMember().getDisplayName(),
-						questResponseDto.getMember().getAvatarLink(),
-						questResponseDto.getMember().getRoles()
-				)
-		));
-		return map;
+
+		return questionPage;
 	}
 
 	public Page<Question> getQuestions(int pageNumber, int pageSize){
 		Pageable pageable = PageRequest.of(pageNumber, pageSize, Sort.by("questionId").descending());
-		return questionRepository.findByQuestionStatusNot(Question.QuestionStatus.QUESTION_DELETE, pageable);
+		Page<Question> questionPage = questionRepository.findByQuestionStatusNot(Question.QuestionStatus.QUESTION_DELETE, pageable);
+
+		return questionPage;
 	}
 
 	public void deleteQuestion(UserDetailsImpl userDetails, long questionId){
