@@ -8,5 +8,4 @@ import javax.validation.constraints.NotBlank;
 public class QuestionReplyPostDto {
     @NotBlank(message = "내용을 입력해주세요.")
     private String content;
-
 }
