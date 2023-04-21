@@ -1,9 +1,11 @@
 import styled from 'styled-components';
+import axios from 'axios';
 import FormInput from './FormInput';
 import { useState, useEffect, useId } from 'react';
 import { ClickButton } from '../../styles/UIStyles.js';
 
-import { initialData } from '../../data/dummyThreads_sung';
+// import { initialData } from '../../data/dummyThreads_sung';
+import { useNavigate } from 'react-router-dom';
 
 const FormWrapper = styled.form`
     display: flex;
@@ -29,39 +31,82 @@ const convertDate = (string) => {
     return `${string.substring(0, 4)}년 ${String(Number(string.substring(5, 7)))}월 ${String(Number(string.substring(8, 10)))}일`
   }
 
-const AskForm = ({threads, setThreads}) => {
+const shuffle = (array) => {
+    let currentIndex = array.length,  randomIndex;
+    // While there remain elements to shuffle.
+    while (currentIndex != 0) {
+      // Pick a remaining element.
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+  }
+
+const AskForm = ({threads}) => {
 
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const id = useId();
+    const navigate = useNavigate();
+    const url_avatars = "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com";
+
+    //default avatar images to shuffle
+    const AvatDefaultUrls = [];
+    const imgNum = 8;
+    let imgIdx = 0;
+    for (let i = 1; i <= imgNum; i++) AvatDefaultUrls.push(`${url_avatars}/owl0${i}.png`);
+    shuffle(AvatDefaultUrls);
+    console.log(AvatDefaultUrls);
 
     useEffect(() => {
         console.log("title: ", title, "content: ", content);
 
     }, [title, content]);
 
-    const submitThreadHandler = () => {
+    const submitThreadHandler = (e) => {
+        e.preventDefault();
+
         const date = new Date();
         const newThread = {
-            "id": id,
+            // "id": id,
             "createdDate": date.toISOString(),
-            "modifiedDate": date.toISOString(),
+            "updateDate": date.toISOString(),
             "title": title,
-            "author": 'jicoder', //change to login name, 상태관리에 필요
+            "member": {"displayName" : 'jicoder', "avatarLink" : AvatDefaultUrls[imgIdx]},
             "answer": [],
-            "bodyHTML":
+            "content":
                 `<p>${content}</p>`,
-            "avatarUrl" : "../avatars/owl01.png",
             "viewCount" : 0,
-            "answerCount" : 0
         };
 
-        setThreads([...threads, newThread]);
-        initialData.threads.push(newThread);
+        //shuffle for later
+        if (imgIdx >= imgNum-1){
+            imgIdx = 0;
+            shuffle(AvatDefaultUrls);
+          }else{
+            imgIdx++;
+          }
+
+        axios.post(`http://localhost:3001/questions`, newThread)
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err))
+        // .then(() => {
+        //     navigate('/');
+        //     navigate(0);
+        // })
+
+        navigate('/');
+        navigate(0); //refresh page
+        // setThreads([...threads, newThread]);
+
+            //if it's the last image, shuffle the image again
+
     }
 
     return (
-        <FormWrapper>
+        <FormWrapper onSubmit={submitThreadHandler}>
             <FormInput  id="title"
                         label="제목"
                         placeholder="제목에 문제의 요지를 담아주세요"
@@ -76,7 +121,7 @@ const AskForm = ({threads, setThreads}) => {
                         value={content}
                         setValue={setContent}
             />
-            <SubmitButton onClick={submitThreadHandler}>작성하기</SubmitButton>
+            <SubmitButton>작성하기</SubmitButton>
         </FormWrapper>
     )
 }

@@ -23,7 +23,7 @@ const Main = styled.div`
 
 
 
-const Home = ({threads, toggleLogin}) => {
+const Home = ({threads, isPending, toggleLogin}) => {
 
     const [sidebarStatus, setSidebarStatus] = useState({
         homeOn: true,
@@ -72,7 +72,7 @@ const Home = ({threads, toggleLogin}) => {
                     clickHomeHandler={clickHomeHandler}
                     clickTagsHandler={clickTagsHandler}
                     clickUsersHandler={clickUsersHandler}/>
-            {sidebarStatus.homeOn ? <Threads threads={threads}
+            {sidebarStatus.homeOn ? threads && <Threads threads={threads}
                                 dimensionsHandler={dimensionsHandler}
                                 refContainer={refContainer}/>
                                 : null}

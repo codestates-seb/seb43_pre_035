@@ -104,11 +104,11 @@ const Thread = ({thread}) => {
                 <ThreadTitle>{thread.title}</ThreadTitle>
                 <ThreadContribution>
                     <TextAlign>
-                        <Contributor>{thread.author} </Contributor><span>님께서 {convertDate(thread.createdDate)}에 질문 </span>
+                        <Contributor>{thread.member.displayName} </Contributor><span>님께서 {convertDate(thread.createdDate)}에 질문 </span>
                     </TextAlign>
                 </ThreadContribution>
             </ThreadContent>
-            <AvatarImg src={thread.avatarUrl} />
+            <AvatarImg src={thread.member.avatarLink} />
             <ThreadStats>
                 <Stat>
                     <StyledIcon icon={faBinoculars} />
@@ -116,7 +116,7 @@ const Thread = ({thread}) => {
                 </Stat>
                 <Stat>
                     <StyledIcon icon={faCommentDots} />
-                    <span>{thread.answerCount}</span>
+                    <span>{thread.answer?.length ? 1 : 0}</span>
                 </Stat>
             </ThreadStats>
         </ThreadContainer>
