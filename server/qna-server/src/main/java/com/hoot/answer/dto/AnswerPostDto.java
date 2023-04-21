@@ -1,5 +1,6 @@
 package com.hoot.answer.dto;
 
+import com.hoot.member.Member;
 import lombok.Getter;
 
 import javax.validation.constraints.NotBlank;
