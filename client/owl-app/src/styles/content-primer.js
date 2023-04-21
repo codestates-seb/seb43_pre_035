@@ -11687,6 +11687,9 @@ a.branch-name .octicon {
     border-radius: 6px
 }
 
+code.notranslate {
+}
+
 .markdown-body code br,.markdown-body tt br {
     display: none
 }
@@ -11733,9 +11736,6 @@ a.branch-name .octicon {
     color: var(--color-fg-default);
     background-color: var(--color-canvas-subtle);
     border-radius: 6px
-}
-
-pre.notranslate {
 }
 
 .markdown-body pre code,.markdown-body pre tt {
@@ -17255,4 +17255,3 @@ a.Button:hover,summary.Button:hover {
 }
 
 /*# sourceMappingURL=primer-fdf103ebabde.css.map*/
-
