@@ -5,10 +5,15 @@ import com.hoot.answer.dto.AnswerPostDto;
 import com.hoot.answer.dto.AnswerResponseDto;
 import com.hoot.answer.entity.Answer;
 import com.hoot.member.Member;
+import com.hoot.member.MemberMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class AnswerMapper {
+	private final MemberMapper mapper;
+
 	public Answer answerPostToDtoToAnswer(AnswerPostDto answerPostDto){
 		Answer answer = new Answer();
 		answer.setContent(answerPostDto.getContent());
@@ -27,7 +32,7 @@ public class AnswerMapper {
 		AnswerResponseDto answerResponseDto = new AnswerResponseDto();
 
 		answerResponseDto.setAnswerId(answer.getAnswerId());
-		answerResponseDto.setMember(answer.getMember());
+		answerResponseDto.setMember(mapper.entityToResponse(answer.getMember()));
 		answerResponseDto.setContent(answer.getContent());
 		answerResponseDto.setCreatedDate(answer.getCreatedDate());
 		answerResponseDto.setUpdateDate(answer.getUpdateDate());
