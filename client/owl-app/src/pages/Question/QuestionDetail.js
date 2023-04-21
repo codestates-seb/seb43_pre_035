@@ -1,7 +1,11 @@
 import styled from "styled-components";
 import SelectQuestion from "./SelectQuestion";
 import { initialData } from "../../data/dummyQuestion";
-import { useState } from "react";
+import { useState,useEffect } from "react";
+import{ useParams } from "react-router-dom";
+import axios from 'axios'
+import useFetch from "../../utils/useFetch";
+
 
 
 const QuestionWrap = styled.div`
@@ -15,18 +19,46 @@ const QuestionWrap = styled.div`
 `
 
 const QuestionDetail = () => {
-    const [questions,setQuestions] = useState(initialData.questions)
+    
+    // const [question,setQuestion] = useState(initialData.questions[0])
+    const url = `http://localhost:3001/questions/1`
+    // const { id } = useParams();
 
+    // const [question,setQuestion] = useState(null);
+    // const [isPending, setIsPending] = useState(true);
+    // const [error, setError] = useState(null);
+    const [question, isPending, error] = useFetch(url)
+    // useEffect(()=>{
+        
+    // },[])
+    // axios.get(url)
+    //     .then(res => {
+    //         console.log(res.data)
+    //         setQuestion(res.data)
+    //         setIsPending(true)
+    //         setError(null)
+    //         })
+    
+    // console.log(question)
+    
+    // if (isPending) return <div>로딩중..</div>;
+    // if (error) return <div>에러가 발생했습니다</div>;
+    // if (!question) return null;
+    
     
     
     return (
-    <>
+        <>
         <QuestionWrap>
-            {questions.map((question, idx) => <SelectQuestion question={question} key={idx}/>)}
+            {isPending && <div>로딩중..</div>}
+                {error && <div>eroor</div>}
+                {question && (
+                    <SelectQuestion question={question} />
+                )
+                }
             {/* <SelectQuestion questions={questions}/> */}
         </QuestionWrap>
     </>
-
     )
 }
 

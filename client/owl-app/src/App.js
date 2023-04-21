@@ -26,7 +26,6 @@ const convertDate = (string) => {
 const url_threads = "http://localhost:3001/questions";
 
 function App() {
-
   const [nav,setLogednav] = useState(false)
 
   const handleClicknav = () => {

@@ -30,8 +30,8 @@ const Header = ()=>{
     
     return(
         <HeaderBlock>
-            <HeaderWrap >
-                <TopNav />
+            <HeaderWrap onClick={handleClicknav}>
+                {nav? <TopNav /> : <TopNavlogged/>}
             </HeaderWrap>
         </HeaderBlock>
  )
