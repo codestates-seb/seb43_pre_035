@@ -11,7 +11,6 @@ import Header from './components/header/Header';
 import CreateThread from './pages/CreateThread';
 
 //import data
-import { initialData } from './data/dummyThreads_sung';
 import useFetch from './utils/useFetch';
 
 
@@ -33,27 +32,32 @@ function App() {
   }
 
   const [threads, isPending, error] = useFetch(url_threads);
+  const [sidebarStatus, setSidebarStatus] = useState({
+    homeOn: true,
+    tagsOn: false,
+    usersOn: false
+  })
 
-  // async function loadData() {
-  //   [threads, isPending, error] = await useFetch(url_threads);
-  //   threads.sort((a, b) => b.createdDate.localeCompare(a.createdDate));
-  // }
 
-  // loadData();
 
   // useEffect(() => {
   //   console.log("last thread:");
   //   console.log(threads);
   // })
+  const sortThreads = (threads) => {
+    console.log("threads sorted!");
+    threads.sort((a, b) => b.createdDate.localeCompare(a.createdDate));
+  }
+
+
   useEffect(()=> {
     console.log("thread updated!");
     if (threads){
-      console.log(threads[threads.length - 1]);
-      threads.sort((a, b) => b.createdDate.localeCompare(a.createdDate));
+      // console.log(threads[threads.length - 1]);
+      sortThreads(threads);
     }
     // const newThreads = threads;
     // newThreads[newThreads.length - 1].createdDate = convertDate(newThreads[newThreads.length - 1].createdDate);
-    // newThreads[newThreads.length - 1].modifiedDate = convertDate(newThreads[newThreads.length - 1].modifiedDate);
     // setThreads(newThreads.sort((a, b) => b.createdDate.localeCompare(a.createdDate)));
   },[threads]);
 
@@ -61,15 +65,20 @@ function App() {
       <Fragment>
         <GlobalStyle />
         <Router>
-            <Header></Header>
-              {/* {nav ? <TopNav /> : <TopNavlogged/>} */}
-            {/* <button onClick={handleClicknav}>{nav ? }</button> */}
+            <Header threads={threads}
+                    sortThreads={sortThreads}
+                    setSidebarStatus={setSidebarStatus}
+            ></Header>
             <Routes>
-                  <Route path ="/" element = {<Home threads={threads} isPending={isPending} toggleLogin={handleClicknav}/>} />
+                  <Route path ="/" element = {<Home threads={threads}
+                                                    isPending={isPending}
+                                                    sidebarStatus={sidebarStatus}
+                                                    setSidebarStatus={setSidebarStatus}
+                                                    toggleLogin={handleClicknav}/>} />
                   <Route path ="/login" element = {<Login />} />
                   <Route path ="/signup" element = {<SignUp />} />
                   <Route path ="/ask" element = {<CreateThread threads={threads} />} />
-                  <Route path ="/question" element = {<QuestionDetail/> } />
+                  <Route path ="/questions/:id" element = {<QuestionDetail/> } />
             </Routes>
         </Router>
       </Fragment>

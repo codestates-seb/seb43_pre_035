@@ -21,7 +21,7 @@ const TopNavlogged = () => {
                 </Link>
                 <InputWrap>
                     <AiOutlineSearch />
-                    <TopnavInput 
+                    <TopnavInput
                     type='text'
                     placeholder='         Search'
                     ></TopnavInput>

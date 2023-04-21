@@ -23,17 +23,18 @@ const Main = styled.div`
 
 
 
-const Home = ({threads, isPending, toggleLogin}) => {
+const Home = ({threads, isPending, toggleLogin, sidebarStatus, setSidebarStatus}) => {
 
-    const [sidebarStatus, setSidebarStatus] = useState({
-        homeOn: true,
-        tagsOn: false,
-        usersOn: false
-    })
+    // const [sidebarStatus, setSidebarStatus] = useState({
+    //     homeOn: true,
+    //     tagsOn: false,
+    //     usersOn: false
+    // })
 
-    // useEffect(() => {
-    //     console.log("is this working?", threads);
-    // }, [threads]);
+    useEffect(() => {
+        console.log("is this working?");
+
+    }, [threads]);
 
     // useEffect(() => {
     //     console.log(sidebarStatus);
@@ -51,17 +52,14 @@ const Home = ({threads, isPending, toggleLogin}) => {
 
     //refactor this handler into a reusable component
     const clickHomeHandler = () => {
-        // console.log("home on");
         setSidebarStatus({homeOn: true, tagsOn: false, usersOn: false});
     }
 
     const clickTagsHandler = () => {
-        // console.log("tags on");
         setSidebarStatus({homeOn: false, tagsOn: true, usersOn: false});
     }
 
     const clickUsersHandler = () => {
-        // console.log("users on");
         setSidebarStatus({homeOn: false, tagsOn: false, usersOn: true})
     }
 

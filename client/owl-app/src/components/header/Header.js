@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import TopNav from "./TopNav";
 import TopNavlogged from "./TopNavlogged";
-import { useState } from 'react'
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const HeaderBlock = styled.header`
     display: flex;
@@ -20,14 +21,31 @@ const HeaderWrap = styled.div`
     height: 100%;
 `
 
-const Header = ()=>{
+const Header = ({threads, sortThreads, setSidebarStatus}) => {
 
-    const [nav,setLogednav] = useState(false)
+    const [nav,setLogednav] = useState(false);
+    const location = useLocation();
+
+    const sortNewest = () => {
+        sortThreads(threads);
+    }
+
+    const clickHomeHandler = () => {
+        setSidebarStatus({homeOn: true, tagsOn: false, usersOn: false});
+    }
+
+    useEffect(() => {
+        console.log(location);
+        if (location.pathname === '/' && threads) {
+            sortNewest();
+            clickHomeHandler();
+        }
+    }, [location]);
 
     const handleClicknav = () => {
       setLogednav(!nav)
-    } 
-    
+    }
+
     return(
         <HeaderBlock>
             <HeaderWrap >

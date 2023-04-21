@@ -14,6 +14,7 @@ const useFetch = (url) => {
                 return res.data;
             })
             .then(data => {
+                console.log('data fetched!');
                 setIsPending(false);
                 setThreads(data);
                 setError(null);
