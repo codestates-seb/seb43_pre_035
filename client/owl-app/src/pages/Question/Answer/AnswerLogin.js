@@ -15,26 +15,36 @@ const EditorBlock =styled.div`
 }
 `
 
+const EditorInput =styled.input`
+    height: 400px;
+    width: 100%;
+`
 
 
 
 const AnswerLogin = ({addAnswerHandler}) => {
-    const [newAnswerContent, setNewAnswerContent] = useState("")
+    const [newAnswerContent, setNewAnswerContent] = useState([])
     
-    // const onTextChange = (e) => {
-    //     setNewAnswerContent(e.target.value);
-    //   };
+    const onAnswerTextChange = (e) => {
+        setNewAnswerContent(e.target.value);
+      };
 
     const onClickSubmit = ()=> {
 
         let newAnswer = {
             "id" : "1",
             "member" : "zeereo",
-            "content" : newAnswerContent
+            "content" : newAnswerContent,
+            "answerReply" : [
+                {
+                    "id" : "1",
+                    "content" : "그거 아닌데요?",
+                    "updateDate" : "2023-04-19"
+                }]
         };
 
         addAnswerHandler(newAnswer)
-        console.log(newAnswer)
+        
     }
     
    
@@ -46,25 +56,7 @@ const AnswerLogin = ({addAnswerHandler}) => {
             <CreateBlock>
                 <CreateHeader>답변작성</CreateHeader>
                 <EditorBlock>
-                <CKEditor
-                editor={ ClassicEditor }
-                data=""
-                onInit={ editor => {
-                    // You can store the "editor" and use when it is needed.
-                    console.log( 'Editor is ready to use!', editor );
-                } }
-                onChange={ ( event, editor ) => {
-                    const data = editor.getData();
-                    // onTextChange(event)
-                    console.log(data)
-                } }
-                onBlur={ ( event, editor ) => {
-
-                } }
-                onFocus={ ( event, editor ) => {
-
-                } }
-            />
+                    <EditorInput type="text" onChange={onAnswerTextChange}/>
                 </EditorBlock>
                 <CreateButtonLogin onClick={onClickSubmit}>작성하기</CreateButtonLogin>
             </CreateBlock>

@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import CommentCreated from "./CommentCreated";
-import { useState } from "react";
 
 
 const CommentListWrap = styled.div`

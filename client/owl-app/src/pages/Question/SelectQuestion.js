@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Title from "./Title";
 import QuestionContent from "./QuestionContent"
-import AddComment from "./Comment/AddComment"
 import Answerlist from "./Answer/AnswerList"
 import CommentList from "./Comment/CommentList";
 import AnswerCommentList from './Comment/AnswerCommentList'
@@ -29,8 +28,6 @@ const SelectQuestion = ({question,setQuestion}) => {
                 <Answerlist question={question} setQuestion={setQuestion}>
                 <AnswerCommentList  question={question}></AnswerCommentList>
                 </Answerlist>
-                {/* <AddComment></AddComment> */}
-                {/* <AnswerCreate></AnswerCreate> */}
         </SelectedWrap>
         </>
     )

@@ -12,16 +12,14 @@ const AnswerWrap = styled.div`
     flex-direction: column;
 `
 
-const Answerlist = ({question,setQuestion})=>{
+const Answerlist = ({question})=>{
 
-    const [answers,setAnswers] = useState(question.answer)
+    const [answers,setAnswers] = useState(question.answers)
 
-
-    // setanswer add 만들기
     const addAnswerHandler = (newAnswer) => {
         
 
-        setAnswers(...answers,newAnswer)
+        setAnswers([...answers,newAnswer])
         }
     
     return (

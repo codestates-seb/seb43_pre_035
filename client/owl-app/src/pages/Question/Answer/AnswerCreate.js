@@ -5,7 +5,7 @@ import AnswerLogout from "./AnswerLogout"
 
 const AnswerCreate = ({addAnswerHandler}) =>{
 
-    const [log,setLog] = useState(true)
+    const [log,setLog] = useState(false)
 
     const logClick = ()=>{
         setLog(!log)
@@ -14,7 +14,7 @@ const AnswerCreate = ({addAnswerHandler}) =>{
     return (
         <>
         <CreateWrap>
-           {log ? <AnswerLogin addAnswerHandler={addAnswerHandler}logClick={logClick}/> : <AnswerLogout logClick={logClick}/>}
+           {log ? <AnswerLogin addAnswerHandler={addAnswerHandler} /> : <AnswerLogout logClick={logClick}/>}
         </CreateWrap>
         </>
     )

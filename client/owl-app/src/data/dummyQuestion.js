@@ -29,7 +29,7 @@ export const initialData = {
                 "updateDate" : "2023-04-19"
             }
         ],
-            "answer" : [
+            "answers" : [
                 {
                 "id" : "1",
                 "member" : "zeereo",

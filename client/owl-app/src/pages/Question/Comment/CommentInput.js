@@ -47,7 +47,7 @@ const CommentInput = ({addCommentHandler, AnswerCommentHandler})=>{
 
         addCommentHandler(newComment)
     }
-    
+    console.log(onTextChange)
     return (
         <>
         <CommentInputWrap>

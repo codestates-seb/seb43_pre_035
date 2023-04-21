@@ -35,7 +35,7 @@ const AnswerDetail = ({answer})=>{
     
     const [addanswerComment,setAddAnswerComment] = useState(answerComment)
 
-    console.log(addanswerComment)
+
     
 
     const answerCommentHandler = (newComment) => {
