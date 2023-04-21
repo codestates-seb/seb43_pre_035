@@ -43,15 +43,14 @@ public class Question {
     private QuestionStatus questionStatus = QuestionStatus.QUESTION_REGISTRATION;
 
     public enum QuestionStatus{
-        QUESTION_REGISTRATION (1,"질문 등록 상태"),
-        QUESTION_ANSWERED(2,"답변 완료 상태"),
-        QUESTION_DELETE(3,"질문 삭제 상태");
+        QUESTION_REGISTRATION ("질문 등록 상태"),
+        QUESTION_ANSWERED("답변 완료 상태"),
+        QUESTION_DELETE("질문 삭제 상태");
 
         @Getter
-        private int stepNum;
+
         private String questDec;
-        QuestionStatus(int stepNum, String questDec) {
-            this.stepNum = stepNum;
+        QuestionStatus( String questDec) {
             this.questDec = questDec;
         }
     }

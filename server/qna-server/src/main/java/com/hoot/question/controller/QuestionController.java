@@ -1,11 +1,14 @@
 package com.hoot.question.controller;
 
+import com.hoot.question.dto.PagingDto;
 import com.hoot.question.mapper.QuestionMapper;
 import com.hoot.question.Question;
 import com.hoot.question.dto.QuestPatchDto;
 import com.hoot.question.dto.QuestResponseDto;
 import com.hoot.question.service.QuestionService;
 import com.hoot.security.UserDetailsImpl;
+import org.springframework.data.domain.Page;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -40,6 +43,7 @@ public class QuestionController {
 	}
 	@PatchMapping("/{question-id}")
 	public ResponseEntity patchQuestion(@PathVariable("question-id") @Positive long questionId,
+
 	                                      @RequestBody QuestPatchDto questPatchDto,
 										@AuthenticationPrincipal UserDetailsImpl userDetails){
 
@@ -54,29 +58,31 @@ public class QuestionController {
 	public ResponseEntity getQuestion(@PathVariable("question-id") @Positive long questionId) {
 		Question response = questionService.questViewCounts(questionId);
 		return new ResponseEntity<>(mapper.questionToResponseDto(response), HttpStatus.OK);
-}
+	}
 
 	//전체목록조회하기
 	@GetMapping
-	public ResponseEntity getQuestions(){
-		List<Question> questionList = questionService.findQuestions();
-		List<QuestResponseDto> response = questionList.stream().map(question -> mapper.questionToResponseDto(question))
-				.collect(Collectors.toList());
-		return new ResponseEntity<>(response, HttpStatus.OK);
+	public ResponseEntity<Page<Question>> getQuestions(@RequestParam(defaultValue = "0") int pageNumber,
+	                                                   @RequestParam(defaultValue = "10") int pageSize) {
+		Page<Question> page = questionService.getQuestions(pageNumber, pageSize);
+		return new ResponseEntity<>(page, HttpStatus.OK);
 	}
 
+	@GetMapping("/search")
+	public ResponseEntity<Page<QuestResponseDto>> searchPaging(@RequestParam String title,
+	                                                    @RequestParam String content,
+	                                                    @PageableDefault(size = 10, sort = "questionId") org.springframework.data.domain.Pageable pageRequest){
 
-	@GetMapping("/board/search")
-	public String search(String keyword, Model model){
-		List<Question> searchList = questionService.search(keyword);
-		model.addAttribute("searchList", searchList);
-		return "search/searchPage";
+		Page<QuestResponseDto> pagingList = questionService.searchQuestions(title, content, pageRequest);
+		return new ResponseEntity<>(pagingList, HttpStatus.OK);
 	}
 
 
 	@DeleteMapping("/{question-id}")
 	public ResponseEntity deleteQuestion(@PathVariable("question-id") @Positive long questionId,
+
 										 @AuthenticationPrincipal UserDetailsImpl userDetails){
+
 		questionService.deleteQuestion(userDetails, questionId);
 		return new ResponseEntity(HttpStatus.NO_CONTENT);
 	}

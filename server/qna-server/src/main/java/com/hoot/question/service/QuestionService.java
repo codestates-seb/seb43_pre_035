@@ -3,13 +3,17 @@ package com.hoot.question.service;
 import com.hoot.exception.BusinessLogicException;
 import com.hoot.exception.ExceptionCode;
 import com.hoot.member.Member;
+import com.hoot.member.MemberDto;
 import com.hoot.member.MemberRepository;
 import com.hoot.member.MemberService;
 import com.hoot.question.Question;
+import com.hoot.question.dto.PagingDto;
+import com.hoot.question.dto.QuestResponseDto;
 import com.hoot.question.repository.QuestionRepository;
 import com.hoot.security.UserDetailsImpl;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
@@ -65,18 +69,32 @@ public class QuestionService {
 			throw  new BusinessLogicException(ExceptionCode.QUESTION_NOT_FOUND);
 		}
 	}
-
-	/*페이징 처리
-	public Page<Question> findQuestions(int page, int size){
-		return questionRepository.findAll(PageRequest.of(page, size,
-				Sort.by("questionId").descending()));
+	//페이지 조회
+	public Page<QuestResponseDto> searchQuestions(String title, String content, Pageable pageRequest) {
+		Page<Question> questionPage = questionRepository.findAllSearch(title, content, pageRequest);
+		Page<QuestResponseDto> map = questionPage.map(questResponseDto -> new QuestResponseDto(
+				questResponseDto.getQuestionId(),
+				questResponseDto.getTitle(),
+				questResponseDto.getContent(),
+				questResponseDto.getViewCount(),
+				questResponseDto.getCreatedDate(),
+				questResponseDto.getUpdateDate(),
+				questResponseDto.getQuestionStatus(),
+				new MemberDto.Response(
+						questResponseDto.getMember().getMemberId(),
+						questResponseDto.getMember().getEmail(),
+						questResponseDto.getMember().getName(),
+						questResponseDto.getMember().getDisplayName(),
+						questResponseDto.getMember().getAvatarLink(),
+						questResponseDto.getMember().getRoles()
+				)
+		));
+		return map;
 	}
-		 */
 
-
-	public List<Question> findQuestions(){
-
-		return questionRepository.findAll();
+	public Page<Question> getQuestions(int pageNumber, int pageSize){
+		Pageable pageable = PageRequest.of(pageNumber, pageSize, Sort.by("questionId").descending());
+		return questionRepository.findByQuestionStatusNot(Question.QuestionStatus.QUESTION_DELETE, pageable);
 	}
 
 	public void deleteQuestion(UserDetailsImpl userDetails, long questionId){
@@ -85,7 +103,6 @@ public class QuestionService {
 		memberService.verifyLogInMemberMatchesMember(userDetails.getMemberId(), findQuestion.getMember().getMemberId());
 
 		findQuestion.setQuestionStatus(Question.QuestionStatus.QUESTION_DELETE);
-		findQuestion.setUpdateDate(LocalDateTime.now());
 		questionRepository.save(findQuestion);
 	}
 
@@ -94,15 +111,10 @@ public class QuestionService {
 		Optional<Question> optionalQuestion = questionRepository.findById(questionId);
 
 		Question findQuestion = optionalQuestion.orElseThrow(() ->
-                           new BusinessLogicException(ExceptionCode.QUESTION_NOT_FOUND));
+				                                                     new BusinessLogicException(ExceptionCode.QUESTION_NOT_FOUND));
 		return findQuestion;
 	}
 
-	@Transactional
-	public List<Question> search(String keyword){
-		List<Question> questionsList = questionRepository.findByTitleContaining(keyword);
-		return questionsList;
-	}
 
 
 }
