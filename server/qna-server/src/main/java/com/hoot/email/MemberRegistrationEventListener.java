@@ -2,11 +2,8 @@ package com.hoot.email;
 
 import com.hoot.exception.BusinessLogicException;
 import com.hoot.exception.ExceptionCode;
-import com.hoot.member.Member;
-import com.hoot.member.MemberRepository;
 import com.hoot.member.MemberService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.EventListener;
 import org.springframework.mail.MailSendException;
 import org.springframework.scheduling.annotation.Async;
