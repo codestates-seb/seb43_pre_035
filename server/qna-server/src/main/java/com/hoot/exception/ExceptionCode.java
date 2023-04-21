@@ -7,7 +7,8 @@ public enum ExceptionCode {
     ANSWER_REPLY_NOT_FOUND(404, "Answer Comment Not Found"),
     MEMBER_NOT_FOUND(404, "Member Not Found"),
     QUESTION_NOT_FOUND(404, "Question Comment Not Found"),
-    ANSWER_NOT_FOUND(404, "Answer Comment Not Found");
+    ANSWER_NOT_FOUND(404, "Answer Comment Not Found"),
+    FAILED_TO_JOIN(404, "Email Fail");
 
     @Getter
     private int status;
