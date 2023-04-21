@@ -1,13 +1,18 @@
-package com.hoot.question.Mapper;
+package com.hoot.question.mapper;
 
+import com.hoot.member.MemberMapper;
 import com.hoot.question.Question;
 import com.hoot.question.dto.QuestPatchDto;
 import com.hoot.question.dto.QuestPostDto;
 import com.hoot.question.dto.QuestResponseDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class QuestionMapper {
+	private final MemberMapper mapper;
+
 	public Question questPostDtoToQuestion(QuestPostDto questPostDto){
 		Question question = new Question();
 
@@ -35,7 +40,7 @@ public class QuestionMapper {
 		questResponseDto.setUpdateDate(question.getUpdateDate());
 		questResponseDto.setQuestionStatus(question.getQuestionStatus());
 		questResponseDto.setViewCont(question.getViewCount());
-		questResponseDto.setMember(question.getMember());
+		questResponseDto.setMember(mapper.entityToResponse(question.getMember()));
 		return questResponseDto;
 	}
 

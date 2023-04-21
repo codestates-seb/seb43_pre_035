@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Question extends Timestamped {
+public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long questionId;
@@ -29,6 +29,12 @@ public class Question extends Timestamped {
     @ManyToOne
     @JoinColumn(name = "member_id")
     private Member member;
+
+    @Column(name = "created_date", updatable = false)
+    private LocalDateTime createdDate = LocalDateTime.now();
+
+    @Column(name = "update_date")
+    private LocalDateTime updateDate = LocalDateTime.now();
 
     public void addMember(Member member){
         this.member = member;
