@@ -43,8 +43,9 @@ public class QuestionController {
 	}
 	@PatchMapping("/{question-id}")
 	public ResponseEntity patchQuestion(@PathVariable("question-id") @Positive long questionId,
-	                                    @RequestBody QuestPatchDto questPatchDto,
-	                                    @AuthenticationPrincipal UserDetailsImpl userDetails){
+
+	                                      @RequestBody QuestPatchDto questPatchDto,
+										@AuthenticationPrincipal UserDetailsImpl userDetails){
 
 		questPatchDto.setQuestionId(questionId);
 		Question response =
@@ -79,7 +80,9 @@ public class QuestionController {
 
 	@DeleteMapping("/{question-id}")
 	public ResponseEntity deleteQuestion(@PathVariable("question-id") @Positive long questionId,
-	                                     @AuthenticationPrincipal UserDetailsImpl userDetails){
+
+										 @AuthenticationPrincipal UserDetailsImpl userDetails){
+
 		questionService.deleteQuestion(userDetails, questionId);
 		return new ResponseEntity(HttpStatus.NO_CONTENT);
 	}

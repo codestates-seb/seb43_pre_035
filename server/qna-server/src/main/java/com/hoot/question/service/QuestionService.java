@@ -97,10 +97,11 @@ public class QuestionService {
 		return questionRepository.findByQuestionStatusNot(Question.QuestionStatus.QUESTION_DELETE, pageable);
 	}
 
-
 	public void deleteQuestion(UserDetailsImpl userDetails, long questionId){
 		Question findQuestion = findVerifiedQuestion(questionId);
+
 		memberService.verifyLogInMemberMatchesMember(userDetails.getMemberId(), findQuestion.getMember().getMemberId());
+
 		findQuestion.setQuestionStatus(Question.QuestionStatus.QUESTION_DELETE);
 		questionRepository.save(findQuestion);
 	}

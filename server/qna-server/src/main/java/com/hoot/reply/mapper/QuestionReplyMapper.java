@@ -1,13 +1,17 @@
 package com.hoot.reply.mapper;
 
+import com.hoot.member.MemberMapper;
 import com.hoot.reply.dto.question_reply_dto.QuestionReplyPatchDto;
 import com.hoot.reply.dto.question_reply_dto.QuestionReplyPostDto;
 import com.hoot.reply.dto.question_reply_dto.QuestionReplyResponseDto;
 import com.hoot.reply.entity.QuestionReply;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class QuestionReplyMapper {
+    private final MemberMapper mapper;
 
     public QuestionReply questionReplyPostDtoToQuestionReply(QuestionReplyPostDto questionReplyPostDto) {
         QuestionReply questionReply = new QuestionReply();
@@ -30,7 +34,7 @@ public class QuestionReplyMapper {
         QuestionReplyResponseDto questionReplyResponseDto = new QuestionReplyResponseDto();
 
         questionReplyResponseDto.setQuestionReplyId(questionReply.getQuestionReplyId());
-        questionReplyResponseDto.setMember(questionReply.getMember());
+        questionReplyResponseDto.setMember(mapper.entityToResponse(questionReply.getMember()));
         questionReplyResponseDto.setContent(questionReply.getContent());
         questionReplyResponseDto.setCreatedDate(questionReply.getCreatedDate());
         questionReplyResponseDto.setUpdateDate(questionReply.getUpdateDate());

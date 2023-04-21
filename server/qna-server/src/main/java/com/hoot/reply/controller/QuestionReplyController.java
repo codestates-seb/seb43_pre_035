@@ -18,7 +18,7 @@ import javax.validation.constraints.Positive;
 @CrossOrigin
 @Validated
 @RestController
-@RequestMapping("/question_replies")
+@RequestMapping("/questions/{question-id}")
 public class QuestionReplyController {
     private final QuestionReplyService questionReplyService;
     private final QuestionReplyMapper mapper;
@@ -28,16 +28,17 @@ public class QuestionReplyController {
         this.mapper = mapper;
     }
 
-    @PostMapping
+    @PostMapping("/question_replies")
     public ResponseEntity createQuestionReply(@AuthenticationPrincipal UserDetailsImpl user,
+                                              @PathVariable("question-id") @Positive long questionId,
                                               @Valid @RequestBody QuestionReplyPostDto questionReplyPostDto) {
         QuestionReply questionReply
-                = questionReplyService.createQuestionReply(user,mapper.questionReplyPostDtoToQuestionReply(questionReplyPostDto));
+                = questionReplyService.createQuestionReply(user, questionId, mapper.questionReplyPostDtoToQuestionReply(questionReplyPostDto));
 
         return new ResponseEntity<>(mapper.questionReplyToQuestionReplyResponseDto(questionReply),HttpStatus.CREATED);
     }
 
-    @PatchMapping("/{question-reply-id}")
+    @PatchMapping("/question_replies/{question-reply-id}")
     public ResponseEntity updateQuestionReply(@AuthenticationPrincipal UserDetailsImpl user,
                                               @PathVariable("question-reply-id") @Positive long questionReplyId,
                                               @Valid @RequestBody QuestionReplyPatchDto questionReplyPatchDto) {
@@ -48,10 +49,10 @@ public class QuestionReplyController {
                 = questionReplyService.updateQuestionReply(user, mapper.questionReplyPatchDtoToQuestionReply(questionReplyPatchDto));
 
 
-        return new ResponseEntity<>(mapper.questionReplyToQuestionReplyResponseDto(questionReply) , HttpStatus.OK);
+        return new ResponseEntity<>(mapper.questionReplyToQuestionReplyResponseDto(questionReply), HttpStatus.OK);
     }
 
-    @DeleteMapping("/{question-reply-id}")
+    @DeleteMapping("/question_replies/{question-reply-id}")
     public ResponseEntity deleteQuestionReply(@AuthenticationPrincipal UserDetailsImpl user,
                                               @PathVariable("question-reply-id") @Positive Long questionReplyId) {
         questionReplyService.deleteQuestionReply(user,questionReplyId);
