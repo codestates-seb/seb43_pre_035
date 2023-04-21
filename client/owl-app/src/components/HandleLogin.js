@@ -1,9 +1,9 @@
 import axios from 'axios';
 import Login from '../pages/Login';
 
-const HandleLogin = async ({ email, password }) => {
+const handleLogin = async ({ email, password }) => {
   try {
-    const response = await axios.post('http:localhost:8080/users/login', {
+    const response = await axios.post('http://localhost:8080/users/login', {
       email,
       password,
     });
@@ -13,4 +13,4 @@ const HandleLogin = async ({ email, password }) => {
   }
 };
 
-export default HandleLogin;
+export default handleLogin;
