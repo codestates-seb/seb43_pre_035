@@ -14,9 +14,11 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AnswerResponseDto {
+	private Long questionId;
 	private Long answerId;
 	private MemberDto.Response member;
 	private String content;
 	private LocalDateTime createdDate;
 	private LocalDateTime updateDate;
+	private Boolean selection = false;
 }

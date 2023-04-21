@@ -2,14 +2,15 @@ package com.hoot.question.service;
 
 import com.hoot.exception.BusinessLogicException;
 import com.hoot.exception.ExceptionCode;
-import com.hoot.member.Member;
-import com.hoot.member.MemberRepository;
-import com.hoot.member.MemberService;
+import com.hoot.member.*;
 import com.hoot.question.Question;
+import com.hoot.question.dto.PagingDto;
+import com.hoot.question.dto.QuestResponseDto;
 import com.hoot.question.repository.QuestionRepository;
 import com.hoot.security.UserDetailsImpl;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
@@ -65,18 +66,17 @@ public class QuestionService {
 			throw  new BusinessLogicException(ExceptionCode.QUESTION_NOT_FOUND);
 		}
 	}
+	//페이지 조회
+	public Page<Question> searchQuestions(String title, String content, Pageable pageable) {
+		Page<Question> questionPage = questionRepository.findAllSearch(title, content, pageable);
 
-	/*페이징 처리
-	public Page<Question> findQuestions(int page, int size){
-		return questionRepository.findAll(PageRequest.of(page, size,
-				Sort.by("questionId").descending()));
+		return questionPage;
 	}
-		 */
 
+	public Page<Question> getQuestions(Pageable pageable){
+		Page<Question> questionPage = questionRepository.findByQuestionStatusNot(Question.QuestionStatus.QUESTION_DELETE, pageable);
 
-	public List<Question> findQuestions(){
-
-		return questionRepository.findAll();
+		return questionPage;
 	}
 
 	public void deleteQuestion(UserDetailsImpl userDetails, long questionId){
@@ -85,7 +85,6 @@ public class QuestionService {
 		memberService.verifyLogInMemberMatchesMember(userDetails.getMemberId(), findQuestion.getMember().getMemberId());
 
 		findQuestion.setQuestionStatus(Question.QuestionStatus.QUESTION_DELETE);
-		findQuestion.setUpdateDate(LocalDateTime.now());
 		questionRepository.save(findQuestion);
 	}
 
@@ -94,15 +93,10 @@ public class QuestionService {
 		Optional<Question> optionalQuestion = questionRepository.findById(questionId);
 
 		Question findQuestion = optionalQuestion.orElseThrow(() ->
-                           new BusinessLogicException(ExceptionCode.QUESTION_NOT_FOUND));
+				                                                     new BusinessLogicException(ExceptionCode.QUESTION_NOT_FOUND));
 		return findQuestion;
 	}
 
-	@Transactional
-	public List<Question> search(String keyword){
-		List<Question> questionsList = questionRepository.findByTitleContaining(keyword);
-		return questionsList;
-	}
 
 
 }
