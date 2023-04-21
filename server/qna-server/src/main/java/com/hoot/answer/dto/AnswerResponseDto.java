@@ -1,6 +1,7 @@
 package com.hoot.answer.dto;
 
 import com.hoot.member.Member;
+import com.hoot.member.MemberDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +15,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class AnswerResponseDto {
 	private Long answerId;
-	private Member member;
+	private MemberDto.Response member;
 	private String content;
 	private LocalDateTime createdDate;
 	private LocalDateTime updateDate;

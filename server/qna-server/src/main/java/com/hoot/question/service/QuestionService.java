@@ -4,12 +4,14 @@ import com.hoot.exception.BusinessLogicException;
 import com.hoot.exception.ExceptionCode;
 import com.hoot.member.Member;
 import com.hoot.member.MemberRepository;
+import com.hoot.member.MemberService;
 import com.hoot.question.Question;
 import com.hoot.question.repository.QuestionRepository;
 import com.hoot.security.UserDetailsImpl;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,10 +24,12 @@ public class QuestionService {
 
 	private final QuestionRepository questionRepository;
 	private final MemberRepository memberRepository;
+	private final MemberService memberService;
 
-	public QuestionService(QuestionRepository questionRepository, MemberRepository memberRepository) {
+	public QuestionService(QuestionRepository questionRepository, MemberRepository memberRepository, MemberService memberService) {
 		this.questionRepository = questionRepository;
 		this.memberRepository = memberRepository;
+		this.memberService = memberService;
 	}
 
 	public Question createQuestion(Question question, UserDetailsImpl user){
@@ -33,14 +37,15 @@ public class QuestionService {
 		question.setMember(findUserName.get());
 		return questionRepository.save(question);
 	}
-	public Question updateQuestion(Question question){
+	public Question updateQuestion(UserDetailsImpl userDetails, Question question){
 		Question findQuestion = findVerifiedQuestion(question.getQuestionId());
+
+		memberService.verifyLogInMemberMatchesMember(userDetails.getMemberId(), findQuestion.getMember().getMemberId());
 
 		Optional.ofNullable(question.getTitle())
 				.ifPresent(title -> findQuestion.setTitle(title));
 		Optional.ofNullable(question.getContent())
 				.ifPresent(content -> findQuestion.setContent(content));
-
 		Optional.ofNullable(question.getQuestionStatus())
 				.ifPresent(questionStatus -> findQuestion.setQuestionStatus(questionStatus));
 		findQuestion.setUpdateDate(LocalDateTime.now());
@@ -74,8 +79,11 @@ public class QuestionService {
 		return questionRepository.findAll();
 	}
 
-	public void deleteQuestion(long questionId){
+	public void deleteQuestion(UserDetailsImpl userDetails, long questionId){
 		Question findQuestion = findVerifiedQuestion(questionId);
+
+		memberService.verifyLogInMemberMatchesMember(userDetails.getMemberId(), findQuestion.getMember().getMemberId());
+
 		findQuestion.setQuestionStatus(Question.QuestionStatus.QUESTION_DELETE);
 		findQuestion.setUpdateDate(LocalDateTime.now());
 		questionRepository.save(findQuestion);
