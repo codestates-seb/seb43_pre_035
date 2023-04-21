@@ -4,7 +4,7 @@ import Tags from '../components/home/Tags';
 import Users from '../components/home/Users';
 
 import styled from 'styled-components';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 
 const Main = styled.div`
@@ -23,55 +23,61 @@ const Main = styled.div`
 
 
 
-const Home = ({threads, toggleLogin}) => {
+const Home = ({threads, isPending, toggleLogin}) => {
 
-    const [homeOn, setHomeOn] = useState(true);
-    const [tagsOn, setTagsOn] = useState(false);
-    const [usersOn, setUsersOn] = useState(false);
+    const [sidebarStatus, setSidebarStatus] = useState({
+        homeOn: true,
+        tagsOn: false,
+        usersOn: false
+    })
+
+    // useEffect(() => {
+    //     console.log("is this working?", threads);
+    // }, [threads]);
+
+    // useEffect(() => {
+    //     console.log(sidebarStatus);
+
+    // }, [sidebarStatus]);
 
     //for setting the tags/users pages
     const refContainer = useRef(null);
     const [dimensions, setDimensions] = useState({width: 0, height: 0});
 
     const dimensionsHandler = (width, height) => {
-        console.log("width: ", width, " height, ", height);
+        // console.log("width: ", width, " height, ", height);
         setDimensions({width, height});
     }
 
     //refactor this handler into a reusable component
     const clickHomeHandler = () => {
         // console.log("home on");
-        setHomeOn(true);
-        setTagsOn(false);
-        setUsersOn(false);
+        setSidebarStatus({homeOn: true, tagsOn: false, usersOn: false});
     }
 
     const clickTagsHandler = () => {
         // console.log("tags on");
-        setHomeOn(false);
-        setTagsOn(true);
-        setUsersOn(false);
+        setSidebarStatus({homeOn: false, tagsOn: true, usersOn: false});
     }
 
     const clickUsersHandler = () => {
         // console.log("users on");
-        setHomeOn(false);
-        setTagsOn(false);
-        setUsersOn(true);
+        setSidebarStatus({homeOn: false, tagsOn: false, usersOn: true})
     }
 
     return (
         <Main>
             <SideNav toggleLogin={toggleLogin}
+                    sidebarStatus={sidebarStatus}
                     clickHomeHandler={clickHomeHandler}
                     clickTagsHandler={clickTagsHandler}
                     clickUsersHandler={clickUsersHandler}/>
-            {homeOn ? <Threads threads={threads}
+            {sidebarStatus.homeOn ? threads && <Threads threads={threads}
                                 dimensionsHandler={dimensionsHandler}
                                 refContainer={refContainer}/>
                                 : null}
-            {tagsOn ? <Tags dimensions={dimensions}/> : null}
-            {usersOn ? <Users dimensions={dimensions}/> : null}
+            {sidebarStatus.tagsOn ? <Tags dimensions={dimensions}/> : null}
+            {sidebarStatus.usersOn ? <Users dimensions={dimensions}/> : null}
         </Main>
     )
 }
