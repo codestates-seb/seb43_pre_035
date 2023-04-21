@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 
 @Setter
 @Entity
@@ -24,6 +23,9 @@ public class Answer extends Timestamped {
     @Column(length = 100, nullable = false)
     private String content;
 
+    @Column(nullable = false)
+    private Boolean selection = false;
+
     @ManyToOne
     @JoinColumn(name = "member_id")
     private Member member;
@@ -31,4 +33,7 @@ public class Answer extends Timestamped {
     @ManyToOne
     @JoinColumn(name = "question_id")
     private Question question;
+//
+//    @OneToMany(mappedBy = "answer")
+//    private List<AnswerReply> answerReplies;
 }
