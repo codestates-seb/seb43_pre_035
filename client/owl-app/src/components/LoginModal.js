@@ -1,8 +1,22 @@
 import styled from 'styled-components';
 import React, { useState } from 'react';
-import HandleLogin from '../components/HandleLogin';
+import { Modal, Button } from 'react-bootstrap';
+import handleLogin  from '../components/HandleLogin';
 import { Link } from 'react-router-dom';
-import LoginModal from '../components/LoginModal'; // 모달창 불러오기
+import { FaTimes } from 'react-icons/fa';
+
+const StyledModal = styled(Modal)`
+  .modal-content {
+    width: 400px;
+    height: 550px;
+    border-radius: 3px;
+  }
+  & .modal-dialog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+`;
 
 const Container = styled.div`
   display: flex;
@@ -11,11 +25,6 @@ const Container = styled.div`
   justify-content: center;
   height: 100vh;
   background-color:#322A28 ;
-`;
-
-const Logo = styled.img`
-  width: 100px;
-  margin-bottom: 20px;
 `;
 
 const ButtonContainer = styled.div`
@@ -202,77 +211,79 @@ const SignUpContainer = styled.div`
  width: 300px;
 `;
 
-function Login() {
+const CloseButton = styled(FaTimes)`
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 24px;
+`;
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [LoginModalOn, setLoginModalOn] = useState(false); //모달 상태변화
+const LoginModal = ({ show, onHide }) => {
+    
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
-  };
+    const handleEmailChange = (event) => {
+        setEmail(event.target.value);
+    };
 
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
+    const handlePasswordChange = (event) => {
+        setPassword(event.target.value);
+    };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log('Email:', email);
-    console.log('Password:', password);
-    HandleLogin({ email, password });
-  };
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log('Email:', email);
+        console.log('Password:', password);
+        handleLogin({ email, password });
+    };
+    return (
+        <StyledModal
+            show={show}
+            onHide={onHide}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+        >
+            <Container onSubmit={handleSubmit}>
+            <CloseButton onClick={onHide} />
+                <ButtonContainer>
+                    <GoogleButton>
+                        <GoogleButtonLogo src="glogo.svg" />
+                        <GoogleButtonText>Login with Google</GoogleButtonText>
+                    </GoogleButton>
+                    <KakaoButton>
+                        <KakaoButtonLogo src="kakaotalk.svg" />
+                        <KakaoButtonText>Login with KakaoTalk</KakaoButtonText>
+                    </KakaoButton>
+                    <GithubButton>
+                        <GithubButtonLogo src="github.svg" />
+                        <GithubButtonText>Login with Github</GithubButtonText>
+                    </GithubButton>
+                </ButtonContainer>
+                <Logincontainer>
+                    <InputContainer>
+                        <InputLabel htmlFor="email">Email</InputLabel>
+                        <Input type="email" id="email" value={email} onChange={handleEmailChange} />
+                    </InputContainer>
+                    <InputContainer>
+                        <InputLabel htmlFor="password">Password</InputLabel>
+                        <Input type="password" id="password" value={password} onChange={handlePasswordChange} />
+                    </InputContainer>
+                    <ForgotPassword>Forgot password?</ForgotPassword>
+                    <LoginButton type="submit">Log In</LoginButton>
+                </Logincontainer>
+                <SignUpContainer>
+                    <BeforeSignUp>Don’t have an account?</BeforeSignUp>
+                    <Link to="/signup">
+                        <SignUp>Sign up</SignUp>
+                    </Link>
+                </SignUpContainer>
+            </Container>
+        </StyledModal>
+    );
+};
 
-  return (
-    <>
-    <LoginModal show = {LoginModalOn} onHide = {() => setLoginModalOn(false)}/> 
-      <Container onSubmit={handleSubmit}>
-        <Logo src="logo.svg" alt="Logo" />
-        <ButtonContainer>
-          <GoogleButton>
-            <GoogleButtonLogo src="glogo.svg" />
-            <GoogleButtonText>Login with Google</GoogleButtonText>
-          </GoogleButton>
-          <KakaoButton>
-            <KakaoButtonLogo src="kakaotalk.svg" />
-            <KakaoButtonText>Login with KakaoTalk</KakaoButtonText>
-          </KakaoButton>
-          <GithubButton>
-            <GithubButtonLogo src="github.svg" />
-            <GithubButtonText>Login with Github</GithubButtonText>
-          </GithubButton>
-        </ButtonContainer>
-        <Logincontainer>
-          <InputContainer>
-            <InputLabel htmlFor="email">Email</InputLabel>
-            <Input type="email" id="email" value={email} onChange={handleEmailChange} />
-          </InputContainer>
-          <InputContainer>
-            <InputLabel htmlFor="password">Password</InputLabel>
-            <Input type="password" id="password" value={password} onChange={handlePasswordChange} />
-          </InputContainer>
-            <ForgotPassword onClick={() => setLoginModalOn(true)}>Forgot password?</ForgotPassword>
-          <LoginButton type="submit">Log In</LoginButton>
-        </Logincontainer>
-        <SignUpContainer>
-          <BeforeSignUp>Don’t have an account?</BeforeSignUp>
-          <Link to="/signup"> 
-          <SignUp>Sign up</SignUp>
-          </Link>
-        </SignUpContainer>
-      </Container>
-      </>
-      );
-}
-
-      export default Login;
-
-      //화면 최상단에 아래와 같이 구성
-//       return (
-//         <>
-//         <LoginModal show = {LoginModalOn} onHide = {() => setLoginModalOn(false)}/> 
-//         -- 기존 내용 --
-//         <원하는 버튼 onClick={() => setLoginModalOn(true) 해당 내용 추가> 
-//         </>
-//       );
-//    }
+export default LoginModal;

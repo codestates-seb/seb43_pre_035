@@ -997,6 +997,19 @@
       "content": "<p>[\n{\n\"AllowedHeaders\": [\n\"Authorization\",\n\"Content-Range\",\n\"Accept\",\n\"Content-Type\",\n\"Origin\",\n\"Range\"\n],\n\"AllowedMethods\": [\n\"GET\"\n],\n\"AllowedOrigins\": [\n\"*\"\n],\n\"ExposeHeaders\": [\n\"Content-Range\",\n\"Content-Length\",\n\"ETag\"\n],\n\"MaxAgeSeconds\": 3000\n}\n]</p>",
       "viewCount": 0,
       "id": "P0jJARH"
+    },
+    {
+      "createdDate": "2023-04-21T01:35:03.595Z",
+      "updateDate": "2023-04-21T01:35:03.595Z",
+      "title": "AWS RDS에 쿼리 응답이 늦어진다면.....",
+      "member": {
+        "displayName": "jicoder",
+        "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl01.png"
+      },
+      "answer": [],
+      "content": "<p>오늘 경험한걸 남겨 둬봅니다...\n\nAWS의 RDS MSSQL를 사용하고 있는데..\n\n갑자기 쿼리 응답 시간이 오래 걸리기 시작하였습니다..\n\nDB 최적화를 해도 느립니다..\n\n모든걸 다 해보고 안된다면 인스턴스를 중단 -> 시작 해봅니다..\n\n그리곤 해결 되었습니다..\n\n위 결과는 아마존에 문의해서 받은 답변이였습니다..\n\n100달러 주고 문의한 결과가 중단하고 다시 시작해보세요 라니.. ㅠ.ㅠ\n\n그런데 정말 왜 느려졌는지는 궁금하네요...\n\n딱히 유저가 몰린것도 아니고... 특별한 이슈는 없었는데...\n\n아무튼 오늘도 하나 배웠으니 뭐 된거죠...\n</p>",
+      "viewCount": 0,
+      "id": "44AWZs7"
     }
   ]
 }
