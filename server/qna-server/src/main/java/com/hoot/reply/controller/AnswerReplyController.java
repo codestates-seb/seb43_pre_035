@@ -18,7 +18,7 @@ import javax.validation.constraints.Positive;
 @CrossOrigin
 @Validated
 @RestController
-@RequestMapping("/answer_replies")
+@RequestMapping("/answers/{answer_id}")
 public class AnswerReplyController {
     private AnswerReplyService answerReplyService;
     private AnswerReplyMapper mapper;
@@ -28,16 +28,17 @@ public class AnswerReplyController {
         this.mapper = mapper;
     }
 
-    @PostMapping
+    @PostMapping("/answer_replies")
     public ResponseEntity createAnswerReply(@AuthenticationPrincipal UserDetailsImpl user,
+                                            @PathVariable("answer-id") @Positive long answerId,
                                             @Valid @RequestBody AnswerReplyPostDto answerReplyPostDto) {
         AnswerReply answerReply
-                = answerReplyService.createAnswerReply(user,mapper.answerReplyPostDtoToAnswerReply(answerReplyPostDto));
+                = answerReplyService.createAnswerReply(user,answerId, mapper.answerReplyPostDtoToAnswerReply(answerReplyPostDto));
 
         return new ResponseEntity<>(mapper.answerReplyToAnswerReplyResponseDto(answerReply), HttpStatus.CREATED);
     }
 
-    @PatchMapping("/{answer-reply-id}")
+    @PatchMapping("/answer_replies/{answer-reply-id}")
     public ResponseEntity updateAnswerReply(@AuthenticationPrincipal UserDetailsImpl user,
                                             @PathVariable("answer-reply-id") @Positive long answerReplyId,
                                              @Valid @RequestBody AnswerReplyPatchDto answerReplyPatchDto) {
@@ -50,7 +51,7 @@ public class AnswerReplyController {
         return new ResponseEntity<>(mapper.answerReplyToAnswerReplyResponseDto(answerReply), HttpStatus.OK);
     }
 
-    @DeleteMapping("/{answer-reply-id}")
+    @DeleteMapping("/answer_replies/{answer-reply-id}")
     public ResponseEntity deleteAnswerReply(@AuthenticationPrincipal UserDetailsImpl user,
                                             @PathVariable("answer-reply-id") @Positive Long answerReplyId) {
         answerReplyService.deleteAnswerReply(user, answerReplyId);
