@@ -1,11 +1,13 @@
 package com.hoot.question.mapper;
 
+import com.hoot.member.MemberDto;
 import com.hoot.member.MemberMapper;
 import com.hoot.question.Question;
 import com.hoot.question.dto.QuestPatchDto;
 import com.hoot.question.dto.QuestPostDto;
 import com.hoot.question.dto.QuestResponseDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -44,4 +46,18 @@ public class QuestionMapper {
 		return questResponseDto;
 	}
 
+	public Page<QuestResponseDto> questPageToQuestResponsePage(Page<Question> questionPage) {
+		Page<QuestResponseDto> map =
+				questionPage.map(question -> new QuestResponseDto(
+						question.getQuestionId(),
+						question.getTitle(),
+						question.getContent(),
+						question.getViewCount(),
+						question.getCreatedDate(),
+						question.getUpdateDate(),
+						question.getQuestionStatus(),
+						mapper.entityToResponse(question.getMember())));
+
+		return map;
+	}
 }
