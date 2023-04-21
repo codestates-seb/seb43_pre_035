@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import HandleLogin from '../components/HandleLogin';
 import { Link } from 'react-router-dom';
 import LoginModal from '../components/LoginModal'; // 모달창 불러오기
+import { useUserDispatch } from '../components/UserContext'; //전역에 로그인 상태 받아오기
 
 const Container = styled.div`
   display: flex;
@@ -207,6 +208,7 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [LoginModalOn, setLoginModalOn] = useState(false); //모달 상태변화
+  const dispatch = useUserDispatch(); //전역 상태 받아오기
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -218,14 +220,31 @@ function Login() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (!isValidEmail(email)) {
+      alert('정확한 이메일 주소를 입력해주세요.');
+      return;
+    }
+    if (!isValidPassword(password)) {
+      alert('비밀번호는 8~16자의 영문 대소문자, 숫자, 특수문자를 포함해야 합니다.');
+      return;
+    }
     console.log('Email:', email);
     console.log('Password:', password);
-    HandleLogin({ email, password });
+    HandleLogin({ email, password, dispatch });
+  };
+
+  const isValidEmail = (email) => {
+    const regex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+    return regex.test(email);
+  };
+  
+  const isValidPassword = (password) => {
+    const regex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*_-]).{8,16}$/;
+    return regex.test(password);
   };
 
   return (
     <>
-    <LoginModal show = {LoginModalOn} onHide = {() => setLoginModalOn(false)}/> 
       <Container onSubmit={handleSubmit}>
         <Logo src="logo.svg" alt="Logo" />
         <ButtonContainer>
@@ -261,6 +280,7 @@ function Login() {
           </Link>
         </SignUpContainer>
       </Container>
+      {LoginModalOn && <LoginModal show={LoginModalOn} onHide={() => setLoginModalOn(false)} />}
       </>
       );
 }

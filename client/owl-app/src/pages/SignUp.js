@@ -197,19 +197,50 @@ const LoginContainer = styled.div`
 `;
 
 function SignUp() {
-  
+
   const [Name, setName] = useState('');
   const [displayName, setDisplayName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [avatarLink, setAvatarLink] = useState('');
 
-  const handleSignup = (event) => {
-    event.preventDefault();
-    console.log({ Name, displayName, email, password });
-    // 회원가입 처리 코드 작성
-    // 서버에 회원가입 정보를 전송하는 API를 호출하여 회원가입 처리
-    HandleSignup({ Name, displayName, email, password });
+
+  const validateEmail = (email) => {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
   };
+
+  const validatePassword = (password) => {
+    const re = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,16}$/;
+    return re.test(password);
+  };
+
+  const validateDisplayName = (displayName) => {
+    const re = /^[a-zA-Z0-9가-힣]{2,15}$/;
+    return re.test(displayName);
+  };
+
+  const handleSignup = async (event) => {
+    event.preventDefault();
+
+    if (!validateEmail(email)) {
+      alert('이메일이 올바른 형식이 아닙니다.');
+      return;
+    }
+
+    if (!validatePassword(password)) {
+      alert('비밀번호는 8~16자 영문 대소문자, 숫자, 특수문자를 포함해야 합니다.');
+      return;
+    }
+
+    if (!validateDisplayName(displayName)) {
+      alert('닉네임은 특수문자를 제외한 2~15자리여야 합니다.');
+      return;
+    }
+
+    await HandleSignup({ Name, displayName, email, password, avatarLink });
+  };
+
 
   return (
     <Container>
@@ -244,6 +275,16 @@ function SignUp() {
           <InputLabel htmlFor="password">Password</InputLabel>
           <Input type="password" id="password" value={password} onChange={(event) => setPassword(event.target.value)} />
         </InputContainer>
+        <InputContainer>
+          <InputLabel htmlFor="avatarLink">Avatar Link</InputLabel>
+          <Input
+            type="text"
+            id="avatarLink"
+            value={avatarLink}
+            onChange={(event) => setAvatarLink(event.target.value)}
+          />
+        </InputContainer>
+
         <Guide>Passwords must contain at least eight characters, including at least 1 letter and 1 number.</Guide>
         <SignUpButton type="submit">Sign Up</SignUpButton>
         <Guide>By clicking “Sign up”, you agree to our terms of service, privacy policy and cookie policy</Guide>
@@ -251,7 +292,7 @@ function SignUp() {
       <LoginContainer>
         <BeforeLogin>Already have an account?</BeforeLogin>
         <Link to="/login">
-        <LoginButton>Log in</LoginButton>
+          <LoginButton>Log in</LoginButton>
         </Link>
       </LoginContainer>
     </Container>
