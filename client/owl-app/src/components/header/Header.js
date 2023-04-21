@@ -21,7 +21,7 @@ const HeaderWrap = styled.div`
     height: 100%;
 `
 
-const Header = ({threads, sortThreads, setSidebarStatus}) => {
+const Header = ({threads, sortThreads, setSidebarStatus, isLoggedIn}) => {
 
     const [nav,setLogednav] = useState(false);
     const location = useLocation();
@@ -42,14 +42,10 @@ const Header = ({threads, sortThreads, setSidebarStatus}) => {
         }
     }, [location]);
 
-    const handleClicknav = () => {
-      setLogednav(!nav)
-    }
-
     return(
         <HeaderBlock>
             <HeaderWrap >
-                <TopNav />
+                {isLoggedIn ? <TopNavlogged /> : <TopNav /> }
             </HeaderWrap>
         </HeaderBlock>
  )

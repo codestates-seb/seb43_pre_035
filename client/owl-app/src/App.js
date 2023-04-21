@@ -25,12 +25,8 @@ const url_threads = "http://localhost:3001/questions";
 
 function App() {
 
-  const [nav,setLogednav] = useState(false)
 
-  const handleClicknav = () => {
-    setLogednav(!nav)
-  }
-
+  const [isLoggedIn,setIsLoggedIn] = useState(false);
   const [threads, isPending, error] = useFetch(url_threads);
   const [sidebarStatus, setSidebarStatus] = useState({
     homeOn: true,
@@ -38,7 +34,9 @@ function App() {
     usersOn: false
   })
 
-
+  const toggleLogin = () => {
+    setIsLoggedIn(!isLoggedIn);
+  }
 
   // useEffect(() => {
   //   console.log("last thread:");
@@ -68,13 +66,14 @@ function App() {
             <Header threads={threads}
                     sortThreads={sortThreads}
                     setSidebarStatus={setSidebarStatus}
+                    isLoggedIn={isLoggedIn}
             ></Header>
             <Routes>
                   <Route path ="/" element = {<Home threads={threads}
                                                     isPending={isPending}
                                                     sidebarStatus={sidebarStatus}
                                                     setSidebarStatus={setSidebarStatus}
-                                                    toggleLogin={handleClicknav}/>} />
+                                                    toggleLogin={toggleLogin}/>} />
                   <Route path ="/login" element = {<Login />} />
                   <Route path ="/signup" element = {<SignUp />} />
                   <Route path ="/ask" element = {<CreateThread threads={threads} />} />
