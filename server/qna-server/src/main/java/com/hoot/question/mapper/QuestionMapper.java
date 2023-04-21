@@ -1,4 +1,4 @@
-package com.hoot.question.Mapper;
+package com.hoot.question.mapper;
 
 import com.hoot.member.MemberMapper;
 import com.hoot.question.Question;

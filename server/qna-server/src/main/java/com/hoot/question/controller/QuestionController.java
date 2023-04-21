@@ -1,9 +1,8 @@
 package com.hoot.question.controller;
 
-import com.hoot.question.Mapper.QuestionMapper;
+import com.hoot.question.mapper.QuestionMapper;
 import com.hoot.question.Question;
 import com.hoot.question.dto.QuestPatchDto;
-import com.hoot.question.dto.QuestPostDto;
 import com.hoot.question.dto.QuestResponseDto;
 import com.hoot.question.service.QuestionService;
 import com.hoot.security.UserDetailsImpl;
