@@ -3,12 +3,14 @@ package com.hoot.answer.entity;
 import com.hoot.audit.Timestamped;
 import com.hoot.member.Member;
 import com.hoot.question.Question;
+import com.hoot.reply.entity.AnswerReply;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Setter
 @Entity
@@ -33,7 +35,7 @@ public class Answer extends Timestamped {
     @ManyToOne
     @JoinColumn(name = "question_id")
     private Question question;
-//
-//    @OneToMany(mappedBy = "answer")
-//    private List<AnswerReply> answerReplies;
+
+    @OneToMany(mappedBy = "answer")
+    private List<AnswerReply> answerReplies;
 }

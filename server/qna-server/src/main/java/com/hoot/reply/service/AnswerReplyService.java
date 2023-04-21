@@ -1,5 +1,7 @@
 package com.hoot.reply.service;
 
+import com.hoot.answer.entity.Answer;
+import com.hoot.answer.repository.AnswerRepository;
 import com.hoot.exception.BusinessLogicException;
 import com.hoot.exception.ExceptionCode;
 import com.hoot.member.Member;
@@ -15,26 +17,30 @@ import java.util.Optional;
 @Service
 public class AnswerReplyService {
 
+
     private final AnswerReplyRepository answerReplyRepository;
     private final MemberRepository memberRepository;
     private final MemberService memberService;
+    private final AnswerRepository answerRepository;
 
-    public AnswerReplyService(AnswerReplyRepository answerReplyRepository, MemberRepository memberRepository, MemberService memberService) {
+    public AnswerReplyService(AnswerReplyRepository answerReplyRepository, MemberRepository memberRepository, MemberService memberService, AnswerRepository answerRepository) {
         this.answerReplyRepository = answerReplyRepository;
         this.memberRepository = memberRepository;
         this.memberService = memberService;
+        this.answerRepository = answerRepository;
     }
 
-    public AnswerReply createAnswerReply(UserDetailsImpl user, AnswerReply answerReply) {
+    public AnswerReply createAnswerReply(UserDetailsImpl user, Long answerId, AnswerReply answerReply) {
         replaceAnswerReplyMemberToLogInMember(user, answerReply);
+        replaceAnswer(answerReply, answerId);
         return answerReplyRepository.save(answerReply);
     }
 
     public AnswerReply updateAnswerReply(UserDetailsImpl user, AnswerReply answerReply) {
-        memberService.verifyLogInMemberMatchesMember(user.getMemberId(), answerReply.getMember().getMemberId());
-
-        AnswerReply findAnswerReply
+                AnswerReply findAnswerReply
                 = findVerifiedAnswerReply(answerReply.getAnswerReplyId());
+
+        memberService.verifyLogInMemberMatchesMember(user.getMemberId(), findAnswerReply.getMember().getMemberId());
 
         Optional.ofNullable(answerReply.getContent())
                 .ifPresent(content -> findAnswerReply.setContent(content));
@@ -61,6 +67,13 @@ public class AnswerReplyService {
         Optional<Member> optionalMember = memberRepository.findById(user.getMemberId());
         Member member = optionalMember.orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
         answerReply.setMember(member);
+    }
+
+    private void replaceAnswer(AnswerReply answerReply, Long answerId) {
+        Optional<Answer> optionalAnswer = answerRepository.findById(answerId);
+        Answer answer = optionalAnswer.orElseThrow(() ->
+                new BusinessLogicException(ExceptionCode.ANSWER_NOT_FOUND));
+        answerReply.setAnswer(answer);
     }
 
 }
