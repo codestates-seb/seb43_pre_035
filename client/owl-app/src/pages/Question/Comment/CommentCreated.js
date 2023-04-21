@@ -4,7 +4,6 @@ import styled from "styled-components"
 const CommentWrap = styled.div`
     padding: 10px;
     width: 750px;
-    height: 45px;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -14,28 +13,26 @@ const CommentWrap = styled.div`
 const CommentDetail = styled.div`
     padding: 10px;
     width: 60vw;
-    height: 30px;
 `
 
 const CommentUser = styled.div`
     padding: 10px;
     width: 20vw;
-    height: 15px;
 `
 
 const CommentDate = styled.div`
     padding: 10px;
     width: 20vw;
-    height: 15px;
 `
 
 const CommentCreated = ({comment})=>{
 
+    // console.log(comment.member)
     return(
         <>
         <CommentWrap>
             <CommentDetail>{comment.content}</CommentDetail>
-            <CommentUser>{comment.member}</CommentUser>
+            <CommentUser>{comment.member.displayName}</CommentUser>
             <CommentDate>{comment.updateDate}</CommentDate>
         </CommentWrap>
         </>

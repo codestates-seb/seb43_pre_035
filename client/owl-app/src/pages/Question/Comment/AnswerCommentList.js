@@ -4,6 +4,7 @@ import CommentCreated from "./CommentCreated";
 
 const CommentListWrap = styled.div`
     padding: 10px;
+    height: 100%;
     width: 750px;
     display: flex;
     flex-direction: column;
@@ -14,7 +15,7 @@ const CommentListWrap = styled.div`
 
 const AnswerCommentList = ({addanswerComment}) => {
 
-
+    console.log(addanswerComment)
 
     return (
         <>

@@ -4,7 +4,6 @@ import styled from "styled-components"
 export const CreateWrap = styled.div`
     padding: 10px;
     width: 750px;
-    height: 370px;
     display: flex;
     flex-direction: column;
 `
@@ -12,7 +11,6 @@ export const CreateWrap = styled.div`
 export const CreateBlock = styled.div`
     padding: 10px;
     width: 750px;
-    height: 231px;
 `
 export const CreateHeader = styled.div`
     height: 30px;

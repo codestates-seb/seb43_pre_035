@@ -1,9 +1,9 @@
 import styled from "styled-components";
+import ReactHTmlParser from 'html-react-parser'
 
 
 const ContentWrap = styled.div`
     width: 750px;
-    height: 167px;
     padding: 20px;
     border-bottom: 2px solid #FFFFFF;
     display: flex;
@@ -12,7 +12,6 @@ const ContentWrap = styled.div`
 
 const ContentDetail = styled.div`
     width: 572px;
-    height: 138px;
     font-size: 14px;
 `
 
@@ -25,12 +24,14 @@ const CreateUser = styled.div`
 `
 
 const QuestionContent = ({question}) =>{
-
+    // const paserContent = question.content
+    // console.log(question.member)
     return (
         <>
         <ContentWrap>
+            {/* {ReactHTmlParser(<ContentDetail>{paserContent}</ContentDetail>) } */}
         <ContentDetail>{question.content}</ContentDetail>
-        <CreateUser>{question.member}</CreateUser>
+        <CreateUser>{question.member.displayName}</CreateUser>
         </ContentWrap>
         </>
     )

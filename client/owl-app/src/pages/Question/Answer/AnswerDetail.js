@@ -8,6 +8,8 @@ const AnswerBlock = styled.div`
     display: flex;
     padding: 10px;
     flex-direction: column;
+    color: white;
+    z-index: 100;
 `
 
 const AnsweruserBlock = styled.div`
@@ -24,7 +26,6 @@ const AnswerContent = styled.div`
 const CreateUserA = styled.div`
     padding-top: 60px;
     width: 130px;
-    height: 100px;
     font-size: 15px;
 `
 
@@ -35,7 +36,7 @@ const AnswerDetail = ({answer})=>{
     
     const [addanswerComment,setAddAnswerComment] = useState(answerComment)
 
-
+    console.log(answer.member.displayName)
     
 
     const answerCommentHandler = (newComment) => {
@@ -47,8 +48,8 @@ const AnswerDetail = ({answer})=>{
         <>
         <AnswerBlock>
             <AnsweruserBlock>
-            <AnswerContent>{answer.content}</AnswerContent>
-            <CreateUserA>{answer.member}</CreateUserA>
+                <AnswerContent>{answer.content}</AnswerContent>
+                <CreateUserA>{answer.member.displayName}</CreateUserA>
             </AnsweruserBlock>
             <AnswerCommentList addanswerComment={addanswerComment}></AnswerCommentList>
         </AnswerBlock>

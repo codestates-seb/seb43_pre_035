@@ -17,8 +17,8 @@ const CommentListWrap = styled.div`
 const CommentList = ({question}) => {
 
     const [comment,setComment] = useState(question.question_reply)
-
-
+    
+    // console.log(comment)
 
     const addCommentHandler = (newComment) => {
         setComment([...comment, newComment])

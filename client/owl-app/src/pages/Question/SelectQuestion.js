@@ -4,10 +4,11 @@ import QuestionContent from "./QuestionContent"
 import Answerlist from "./Answer/AnswerList"
 import CommentList from "./Comment/CommentList";
 import AnswerCommentList from './Comment/AnswerCommentList'
+import { useState,useEffect } from "react";
+import axios from 'axios'
 
 const SelectedWrap = styled.div`
     padding: 10px;
-    height: 100%;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -17,18 +18,24 @@ const SelectedWrap = styled.div`
 
 
 
-const SelectQuestion = ({question,setQuestion}) => {
+const SelectQuestion = ({question}) => {
+    const [getQuestion,setGetQuestion] = useState([question])
 
+        // console.log([question])
+    
     return (
         <>
+            {getQuestion.map((question) =>(
         <SelectedWrap>
-            <Title question={question}></Title>
+                <Title question={question}></Title>
             <QuestionContent question={question}></QuestionContent>
                 <CommentList  question={question}></CommentList>
-                <Answerlist question={question} setQuestion={setQuestion}>
+                <Answerlist question={question}>
                 <AnswerCommentList  question={question}></AnswerCommentList>
                 </Answerlist>
         </SelectedWrap>
+            )
+            )}
         </>
     )
 }

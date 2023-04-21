@@ -1,7 +1,7 @@
 {
     "questions": [
       {
-        "id": "D_kwDOHOApLM4APjJi",
+        "id": "1",
         "createdDate": "2022-05-16T01:02:17Z",
         "updateDate": "2022-05-16T01:02:17Z",
         "title": "koans 과제 진행 중 npm install 오류로 인해 정상 작동 되지 않습니다",
@@ -10,6 +10,35 @@
           "displayName": "dubipy",
           "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
         },
+        "question_reply" : [
+          {
+          "id" : "1",
+          "member" : {
+            "displayName": "dubipy",
+            "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
+          },
+          "content" : "그저 그런 댓글입니다.",
+          "updateDate" : "2023-04-19"
+      },
+      {
+        "id" : "1",
+        "member" : {
+          "displayName": "dubipy",
+          "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
+        },
+        "content" : "그저 그런 댓글입니다.",
+        "updateDate" : "2023-04-19"
+    },
+    {
+      "id" : "1",
+      "member" : {
+        "displayName": "dubipy",
+        "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
+      },
+      "content" : "그저 그런 댓글입니다.",
+      "updateDate" : "2023-04-19"
+  }
+  ],
         "answer": [
           {
             "id": "DC_kwDOHOApLM4AKg6M",

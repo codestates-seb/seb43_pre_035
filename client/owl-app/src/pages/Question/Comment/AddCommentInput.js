@@ -40,9 +40,12 @@ const CommentInput = ({addCommentHandler, answerCommentHandler})=>{
     const onClickCommentSubmit = ()=>{
         let newComment = {
             "id" : "1",
-            "member" : "새로운 사람",
+            "member" : {
+              "displayName": "zeeeeeeee",
+              "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
+            },
             "content" : answerCommentContent,
-            "updateDate" : "0분 전"
+            "updateDate" : "2023-04-19"
         }
 
         answerCommentHandler(newComment)

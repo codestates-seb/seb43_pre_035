@@ -31,23 +31,35 @@ const AnswerLogin = ({addAnswerHandler}) => {
 
     const onClickSubmit = ()=> {
 
-        let newAnswer = {
-            "id" : "1",
-            "member" : "zeereo",
-            "content" : newAnswerContent,
-            "answerReply" : [
+        let newAnswer = 
+            {
+              "id": "1",
+              "createdDate": "2022-05-16T02:09:52Z",
+              "updateDate": "2022-05-16T02:09:52Z",
+              "url": "https://github.com/codestates-seb/agora-states-fe/discussions/45#discussioncomment-2756236",
+              "member": {
+                "displayName": "zzzzzzoooooooooo"
+              },
+              "content": newAnswerContent,
+              "answerReply": [
                 {
-                    "id" : "1",
-                    "content" : "그거 아닌데요?",
-                    "updateDate" : "2023-04-19"
-                }]
-        };
+                  "member": {
+                    "displayName": "dubipy",
+                    "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
+                  },
+                  "createdDate": "2022-05-16T01:02:17Z",
+                  "updateDate": "2022-05-16T01:02:17Z",
+                  "content": "bash파일이 꼬여있어서 삭제 후 다시 설치하고 경로 잡아줬습니다 node 부분도 설치는 되어있는데 패키지 쪽에 에러가 발생해서 모두 삭제 후 재설치 해주고 npm install 하니 해결됐습니다 감사합니다"
+                }
+              ]
+            }
+          
 
         addAnswerHandler(newAnswer)
         
+        console.log(newAnswerContent)
     }
     
-   
    
 
     return (
