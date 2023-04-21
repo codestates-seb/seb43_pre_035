@@ -8,6 +8,8 @@ import com.hoot.question.dto.QuestResponseDto;
 import com.hoot.question.service.QuestionService;
 import com.hoot.security.UserDetailsImpl;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -62,19 +64,18 @@ public class QuestionController {
 
 	//전체목록조회하기
 	@GetMapping
-	public ResponseEntity<Page<QuestResponseDto>> getQuestions(@RequestParam(defaultValue = "0") int pageNumber,
-	                                                   @RequestParam(defaultValue = "10") int pageSize) {
-		Page<Question> questionPage = questionService.getQuestions(pageNumber, pageSize);
+	public ResponseEntity<Page<QuestResponseDto>> getQuestions(@PageableDefault(size = 10, page = 0, sort="questionId", direction = Sort.Direction.DESC) Pageable pageable) {
+		Page<Question> questionPage = questionService.getQuestions(pageable);
 		Page<QuestResponseDto> questResponsePage = mapper.questPageToQuestResponsePage(questionPage);
 		return new ResponseEntity<>(questResponsePage, HttpStatus.OK);
 	}
 
 	@GetMapping("/search")
 	public ResponseEntity<Page<QuestResponseDto>> searchPaging(@RequestParam String title,
-	                                                    @RequestParam String content,
-	                                                    @PageableDefault(size = 10, sort = "questionId") org.springframework.data.domain.Pageable pageRequest){
+															   @RequestParam String content,
+															   @PageableDefault(size = 10, page = 0, sort="questionId", direction = Sort.Direction.DESC) Pageable pageable){
 
-		Page<Question> questionPage = questionService.searchQuestions(title, content, pageRequest);
+		Page<Question> questionPage = questionService.searchQuestions(title, content, pageable);
 		Page<QuestResponseDto> questResponsePage = mapper.questPageToQuestResponsePage(questionPage);
 
 		return new ResponseEntity<>(questResponsePage, HttpStatus.OK);
