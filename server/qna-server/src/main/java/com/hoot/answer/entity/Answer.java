@@ -36,6 +36,6 @@ public class Answer extends Timestamped {
     @JoinColumn(name = "question_id")
     private Question question;
 
-    @OneToMany(mappedBy = "answer")
-    private List<AnswerReply> answerReplies;
+//    @OneToMany(mappedBy = "answer")
+//    private List<AnswerReply> answerReplies;
 }
