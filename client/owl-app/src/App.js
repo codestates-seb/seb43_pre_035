@@ -1,6 +1,7 @@
 import React, {useState, useEffect, Fragment} from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import GlobalStyle from './theme/GlobalStyle';
+import { UserProvider } from './components/UserContext'; // 로그인 정보
 
 //import pages
 //import with Lazy, and load Suspense while loading
@@ -62,6 +63,7 @@ function App() {
   },[threads]);
 
   return (
+    <UserProvider>
       <Fragment>
         <GlobalStyle />
         <Router>
@@ -85,9 +87,8 @@ function App() {
             </Routes>
         </Router>
       </Fragment>
-
-
+      </UserProvider>
   );
 }
-
+//UserProvider - 전역에서 로그인 정보 사용 가능
 export default App;

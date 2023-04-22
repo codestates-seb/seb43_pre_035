@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import CommentCreated from "./CommentCreated";
 import { useState } from "react";
+import AddComment from "./AddComment"
+
 
 const CommentListWrap = styled.div`
     padding: 10px;
@@ -14,12 +16,22 @@ const CommentListWrap = styled.div`
 
 const CommentList = ({question}) => {
 
-    const [comments,setComments] = useState(question.question_reply)
+    const [comment,setComment] = useState(question.question_reply)
+    
+    // console.log(comment)
+
+    const addCommentHandler = (newComment) => {
+        setComment([...comment, newComment])
+        }
 
     return (
+        <>
         <CommentListWrap>
-            {comments.map((comment, idx)=><CommentCreated comments={comment} key={idx}/>)}
+            {comment.map((comment, idx)=><CommentCreated comment={comment} key={idx} />)}
         </CommentListWrap>
+            <AddComment addCommentHandler={addCommentHandler} ></AddComment>
+        </>
+
     )   
 }
 

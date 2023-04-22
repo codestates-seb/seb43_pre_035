@@ -5,6 +5,7 @@ import { MdLogout } from 'react-icons/md';
 import { AiOutlineQuestionCircle } from 'react-icons/ai';
 import owltime  from './logo_pink.png';
 import {TopnavTemplate,LogoWrap,InputWrap,IconButton,TopnavInput} from './HeadStyle'
+import { useUserState, useUserDispatch } from '../UserContext'; //토큰 상태 불러오기
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';

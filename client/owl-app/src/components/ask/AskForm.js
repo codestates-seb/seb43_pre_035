@@ -91,7 +91,7 @@ const AskForm = ({threads}) => {
             imgIdx++;
           }
 
-        axios.post(url_threads_test, newThread)
+        axios.post(url_threads, newThread)
         .then((res) => console.log(res))
         .catch((err) => console.log(err))
         // .then(() => {

@@ -30,11 +30,11 @@ const CreatButton = styled.button`
     background-color: #BF8B67;
 `
 
-const CommentInput = ({addCommentHandler, AnswerCommentHandler})=>{
-    const [newCommentContent, setNewCommentContent] = useState([])
-
+const CommentInput = ({addCommentHandler, answerCommentHandler})=>{
+    
+    const [answerCommentContent, setAnswerCommentContent] =useState([])
     const onTextChange = (e) => { 
-        setNewCommentContent(e.target.value);
+        setAnswerCommentContent(e.target.value);
       };
     
     const onClickCommentSubmit = ()=>{
@@ -44,12 +44,11 @@ const CommentInput = ({addCommentHandler, AnswerCommentHandler})=>{
               "displayName": "zeeeeeeee",
               "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
             },
-            "content" : newCommentContent,
+            "content" : answerCommentContent,
             "updateDate" : "2023-04-19"
         }
 
-        addCommentHandler(newComment)
-        console.log(newComment)
+        answerCommentHandler(newComment)
     }
     
     return (

@@ -1,57 +1,66 @@
-import styled, {css} from "styled-components"
-import {CreateWrap,CreateBlock, CreateHeader,CreateEditorLogIn,CreateButtonLogin} from './AnswerStyle'
-import React, {Component} from "react"
+import styled from "styled-components"
+import {CreateWrap,CreateBlock, CreateHeader,CreateButtonLogin} from './AnswerStyle'
+import React,{useState} from "react"
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { useState,useEffect } from "react";
-import { initialData } from "../../../data/dummyQuestion";
+
 
 
 const EditorBlock =styled.div`
-    min-height: 500px;
+    height: 500px;
     .ck.ck-editor__editable:not(.ck-editor__nested-editable) {
-  min-height: 500px;
+  min-height: 400px;
   margin-bottom: 30px;
   color : black
 }
 `
 
+const EditorInput =styled.input`
+    height: 400px;
+    width: 100%;
+`
 
 
 
-const AnswerLogin = () => {
+const AnswerLogin = ({addAnswerHandler}) => {
+    const [newAnswerContent, setNewAnswerContent] = useState([])
     
-    const newSubmitData = initialData.questions
+    const onAnswerTextChange = (e) => {
+        setNewAnswerContent(e.target.value);
+      };
 
-    const [newData,setnewData] = useState({
-        "answer" : [{
+    const onClickSubmit = ()=> {
 
-            "id" : '',
-            "content" : ''
-        },
-    ]
-    })
+        let newAnswer = 
+            {
+              "id": "1",
+              "createdDate": "2022-05-16T02:09:52Z",
+              "updateDate": "2022-05-16T02:09:52Z",
+              "url": "https://github.com/codestates-seb/agora-states-fe/discussions/45#discussioncomment-2756236",
+              "member": {
+                "displayName": "zzzzzzoooooooooo"
+              },
+              "content": newAnswerContent,
+              "answerReply": [
+                {
+                  "member": {
+                    "displayName": "dubipy",
+                    "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
+                  },
+                  "createdDate": "2022-05-16T01:02:17Z",
+                  "updateDate": "2022-05-16T01:02:17Z",
+                  "content": "bash파일이 꼬여있어서 삭제 후 다시 설치하고 경로 잡아줬습니다 node 부분도 설치는 되어있는데 패키지 쪽에 에러가 발생해서 모두 삭제 후 재설치 해주고 npm install 하니 해결됐습니다 감사합니다"
+                }
+              ]
+            }
+          
 
-    
-
-    const handlSubmit = () => {
-
-            setViewContent(viewContent.concat({...newData}))
+        addAnswerHandler(newAnswer)
+        
+        console.log(newAnswerContent)
     }
-
-    const [viewContent, setViewContent] = useState([initialData.questions])
-
-    console.log(viewContent);
-    // const getValue = e => {
     
-    //     const { name, value } = e.target;
-    //     setnewData({
-    //         ...newData,
-    //         [name]: value
-    //     })
-    //     console.log(newData);
-    // };
-
+   
 
     return (
         <>
@@ -59,30 +68,9 @@ const AnswerLogin = () => {
             <CreateBlock>
                 <CreateHeader>답변작성</CreateHeader>
                 <EditorBlock>
-                <CKEditor
-                editor={ ClassicEditor }
-                data=""
-                onInit={ editor => {
-                    // You can store the "editor" and use when it is needed.
-                    console.log( 'Editor is ready to use!', editor );
-                } }
-                onChange={ ( event, editor ) => {
-                    const data = editor.getData();;
-                    setnewData({
-                        ...newData,
-                        content: data
-                    })
-                    console.log(newData)
-                } }
-                onBlur={ ( event, editor ) => {
-
-                } }
-                onFocus={ ( event, editor ) => {
-
-                } }
-            />
+                    <EditorInput type="text" onChange={onAnswerTextChange}/>
                 </EditorBlock>
-                <CreateButtonLogin onClick={handlSubmit}>작성하기</CreateButtonLogin>
+                <CreateButtonLogin onClick={onClickSubmit}>작성하기</CreateButtonLogin>
             </CreateBlock>
         </CreateWrap>
         </>
