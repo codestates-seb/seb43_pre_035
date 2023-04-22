@@ -1,4 +1,4 @@
-import React, {useState, useEffect, Fragment} from 'react';
+import React, {useState, useEffect, useMemo, Fragment} from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import GlobalStyle from './theme/GlobalStyle';
 import { UserProvider } from './components/UserContext'; // 로그인 정보
@@ -31,35 +31,32 @@ function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [threads, isPending, error] = useFetch(url_threads);
+  const [renderThreads, setRenderThreads] = useState(null);
+  // const [preenderedThreads, setPrerenderedThreads] = useState(null);
   const [sidebarStatus, setSidebarStatus] = useState({
     homeOn: true,
     tagsOn: false,
     usersOn: false
-  })
+  });
+  // const sortedThreads = useMemo(() => threads && sortThreads(threads), [threads, sortThreads]);
 
   const toggleLogin = () => {
     setIsLoggedIn(!isLoggedIn);
   }
 
-  // useEffect(() => {
-  //   console.log("last thread:");
-  //   console.log(threads);
-  // })
-  const sortThreads = (threads) => {
-    console.log("threads sorted!");
-    threads.sort((a, b) => b.createdDate.localeCompare(a.createdDate));
+  function sortThreads(threads){
+    // console.log("threads sorted!");
+    const sorted = [...threads].sort((a, b) => b.createdDate.localeCompare(a.createdDate));
+    return sorted;
   }
 
 
   useEffect(()=> {
-    console.log("thread updated!");
+    console.log("initial threads loaded!");
     if (threads){
-      // console.log(threads[threads.length - 1]);
-      sortThreads(threads);
+      const sorted = sortThreads(threads);
+      setRenderThreads(sorted);
     }
-    // const newThreads = threads;
-    // newThreads[newThreads.length - 1].createdDate = convertDate(newThreads[newThreads.length - 1].createdDate);
-    // setThreads(newThreads.sort((a, b) => b.createdDate.localeCompare(a.createdDate)));
   },[threads]);
 
   return (
@@ -67,14 +64,14 @@ function App() {
       <Fragment>
         <GlobalStyle />
         <Router>
-            <Header threads={threads}
+            <Header threads={renderThreads}
                     sortThreads={sortThreads}
                     setSidebarStatus={setSidebarStatus}
                     isLoggedIn={isLoggedIn}
                     toggleLogin={toggleLogin}
             ></Header>
             <Routes>
-                  <Route path ="/" element = {<Home threads={threads}
+                  <Route path ="/" element = {<Home threads={renderThreads}
                                                     isPending={isPending}
                                                     sidebarStatus={sidebarStatus}
                                                     setSidebarStatus={setSidebarStatus}
@@ -82,7 +79,7 @@ function App() {
                   <Route path ="/login" element = {<Login />} />
                   <Route path ="/signup" element = {<SignUp />} />
                   <Route path ="/mypage" />
-                  <Route path ="/ask" element = {<CreateThread threads={threads} />} />
+                  <Route path ="/ask" element = {<CreateThread threads={renderThreads} />} />
                   <Route path ="/questions/:id" element = {<QuestionDetail/> } />
             </Routes>
         </Router>

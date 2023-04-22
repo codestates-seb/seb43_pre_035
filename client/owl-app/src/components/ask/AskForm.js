@@ -100,7 +100,7 @@ const AskForm = ({threads}) => {
         // })
 
         navigate('/');
-        // navigate(0); //refresh page
+        navigate(0); //refresh page
     }
 
     return (

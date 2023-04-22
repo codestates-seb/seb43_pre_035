@@ -25,9 +25,9 @@ const Main = styled.div`
 
 const Home = ({threads, isPending, toggleLogin, sidebarStatus, setSidebarStatus}) => {
 
-    useEffect(() => {
-        console.log("is this working?");
-    }, [threads]);
+    // useEffect(() => {
+    //     console.log("is this working?");
+    // }, [threads]);
 
     //for setting the tags/users pages
     const refContainer = useRef(null);

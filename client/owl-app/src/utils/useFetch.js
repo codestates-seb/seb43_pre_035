@@ -9,9 +9,6 @@ const useFetch = (url) => {
 
   useEffect(() => {
 
-    const config = {
-
-    }
     // fetch(url, {headers: {
     //     'ngrok-skip-browser-warning': '69420'
     // }})
@@ -41,7 +38,7 @@ const useFetch = (url) => {
             })
             .then(data => {
                 console.log('data fetched!');
-                console.log(data);
+                // console.log(data);
                 setIsPending(false);
                 setThreads(data);
                 setError(null);
@@ -49,7 +46,7 @@ const useFetch = (url) => {
             .catch(err => {
                 setIsPending(false);
                 setError(err.message);
-                console.log(err.message);
+                // console.log(err.message);
             })
         }, [url]);
 
