@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import AddCommentInput from '../Comment/AddCommentInput'
+import AddAnswerComment from "../Comment/AddAnswerComment";
 import AnswerCommentList from '../Comment/AnswerCommentList'
 import { useState } from "react";
 import axios from 'axios';
@@ -46,8 +46,6 @@ const AnswerDetail = ({q_id, answer, answers})=>{
             // console.log("date: ", el.createdDate); //date를 나중에 id로 대치!
             if (el.createdDate === answer.createdDate){
                 if (el.answerReplies) {
-                    el.answerReplies = [...el.answerReplies, ...newAnswerReplies];
-                }else{
                     el.answerReplies = [...newAnswerReplies];
                 }
                 // console.log("result:", el.answerReplies);
@@ -77,7 +75,7 @@ const AnswerDetail = ({q_id, answer, answers})=>{
             </AnsweruserBlock>
             <AnswerCommentList addanswerComment={addanswerComment}></AnswerCommentList>
         </AnswerBlock>
-        <AddCommentInput answerCommentHandler={answerCommentHandler} ></AddCommentInput>
+        <AddAnswerComment answerCommentHandler={answerCommentHandler} ></AddAnswerComment>
         </>
 
 

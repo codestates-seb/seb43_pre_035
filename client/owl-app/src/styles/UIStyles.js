@@ -20,4 +20,13 @@ const ClickButton = styled.button`
     }
 `
 
-export { ClickButton };
+  const UpdateButton = styled(ClickButton)`
+    font-size: 13px;
+    padding: 0;
+    min-width: 40px;
+    width: 10px;
+    margin: 3px;
+    background: var(--colors-darkbrown);
+  `
+
+export { ClickButton, UpdateButton };

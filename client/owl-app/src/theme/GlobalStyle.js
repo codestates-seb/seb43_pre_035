@@ -14,6 +14,7 @@ ${'' /* @import url('https://fonts.googleapis.com/css2?family=Atomic+Age&family=
     --colors-mediumbrown: #3F3432;
     --colors-dullbrown: #8D7B68;
     --colors-mediumbrown: #3F3432;
+    --colors-darkbrown: #231709;
     --colors-darkred: #AB3E16;
     --colors-offwhite: #F8F8F8;
     --colors-border: #8D7B68;

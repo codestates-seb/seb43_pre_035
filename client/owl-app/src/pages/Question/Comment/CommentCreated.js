@@ -1,4 +1,6 @@
+import { Button } from "react-bootstrap"
 import styled from "styled-components"
+import { UpdateButton } from "../../../styles/UIStyles";
 
 
 const CommentWrap = styled.div`
@@ -34,6 +36,8 @@ const CommentCreated = ({comment})=>{
             <CommentDetail>{comment.content}</CommentDetail>
             <CommentUser>{comment.member.displayName}</CommentUser>
             <CommentDate>{comment.updateDate}</CommentDate>
+            <UpdateButton>수정</UpdateButton>
+            <UpdateButton>삭제</UpdateButton>
         </CommentWrap>
         </>
 

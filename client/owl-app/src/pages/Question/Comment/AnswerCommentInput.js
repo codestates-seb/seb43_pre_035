@@ -30,7 +30,7 @@ const CreatButton = styled.button`
     background-color: #BF8B67;
 `
 
-const AddCommentInput = ({addCommentHandler, answerCommentHandler})=>{
+const AnswerCommentInput = ({addCommentHandler, answerCommentHandler})=>{
 
     const [answerCommentContent, setAnswerCommentContent] =useState('');
     const [invalidComment, setInvalidComment] = useState(false);
@@ -72,4 +72,4 @@ const AddCommentInput = ({addCommentHandler, answerCommentHandler})=>{
     )
 }
 
-export default AddCommentInput;
+export default AnswerCommentInput;

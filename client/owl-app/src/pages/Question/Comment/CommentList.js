@@ -39,6 +39,14 @@ const CommentList = ({ question }) => {
 
     }
 
+    const updateHandler = () => {
+        //change into updatable form
+    }
+
+    const deleteHandler = () => {
+
+    }
+
     return (
         <>
             {!!comment.length && <CommentListWrap>
