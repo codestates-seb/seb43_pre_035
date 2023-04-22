@@ -33,9 +33,6 @@ const CreateUserA = styled.div`
 
 const AnswerDetail = ({q_id, answer, answers})=>{
 
-    // const answerComment = answer.answerReplies;
-    // console.log("answerReplies: ", answer.answerReplies);
-
     const [addanswerComment,setAddAnswerComment] = useState((answer.answerReplies ? answer.answerReplies : []));
     const url_patch = `http://localhost:3001/questions/${q_id}`;
     console.log(answer.member.displayName)
@@ -43,27 +40,17 @@ const AnswerDetail = ({q_id, answer, answers})=>{
     const answerCommentHandler = (newComment) => {
 
         setAddAnswerComment([...addanswerComment, newComment]);
-        // console.log("addanswercomment content: ", addanswerComment);
-        console.log("addanswercomment content2: ", [...addanswerComment, newComment]);
-
-
-        const newAnswerReplies = [...addanswerComment, newComment];
-        console.log("newAnswerReplies", newAnswerReplies);
-        console.log("answers: ", answers);
+        const newAnswerReplies = [...addanswerComment, newComment]; //set함수는 다음렌더링되서야 업데이트를 하기 때문에!
 
         const newAnswers = answers.map(el => {
-            console.log("date: ", el.createdDate); //date 나중에 대치!
+            // console.log("date: ", el.createdDate); //date를 나중에 id로 대치!
             if (el.createdDate === answer.createdDate){
-                console.log("is this anything at all?");
-                console.log(el);
                 if (el.answerReplies) {
                     el.answerReplies = [...el.answerReplies, ...newAnswerReplies];
                 }else{
                     el.answerReplies = [...newAnswerReplies];
                 }
-                console.log("result:", el.answerReplies);
-                // console.log("what is this error? ", el.answerReplies);
-                // el.answerReplies = [...el.answerReplies, addanswerComment];
+                // console.log("result:", el.answerReplies);
             }
             return el;
         });
@@ -71,20 +58,11 @@ const AnswerDetail = ({q_id, answer, answers})=>{
 
 
         if (answer.answerReplies){
-            // const newAnswers = answers.map(el => {
-            //     if (el.createdDate === answer.createdDate){
-            //         console.log(el);
-            //         console.log("what is this error? ", el.answerReplies);
-            //         el.answerReplies = [...el.answerReplies, addanswerComment];
-            //     }
-            // });
-            console.log('the answer going in is null?', newAnswers);
-
             axios.patch(url_patch, {"answers" : newAnswers})
                 .then(res => {console.log("answerReplies patch success!", res)})
                 .catch(err => {console.log("answerReplies patch fail!", err)})
         }else{
-            console.log("there are no answerReplies ready!");
+            console.log("there are no answerReplies ready!"); //이럴 경우는 없을 듯!
         }
 
         }

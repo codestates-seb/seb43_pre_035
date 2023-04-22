@@ -41,7 +41,7 @@ const CommentList = ({ question }) => {
 
     return (
         <>
-            {comment.length && <CommentListWrap>
+            {!!comment.length && <CommentListWrap>
                 {comment.map((comment, idx) => <CommentCreated comment={comment} key={idx} />)}
             </CommentListWrap>}
             <AddComment addCommentHandler={addCommentHandler} ></AddComment>
