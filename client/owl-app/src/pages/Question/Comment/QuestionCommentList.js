@@ -15,7 +15,7 @@ const CommentListWrap = styled.div`
     border-bottom: 2px solid white;
 `
 
-const CommentList = ({ question }) => {
+const QuestionCommentList = ({ question }) => {
 
     const [comment, setComment] = useState(question.questionReplies ? question.questionReplies : []);
     const url_patch = `http://localhost:3001/questions/${question.id}`;
@@ -44,7 +44,7 @@ const CommentList = ({ question }) => {
     }
 
     const deleteHandler = () => {
-
+        //can only use patch ...
     }
 
     return (
@@ -58,4 +58,4 @@ const CommentList = ({ question }) => {
     )
 }
 
-export default CommentList
+export default QuestionCommentList

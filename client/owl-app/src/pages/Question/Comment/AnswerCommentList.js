@@ -13,14 +13,14 @@ const CommentListWrap = styled.div`
 
 `
 
-const AnswerCommentList = ({addanswerComment}) => {
+const AnswerCommentList = ({answerComments}) => {
 
-    console.log(addanswerComment)
+    console.log(answerComments)
 
     return (
         <>
         <CommentListWrap>
-            {addanswerComment && addanswerComment.map((comment, idx)=><CommentCreated comment={comment} key={idx} />)}
+            {answerComments && answerComments.map((comment, idx)=><CommentCreated comment={comment} key={idx} />)}
         </CommentListWrap>
         </>
 

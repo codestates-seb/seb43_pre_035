@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import {CreateWrap,CreateBlock, CreateHeader,CreateButtonLogin} from './AnswerStyle'
-import React,{useState} from "react"
+import { useState, useId } from "react"
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
@@ -22,9 +22,10 @@ const EditorInput =styled.input`
 
 
 
-const AnswerLogin = ({addAnswerHandler}) => {
+const AnswerLogin = ({addAnswerHandler, answersNum}) => {
     const [newAnswerContent, setNewAnswerContent] = useState('');
     const [invalidAnswer, setInvalidAnswer] = useState(false);
+    // let id = useId();
 
     const onAnswerTextChange = (e) => {
         setNewAnswerContent(e.target.value);
@@ -34,7 +35,7 @@ const AnswerLogin = ({addAnswerHandler}) => {
       if (!newAnswerContent){console.log("invalid answer!"); setInvalidAnswer(true); return;}
         let newAnswer =
             {
-              "id": "1",
+              "id": answersNum + 1,
               "createdDate": "2022-05-16T02:09:52Z",
               "updateDate": "2022-05-16T02:09:52Z",
               "url": "https://github.com/codestates-seb/agora-states-fe/discussions/45#discussioncomment-2756236",
@@ -50,6 +51,7 @@ const AnswerLogin = ({addAnswerHandler}) => {
         addAnswerHandler(newAnswer);
         setNewAnswerContent('');
         setInvalidAnswer(false);
+       answersNum++;
 
 
         console.log(newAnswerContent)

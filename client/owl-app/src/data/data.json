@@ -200,7 +200,7 @@
               "updateDate": "2023-04-19"
             },
             {
-              "id": "1",
+              "id": "2",
               "member": {
                 "displayName": "zeeeeeeee",
                 "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
@@ -209,19 +209,60 @@
               "updateDate": "2023-04-19"
             },
             {
-              "id": "1",
+              "id": "3",
               "member": {
                 "displayName": "zeeeeeeee",
                 "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
               },
               "content": "3",
               "updateDate": "2023-04-19"
+            },
+            {
+              "id": "4",
+              "member": {
+                "displayName": "zeeeeeeee",
+                "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
+              },
+              "content": "4",
+              "updateDate": "2023-04-19"
+            }
+          ]
+        },
+        {
+          "id": "1",
+          "createdDate": "2022-05-16T02:09:52Z",
+          "updateDate": "2022-05-16T02:09:52Z",
+          "url": "https://github.com/codestates-seb/agora-states-fe/discussions/45#discussioncomment-2756236",
+          "member": {
+            "displayName": "zzzzzzoooooooooo"
+          },
+          "content": "답변 more",
+          "answerReplies": [
+            {
+              "id": "1",
+              "member": {
+                "displayName": "zeeeeeeee",
+                "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
+              },
+              "content": "1",
+              "updateDate": "2023-04-19"
             }
           ]
         }
       ],
       "content": "<p dir=\"auto\">운영 체제 : macOS</p>\n<p dir=\"auto\">Node.js 버전 : v16.15.0</p>\n<p dir=\"auto\">질문 과제  : 코플릿 배열 24_createPhoneNumber</p>\n<p dir=\"auto\">어떤 문제에 부딪혔나요? : 배열에 담긴 요소들을 ',' 을 제외하여 결과값을 가져오는 방법 중 replaceAll을 쓰면,<br>\n콘솔에서 출력예시와 동일하게 string타입으로 리턴되는데 결과창에서는 통과가 안됩니다. <g-emoji class=\"g-emoji\" alias=\"scream_cat\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/1f640.png\">🙀</g-emoji></p>\n<ul dir=\"auto\">\n<li>replaceAll을 이용한 경우</li>\n</ul>\n<div class=\"highlight highlight-source-js position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"function createPhoneNumber(arr) {\n  let len= arr.length;\n  let firstNum = arr.slice(0, 3);\n  let midNum = arr.slice(len -8, len -4);\n  let lastNum = arr.slice(len -4, len);\n\n  let str = `(${firstNum})${midNum}-${lastNum}`;\n  return str.replaceAll(',','');\n}\n// createPhoneNumber([0, 1, 0, 1, 2, 3, 4, 8, 7, 6, 5]);\n// '(010)1234-8765'\"><pre><span class=\"pl-k\">function</span> <span class=\"pl-en\">createPhoneNumber</span><span class=\"pl-kos\">(</span><span class=\"pl-s1\">arr</span><span class=\"pl-kos\">)</span> <span class=\"pl-kos\">{</span>\n  <span class=\"pl-k\">let</span> <span class=\"pl-s1\">len</span><span class=\"pl-c1\">=</span> <span class=\"pl-s1\">arr</span><span class=\"pl-kos\">.</span><span class=\"pl-c1\">length</span><span class=\"pl-kos\">;</span>\n  <span class=\"pl-k\">let</span> <span class=\"pl-s1\">firstNum</span> <span class=\"pl-c1\">=</span> <span class=\"pl-s1\">arr</span><span class=\"pl-kos\">.</span><span class=\"pl-en\">slice</span><span class=\"pl-kos\">(</span><span class=\"pl-c1\">0</span><span class=\"pl-kos\">,</span> <span class=\"pl-c1\">3</span><span class=\"pl-kos\">)</span><span class=\"pl-kos\">;</span>\n  <span class=\"pl-k\">let</span> <span class=\"pl-s1\">midNum</span> <span class=\"pl-c1\">=</span> <span class=\"pl-s1\">arr</span><span class=\"pl-kos\">.</span><span class=\"pl-en\">slice</span><span class=\"pl-kos\">(</span><span class=\"pl-s1\">len</span> <span class=\"pl-c1\">-</span><span class=\"pl-c1\">8</span><span class=\"pl-kos\">,</span> <span class=\"pl-s1\">len</span> <span class=\"pl-c1\">-</span><span class=\"pl-c1\">4</span><span class=\"pl-kos\">)</span><span class=\"pl-kos\">;</span>\n  <span class=\"pl-k\">let</span> <span class=\"pl-s1\">lastNum</span> <span class=\"pl-c1\">=</span> <span class=\"pl-s1\">arr</span><span class=\"pl-kos\">.</span><span class=\"pl-en\">slice</span><span class=\"pl-kos\">(</span><span class=\"pl-s1\">len</span> <span class=\"pl-c1\">-</span><span class=\"pl-c1\">4</span><span class=\"pl-kos\">,</span> <span class=\"pl-s1\">len</span><span class=\"pl-kos\">)</span><span class=\"pl-kos\">;</span>\n\n  <span class=\"pl-k\">let</span> <span class=\"pl-s1\">str</span> <span class=\"pl-c1\">=</span> <span class=\"pl-s\">`(<span class=\"pl-s1\"><span class=\"pl-kos\">${</span><span class=\"pl-s1\">firstNum</span><span class=\"pl-kos\">}</span></span>)<span class=\"pl-s1\"><span class=\"pl-kos\">${</span><span class=\"pl-s1\">midNum</span><span class=\"pl-kos\">}</span></span>-<span class=\"pl-s1\"><span class=\"pl-kos\">${</span><span class=\"pl-s1\">lastNum</span><span class=\"pl-kos\">}</span></span>`</span><span class=\"pl-kos\">;</span>\n  <span class=\"pl-k\">return</span> <span class=\"pl-s1\">str</span><span class=\"pl-kos\">.</span><span class=\"pl-en\">replaceAll</span><span class=\"pl-kos\">(</span><span class=\"pl-s\">','</span><span class=\"pl-kos\">,</span><span class=\"pl-s\">''</span><span class=\"pl-kos\">)</span><span class=\"pl-kos\">;</span>\n<span class=\"pl-kos\">}</span>\n<span class=\"pl-c\">// createPhoneNumber([0, 1, 0, 1, 2, 3, 4, 8, 7, 6, 5]);</span>\n<span class=\"pl-c\">// '(010)1234-8765'</span></pre></div>\n<p dir=\"auto\"><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://user-images.githubusercontent.com/22221941/167655688-b0728d05-3417-4398-9097-a62fa2d088af.png\"><img src=\"https://user-images.githubusercontent.com/22221941/167655688-b0728d05-3417-4398-9097-a62fa2d088af.png\" alt=\"image\" style=\"max-width: 100%;\"></a></p>\n<ul dir=\"auto\">\n<li>join을 이용한 경우</li>\n</ul>\n<div class=\"highlight highlight-source-js position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"function createPhoneNumber(arr) {\n  let len= arr.length;\n  let firstNum = arr.slice(0, 3).join('');\n  let midNum = arr.slice(len -8, len -4).join('');\n  let lastNum = arr.slice(len -4, len).join('');\n\n  return `(${firstNum})${midNum}-${lastNum}`;\n}\n// createPhoneNumber([0, 1, 0, 1, 2, 3, 4, 8, 7, 6, 5]);\n// '(010)1234-8765'\"><pre><span class=\"pl-k\">function</span> <span class=\"pl-en\">createPhoneNumber</span><span class=\"pl-kos\">(</span><span class=\"pl-s1\">arr</span><span class=\"pl-kos\">)</span> <span class=\"pl-kos\">{</span>\n  <span class=\"pl-k\">let</span> <span class=\"pl-s1\">len</span><span class=\"pl-c1\">=</span> <span class=\"pl-s1\">arr</span><span class=\"pl-kos\">.</span><span class=\"pl-c1\">length</span><span class=\"pl-kos\">;</span>\n  <span class=\"pl-k\">let</span> <span class=\"pl-s1\">firstNum</span> <span class=\"pl-c1\">=</span> <span class=\"pl-s1\">arr</span><span class=\"pl-kos\">.</span><span class=\"pl-en\">slice</span><span class=\"pl-kos\">(</span><span class=\"pl-c1\">0</span><span class=\"pl-kos\">,</span> <span class=\"pl-c1\">3</span><span class=\"pl-kos\">)</span><span class=\"pl-kos\">.</span><span class=\"pl-en\">join</span><span class=\"pl-kos\">(</span><span class=\"pl-s\">''</span><span class=\"pl-kos\">)</span><span class=\"pl-kos\">;</span>\n  <span class=\"pl-k\">let</span> <span class=\"pl-s1\">midNum</span> <span class=\"pl-c1\">=</span> <span class=\"pl-s1\">arr</span><span class=\"pl-kos\">.</span><span class=\"pl-en\">slice</span><span class=\"pl-kos\">(</span><span class=\"pl-s1\">len</span> <span class=\"pl-c1\">-</span><span class=\"pl-c1\">8</span><span class=\"pl-kos\">,</span> <span class=\"pl-s1\">len</span> <span class=\"pl-c1\">-</span><span class=\"pl-c1\">4</span><span class=\"pl-kos\">)</span><span class=\"pl-kos\">.</span><span class=\"pl-en\">join</span><span class=\"pl-kos\">(</span><span class=\"pl-s\">''</span><span class=\"pl-kos\">)</span><span class=\"pl-kos\">;</span>\n  <span class=\"pl-k\">let</span> <span class=\"pl-s1\">lastNum</span> <span class=\"pl-c1\">=</span> <span class=\"pl-s1\">arr</span><span class=\"pl-kos\">.</span><span class=\"pl-en\">slice</span><span class=\"pl-kos\">(</span><span class=\"pl-s1\">len</span> <span class=\"pl-c1\">-</span><span class=\"pl-c1\">4</span><span class=\"pl-kos\">,</span> <span class=\"pl-s1\">len</span><span class=\"pl-kos\">)</span><span class=\"pl-kos\">.</span><span class=\"pl-en\">join</span><span class=\"pl-kos\">(</span><span class=\"pl-s\">''</span><span class=\"pl-kos\">)</span><span class=\"pl-kos\">;</span>\n\n  <span class=\"pl-k\">return</span> <span class=\"pl-s\">`(<span class=\"pl-s1\"><span class=\"pl-kos\">${</span><span class=\"pl-s1\">firstNum</span><span class=\"pl-kos\">}</span></span>)<span class=\"pl-s1\"><span class=\"pl-kos\">${</span><span class=\"pl-s1\">midNum</span><span class=\"pl-kos\">}</span></span>-<span class=\"pl-s1\"><span class=\"pl-kos\">${</span><span class=\"pl-s1\">lastNum</span><span class=\"pl-kos\">}</span></span>`</span><span class=\"pl-kos\">;</span>\n<span class=\"pl-kos\">}</span>\n<span class=\"pl-c\">// createPhoneNumber([0, 1, 0, 1, 2, 3, 4, 8, 7, 6, 5]);</span>\n<span class=\"pl-c\">// '(010)1234-8765'</span></pre></div>\n<p dir=\"auto\"><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://user-images.githubusercontent.com/22221941/167655749-e2ead01e-65c1-4dce-ad2f-aea38e88beb5.png\"><img src=\"https://user-images.githubusercontent.com/22221941/167655749-e2ead01e-65c1-4dce-ad2f-aea38e88beb5.png\" alt=\"image\" style=\"max-width: 100%;\"></a></p>\n<p dir=\"auto\">검색했던 링크가 있다면 첨부해 주세요. : <a href=\"https://chanyeong.com/blog/post/29\" rel=\"nofollow\">https://chanyeong.com/blog/post/29</a><br>\n신규 매서드라는 내용을 확인하였습니다 ;-; 아직 사용이 불가한건지요..?<br>\n이 문제가 아니면 코드 어디 부분을 더 알아볼까요;-;</p>",
-      "viewCount": 49
+      "viewCount": 49,
+      "questionReplies": [
+        {
+          "id": "1",
+          "member": {
+            "displayName": "zeeeeeeee",
+            "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
+          },
+          "content": "lalala",
+          "updateDate": "2023-04-19"
+        }
+      ]
     },
     {
       "id": "D_kwDOHOApLM4APgDd",
@@ -1259,7 +1300,7 @@
           "updateDate": "2023-04-19"
         },
         {
-          "id": "1",
+          "id": "2",
           "member": {
             "displayName": "zeeeeeeee",
             "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
@@ -1333,7 +1374,7 @@
               "updateDate": "2023-04-19"
             },
             {
-              "id": "1",
+              "id": "2",
               "member": {
                 "displayName": "zeeeeeeee",
                 "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
@@ -1342,7 +1383,7 @@
               "updateDate": "2023-04-19"
             },
             {
-              "id": "1",
+              "id": "3",
               "member": {
                 "displayName": "zeeeeeeee",
                 "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
@@ -1351,7 +1392,7 @@
               "updateDate": "2023-04-19"
             },
             {
-              "id": "1",
+              "id": "4",
               "member": {
                 "displayName": "zeeeeeeee",
                 "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
@@ -1360,7 +1401,7 @@
               "updateDate": "2023-04-19"
             },
             {
-              "id": "1",
+              "id": "5",
               "member": {
                 "displayName": "zeeeeeeee",
                 "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
@@ -1390,7 +1431,7 @@
               "updateDate": "2023-04-19"
             },
             {
-              "id": "1",
+              "id": "2",
               "member": {
                 "displayName": "zeeeeeeee",
                 "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
@@ -1399,7 +1440,7 @@
               "updateDate": "2023-04-19"
             },
             {
-              "id": "1",
+              "id": "3",
               "member": {
                 "displayName": "zeeeeeeee",
                 "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
@@ -1408,7 +1449,7 @@
               "updateDate": "2023-04-19"
             },
             {
-              "id": "1",
+              "id": "4",
               "member": {
                 "displayName": "zeeeeeeee",
                 "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"

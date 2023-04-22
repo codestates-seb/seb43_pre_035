@@ -14,33 +14,50 @@ const AnswerWrap = styled.div`
     flex-direction: column;
 `
 
-const Answerlist = ({question})=>{
+const Answerlist = ({ question, answersNum }) => {
 
-    const [answers,setAnswers] = useState(question.answers);
+    const [answers, setAnswers] = useState(question.answers);
     const url_patch = `http://localhost:3001/questions/${question.id}`;
 
     const addAnswerHandler = (newAnswer) => {
-        setAnswers([...answers,newAnswer])
+        setAnswers([...answers, newAnswer])
         console.log(newAnswer);
         //patch, add answers
 
-        axios.patch(url_patch, {...question, "answers" : [...answers, newAnswer]})
-            .then(res => {console.log("answer patch success!", res)})
-            .catch(err => {console.log("answer patch fail!", err)});
+        axios.patch(url_patch, { ...question, "answers": [...answers, newAnswer] })
+            .then(res => { console.log("answer patch success!", res) })
+            .catch(err => { console.log("answer patch fail!", err) });
 
+    }
+
+    const deleteAnswerHandler = (answer_id) => {
+        console.log('delete clicked!');
+
+        const newAnswers = answers.filter(el => el.id !== answer_id);
+        setAnswers(newAnswers);
+        //this should be replaced with 'delete'
+        axios.patch(url_patch, {...question, "answers" : newAnswers})
+            .then(res => {console.log("delete answer success!")})
+            .catch(err => {console.log("delete answer fail!", err)});
     }
     // console.log(answers)
 
     return (
         <>
-        <AnswerWrap>
-            {answers.map((answer,idx) => <AnswerDetail q_id={question.id} answer={answer} answers={answers} key={idx}></AnswerDetail>)}
-        </AnswerWrap>
+            <AnswerWrap>
+                {answers.map((answer, idx) => <AnswerDetail
+                                                    q_id={question.id}
+                                                    answer={answer}
+                                                    answers={answers}
+                                                    deleteAnswerHandler={deleteAnswerHandler}
+                                                    key={idx}></AnswerDetail>)}
+            </AnswerWrap>
             <AnswerCreate
-            addAnswerHandler={addAnswerHandler}
+                addAnswerHandler={addAnswerHandler}
+                answersNum={answersNum}
             ></AnswerCreate>
         </>
-        )
+    )
 }
 
 export default Answerlist
