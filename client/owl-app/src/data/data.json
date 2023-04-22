@@ -1010,6 +1010,58 @@
       "content": "<p>오늘 경험한걸 남겨 둬봅니다...\n\nAWS의 RDS MSSQL를 사용하고 있는데..\n\n갑자기 쿼리 응답 시간이 오래 걸리기 시작하였습니다..\n\nDB 최적화를 해도 느립니다..\n\n모든걸 다 해보고 안된다면 인스턴스를 중단 -> 시작 해봅니다..\n\n그리곤 해결 되었습니다..\n\n위 결과는 아마존에 문의해서 받은 답변이였습니다..\n\n100달러 주고 문의한 결과가 중단하고 다시 시작해보세요 라니.. ㅠ.ㅠ\n\n그런데 정말 왜 느려졌는지는 궁금하네요...\n\n딱히 유저가 몰린것도 아니고... 특별한 이슈는 없었는데...\n\n아무튼 오늘도 하나 배웠으니 뭐 된거죠...\n</p>",
       "viewCount": 0,
       "id": "44AWZs7"
+    },
+    {
+      "createdDate": "2023-04-21T07:34:15.433Z",
+      "updateDate": "2023-04-21T07:34:15.433Z",
+      "title": "[투두리스트 추가 기능] 상태가 업데이트 되지않습니다.",
+      "member": {
+        "displayName": "jicoder",
+        "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl06.png"
+      },
+      "answer": [],
+      "content": "<p>지금까지 제가 작업한 흐름을 설명해놓았습니다. 마지막 단계에서 문제가 생겼습니다.\n\n할일목록이 시작전인지(Not Started), 진행중인지(In Progress), 완료되었는지(Completed)를 나타내는 StatusBar 컴포넌트가 있습니다.\n\n투두리스트의 구조를 잡아놓은 ToDoCard 컴포넌트가 있습니다.\n\nStatusBar와 ToDoCard의 공통부모컴포넌트는 HomePage 입니다.\n\n첫 렌더링 시 보여질 dummyData가 있습니다. dummyData의 형태는 아래와같이 배열안 객체입니다.\nconst dummyData = [\n{\nid: 0,\nstatus: 'Not Started',\ntitle: '운동하기',\ntags: ['workout'],\ndate: '',\nonEdit: false\n},\n];\n\nHomePage에 dummyData를 import 해오고, const [todos, setTodos] = useState(dummyData) 를 통해 dummyData를 state로 만들었습니다. todos는 map을 통하여 ToDoCard에 뿌려지고 있습니다.\n\nHomePage에 handleAddToDo라는 함수를 작성하였고, StatusBar의 연필모양 아이콘을 클릭하면 handleAddToDo가 실행됩니다.\n\nhandleAddToDo가 실행되면 newTodo 객체가 생성됩니다.\n\nsetTodo([...todos, newTodo]) 를 통하여 newTodo가 기존의 todos와 합쳐지게 하고싶습니다.</p>",
+      "viewCount": 0,
+      "id": "_a_c02O"
+    },
+    {
+      "createdDate": "2023-04-21T07:35:02.284Z",
+      "updateDate": "2023-04-21T07:35:02.284Z",
+      "title": "자식요소 중 일부를 제외하고 삭제하는 방법",
+      "member": {
+        "displayName": "jicoder",
+        "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl03.png"
+      },
+      "answer": [],
+      "content": "<p>순회하는 element의 textContent가 Tweet List 와 일치하다면 건너뛰고\n그렇지 않다면 지워라! 라고 명령하여 Tweet List만 남았으면 했는 데\n조건문을 실행하는데도 불구하고 일부 element만 삭제가 됩니다! // hello와 code만 삭제\n코드의 어느부분이 왜 어떻게 잘못되었고, 어떻게 수정해야 하는지 알고 싶습니다!</p>",
+      "viewCount": 0,
+      "id": "52ZVfYs"
+    },
+    {
+      "createdDate": "2023-04-21T07:51:56.963Z",
+      "updateDate": "2023-04-21T07:51:56.963Z",
+      "title": "github pages로 정적 페이지를 만들면 빈 화면이 뜨는 에러가 발생합니다",
+      "member": {
+        "displayName": "jicoder",
+        "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl03.png"
+      },
+      "answer": [],
+      "content": "<p>안녕하세요 어제부터 계속 여러가지 방법으로 배포를 시도해보고 있습니다만... 계속해서 빈 화면이 나와서 질문드립니다.\n위 화면이 현재 깃허브 페이지 URL로 들어가면 나오는 화면입니다.\n\n처음에는 gh-pages가 문제인가 해서 1번 방법에서 2번 방법으로 바꾸어서 github pages를 생성해보았지만 동일하게 빈화면이 나왔습니다.\n\nwebpack과 gh-pages를 install 해서 번들링 후 gh-pages에 업로드\n: 아래와 같이 jsx 관련 에러가 떴습니다. 에러구문에 나온대로 @barbel/plugin-syntax-jsx를 추가해봤는데 해결이 되지 않았습니다.\n</p>",
+      "viewCount": 0,
+      "id": "MaV-WS3"
+    },
+    {
+      "createdDate": "2023-04-21T08:12:14.553Z",
+      "updateDate": "2023-04-21T08:12:14.553Z",
+      "title": "ReactDom import 문의",
+      "member": {
+        "displayName": "jicoder",
+        "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl06.png"
+      },
+      "answer": [],
+      "content": "<p>공식문서에서는\nimport ReactDOM from \"react-dom\"\n이렇게 불러오는것이랑 어떤 차이점이 있는 지 궁금합니다</p>",
+      "viewCount": 0,
+      "id": "M_wg7YV"
     }
   ]
 }

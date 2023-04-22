@@ -1,12 +1,18 @@
 import { Link } from 'react-router-dom';
-import styled, {css} from 'styled-components';
-import { FaUserPlus } from 'react-icons/fa';
-import { BiLogInCircle } from 'react-icons/bi';
-import { AiOutlineQuestionCircle } from 'react-icons/ai';
-import { AiOutlineSearch } from 'react-icons/ai';
-import owltime  from './owltime.png';
-import {TopnavTemplate,LogoWrap,InputWrap,IconButton,TopnavInput} from './HeadStyle'
+import styled from 'styled-components';
+import owltime  from './logo_pink.png';
+import { TopnavTemplate, LogoWrap, InputWrap, IconButton, TopnavInput } from './HeadStyle'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faRightToBracket } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRightToBracket } from '@fortawesome/free-solid-svg-icons';
+import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { faCircleQuestion } from '@fortawesome/free-regular-svg-icons';
+
+const StyledIcon = styled(FontAwesomeIcon)`
+    color: var(--colors-offwhite);
+    padding-right: 6px;
+`
 
 const TopNav = () => {
     return (
@@ -14,24 +20,23 @@ const TopNav = () => {
             <TopnavTemplate>
                 <Link to = '/'>
                     <LogoWrap>
-                        <img src={owltime} alt='logo image'/>
+                        <img src={owltime} alt='owl logo'/>
                     </LogoWrap>
                 </Link>
                 <InputWrap>
-                    <AiOutlineSearch />
                     <TopnavInput
                     type='text'
-                    placeholder='Search'
+                    placeholder='What are you looking for?'
                     ></TopnavInput>
                 </InputWrap>
                     <IconButton>
-                        <Link to = '/login'><BiLogInCircle /></Link>
+                        <Link to = '/login'><StyledIcon icon={faArrowRightToBracket} /></Link>
                     </IconButton>
                     <IconButton>
-                        <Link to = '/signup'><FaUserPlus /></Link>
+                        <Link to = '/signup'><StyledIcon icon={faUserPlus} /></Link>
                     </IconButton>
                     <IconButton>
-                        <AiOutlineQuestionCircle />
+                    <StyledIcon icon={faCircleQuestion} />
                     </IconButton>
             </TopnavTemplate>
         </>

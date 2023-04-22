@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import GlobalStyle from './theme/GlobalStyle';
 
 //import pages
+//import with Lazy, and load Suspense while loading
 import Home from './pages/Home';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
@@ -22,11 +23,12 @@ const convertDate = (string) => {
 }
 
 const url_threads = "http://localhost:3001/questions";
-
+const url_threads_test = "https://2e7f-124-61-224-204.ngrok-free.app/questions";
+// const url_threads_test2 = "/questions";
 function App() {
 
 
-  const [isLoggedIn,setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [threads, isPending, error] = useFetch(url_threads);
   const [sidebarStatus, setSidebarStatus] = useState({
     homeOn: true,
@@ -67,6 +69,7 @@ function App() {
                     sortThreads={sortThreads}
                     setSidebarStatus={setSidebarStatus}
                     isLoggedIn={isLoggedIn}
+                    toggleLogin={toggleLogin}
             ></Header>
             <Routes>
                   <Route path ="/" element = {<Home threads={threads}
@@ -76,6 +79,7 @@ function App() {
                                                     toggleLogin={toggleLogin}/>} />
                   <Route path ="/login" element = {<Login />} />
                   <Route path ="/signup" element = {<SignUp />} />
+                  <Route path ="/mypage" />
                   <Route path ="/ask" element = {<CreateThread threads={threads} />} />
                   <Route path ="/questions/:id" element = {<QuestionDetail/> } />
             </Routes>

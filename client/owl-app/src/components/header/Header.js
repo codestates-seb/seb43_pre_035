@@ -11,7 +11,7 @@ const HeaderBlock = styled.header`
     top : 0;
     left : 0;
     width: 100%;
-    height: 135px;
+    height: 100px;
     z-index: 1000;
     background: linear-gradient(45deg, #9D5353, #4F3F48);
 `
@@ -21,7 +21,7 @@ const HeaderWrap = styled.div`
     height: 100%;
 `
 
-const Header = ({threads, sortThreads, setSidebarStatus, isLoggedIn}) => {
+const Header = ({threads, sortThreads, setSidebarStatus, isLoggedIn, toggleLogin}) => {
 
     const [nav,setLogednav] = useState(false);
     const location = useLocation();
@@ -45,7 +45,7 @@ const Header = ({threads, sortThreads, setSidebarStatus, isLoggedIn}) => {
     return(
         <HeaderBlock>
             <HeaderWrap >
-                {isLoggedIn ? <TopNavlogged /> : <TopNav /> }
+                {isLoggedIn ? <TopNavlogged toggleLogin={toggleLogin}/> : <TopNav /> }
             </HeaderWrap>
         </HeaderBlock>
  )

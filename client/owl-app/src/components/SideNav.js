@@ -60,15 +60,18 @@ const SideNavItem = styled.div`
 `;
 
 const LoginCheckBtn = styled.button`
+    display: flex;
+    align-self: center;
     outline: none;
     color: var(--colors-text-default);
     background: var(--colors-green);
     border-radius: 25px;
     border: 1px solid transparent;
-    padding: 5px;
-    margin-top: 50px;
+    padding: 5px 10px;
+    margin-top: 35px;
     opacity: 50%;
     max-width: 100px;
+
 
     &:hover {
       opacity: 100%;
