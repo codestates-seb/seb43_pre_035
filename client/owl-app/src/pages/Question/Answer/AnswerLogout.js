@@ -4,12 +4,12 @@ import {CreateWrap,CreateBlock, CreateHeader,CreateEditorLogout,CreateButtonLogo
 const AnswerLogout = ({logClick}) => {
 
     return (
-        
+
         <>
 
             <CreateBlock>
                 <CreateHeader>답변작성</CreateHeader>
-                <CreateEditorLogout>로그인해야 답변가능합니다.</CreateEditorLogout>
+                <CreateEditorLogout onClick={logClick}>로그인해야 답변가능합니다.</CreateEditorLogout>
                 <CreateButtonLogout onClick={logClick}>답변하기</CreateButtonLogout>
                 <ButtonBlock>
                     <LoginButton>로그인</LoginButton>

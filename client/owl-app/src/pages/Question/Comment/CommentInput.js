@@ -31,13 +31,16 @@ const CreatButton = styled.button`
 `
 
 const CommentInput = ({addCommentHandler, AnswerCommentHandler})=>{
-    const [newCommentContent, setNewCommentContent] = useState([])
+    const [newCommentContent, setNewCommentContent] = useState('');
+    const [invalidComment, setInvalidComment] = useState(false);
 
-    const onTextChange = (e) => { 
+    const onTextChange = (e) => {
         setNewCommentContent(e.target.value);
       };
-    
+
     const onClickCommentSubmit = ()=>{
+        // console.log("comment content: ", newCommentContent);
+        if (!newCommentContent) {console.log("no content!"); setInvalidComment(true); return;};
         let newComment = {
             "id" : "1",
             "member" : {
@@ -50,13 +53,17 @@ const CommentInput = ({addCommentHandler, AnswerCommentHandler})=>{
 
         addCommentHandler(newComment)
         console.log(newComment)
+        setInvalidComment(false);
+        setNewCommentContent('');
     }
-    
+
     return (
         <>
         <CommentInputWrap>
+            {invalidComment ? <div>내용이 없습니다</div>: null}
             <CommentInputCompo type="text" placeholder="Comment를 달아주세요"
             onChange={onTextChange}
+            value={newCommentContent}
             />
             <CreatButton onClick={onClickCommentSubmit}>작성하기</CreatButton>
         </CommentInputWrap>

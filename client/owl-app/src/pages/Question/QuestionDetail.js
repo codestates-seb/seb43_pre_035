@@ -19,17 +19,17 @@ const QuestionWrap = styled.div`
 `
 
 const QuestionDetail = () => {
-    
+
     // const [question,setQuestion] = useState(initialData.questions[0])
-    const url = `http://localhost:3001/questions/1`
-    // const { id } = useParams();
+    const { id } = useParams();
+    const url = `http://localhost:3001/questions/${id}`;
 
     // const [question,setQuestion] = useState(null);
     // const [isPending, setIsPending] = useState(true);
     // const [error, setError] = useState(null);
-    const [question, isPending, error] = useFetch(url)
+    const [question, isPending, error] = useFetch(url);
     // useEffect(()=>{
-        
+
     // },[])
     // axios.get(url)
     //     .then(res => {
@@ -38,20 +38,20 @@ const QuestionDetail = () => {
     //         setIsPending(true)
     //         setError(null)
     //         })
-    
+
     // console.log(question)
-    
+
     // if (isPending) return <div>로딩중..</div>;
     // if (error) return <div>에러가 발생했습니다</div>;
     // if (!question) return null;
-    
-    
-    
+
+
+
     return (
         <>
         <QuestionWrap>
             {isPending && <div>로딩중..</div>}
-                {error && <div>eroor</div>}
+                {error && <div>error</div>}
                 {question && (
                     <SelectQuestion question={question} />
                 )

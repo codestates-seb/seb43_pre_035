@@ -23,15 +23,16 @@ const EditorInput =styled.input`
 
 
 const AnswerLogin = ({addAnswerHandler}) => {
-    const [newAnswerContent, setNewAnswerContent] = useState([])
-    
+    const [newAnswerContent, setNewAnswerContent] = useState('');
+    const [invalidAnswer, setInvalidAnswer] = useState(false);
+
     const onAnswerTextChange = (e) => {
         setNewAnswerContent(e.target.value);
       };
 
     const onClickSubmit = ()=> {
-
-        let newAnswer = 
+      if (!newAnswerContent){console.log("invalid answer!"); setInvalidAnswer(true); return;}
+        let newAnswer =
             {
               "id": "1",
               "createdDate": "2022-05-16T02:09:52Z",
@@ -41,34 +42,38 @@ const AnswerLogin = ({addAnswerHandler}) => {
                 "displayName": "zzzzzzoooooooooo"
               },
               "content": newAnswerContent,
-              "answerReply": [
-                {
-                  "member": {
-                    "displayName": "dubipy",
-                    "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
-                  },
-                  "createdDate": "2022-05-16T01:02:17Z",
-                  "updateDate": "2022-05-16T01:02:17Z",
-                  "content": "bash파일이 꼬여있어서 삭제 후 다시 설치하고 경로 잡아줬습니다 node 부분도 설치는 되어있는데 패키지 쪽에 에러가 발생해서 모두 삭제 후 재설치 해주고 npm install 하니 해결됐습니다 감사합니다"
-                }
+              "answerReplies": [
+                // {
+                //   "member": {
+                //     "displayName": "dubipy",
+                //     "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
+                //   },
+                //   "createdDate": "2022-05-16T01:02:17Z",
+                //   "updateDate": "2022-05-16T01:02:17Z",
+                //   "content": "bash파일이 꼬여있어서 삭제 후 다시 설치하고 경로 잡아줬습니다 node 부분도 설치는 되어있는데 패키지 쪽에 에러가 발생해서 모두 삭제 후 재설치 해주고 npm install 하니 해결됐습니다 감사합니다"
+                // }
               ]
             }
-          
 
-        addAnswerHandler(newAnswer)
-        
+
+        addAnswerHandler(newAnswer);
+        setNewAnswerContent('');
+        setInvalidAnswer(false);
+
+
         console.log(newAnswerContent)
     }
-    
-   
+
+
 
     return (
         <>
         <CreateWrap>
             <CreateBlock>
                 <CreateHeader>답변작성</CreateHeader>
+                {invalidAnswer ? <span>내용을 입력해주세요.</span> : null}
                 <EditorBlock>
-                    <EditorInput type="text" onChange={onAnswerTextChange}/>
+                    <EditorInput type="text" onChange={onAnswerTextChange} value={newAnswerContent}/>
                 </EditorBlock>
                 <CreateButtonLogin onClick={onClickSubmit}>작성하기</CreateButtonLogin>
             </CreateBlock>

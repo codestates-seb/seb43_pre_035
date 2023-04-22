@@ -1,7 +1,7 @@
 {
   "questions": [
     {
-      "id": "D_kwDOHOApLM4APjJi",
+      "id": "1",
       "createdDate": "2022-05-16T01:02:17Z",
       "updateDate": "2022-05-16T01:02:17Z",
       "title": "koans 과제 진행 중 npm install 오류로 인해 정상 작동 되지 않습니다",
@@ -10,7 +10,36 @@
         "displayName": "dubipy",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
       },
-      "answer": [
+      "questionReplies": [
+        {
+          "id": "1",
+          "member": {
+            "displayName": "dubipy",
+            "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
+          },
+          "content": "그저 그런 댓글입니다.",
+          "updateDate": "2023-04-19"
+        },
+        {
+          "id": "2",
+          "member": {
+            "displayName": "dubipy",
+            "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
+          },
+          "content": "그저 그런 댓글입니다.",
+          "updateDate": "2023-04-19"
+        },
+        {
+          "id": "3",
+          "member": {
+            "displayName": "dubipy",
+            "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
+          },
+          "content": "그저 그런 댓글입니다.",
+          "updateDate": "2023-04-19"
+        }
+      ],
+      "answers": [
         {
           "id": "DC_kwDOHOApLM4AKg6M",
           "createdDate": "2022-05-16T02:09:52Z",
@@ -21,7 +50,7 @@
             "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl04.png"
           },
           "content": "<p dir=\"auto\">안녕하세요. <a class=\"user-mention notranslate\" data-hovercard-type=\"user\" data-hovercard-\"url\"=\"/users/dubipy/hovercard\" data-octo-click=\"hovercard-link-click\" data-octo-dimensions=\"link_type:self\" href=\"https://github.com/dubipy\">@dubipy</a> 님!<br>\n코드스테이츠 교육 엔지니어 권준혁 입니다. <g-emoji class=\"g-emoji\" alias=\"raised_hands\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/1f64c.png\">🙌</g-emoji></p>\n<p dir=\"auto\">질문 주신 내용은 노드 환경이 구성되어 있지 않기 때문에 발생되는 문제로 확인됩니다.</p>\n<p dir=\"auto\"><code class=\"notranslate\">brew unlink node &amp;&amp; brew link node</code></p>\n<p dir=\"auto\">노드를 연결해 보시고 안된다면</p>\n<p dir=\"auto\"><code class=\"notranslate\">brew link --overwrite node</code></p>\n<p dir=\"auto\">이 명령어를 그 다음에도 안된다면 접근권한 문제일 가능성이 큽니다.</p>\n<p dir=\"auto\"><code class=\"notranslate\">$ sudo chmod 776 /usr/local/lib</code> 접근 권한 변경 후<br>\n<code class=\"notranslate\">$ brew link --overwrite node</code> 다시 연결을 해보세요 !</p>\n<p dir=\"auto\">그럼에도 안된다면 다시 한 번 더 질문을 남겨주세요 !</p>\n<p dir=\"auto\">답변이 되셨다면 내용을 간략하게 정리해서 코멘트를 남기고 answered를 마크해주세요 <g-emoji class=\"g-emoji\" alias=\"white_check_mark\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/2705.png\">✅</g-emoji><br>\n감사합니다.<g-emoji class=\"g-emoji\" alias=\"rocket\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/1f680.png\">🚀</g-emoji><br>\n코드스테이츠 교육 엔지니어 권준혁</p>",
-          "answerReply": [
+          "answerReplies": [
             {
               "member": {
                 "displayName": "dubipy",
@@ -47,7 +76,7 @@
         "displayName": "JoeunNAL",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl01.png"
       },
-      "answer": [],
+      "answers": [],
       "content": "<ul dir=\"auto\">\n<li>\n<p dir=\"auto\">운영 체제: macOS</p>\n</li>\n<li>\n<p dir=\"auto\">현재 어떤 챕터/연습문제/과제를 진행 중이고, 어떤 문제에 부딪혔나요?</p>\n</li>\n</ul>\n<p dir=\"auto\">코플릿 객체 21번 문제에서 ' '(공백하나인 문자열)입력시 오류가 발생합니다.</p>\n<ul dir=\"auto\">\n<li>어떠한 부분에서 이해가 안 되었나요?</li>\n</ul>\n<p dir=\"auto\">빈 문자열을 입력받은 경우, 빈 문자열을 리턴해야 합니다.<br>\n라는 주의사항에 맞게 조건문을   <code class=\"notranslate\">if(str === ' '){ return bigChar;}</code> 추가했습니다.<br>\n그런데 테스트 실행할때 주석처리한 아래 3줄이 활성화 되어있으면</p>\n<blockquote>\n<p dir=\"auto\">' '을(를) 입력받은 경우, 빈 문자열을 리턴해야 합니다 \"</p>\n</blockquote>\n<p dir=\"auto\">이라는 지문에서 통과가 안되고 ' '(공백하나인 문자열)이 리턴된다고 나옵니다.<br>\n크롬 디버거할때는<br>\n<a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://user-images.githubusercontent.com/90553688/168499795-ccd028a3-6c1e-452d-83e7-0144b8b823e4.png\"><img width=\"485\" alt=\"image\" src=\"https://user-images.githubusercontent.com/90553688/168499795-ccd028a3-6c1e-452d-83e7-0144b8b823e4.png\" style=\"max-width: 100%;\"></a><br>\n빈 문자열로 뜨는것 같은데 어느부분에서 문제가 되는걸까요??</p>\n<div class=\"highlight highlight-source-js position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"function mostFrequentCharacter(str) {\n\n  let newObj = {};\n  let bigChar = '';\n  let bigNum = 1;\n\n  if(str === ' '){\n    return bigChar;\n  }\n  \n  for(let i = 0; i&lt; str.length; i++){\n    // if(i === 0){     &lt;----------------------여기 부분\n    //   bigChar = str[0];\n    // }\n\n    let key = str[i];\n    if(key === ' '){\n      continue;\n    }\n\n    if(!(key in newObj)){\n      newObj[key] = 1;\n    } else{\n      newObj[key]++;\n    }\n\n    if(newObj[key] &gt; bigNum){\n      bigNum = newObj[key];\n      bigChar = key;\n    }\n  }\n  return bigChar;\n}\n\"><pre><span class=\"pl-k\">function</span> <span class=\"pl-en\">mostFrequentCharacter</span><span class=\"pl-kos\">(</span><span class=\"pl-s1\">str</span><span class=\"pl-kos\">)</span> <span class=\"pl-kos\">{</span>\n\n  <span class=\"pl-k\">let</span> <span class=\"pl-s1\">newObj</span> <span class=\"pl-c1\">=</span> <span class=\"pl-kos\">{</span><span class=\"pl-kos\">}</span><span class=\"pl-kos\">;</span>\n  <span class=\"pl-k\">let</span> <span class=\"pl-s1\">bigChar</span> <span class=\"pl-c1\">=</span> <span class=\"pl-s\">''</span><span class=\"pl-kos\">;</span>\n  <span class=\"pl-k\">let</span> <span class=\"pl-s1\">bigNum</span> <span class=\"pl-c1\">=</span> <span class=\"pl-c1\">1</span><span class=\"pl-kos\">;</span>\n\n  <span class=\"pl-k\">if</span><span class=\"pl-kos\">(</span><span class=\"pl-s1\">str</span> <span class=\"pl-c1\">===</span> <span class=\"pl-s\">' '</span><span class=\"pl-kos\">)</span><span class=\"pl-kos\">{</span>\n    <span class=\"pl-k\">return</span> <span class=\"pl-s1\">bigChar</span><span class=\"pl-kos\">;</span>\n  <span class=\"pl-kos\">}</span>\n  \n  <span class=\"pl-k\">for</span><span class=\"pl-kos\">(</span><span class=\"pl-k\">let</span> <span class=\"pl-s1\">i</span> <span class=\"pl-c1\">=</span> <span class=\"pl-c1\">0</span><span class=\"pl-kos\">;</span> <span class=\"pl-s1\">i</span><span class=\"pl-c1\">&lt;</span> <span class=\"pl-s1\">str</span><span class=\"pl-kos\">.</span><span class=\"pl-c1\">length</span><span class=\"pl-kos\">;</span> <span class=\"pl-s1\">i</span><span class=\"pl-c1\">++</span><span class=\"pl-kos\">)</span><span class=\"pl-kos\">{</span>\n    <span class=\"pl-c\">// if(i === 0){     &lt;----------------------여기 부분</span>\n    <span class=\"pl-c\">//   bigChar = str[0];</span>\n    <span class=\"pl-c\">// }</span>\n\n    <span class=\"pl-k\">let</span> <span class=\"pl-s1\">key</span> <span class=\"pl-c1\">=</span> <span class=\"pl-s1\">str</span><span class=\"pl-kos\">[</span><span class=\"pl-s1\">i</span><span class=\"pl-kos\">]</span><span class=\"pl-kos\">;</span>\n    <span class=\"pl-k\">if</span><span class=\"pl-kos\">(</span><span class=\"pl-s1\">key</span> <span class=\"pl-c1\">===</span> <span class=\"pl-s\">' '</span><span class=\"pl-kos\">)</span><span class=\"pl-kos\">{</span>\n      <span class=\"pl-k\">continue</span><span class=\"pl-kos\">;</span>\n    <span class=\"pl-kos\">}</span>\n\n    <span class=\"pl-k\">if</span><span class=\"pl-kos\">(</span><span class=\"pl-c1\">!</span><span class=\"pl-kos\">(</span><span class=\"pl-s1\">key</span> <span class=\"pl-k\">in</span> <span class=\"pl-s1\">newObj</span><span class=\"pl-kos\">)</span><span class=\"pl-kos\">)</span><span class=\"pl-kos\">{</span>\n      <span class=\"pl-s1\">newObj</span><span class=\"pl-kos\">[</span><span class=\"pl-s1\">key</span><span class=\"pl-kos\">]</span> <span class=\"pl-c1\">=</span> <span class=\"pl-c1\">1</span><span class=\"pl-kos\">;</span>\n    <span class=\"pl-kos\">}</span> <span class=\"pl-k\">else</span><span class=\"pl-kos\">{</span>\n      <span class=\"pl-s1\">newObj</span><span class=\"pl-kos\">[</span><span class=\"pl-s1\">key</span><span class=\"pl-kos\">]</span><span class=\"pl-c1\">++</span><span class=\"pl-kos\">;</span>\n    <span class=\"pl-kos\">}</span>\n\n    <span class=\"pl-k\">if</span><span class=\"pl-kos\">(</span><span class=\"pl-s1\">newObj</span><span class=\"pl-kos\">[</span><span class=\"pl-s1\">key</span><span class=\"pl-kos\">]</span> <span class=\"pl-c1\">&gt;</span> <span class=\"pl-s1\">bigNum</span><span class=\"pl-kos\">)</span><span class=\"pl-kos\">{</span>\n      <span class=\"pl-s1\">bigNum</span> <span class=\"pl-c1\">=</span> <span class=\"pl-s1\">newObj</span><span class=\"pl-kos\">[</span><span class=\"pl-s1\">key</span><span class=\"pl-kos\">]</span><span class=\"pl-kos\">;</span>\n      <span class=\"pl-s1\">bigChar</span> <span class=\"pl-c1\">=</span> <span class=\"pl-s1\">key</span><span class=\"pl-kos\">;</span>\n    <span class=\"pl-kos\">}</span>\n  <span class=\"pl-kos\">}</span>\n  <span class=\"pl-k\">return</span> <span class=\"pl-s1\">bigChar</span><span class=\"pl-kos\">;</span>\n<span class=\"pl-kos\">}</span></pre></div>",
       "viewCount": 42
     },
@@ -61,7 +90,7 @@
         "displayName": "anotheranotherhoon",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
       },
-      "answer": [
+      "answers": [
         {
           "id": "DC_kwDOHOApLM4AKg7z",
           "createdDate": "2022-05-16T02:47:27Z",
@@ -71,7 +100,18 @@
             "displayName": "Kingsenal",
             "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl04.png"
           },
-          "content": "<p dir=\"auto\">안녕하세요. <a class=\"user-mention notranslate\" data-hovercard-type=\"user\" data-hovercard-\"url\"=\"/users/anotheranotherhoon/hovercard\" data-octo-click=\"hovercard-link-click\" data-octo-dimensions=\"link_type:self\" href=\"https://github.com/anotheranotherhoon\">@anotheranotherhoon</a> 님!<br>\n코드스테이츠 교육 엔지니어 권준혁입니다. <g-emoji class=\"g-emoji\" alias=\"raised_hands\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/1f64c.png\">🙌</g-emoji></p>\n<p dir=\"auto\">스코프와 클로져에 대해 깊게 공부하는 모습 너무 너무 좋습니다 !</p>\n<p dir=\"auto\">일단 즉시 실행 함수 표현식에 대해 질문 주셨는데요 !<br>\n함수를 정의 -&gt; 변수에 함수를 저장 하고 실행 ! 이 과정을 거치지 않고 정의하자마자 바로 호출하는 것이 즉시 실행 함수 입니다.<br>\n그렇다면 위에 코드는 즉시 실행 함수 일까요?</p>\n<p dir=\"auto\"><a href=\"https://developer.mozilla.org/ko/docs/Glossary/IIFE\" rel=\"nofollow\">즉시실행함수</a><br>\n한 번 읽어보시고 한 번 더 생각해보세요 ! 직접 생각하는 것이 가장 기억에 오래 남습니다 !</p>\n<p dir=\"auto\">두 번째 <code class=\"notranslate\">innerFn</code>이라는 변수를 새로 선언했고 <code class=\"notranslate\">outerFn()</code>을 할당했습니다. 즉, <code class=\"notranslate\">outerFn()</code>을 호출 한 것입니다.<br>\n이는 위의 <code class=\"notranslate\">innerFn</code> 함수와는 다른 녀석입니다.<code class=\"notranslate\">innerFn</code> 함수도 마찬가지로 <code class=\"notranslate\">outerFn</code> 내부에서 선언되었으므로 밖으로 나올 수 없기 때문이에요!</p>\n<p dir=\"auto\"><code class=\"notranslate\">const apple = outerFn()</code>  // innerFn은 단순한 변수명임 ! apple을 넣던 banana를 넣던 상관없음<br>\n<code class=\"notranslate\">expect(apple()).to.equal(178)</code></p>\n<p dir=\"auto\">답변이 되셨다면 내용을 간략하게 정리해서 코멘트를 남기고 answered를 마크해주세요 <g-emoji class=\"g-emoji\" alias=\"white_check_mark\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/2705.png\">✅</g-emoji><br>\n감사합니다.<g-emoji class=\"g-emoji\" alias=\"rocket\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/1f680.png\">🚀</g-emoji><br>\n코드스테이츠 교육 엔지니어 000</p>"
+          "content": "<p dir=\"auto\">안녕하세요. <a class=\"user-mention notranslate\" data-hovercard-type=\"user\" data-hovercard-\"url\"=\"/users/anotheranotherhoon/hovercard\" data-octo-click=\"hovercard-link-click\" data-octo-dimensions=\"link_type:self\" href=\"https://github.com/anotheranotherhoon\">@anotheranotherhoon</a> 님!<br>\n코드스테이츠 교육 엔지니어 권준혁입니다. <g-emoji class=\"g-emoji\" alias=\"raised_hands\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/1f64c.png\">🙌</g-emoji></p>\n<p dir=\"auto\">스코프와 클로져에 대해 깊게 공부하는 모습 너무 너무 좋습니다 !</p>\n<p dir=\"auto\">일단 즉시 실행 함수 표현식에 대해 질문 주셨는데요 !<br>\n함수를 정의 -&gt; 변수에 함수를 저장 하고 실행 ! 이 과정을 거치지 않고 정의하자마자 바로 호출하는 것이 즉시 실행 함수 입니다.<br>\n그렇다면 위에 코드는 즉시 실행 함수 일까요?</p>\n<p dir=\"auto\"><a href=\"https://developer.mozilla.org/ko/docs/Glossary/IIFE\" rel=\"nofollow\">즉시실행함수</a><br>\n한 번 읽어보시고 한 번 더 생각해보세요 ! 직접 생각하는 것이 가장 기억에 오래 남습니다 !</p>\n<p dir=\"auto\">두 번째 <code class=\"notranslate\">innerFn</code>이라는 변수를 새로 선언했고 <code class=\"notranslate\">outerFn()</code>을 할당했습니다. 즉, <code class=\"notranslate\">outerFn()</code>을 호출 한 것입니다.<br>\n이는 위의 <code class=\"notranslate\">innerFn</code> 함수와는 다른 녀석입니다.<code class=\"notranslate\">innerFn</code> 함수도 마찬가지로 <code class=\"notranslate\">outerFn</code> 내부에서 선언되었으므로 밖으로 나올 수 없기 때문이에요!</p>\n<p dir=\"auto\"><code class=\"notranslate\">const apple = outerFn()</code>  // innerFn은 단순한 변수명임 ! apple을 넣던 banana를 넣던 상관없음<br>\n<code class=\"notranslate\">expect(apple()).to.equal(178)</code></p>\n<p dir=\"auto\">답변이 되셨다면 내용을 간략하게 정리해서 코멘트를 남기고 answered를 마크해주세요 <g-emoji class=\"g-emoji\" alias=\"white_check_mark\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/2705.png\">✅</g-emoji><br>\n감사합니다.<g-emoji class=\"g-emoji\" alias=\"rocket\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/1f680.png\">🚀</g-emoji><br>\n코드스테이츠 교육 엔지니어 000</p>",
+          "answerReplies": [
+            {
+              "id": "1",
+              "member": {
+                "displayName": "zeeeeeeee",
+                "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
+              },
+              "content": "4567",
+              "updateDate": "2023-04-19"
+            }
+          ]
         }
       ],
       "content": "<p dir=\"auto\">--------------- 여기서부터 복사하세요 ---------------</p>\n<p dir=\"auto\">운영 체제: 예) macOS, Ubuntu<br>\nmacOS<br>\nNode.js 버전(node -v): 예)v14.16.0<br>\nv12.18.14</p>\n<p dir=\"auto\">현재 어떤 챕터/연습문제/과제를 진행 중이고, 어떤 문제에 부딪혔나요?<br>\nJavaScript Koans 04_Scope.js 문제 해결중</p>\n<div class=\"snippet-clipboard-content position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"it('lexical scope와 closure에 대해 다시 확인합니다.', function () {\n    let age = 27;\n    let name = 'jin';\n    let height = 179;\n\n    function outerFn() {\n      let age = 24;\n      name = 'jimin';\n      let height = 178;\n\n      function innerFn() {\n        age = 26;\n        let name = 'suga';\n        return height;\n      }\n\n      innerFn();\n\n      expect(age).to.equal(26);\n      expect(name).to.equal('jimin');\n\n      return innerFn;\n    }\n\n    const innerFn = outerFn(); //  &lt; --- ①  이부분에 대해서\n\n    expect(age).to.equal(27);\n    expect(name).to.equal('jimin');\n    expect(innerFn()).to.equal(178); // &lt;---  ② \n  });\"><pre class=\"notranslate\"><code class=\"notranslate\">it('lexical scope와 closure에 대해 다시 확인합니다.', function () {\n    let age = 27;\n    let name = 'jin';\n    let height = 179;\n\n    function outerFn() {\n      let age = 24;\n      name = 'jimin';\n      let height = 178;\n\n      function innerFn() {\n        age = 26;\n        let name = 'suga';\n        return height;\n      }\n\n      innerFn();\n\n      expect(age).to.equal(26);\n      expect(name).to.equal('jimin');\n\n      return innerFn;\n    }\n\n    const innerFn = outerFn(); //  &lt; --- ①  이부분에 대해서\n\n    expect(age).to.equal(27);\n    expect(name).to.equal('jimin');\n    expect(innerFn()).to.equal(178); // &lt;---  ② \n  });\n</code></pre></div>\n<p dir=\"auto\">어떠한 부분에서 이해가 안 되었나요?</p>\n<ol dir=\"auto\">\n<li>\n<p dir=\"auto\">① 부분에서 innerFn이라는 변수에 outerFn()을 할당했습니다.<br>\n변수에 함수호출문을 할당했다고 해석했습니다.<br>\n그렇다면 ①에서 const innerFn을 할당함과 동시에 할당을 하게되는 outerFn함수가 실행되나요?<br>\n그렇다면 ①도 즉시 실행 함수표현식인가요??</p>\n</li>\n<li>\n<p dir=\"auto\">②에서 호출하는 innerFn()은 outerFn() 함수 내의 innerFn()을 호출 한 것인가요?<br>\n아니면 ①을 통해 innerFn호출에 의해 outerFn으로 접근하여 innerFn에 접근한 것인가요?</p>\n</li>\n</ol>\n<p dir=\"auto\">제 생각에는 outerFn스코프내의 함수outerFn으로 바로 접근하는것이 바깥에서는 안으로 진입할 수 없는 규칙에 위배된다 생각합니다.</p>\n<p dir=\"auto\">함수호이스팅은 함수내에 있는 함수까지 호이스팅 되어 전역으로 접근가능한건가요?</p>\n<p dir=\"auto\">변수명과 함수명이 중복되어 공부하는 과정에서 잘못 이해하고 넘어갈 수 도 있을 것 같아 정확히 알아보기위해 질문을 남깁니다 감사합니다.</p>",
@@ -87,7 +127,7 @@
         "displayName": "JiYJ725",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl03.png"
       },
-      "answer": [
+      "answers": [
         {
           "id": "DC_kwDOHOApLM4AKdo2",
           "createdDate": "2022-05-13T04:19:10Z",
@@ -112,7 +152,7 @@
         "displayName": "Hong-sk",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl01.png"
       },
-      "answer": [
+      "answers": [
         {
           "id": "DC_kwDOHOApLM4AKdsX",
           "member": {
@@ -138,7 +178,7 @@
         "displayName": "jindory",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl05.png"
       },
-      "answer": [
+      "answers": [
         {
           "id": "DC_kwDOHOApLM4AKZuk",
           "createdDate": "2022-05-11T02:28:57Z",
@@ -148,7 +188,18 @@
             "displayName": "Citysquirrel",
             "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl06.png"
           },
-          "content": "<p dir=\"auto\">안녕하세요 <a class=\"user-mention notranslate\" data-hovercard-type=\"user\" data-hovercard-\"url\"=\"/users/jindory/hovercard\" data-octo-click=\"hovercard-link-click\" data-octo-dimensions=\"link_type:self\" href=\"https://github.com/jindory\">@jindory</a>  님!<br>\n코드스테이츠 교육 엔지니어 곽명우입니다 <g-emoji class=\"g-emoji\" alias=\"raised_hands\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/1f64c.png\">🙌</g-emoji></p>\n<hr>\n<p dir=\"auto\">코플릿에서 replaceAll 사용이 되질 않아서 답답하셨겠군요..!</p>\n<p dir=\"auto\">현재 저희가 제공중인 코플릿 서버 버전은 node.js 14버전입니다.<br>\n그렇다보니 15버전 이후 지원되는 replaceAll 메서드 사용이 불가합니다.<br>\n향후 버전 업그레이드를 진행할 것이나, 지금은 이를 참고하시어 코스를 진행해주시면 감사하겠습니다.</p>\n<hr>\n<p dir=\"auto\">답변이 도움이 되셨다면 내용을 간략하게 정리해서 코멘트를 남기고 Mark as answer를 눌러주세요 <g-emoji class=\"g-emoji\" alias=\"white_check_mark\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/2705.png\">✅</g-emoji><br>\n추가 질문이 있으시거나 해결이 힘드시면 꼭! 답글을 달아주세요.</p>\n<p dir=\"auto\">감사합니다.<br>\n코드스테이츠 교육 엔지니어<g-emoji class=\"g-emoji\" alias=\"chipmunk\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/1f43f.png\">🐿️</g-emoji><br>\n곽명우 드림</p>"
+          "content": "<p dir=\"auto\">안녕하세요 <a class=\"user-mention notranslate\" data-hovercard-type=\"user\" data-hovercard-\"url\"=\"/users/jindory/hovercard\" data-octo-click=\"hovercard-link-click\" data-octo-dimensions=\"link_type:self\" href=\"https://github.com/jindory\">@jindory</a>  님!<br>\n코드스테이츠 교육 엔지니어 곽명우입니다 <g-emoji class=\"g-emoji\" alias=\"raised_hands\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/1f64c.png\">🙌</g-emoji></p>\n<hr>\n<p dir=\"auto\">코플릿에서 replaceAll 사용이 되질 않아서 답답하셨겠군요..!</p>\n<p dir=\"auto\">현재 저희가 제공중인 코플릿 서버 버전은 node.js 14버전입니다.<br>\n그렇다보니 15버전 이후 지원되는 replaceAll 메서드 사용이 불가합니다.<br>\n향후 버전 업그레이드를 진행할 것이나, 지금은 이를 참고하시어 코스를 진행해주시면 감사하겠습니다.</p>\n<hr>\n<p dir=\"auto\">답변이 도움이 되셨다면 내용을 간략하게 정리해서 코멘트를 남기고 Mark as answer를 눌러주세요 <g-emoji class=\"g-emoji\" alias=\"white_check_mark\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/2705.png\">✅</g-emoji><br>\n추가 질문이 있으시거나 해결이 힘드시면 꼭! 답글을 달아주세요.</p>\n<p dir=\"auto\">감사합니다.<br>\n코드스테이츠 교육 엔지니어<g-emoji class=\"g-emoji\" alias=\"chipmunk\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/1f43f.png\">🐿️</g-emoji><br>\n곽명우 드림</p>",
+          "answerReplies": [
+            {
+              "id": "1",
+              "member": {
+                "displayName": "zeeeeeeee",
+                "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
+              },
+              "content": "랄라라라라라라라라",
+              "updateDate": "2023-04-19"
+            }
+          ]
         }
       ],
       "content": "<p dir=\"auto\">운영 체제 : macOS</p>\n<p dir=\"auto\">Node.js 버전 : v16.15.0</p>\n<p dir=\"auto\">질문 과제  : 코플릿 배열 24_createPhoneNumber</p>\n<p dir=\"auto\">어떤 문제에 부딪혔나요? : 배열에 담긴 요소들을 ',' 을 제외하여 결과값을 가져오는 방법 중 replaceAll을 쓰면,<br>\n콘솔에서 출력예시와 동일하게 string타입으로 리턴되는데 결과창에서는 통과가 안됩니다. <g-emoji class=\"g-emoji\" alias=\"scream_cat\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/1f640.png\">🙀</g-emoji></p>\n<ul dir=\"auto\">\n<li>replaceAll을 이용한 경우</li>\n</ul>\n<div class=\"highlight highlight-source-js position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"function createPhoneNumber(arr) {\n  let len= arr.length;\n  let firstNum = arr.slice(0, 3);\n  let midNum = arr.slice(len -8, len -4);\n  let lastNum = arr.slice(len -4, len);\n\n  let str = `(${firstNum})${midNum}-${lastNum}`;\n  return str.replaceAll(',','');\n}\n// createPhoneNumber([0, 1, 0, 1, 2, 3, 4, 8, 7, 6, 5]);\n// '(010)1234-8765'\"><pre><span class=\"pl-k\">function</span> <span class=\"pl-en\">createPhoneNumber</span><span class=\"pl-kos\">(</span><span class=\"pl-s1\">arr</span><span class=\"pl-kos\">)</span> <span class=\"pl-kos\">{</span>\n  <span class=\"pl-k\">let</span> <span class=\"pl-s1\">len</span><span class=\"pl-c1\">=</span> <span class=\"pl-s1\">arr</span><span class=\"pl-kos\">.</span><span class=\"pl-c1\">length</span><span class=\"pl-kos\">;</span>\n  <span class=\"pl-k\">let</span> <span class=\"pl-s1\">firstNum</span> <span class=\"pl-c1\">=</span> <span class=\"pl-s1\">arr</span><span class=\"pl-kos\">.</span><span class=\"pl-en\">slice</span><span class=\"pl-kos\">(</span><span class=\"pl-c1\">0</span><span class=\"pl-kos\">,</span> <span class=\"pl-c1\">3</span><span class=\"pl-kos\">)</span><span class=\"pl-kos\">;</span>\n  <span class=\"pl-k\">let</span> <span class=\"pl-s1\">midNum</span> <span class=\"pl-c1\">=</span> <span class=\"pl-s1\">arr</span><span class=\"pl-kos\">.</span><span class=\"pl-en\">slice</span><span class=\"pl-kos\">(</span><span class=\"pl-s1\">len</span> <span class=\"pl-c1\">-</span><span class=\"pl-c1\">8</span><span class=\"pl-kos\">,</span> <span class=\"pl-s1\">len</span> <span class=\"pl-c1\">-</span><span class=\"pl-c1\">4</span><span class=\"pl-kos\">)</span><span class=\"pl-kos\">;</span>\n  <span class=\"pl-k\">let</span> <span class=\"pl-s1\">lastNum</span> <span class=\"pl-c1\">=</span> <span class=\"pl-s1\">arr</span><span class=\"pl-kos\">.</span><span class=\"pl-en\">slice</span><span class=\"pl-kos\">(</span><span class=\"pl-s1\">len</span> <span class=\"pl-c1\">-</span><span class=\"pl-c1\">4</span><span class=\"pl-kos\">,</span> <span class=\"pl-s1\">len</span><span class=\"pl-kos\">)</span><span class=\"pl-kos\">;</span>\n\n  <span class=\"pl-k\">let</span> <span class=\"pl-s1\">str</span> <span class=\"pl-c1\">=</span> <span class=\"pl-s\">`(<span class=\"pl-s1\"><span class=\"pl-kos\">${</span><span class=\"pl-s1\">firstNum</span><span class=\"pl-kos\">}</span></span>)<span class=\"pl-s1\"><span class=\"pl-kos\">${</span><span class=\"pl-s1\">midNum</span><span class=\"pl-kos\">}</span></span>-<span class=\"pl-s1\"><span class=\"pl-kos\">${</span><span class=\"pl-s1\">lastNum</span><span class=\"pl-kos\">}</span></span>`</span><span class=\"pl-kos\">;</span>\n  <span class=\"pl-k\">return</span> <span class=\"pl-s1\">str</span><span class=\"pl-kos\">.</span><span class=\"pl-en\">replaceAll</span><span class=\"pl-kos\">(</span><span class=\"pl-s\">','</span><span class=\"pl-kos\">,</span><span class=\"pl-s\">''</span><span class=\"pl-kos\">)</span><span class=\"pl-kos\">;</span>\n<span class=\"pl-kos\">}</span>\n<span class=\"pl-c\">// createPhoneNumber([0, 1, 0, 1, 2, 3, 4, 8, 7, 6, 5]);</span>\n<span class=\"pl-c\">// '(010)1234-8765'</span></pre></div>\n<p dir=\"auto\"><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://user-images.githubusercontent.com/22221941/167655688-b0728d05-3417-4398-9097-a62fa2d088af.png\"><img src=\"https://user-images.githubusercontent.com/22221941/167655688-b0728d05-3417-4398-9097-a62fa2d088af.png\" alt=\"image\" style=\"max-width: 100%;\"></a></p>\n<ul dir=\"auto\">\n<li>join을 이용한 경우</li>\n</ul>\n<div class=\"highlight highlight-source-js position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"function createPhoneNumber(arr) {\n  let len= arr.length;\n  let firstNum = arr.slice(0, 3).join('');\n  let midNum = arr.slice(len -8, len -4).join('');\n  let lastNum = arr.slice(len -4, len).join('');\n\n  return `(${firstNum})${midNum}-${lastNum}`;\n}\n// createPhoneNumber([0, 1, 0, 1, 2, 3, 4, 8, 7, 6, 5]);\n// '(010)1234-8765'\"><pre><span class=\"pl-k\">function</span> <span class=\"pl-en\">createPhoneNumber</span><span class=\"pl-kos\">(</span><span class=\"pl-s1\">arr</span><span class=\"pl-kos\">)</span> <span class=\"pl-kos\">{</span>\n  <span class=\"pl-k\">let</span> <span class=\"pl-s1\">len</span><span class=\"pl-c1\">=</span> <span class=\"pl-s1\">arr</span><span class=\"pl-kos\">.</span><span class=\"pl-c1\">length</span><span class=\"pl-kos\">;</span>\n  <span class=\"pl-k\">let</span> <span class=\"pl-s1\">firstNum</span> <span class=\"pl-c1\">=</span> <span class=\"pl-s1\">arr</span><span class=\"pl-kos\">.</span><span class=\"pl-en\">slice</span><span class=\"pl-kos\">(</span><span class=\"pl-c1\">0</span><span class=\"pl-kos\">,</span> <span class=\"pl-c1\">3</span><span class=\"pl-kos\">)</span><span class=\"pl-kos\">.</span><span class=\"pl-en\">join</span><span class=\"pl-kos\">(</span><span class=\"pl-s\">''</span><span class=\"pl-kos\">)</span><span class=\"pl-kos\">;</span>\n  <span class=\"pl-k\">let</span> <span class=\"pl-s1\">midNum</span> <span class=\"pl-c1\">=</span> <span class=\"pl-s1\">arr</span><span class=\"pl-kos\">.</span><span class=\"pl-en\">slice</span><span class=\"pl-kos\">(</span><span class=\"pl-s1\">len</span> <span class=\"pl-c1\">-</span><span class=\"pl-c1\">8</span><span class=\"pl-kos\">,</span> <span class=\"pl-s1\">len</span> <span class=\"pl-c1\">-</span><span class=\"pl-c1\">4</span><span class=\"pl-kos\">)</span><span class=\"pl-kos\">.</span><span class=\"pl-en\">join</span><span class=\"pl-kos\">(</span><span class=\"pl-s\">''</span><span class=\"pl-kos\">)</span><span class=\"pl-kos\">;</span>\n  <span class=\"pl-k\">let</span> <span class=\"pl-s1\">lastNum</span> <span class=\"pl-c1\">=</span> <span class=\"pl-s1\">arr</span><span class=\"pl-kos\">.</span><span class=\"pl-en\">slice</span><span class=\"pl-kos\">(</span><span class=\"pl-s1\">len</span> <span class=\"pl-c1\">-</span><span class=\"pl-c1\">4</span><span class=\"pl-kos\">,</span> <span class=\"pl-s1\">len</span><span class=\"pl-kos\">)</span><span class=\"pl-kos\">.</span><span class=\"pl-en\">join</span><span class=\"pl-kos\">(</span><span class=\"pl-s\">''</span><span class=\"pl-kos\">)</span><span class=\"pl-kos\">;</span>\n\n  <span class=\"pl-k\">return</span> <span class=\"pl-s\">`(<span class=\"pl-s1\"><span class=\"pl-kos\">${</span><span class=\"pl-s1\">firstNum</span><span class=\"pl-kos\">}</span></span>)<span class=\"pl-s1\"><span class=\"pl-kos\">${</span><span class=\"pl-s1\">midNum</span><span class=\"pl-kos\">}</span></span>-<span class=\"pl-s1\"><span class=\"pl-kos\">${</span><span class=\"pl-s1\">lastNum</span><span class=\"pl-kos\">}</span></span>`</span><span class=\"pl-kos\">;</span>\n<span class=\"pl-kos\">}</span>\n<span class=\"pl-c\">// createPhoneNumber([0, 1, 0, 1, 2, 3, 4, 8, 7, 6, 5]);</span>\n<span class=\"pl-c\">// '(010)1234-8765'</span></pre></div>\n<p dir=\"auto\"><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://user-images.githubusercontent.com/22221941/167655749-e2ead01e-65c1-4dce-ad2f-aea38e88beb5.png\"><img src=\"https://user-images.githubusercontent.com/22221941/167655749-e2ead01e-65c1-4dce-ad2f-aea38e88beb5.png\" alt=\"image\" style=\"max-width: 100%;\"></a></p>\n<p dir=\"auto\">검색했던 링크가 있다면 첨부해 주세요. : <a href=\"https://chanyeong.com/blog/post/29\" rel=\"nofollow\">https://chanyeong.com/blog/post/29</a><br>\n신규 매서드라는 내용을 확인하였습니다 ;-; 아직 사용이 불가한건지요..?<br>\n이 문제가 아니면 코드 어디 부분을 더 알아볼까요;-;</p>",
@@ -164,7 +215,7 @@
         "displayName": "HelloHailie",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl06.png"
       },
-      "answer": [
+      "answers": [
         {
           "id": "DC_kwDOHOApLM4AKYNk",
           "createdDate": "2022-05-10T08:43:12Z",
@@ -190,7 +241,7 @@
         "displayName": "Mark1237200",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl07.png"
       },
-      "answer": [
+      "answers": [
         {
           "id": "DC_kwDOHOApLM4AKYLo",
           "createdDate": "2022-05-10T08:26:22Z",
@@ -216,7 +267,7 @@
         "displayName": "Gwanghyun-Jeon",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl02.png"
       },
-      "answer": [
+      "answers": [
         {
           "id": "DC_kwDOHOApLM4AKW9l",
           "createdDate": "2022-05-09T15:02:49Z",
@@ -242,7 +293,7 @@
         "displayName": "Gwanghyun-Jeon",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl02.png"
       },
-      "answer": [
+      "answers": [
         {
           "id": "DC_kwDOHOApLM4AKW7k",
           "createdDate": "2022-05-09T14:47:22Z",
@@ -268,7 +319,7 @@
         "displayName": "JoeunNAL",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl01.png"
       },
-      "answer": [
+      "answers": [
         {
           "id": "DC_kwDOHOApLM4AKWnY",
           "createdDate": "2022-05-09T12:06:21Z",
@@ -278,7 +329,36 @@
             "displayName": "Kingsenal",
             "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl04.png"
           },
-          "content": "<p dir=\"auto\">안녕하세요. <a class=\"user-mention notranslate\" data-hovercard-type=\"user\" data-hovercard-\"url\"=\"/users/JoeunNAL/hovercard\" data-octo-click=\"hovercard-link-click\" data-octo-dimensions=\"link_type:self\" href=\"https://github.com/JoeunNAL\">@JoeunNAL</a> 님!<br>\n코드스테이츠 교육 엔지니어 권준혁입니다. <g-emoji class=\"g-emoji\" alias=\"raised_hands\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/1f64c.png\">🙌</g-emoji></p>\n<p dir=\"auto\">테스트가 통과되지 못한 것은 html 코드가 바뀌어서 테스트 통과가 안된 걸로 보입니다 !<br>\nhtml 코드를 기존의 배포된 html 코드로 바꾸신다면 바로 통과가 될 것 같습니다 !</p>\n<p dir=\"auto\">답변이 되셨다면 내용을 간략하게 정리해서 코멘트를 남기고 answered를 마크해주세요 <g-emoji class=\"g-emoji\" alias=\"white_check_mark\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/2705.png\">✅</g-emoji><br>\n감사합니다.<g-emoji class=\"g-emoji\" alias=\"rocket\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/1f680.png\">🚀</g-emoji><br>\n코드스테이츠 교육 엔지니어 권준혁</p>"
+          "content": "<p dir=\"auto\">안녕하세요. <a class=\"user-mention notranslate\" data-hovercard-type=\"user\" data-hovercard-\"url\"=\"/users/JoeunNAL/hovercard\" data-octo-click=\"hovercard-link-click\" data-octo-dimensions=\"link_type:self\" href=\"https://github.com/JoeunNAL\">@JoeunNAL</a> 님!<br>\n코드스테이츠 교육 엔지니어 권준혁입니다. <g-emoji class=\"g-emoji\" alias=\"raised_hands\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/1f64c.png\">🙌</g-emoji></p>\n<p dir=\"auto\">테스트가 통과되지 못한 것은 html 코드가 바뀌어서 테스트 통과가 안된 걸로 보입니다 !<br>\nhtml 코드를 기존의 배포된 html 코드로 바꾸신다면 바로 통과가 될 것 같습니다 !</p>\n<p dir=\"auto\">답변이 되셨다면 내용을 간략하게 정리해서 코멘트를 남기고 answered를 마크해주세요 <g-emoji class=\"g-emoji\" alias=\"white_check_mark\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/2705.png\">✅</g-emoji><br>\n감사합니다.<g-emoji class=\"g-emoji\" alias=\"rocket\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/1f680.png\">🚀</g-emoji><br>\n코드스테이츠 교육 엔지니어 권준혁</p>",
+          "answerReplies": [
+            {
+              "id": "1",
+              "member": {
+                "displayName": "zeeeeeeee",
+                "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
+              },
+              "content": "comment1",
+              "updateDate": "2023-04-19"
+            },
+            {
+              "id": "1",
+              "member": {
+                "displayName": "zeeeeeeee",
+                "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
+              },
+              "content": "comment1",
+              "updateDate": "2023-04-19"
+            },
+            {
+              "id": "1",
+              "member": {
+                "displayName": "zeeeeeeee",
+                "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
+              },
+              "content": "comment2",
+              "updateDate": "2023-04-19"
+            }
+          ]
         }
       ],
       "content": "<p dir=\"auto\">운영 체제:macOS</p>\n<p dir=\"auto\">Node.js 버전(node -v): v16.15.0</p>\n<p dir=\"auto\">제가 만든 계산기에 npm run test를 적용할때 오류가 발생합니다.<br>\nSpecRunner.html파일을 열었을때는 베어테스트 통과한 걸로 나오는데 터미널에는 오류가 뜹니다.<br>\n터미널창에는 아예<br>\n<code class=\"notranslate\"> bare minimum test 유어클레스 bare minimum 레슨의 예를 통과합니다.</code>라는 부분이 안나오는 것 같아요</p>\n<p><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://user-images.githubusercontent.com/90553688/167401581-7c9c7fc2-9a38-4a0a-9f7b-ce33ef73fa79.png\"><img width=\"1440\" alt=\"image\" src=\"https://user-images.githubusercontent.com/90553688/167401581-7c9c7fc2-9a38-4a0a-9f7b-ce33ef73fa79.png\" style=\"max-width: 100%;\"></a></p>\n<p><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://user-images.githubusercontent.com/90553688/167401620-a93af7bc-0230-49d0-b5f4-4365c3fbbdc7.png\"><img width=\"1440\" alt=\"image\" src=\"https://user-images.githubusercontent.com/90553688/167401620-a93af7bc-0230-49d0-b5f4-4365c3fbbdc7.png\" style=\"max-width: 100%;\"></a></p>\n<p><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://user-images.githubusercontent.com/90553688/167402333-e5347db2-915f-4776-8fd2-3503ed08c2ea.png\"><img width=\"784\" alt=\"image\" src=\"https://user-images.githubusercontent.com/90553688/167402333-e5347db2-915f-4776-8fd2-3503ed08c2ea.png\" style=\"max-width: 100%;\"></a></p>\n<p dir=\"auto\">제 계산기 코드에 맞게 js 파일의 아래 클래스명만 변경했고 라이브서버로 작동도 잘 됩니다.</p>\n<div class=\"highlight highlight-source-js position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"const calculator = document.querySelector('.container'); // calculator 엘리먼트와, 그 자식 엘리먼트의 정보를 모두 담고 있습니다.\n// console.log(&quot;calculator&quot;,calculator);\nconst buttons = calculator.querySelector('.calculator__buttons'); // calculator__keys 엘리먼트와, 그 자식 엘리먼트의 정보를 모두 담고 있습니다.\n// console.log(buttons);\"><pre><span class=\"pl-k\">const</span> <span class=\"pl-s1\">calculator</span> <span class=\"pl-c1\">=</span> <span class=\"pl-smi\">document</span><span class=\"pl-kos\">.</span><span class=\"pl-en\">querySelector</span><span class=\"pl-kos\">(</span><span class=\"pl-s\">'.container'</span><span class=\"pl-kos\">)</span><span class=\"pl-kos\">;</span> <span class=\"pl-c\">// calculator 엘리먼트와, 그 자식 엘리먼트의 정보를 모두 담고 있습니다.</span>\n<span class=\"pl-c\">// console.log(\"calculator\",calculator);</span>\n<span class=\"pl-k\">const</span> <span class=\"pl-s1\">buttons</span> <span class=\"pl-c1\">=</span> <span class=\"pl-s1\">calculator</span><span class=\"pl-kos\">.</span><span class=\"pl-en\">querySelector</span><span class=\"pl-kos\">(</span><span class=\"pl-s\">'.calculator__buttons'</span><span class=\"pl-kos\">)</span><span class=\"pl-kos\">;</span> <span class=\"pl-c\">// calculator__keys 엘리먼트와, 그 자식 엘리먼트의 정보를 모두 담고 있습니다.</span>\n<span class=\"pl-c\">// console.log(buttons);</span></pre></div>\n<p dir=\"auto\">이 링크가 깃허브로 제출한 코드스테이츠 계산기에 npm run test 적용한 화면인데<br>\n제 계산기의 파일에 뜨는 순서도 다릅니다.(첫번째 사진이 스크롤 가장 위로 올렸을때입니다)<br>\n<a href=\"https://media.discordapp.net/attachments/973037712770736168/973179868563013642/unknown.png?width=1542&amp;height=937\" rel=\"nofollow\">https://media.discordapp.net/attachments/973037712770736168/973179868563013642/unknown.png?width=1542&amp;height=937</a></p>\n<p dir=\"auto\">SpecRunner.html파일이 손상됬나해서 정상 파일로 변경해보아도 같은 현상이 발생합니다.<br>\n터미널 텍스트 순서가 다를땐 어떤게 수정해야할까요??</p>",
@@ -294,7 +374,7 @@
         "displayName": "git-daun",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl03.png"
       },
-      "answer": [
+      "answers": [
         {
           "id": "DC_kwDOHOApLM4AKWMX",
           "createdDate": "2022-05-09T07:25:14Z",
@@ -320,7 +400,7 @@
         "displayName": "hana1203",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl04.png"
       },
-      "answer": [
+      "answers": [
         {
           "id": "DC_kwDOHOApLM4AKWMA",
           "createdDate": "2022-05-09T07:20:43Z",
@@ -346,7 +426,7 @@
         "displayName": "sweesweett",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl05.png"
       },
-      "answer": [
+      "answers": [
         {
           "id": "DC_kwDOHOApLM4AKWME",
           "createdDate": "2022-05-09T07:21:16Z",
@@ -372,7 +452,7 @@
         "displayName": "hxezin",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl06.png"
       },
-      "answer": [
+      "answers": [
         {
           "id": "DC_kwDOHOApLM4AKWQA",
           "createdDate": "2022-05-09T08:00:27Z",
@@ -398,7 +478,7 @@
         "displayName": "ekim49",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl07.png"
       },
-      "answer": [
+      "answers": [
         {
           "id": "DC_kwDOHOApLM4AKWQK",
           "createdDate": "2022-05-09T08:01:55Z",
@@ -424,7 +504,7 @@
         "displayName": "RyuJiChang",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
       },
-      "answer": [
+      "answers": [
         {
           "id": "DC_kwDOHOApLM4AKWDk",
           "createdDate": "2022-05-09T05:13:42Z",
@@ -451,7 +531,7 @@
         "displayName": "anotheranotherhoon",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl02.png"
       },
-      "answer": [
+      "answers": [
         {
           "id": "DC_kwDOHOApLM4AKWA7",
           "createdDate": "2022-05-09T04:21:45Z",
@@ -477,7 +557,7 @@
         "displayName": "delefredag",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl06.png"
       },
-      "answer": [
+      "answers": [
         {
           "id": "DC_kwDOHOApLM4AKV98",
           "createdDate": "2022-05-09T03:17:47Z",
@@ -503,7 +583,7 @@
         "displayName": "kanghyew0n",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl05.png"
       },
-      "answer": [
+      "answers": [
         {
           "id": "DC_kwDOHOApLM4AKV90",
           "createdDate": "2022-05-09T03:16:33Z",
@@ -529,7 +609,7 @@
         "displayName": "Kyoorim",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl07.png"
       },
-      "answer": [
+      "answers": [
         {
           "id": "DC_kwDOHOApLM4AKV-x",
           "createdDate": "2022-05-09T03:33:32Z",
@@ -555,7 +635,7 @@
         "displayName": "dukjjang",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl03.png"
       },
-      "answer": [
+      "answers": [
         {
           "id": "DC_kwDOHOApLM4AKV9Z",
           "createdDate": "2022-05-09T03:06:41Z",
@@ -581,7 +661,7 @@
         "displayName": "git-daun",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl03.png"
       },
-      "answer": [
+      "answers": [
         {
           "id": "DC_kwDOHOApLM4AKWAR",
           "createdDate": "2022-05-09T04:09:59Z",
@@ -607,7 +687,7 @@
         "displayName": "ryan-kim-dev",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl01.png"
       },
-      "answer": [
+      "answers": [
         {
           "id": "DC_kwDOHOApLM4AKVJv",
           "createdDate": "2022-05-08T03:56:06Z",
@@ -633,7 +713,7 @@
         "displayName": "NR0617",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl04.png"
       },
-      "answer": [
+      "answers": [
         {
           "id": "DC_kwDOHOApLM4AKPlB",
           "createdDate": "2022-05-04T08:04:48Z",
@@ -659,7 +739,7 @@
         "displayName": "KiwookKim",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl05.png"
       },
-      "answer": [
+      "answers": [
         {
           "id": "DC_kwDOHOApLM4AKOZY",
           "createdDate": "2022-05-03T13:43:28Z",
@@ -685,7 +765,7 @@
         "displayName": "JiYJ725",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl07.png"
       },
-      "answer": [
+      "answers": [
         {
           "id": "DC_kwDOHOApLM4AKMep",
           "createdDate": "2022-05-02T10:06:29Z",
@@ -711,7 +791,7 @@
         "displayName": "Topbin2",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl04.png"
       },
-      "answer": [
+      "answers": [
         {
           "id": "DC_kwDOHOApLM4AKMdX",
           "createdDate": "2022-05-02T09:47:42Z",
@@ -737,7 +817,7 @@
         "displayName": "manyb2auties",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl02.png"
       },
-      "answer": [
+      "answers": [
         {
           "id": "DC_kwDOHOApLM4AKK6v",
           "createdDate": "2022-04-30T13:22:00Z",
@@ -763,7 +843,7 @@
         "displayName": "Topbin2",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl04.png"
       },
-      "answer": [
+      "answers": [
         {
           "id": "DC_kwDOHOApLM4AKHkl",
           "createdDate": "2022-04-28T07:17:34Z",
@@ -788,7 +868,7 @@
         "displayName": "RyuJiChang",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl06.png"
       },
-      "answer": [
+      "answers": [
         {
           "id": "DC_kwDOHOApLM4AKHkF",
           "createdDate": "2022-04-28T07:11:51Z",
@@ -814,7 +894,7 @@
         "displayName": "bruadarach",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl03.png"
       },
-      "answer": [
+      "answers": [
         {
           "id": "DC_kwDOHOApLM4AKFvQ",
           "createdDate": "2022-04-27T08:43:27Z",
@@ -840,7 +920,7 @@
         "displayName": "Gwanghyun-Jeon",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl02.png"
       },
-      "answer": [
+      "answers": [
         {
           "id": "DC_kwDOHOApLM4AKHRW",
           "createdDate": "2022-04-28T02:12:24Z",
@@ -867,7 +947,7 @@
         "displayName": "Gwanghyun-Jeon",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl02.png"
       },
-      "answer": [
+      "answers": [
         {
           "id": "DC_kwDOHOApLM4AKFeD",
           "createdDate": "2022-04-27T05:45:32Z",
@@ -893,7 +973,7 @@
         "displayName": "ryan-kim-dev",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl01.png"
       },
-      "answer": [
+      "answers": [
         {
           "id": "DC_kwDOHOApLM4AKD3S",
           "createdDate": "2022-04-26T09:04:44Z",
@@ -918,7 +998,7 @@
         "displayName": "namwonjae",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl07.png"
       },
-      "answer": [
+      "answers": [
         {
           "id": "DC_kwDOHOApLM4AKBjx",
           "createdDate": "2022-04-25T08:10:47Z",
@@ -942,7 +1022,7 @@
         "displayName": "kimploo",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl05.png"
       },
-      "answer": [],
+      "answers": [],
       "content": "<h2 dir=\"auto\">수강생/수료생의 좋은 답변을 환영합니다.</h2>\n<h2 dir=\"auto\">왜 좋은 답변을 할 줄 알아야 하나요?</h2>\n<h3 dir=\"auto\">실력이 뛰어난 개발자는 정확하게 답변하기 때문입니다.</h3>\n<blockquote>\n<p dir=\"auto\">... there also were less expected findings. In particular, the importance of social skills was highlighted, even for so technical a task as code reading.<br>\n(잘 알려진 바와 다르게,) 기대한 것과 다른 연구 결과를 찾을 수도 있었다. 특이하게도, 코드 해석과 같은 아주 기술적인 업무에서도 사회적 스킬의 중요성이 강조되었다.</p>\n<ul dir=\"auto\">\n<li><a href=\"https://link.springer.com/chapter/10.1007/BFb0024298\" rel=\"nofollow\">What we have learned about software engineering expertise</a></li>\n</ul>\n</blockquote>\n<p dir=\"auto\">좋은 질문하는 방법과 같은 인용문입니다. 소프트웨어 개발 전문가에 대한 많은 연구에서는 개발자의 사회적인 측면을 강조합니다. 자기가 잘 모르는 내용에 대해서 부드럽게 물어볼 수 있고, 동료나 후배 개발자에게 자기가 아는 내용에 대해서 긍정적인 피드백을 줄 수 있는 개발자가 실제 성과도 뛰어납니다. 답변에도 똑같이 적용되는 사례죠? 여러분의 동기나 후배 수강생들이 보고 배울 수 있을 만한 좋은 답변을 작성해봅시다.</p>\n<h3 dir=\"auto\">내가 진짜 잘 아는지 확인할 수 있기 때문입니다.</h3>\n<p dir=\"auto\">해외 유명 커뮤니티 Reddit에는 <a href=\"https://www.reddit.com/r/explainlikeimfive/\" rel=\"nofollow\">ELI5(Explain Like I'm Five)라는 공간</a>이 있습니다. \"내가 5살이라고 생각하고, 나에게 설명을 해줄레?\"라는 의미인데요. 유머러스한 내용도 많이 있지만, 정말 유용한 답변도 찾을 수 있습니다. 이제 막 언어를 알게 된 아이에게 전문 지식을 설명해야 하는 경우, 전문 용어를 전부 배제하고 설명해야 합니다. 그렇게 설명하면 설명할수록 신기하게도 질문의 핵심과 관련된 이야기만 하게 됩니다.</p>\n<p dir=\"auto\">여러분도 이제 처음 개발을 학습하는 동료가 이해할 수 있기 쉽게 설명하려고 노력하다가 보면, 어느새 성장한 여러분의 모습을 발견하게 될 것입니다.</p>\n<h3 dir=\"auto\">면접장에서 승리해야 하기 때문입니다.</h3>\n<p dir=\"auto\">사실 아고라 스테이츠 질문에 대한 답변은 면접장에서 답변과 유사한 면이 많습니다. 해당 개념에 대해서 자기가 얼마나 아는지 돌아보게 되고, 정확하게 알지 못하는 내용에 대해서는 \"아, 내가 부족했으니 더 공부해야겠다.\"라는 마음을 가지게 됩니다. 면접장에서 실패하기보다는, 더 빨리 아고라 스테이츠에서 답변을 해보고, 내가 모르는 것이 무엇이었는지 점검하고, 더 잘 설명하는 연습을 해보기를 권장합니다.</p>\n<h2 dir=\"auto\">좋은 답변 하는 방법</h2>\n<h3 dir=\"auto\">질문을 꼼꼼히 읽고 문제의 핵심을 파악하고 답변합니다.</h3>\n<p dir=\"auto\">좋은 답변도 좋은 질문을 하는 방법과 비슷합니다. 우선 상대방이 무엇을 궁금해하는지 파악하는 게 우선입니다. 질문을 차근차근 읽어보고 질문자가 무엇을 궁금해하는지 파악하고 답변해주세요.</p>\n<p dir=\"auto\">문제의 핵심을 파악하기 어려울 수 있습니다. 그런 경우에는, 최대한 합리적인 가정을 몇 개 세우고 답변하려고 노력하세요.</p>\n<p dir=\"auto\">좋은 답변 예시</p>\n<blockquote>\n<p dir=\"auto\">xxx 오류는 이미 검색해보셔서 아시겠지만, 다음의 경우입니다. 제가 찾아본 stack overflow 답변을 인용하면 다음과 같습니다.</p>\n<ol dir=\"auto\">\n<li>이러이러하기 때문</li>\n<li>저러저러하기 때문</li>\n</ol>\n<p dir=\"auto\">질문을 보니 정황상 이러이러한 근거 때문에 1번은 아니네요. 그렇다면 2번과 관련된 xxx 설정을 어떻게 하셨나요?<br>\n(혹은, 2번에 왜 설정을 이렇게 하셨나요? 해당 설정이 무엇을 의미하는지 알고 계시는가요? → 레퍼런스 첨부)<br>\n이 부분을 해결하거나 혹은 여전히 어려우시다면 추가로 시도해보신 내용을 댓글로 달아주실 수 있을까요?</p>\n</blockquote>\n<h3 dir=\"auto\">문제에 대한 정답만 적기보다는, 정답인 이유를 구체적으로 작성해주세요.</h3>\n<p dir=\"auto\">질문자도 대부분 정답은 알고 있는 경우가 많습니다. 정답은 알지만, 개발 관련 개념에 대해서 더 잘 알기 위해서 질문하는 거겠죠? 그렇기 때문에, 정답을 적어주더라도 그 정답이 왜 정답인지 구체적으로 설명해주셔야 합니다.</p>\n<h3 dir=\"auto\">객관적인 근거를 기반으로 답변합니다.</h3>\n<p dir=\"auto\">자신의 생각과 추측에 기반한 답변은 질문자의 학습을 방해합니다. 내 생각이 맞는지 아닌지 계속 고민해보세요.</p>\n<h3 dir=\"auto\"><a href=\"https://urclass.codestates.com/ac48d91c-b83d-49f5-8450-6cef4401e38d?playlist=1812\" rel=\"nofollow\">코드스테이츠 커뮤니티 규정</a>을 잘 이해하고 실천해주세요.</h3>\n<p dir=\"auto\">사람은 사람 간에 소통하면서 배울 수 있습니다. 대화하면서 배우고 성장할 수 있다는 것 자체로 축복받으신 겁니다! 하지만 안타깝게도 아직 우리 사회에는 날카로운 송곳같이 마음의 상처를 주는 대화가 많습니다. 이런 대화는 서로 간의 소통을 줄이고 성장을 가로막습니다. <a href=\"https://urclass.codestates.com/ac48d91c-b83d-49f5-8450-6cef4401e38d?playlist=1812\" rel=\"nofollow\">코드스테이츠 커뮤니티 규정</a>에는 서로에게 더 도움을 줄 수 있는 소통 원칙에 대해서 다루고 있습니다. 아고라 스테이츠 이용 시에도 이 원칙을 따릅니다. 특히 제 5조 핵심 원칙을 다시 한번 강조합니다.</p>\n<blockquote>\n<p dir=\"auto\">제 5조. 핵심 원칙 지키기</p>\n<ol dir=\"auto\">\n<li>코드스테이츠 커뮤니티는, 모든 공동체 ‘구성원’들을 따뜻하게 포용해요.</li>\n</ol>\n<p dir=\"auto\">코드스테이츠 커뮤니티 기준은 모두가 참여할 수 있는 커뮤니티를 위해 ‘구성원’들이 지켜야 하는 최소한의 약속이며, 다음을 모두 지향하고 있습니다.</p>\n<p dir=\"auto\">가. 성별, 성 정체성, 국적, 지역, 종교, 나이, 사회적 신분, 학력, 지식 수준, 외모, 장애, 음식 선호 등과 관계 없이 동등한 자격으로 커뮤니티 행사에 참여하는 것<br>\n나. 서로 따뜻하게 환영하는 분위기<br>\n다. 서로 다름을 인정하고 존중하는 분위기<br>\n라. 누구나 편안하게 참여하고 의견을 낼 수 있는 커뮤니티 행사</p>\n<ol start=\"2\" dir=\"auto\">\n<li>모든 구성원들을 포용하는 것이 중요한 이유.</li>\n</ol>\n<p dir=\"auto\">코드스테이츠 커뮤니티 팀은, 다양성을 존중하고 따뜻하게 배려하는 것이 코드스테이츠 ‘공동체’와 우리 사회 모두를 더 건강하고 올바르게 만드는 출발점이라고 생각합니다. 어려운 문제에 대한 해결책을 서로 찾아주고, ‘공동체’가 함께 성장하여 더 많은 사람들이 긍정적인 변화를 이끌기 위해서는 다양한 시각과 의견은 필수입니다. 반대로, 이러한 시각과 의견을 듣기 위해서는 다양성을 존중하고 배려하는 따뜻한 마음에서 시작됩니다.</p>\n<ol start=\"3\" dir=\"auto\">\n<li>\n<p dir=\"auto\">커뮤니티 기준의 의도, 목적을 이해해주세요.<br>\n커뮤니티 기준이, 코드스테이츠 ‘공동체’ 및 ‘구성원’들이 따르거나 해서는 안 되는 내용들이 모두 포함돼있는 것은 아닙니다. 하지만, 커뮤니티 기준 각 항목의 의도와 목적을 자세히 이해하시면 어떻게 해야 구성원 서로에게 잘 소통할 수 있을지 도움이 될 것입니다.</p>\n</li>\n<li>\n<p dir=\"auto\">‘구성원’ 여러분들은, 모두 코드스테이츠를 대표하고 있어요.</p>\n</li>\n</ol>\n<p dir=\"auto\">여러분들은, 코드스테이츠를 대표하는 커뮤니티 공동체 ‘구성원’ 입니다. 구직과 취업 후 재직을 하는 과정에서도 표현과 행동을 항상 주의해야 합니다. 하나의 잘못된 말이나 행동은 코드스테이츠 브랜드 이미지에 부정적인 영향을 주고, 열심히 구직과 일을 하고 있는 모든 ‘공동체’에게 피해로 돌아올 수 있다는 점을 꼭 기억해주시기 바랍니다.</p>\n</blockquote>",
       "viewCount": 323
     },
@@ -954,10 +1034,21 @@
         "displayName": "jicoder",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
       },
-      "answer": [],
+      "answers": [],
       "content": "<p>State 변수에 이미지 경로 저장하는 방법을 잘 모르겠습니다.\nState 변수에 이미지 경로 저장하는 방법을 잘 모르겠습니다.\nState 변수에 이미지 경로 저장하는 방법을 잘 모르겠습니다.\nState 변수에 이미지 경로 저장하는 방법을 잘 모르겠습니다.\nState 변수에 이미지 경로 저장하는 방법을 잘 모르겠습니다.\n</p>",
       "viewCount": 0,
-      "id": "6F8tCRk"
+      "id": "6F8tCRk",
+      "questionReplies": [
+        {
+          "id": "1",
+          "member": {
+            "displayName": "zeeeeeeee",
+            "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
+          },
+          "content": "헬로",
+          "updateDate": "2023-04-19"
+        }
+      ]
     },
     {
       "createdDate": "2023-04-20T21:58:44.518Z",
@@ -967,7 +1058,7 @@
         "displayName": "jicoder",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
       },
-      "answer": [],
+      "answers": [],
       "content": "<p>왜 브라우저에 치면 나오는데 리액트 앱에서는 제대로 S3 이미지를 못 읽어오는 걸까요?!</p>",
       "viewCount": 0,
       "id": "2iy7N0p"
@@ -980,7 +1071,7 @@
         "displayName": "jicoder",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl04.png"
       },
-      "answer": [],
+      "answers": [],
       "content": "<p>asdfasdfasdfasdfadsf</p>",
       "viewCount": 0,
       "id": "GEhZUoR"
@@ -993,7 +1084,7 @@
         "displayName": "jicoder",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
       },
-      "answer": [],
+      "answers": [],
       "content": "<p>[\n{\n\"AllowedHeaders\": [\n\"Authorization\",\n\"Content-Range\",\n\"Accept\",\n\"Content-Type\",\n\"Origin\",\n\"Range\"\n],\n\"AllowedMethods\": [\n\"GET\"\n],\n\"AllowedOrigins\": [\n\"*\"\n],\n\"ExposeHeaders\": [\n\"Content-Range\",\n\"Content-Length\",\n\"ETag\"\n],\n\"MaxAgeSeconds\": 3000\n}\n]</p>",
       "viewCount": 0,
       "id": "P0jJARH"
@@ -1006,7 +1097,7 @@
         "displayName": "jicoder",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl01.png"
       },
-      "answer": [],
+      "answers": [],
       "content": "<p>오늘 경험한걸 남겨 둬봅니다...\n\nAWS의 RDS MSSQL를 사용하고 있는데..\n\n갑자기 쿼리 응답 시간이 오래 걸리기 시작하였습니다..\n\nDB 최적화를 해도 느립니다..\n\n모든걸 다 해보고 안된다면 인스턴스를 중단 -> 시작 해봅니다..\n\n그리곤 해결 되었습니다..\n\n위 결과는 아마존에 문의해서 받은 답변이였습니다..\n\n100달러 주고 문의한 결과가 중단하고 다시 시작해보세요 라니.. ㅠ.ㅠ\n\n그런데 정말 왜 느려졌는지는 궁금하네요...\n\n딱히 유저가 몰린것도 아니고... 특별한 이슈는 없었는데...\n\n아무튼 오늘도 하나 배웠으니 뭐 된거죠...\n</p>",
       "viewCount": 0,
       "id": "44AWZs7"
@@ -1019,7 +1110,7 @@
         "displayName": "jicoder",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl06.png"
       },
-      "answer": [],
+      "answers": [],
       "content": "<p>지금까지 제가 작업한 흐름을 설명해놓았습니다. 마지막 단계에서 문제가 생겼습니다.\n\n할일목록이 시작전인지(Not Started), 진행중인지(In Progress), 완료되었는지(Completed)를 나타내는 StatusBar 컴포넌트가 있습니다.\n\n투두리스트의 구조를 잡아놓은 ToDoCard 컴포넌트가 있습니다.\n\nStatusBar와 ToDoCard의 공통부모컴포넌트는 HomePage 입니다.\n\n첫 렌더링 시 보여질 dummyData가 있습니다. dummyData의 형태는 아래와같이 배열안 객체입니다.\nconst dummyData = [\n{\nid: 0,\nstatus: 'Not Started',\ntitle: '운동하기',\ntags: ['workout'],\ndate: '',\nonEdit: false\n},\n];\n\nHomePage에 dummyData를 import 해오고, const [todos, setTodos] = useState(dummyData) 를 통해 dummyData를 state로 만들었습니다. todos는 map을 통하여 ToDoCard에 뿌려지고 있습니다.\n\nHomePage에 handleAddToDo라는 함수를 작성하였고, StatusBar의 연필모양 아이콘을 클릭하면 handleAddToDo가 실행됩니다.\n\nhandleAddToDo가 실행되면 newTodo 객체가 생성됩니다.\n\nsetTodo([...todos, newTodo]) 를 통하여 newTodo가 기존의 todos와 합쳐지게 하고싶습니다.</p>",
       "viewCount": 0,
       "id": "_a_c02O"
@@ -1032,7 +1123,7 @@
         "displayName": "jicoder",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl03.png"
       },
-      "answer": [],
+      "answers": [],
       "content": "<p>순회하는 element의 textContent가 Tweet List 와 일치하다면 건너뛰고\n그렇지 않다면 지워라! 라고 명령하여 Tweet List만 남았으면 했는 데\n조건문을 실행하는데도 불구하고 일부 element만 삭제가 됩니다! // hello와 code만 삭제\n코드의 어느부분이 왜 어떻게 잘못되었고, 어떻게 수정해야 하는지 알고 싶습니다!</p>",
       "viewCount": 0,
       "id": "52ZVfYs"
@@ -1045,7 +1136,7 @@
         "displayName": "jicoder",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl03.png"
       },
-      "answer": [],
+      "answers": [],
       "content": "<p>안녕하세요 어제부터 계속 여러가지 방법으로 배포를 시도해보고 있습니다만... 계속해서 빈 화면이 나와서 질문드립니다.\n위 화면이 현재 깃허브 페이지 URL로 들어가면 나오는 화면입니다.\n\n처음에는 gh-pages가 문제인가 해서 1번 방법에서 2번 방법으로 바꾸어서 github pages를 생성해보았지만 동일하게 빈화면이 나왔습니다.\n\nwebpack과 gh-pages를 install 해서 번들링 후 gh-pages에 업로드\n: 아래와 같이 jsx 관련 에러가 떴습니다. 에러구문에 나온대로 @barbel/plugin-syntax-jsx를 추가해봤는데 해결이 되지 않았습니다.\n</p>",
       "viewCount": 0,
       "id": "MaV-WS3"
@@ -1058,7 +1149,19 @@
         "displayName": "jicoder",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl06.png"
       },
-      "answer": [],
+      "answers": [
+        {
+          "id": "1",
+          "createdDate": "2022-05-16T02:09:52Z",
+          "updateDate": "2022-05-16T02:09:52Z",
+          "url": "https://github.com/codestates-seb/agora-states-fe/discussions/45#discussioncomment-2756236",
+          "member": {
+            "displayName": "zzzzzzoooooooooo"
+          },
+          "content": "more tests to be made",
+          "answerReplies": []
+        }
+      ],
       "content": "<p>공식문서에서는\nimport ReactDOM from \"react-dom\"\n이렇게 불러오는것이랑 어떤 차이점이 있는 지 궁금합니다</p>",
       "viewCount": 0,
       "id": "M_wg7YV"
@@ -1071,7 +1174,7 @@
         "displayName": "jicoder",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl01.png"
       },
-      "answer": [],
+      "answers": [],
       "content": "<p>테스트, 아, 테스트</p>",
       "viewCount": 0,
       "id": "zUN2YM8"
@@ -1084,7 +1187,7 @@
         "displayName": "jicoder",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl02.png"
       },
-      "answer": [],
+      "answers": [],
       "content": "<p>테스트2</p>",
       "viewCount": 0,
       "id": "d4zGBuu"
@@ -1097,7 +1200,7 @@
         "displayName": "jicoder",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl06.png"
       },
-      "answer": [],
+      "answers": [],
       "content": "<p>테스트4 콘텐츠</p>",
       "viewCount": 0,
       "id": "ixfzIuG"
@@ -1110,7 +1213,7 @@
         "displayName": "jicoder",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl02.png"
       },
-      "answer": [],
+      "answers": [],
       "content": "<p>lalalalalallaa</p>",
       "viewCount": 0,
       "id": "dBckqAB"
@@ -1123,10 +1226,30 @@
         "displayName": "jicoder",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
       },
-      "answer": [],
+      "answers": [],
       "content": "<p>테스트5</p>",
       "viewCount": 0,
-      "id": "91YXbM8"
+      "id": "91YXbM8",
+      "questionReplies": [
+        {
+          "id": "1",
+          "member": {
+            "displayName": "zeeeeeeee",
+            "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
+          },
+          "content": "랄랄랄2",
+          "updateDate": "2023-04-19"
+        },
+        {
+          "id": "1",
+          "member": {
+            "displayName": "zeeeeeeee",
+            "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
+          },
+          "content": "랄라랄 4",
+          "updateDate": "2023-04-19"
+        }
+      ]
     },
     {
       "createdDate": "2023-04-22T15:05:28.469Z",
@@ -1136,7 +1259,29 @@
         "displayName": "jicoder",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl02.png"
       },
-      "answer": [],
+      "answers": [
+        {
+          "id": "1",
+          "createdDate": "2022-05-16T02:09:52Z",
+          "updateDate": "2022-05-16T02:09:52Z",
+          "url": "https://github.com/codestates-seb/agora-states-fe/discussions/45#discussioncomment-2756236",
+          "member": {
+            "displayName": "zzzzzzoooooooooo"
+          },
+          "content": "012345",
+          "answerReplies": [
+            {
+              "id": "1",
+              "member": {
+                "displayName": "zeeeeeeee",
+                "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
+              },
+              "content": "7890",
+              "updateDate": "2023-04-19"
+            }
+          ]
+        }
+      ],
       "content": "<p>테스트6</p>",
       "viewCount": 0,
       "id": "kQQkwrh"
@@ -1149,10 +1294,73 @@
         "displayName": "jicoder",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl07.png"
       },
-      "answer": [],
+      "answers": [
+        {
+          "id": "1",
+          "createdDate": "2022-05-16T02:09:52Z",
+          "updateDate": "2022-05-16T02:09:52Z",
+          "url": "https://github.com/codestates-seb/agora-states-fe/discussions/45#discussioncomment-2756236",
+          "member": {
+            "displayName": "zzzzzzoooooooooo"
+          },
+          "content": "12345",
+          "answerReplies": [
+            {
+              "id": "1",
+              "member": {
+                "displayName": "zeeeeeeee",
+                "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
+              },
+              "content": "hello world",
+              "updateDate": "2023-04-19"
+            },
+            {
+              "id": "1",
+              "member": {
+                "displayName": "zeeeeeeee",
+                "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
+              },
+              "content": "comment3",
+              "updateDate": "2023-04-19"
+            }
+          ]
+        },
+        {
+          "id": "1",
+          "createdDate": "2022-05-16T02:09:52Z",
+          "updateDate": "2022-05-16T02:09:52Z",
+          "url": "https://github.com/codestates-seb/agora-states-fe/discussions/45#discussioncomment-2756236",
+          "member": {
+            "displayName": "zzzzzzoooooooooo"
+          },
+          "content": "hello world2",
+          "answerReplies": [
+            {
+              "id": "1",
+              "member": {
+                "displayName": "zeeeeeeee",
+                "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
+              },
+              "content": "comment3",
+              "updateDate": "2023-04-19"
+            }
+          ]
+        }
+      ],
       "content": "<p>테스트 7</p>",
       "viewCount": 0,
-      "id": "RiHeo8-"
+      "id": "RiHeo8-",
+      "questionReplies": [
+        {
+          "id": "1",
+          "member": {
+            "displayName": "zeeeeeeee",
+            "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
+          },
+          "content": "dfdfdf",
+          "updateDate": "2023-04-19"
+        }
+      ]
     }
   ]
 }

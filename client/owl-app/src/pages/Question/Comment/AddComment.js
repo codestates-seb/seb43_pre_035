@@ -17,7 +17,7 @@ const AddCommentWrap = styled.div`
 
 const AddComment = ({addCommentHandler,AnswerCommentHandler}) => {
 
-    const [comment,setComment] = useState(true)
+    const [comment,setComment] = useState(true);
 
 
     return (

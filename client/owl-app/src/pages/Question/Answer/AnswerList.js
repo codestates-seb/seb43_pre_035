@@ -2,6 +2,7 @@ import styled from "styled-components";
 import AnswerDetail from "./AnswerDetail";
 import { useState } from "react";
 import AnswerCreate from "./AnswerCreate";
+import axios from 'axios';
 
 
 const AnswerWrap = styled.div`
@@ -15,20 +16,27 @@ const AnswerWrap = styled.div`
 
 const Answerlist = ({question})=>{
 
-    const [answers,setAnswers] = useState(question.answer)
+    const [answers,setAnswers] = useState(question.answers);
+    const url_patch = `http://localhost:3001/questions/${question.id}`;
+
     const addAnswerHandler = (newAnswer) => {
-        
-        
         setAnswers([...answers,newAnswer])
+        console.log(newAnswer);
+        //patch, add answers
+
+        axios.patch(url_patch, {...question, "answers" : [...answers, newAnswer]})
+            .then(res => {console.log("answer patch success!", res)})
+            .catch(err => {console.log("answer patch fail!", err)});
+
     }
-    console.log(answers)
-    
+    // console.log(answers)
+
     return (
         <>
         <AnswerWrap>
-            {answers.map((answer,idx) => <AnswerDetail answer={answer} key={idx}></AnswerDetail>)}
+            {answers.map((answer,idx) => <AnswerDetail q_id={question.id} answer={answer} answers={answers} key={idx}></AnswerDetail>)}
         </AnswerWrap>
-            <AnswerCreate 
+            <AnswerCreate
             addAnswerHandler={addAnswerHandler}
             ></AnswerCreate>
         </>

@@ -24,7 +24,7 @@ const convertDate = (string) => {
 }
 
 const url_threads = "http://localhost:3001/questions";
-const url_threads_test = "https://2e7f-124-61-224-204.ngrok-free.app/questions";
+// const url_threads_test = "https://2e7f-124-61-224-204.ngrok-free.app/questions";
 // const url_threads_test2 = "/questions";
 function App() {
 

@@ -20,11 +20,11 @@ const AnswerCommentList = ({addanswerComment}) => {
     return (
         <>
         <CommentListWrap>
-            {addanswerComment.map((comment, idx)=><CommentCreated comment={comment} key={idx} />)}
+            {addanswerComment && addanswerComment.map((comment, idx)=><CommentCreated comment={comment} key={idx} />)}
         </CommentListWrap>
         </>
 
-    )   
+    )
 }
 
 export default AnswerCommentList
