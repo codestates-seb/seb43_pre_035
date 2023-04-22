@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import React,{useState} from "react"
+import { fetchCreate } from '../../../utils/api'
 
 const CommentInputWrap = styled.div`
     padding: 10px;
@@ -37,9 +38,10 @@ const CommentInput = ({addCommentHandler, AnswerCommentHandler})=>{
         setNewCommentContent(e.target.value);
       };
     
-    const onClickCommentSubmit = ()=>{
+    const onClickCommentSubmit = async (e)=>{
+        // const comment = e.target.newCommentContent.value
         let newComment = {
-            "id" : "1",
+            "id" : "0",
             "member" : {
               "displayName": "zeeeeeeee",
               "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
@@ -47,9 +49,10 @@ const CommentInput = ({addCommentHandler, AnswerCommentHandler})=>{
             "content" : newCommentContent,
             "updateDate" : "2023-04-19"
         }
-
-        addCommentHandler(newComment)
+        
         console.log(newComment)
+        fetchCreate(`http://localhost:3001/questions/1`, newComment)
+        
     }
     
     return (

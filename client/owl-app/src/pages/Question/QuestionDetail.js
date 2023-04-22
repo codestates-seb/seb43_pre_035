@@ -24,27 +24,8 @@ const QuestionDetail = () => {
     const url = `http://localhost:3001/questions/1`
     // const { id } = useParams();
 
-    // const [question,setQuestion] = useState(null);
-    // const [isPending, setIsPending] = useState(true);
-    // const [error, setError] = useState(null);
     const [question, isPending, error] = useFetch(url)
-    // useEffect(()=>{
-        
-    // },[])
-    // axios.get(url)
-    //     .then(res => {
-    //         console.log(res.data)
-    //         setQuestion(res.data)
-    //         setIsPending(true)
-    //         setError(null)
-    //         })
-    
-    // console.log(question)
-    
-    // if (isPending) return <div>로딩중..</div>;
-    // if (error) return <div>에러가 발생했습니다</div>;
-    // if (!question) return null;
-    
+
     
     
     return (

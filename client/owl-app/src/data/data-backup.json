@@ -1,7 +1,7 @@
 {
     "questions": [
       {
-        "id": "1",
+        "id": "D_kwDOHOApLM4APjJi",
         "createdDate": "2022-05-16T01:02:17Z",
         "updateDate": "2022-05-16T01:02:17Z",
         "title": "koans 과제 진행 중 npm install 오류로 인해 정상 작동 되지 않습니다",
@@ -10,35 +10,6 @@
           "displayName": "dubipy",
           "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
         },
-        "question_reply" : [
-          {
-          "id" : "1",
-          "member" : {
-            "displayName": "dubipy",
-            "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
-          },
-          "content" : "그저 그런 댓글입니다.",
-          "updateDate" : "2023-04-19"
-      },
-      {
-        "id" : "1",
-        "member" : {
-          "displayName": "dubipy",
-          "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
-        },
-        "content" : "그저 그런 댓글입니다.",
-        "updateDate" : "2023-04-19"
-    },
-    {
-      "id" : "1",
-      "member" : {
-        "displayName": "dubipy",
-        "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
-      },
-      "content" : "그저 그런 댓글입니다.",
-      "updateDate" : "2023-04-19"
-  }
-  ],
         "answer": [
           {
             "id": "DC_kwDOHOApLM4AKg6M",
@@ -976,69 +947,17 @@
         "viewCount": 323
       },
       {
-        "createdDate": "2023-04-20T20:23:14.254Z",
-        "updateDate": "2023-04-20T20:23:14.254Z",
-        "title": "State 변수에 이미지 경로 저장하는 방법을 잘 모르겠습니다.",
+        "id": ":r1:",
+        "createdDate": "2023-04-20T19:50:58.440Z",
+        "updateDate": "2023-04-20T19:50:58.440Z",
+        "title": "lalaal",
         "member": {
           "displayName": "jicoder",
           "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
         },
         "answer": [],
-        "content": "<p>State 변수에 이미지 경로 저장하는 방법을 잘 모르겠습니다.\nState 변수에 이미지 경로 저장하는 방법을 잘 모르겠습니다.\nState 변수에 이미지 경로 저장하는 방법을 잘 모르겠습니다.\nState 변수에 이미지 경로 저장하는 방법을 잘 모르겠습니다.\nState 변수에 이미지 경로 저장하는 방법을 잘 모르겠습니다.\n</p>",
-        "viewCount": 0,
-        "id": "6F8tCRk"
-      },
-      {
-        "createdDate": "2023-04-20T21:58:44.518Z",
-        "updateDate": "2023-04-20T21:58:44.518Z",
-        "title": "AWS S3 CORS 설정 ",
-        "member": {
-          "displayName": "jicoder",
-          "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
-        },
-        "answer": [],
-        "content": "<p>왜 브라우저에 치면 나오는데 리액트 앱에서는 제대로 S3 이미지를 못 읽어오는 걸까요?!</p>",
-        "viewCount": 0,
-        "id": "2iy7N0p"
-      },
-      {
-        "createdDate": "2023-04-20T22:18:51.998Z",
-        "updateDate": "2023-04-20T22:18:51.998Z",
-        "title": "asdf",
-        "member": {
-          "displayName": "jicoder",
-          "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl04.png"
-        },
-        "answer": [],
-        "content": "<p>asdfasdfasdfasdfadsf</p>",
-        "viewCount": 0,
-        "id": "GEhZUoR"
-      },
-      {
-        "createdDate": "2023-04-20T22:25:09.694Z",
-        "updateDate": "2023-04-20T22:25:09.694Z",
-        "title": "지금 너무 졸려요",
-        "member": {
-          "displayName": "jicoder",
-          "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
-        },
-        "answer": [],
-        "content": "<p>[\n{\n\"AllowedHeaders\": [\n\"Authorization\",\n\"Content-Range\",\n\"Accept\",\n\"Content-Type\",\n\"Origin\",\n\"Range\"\n],\n\"AllowedMethods\": [\n\"GET\"\n],\n\"AllowedOrigins\": [\n\"*\"\n],\n\"ExposeHeaders\": [\n\"Content-Range\",\n\"Content-Length\",\n\"ETag\"\n],\n\"MaxAgeSeconds\": 3000\n}\n]</p>",
-        "viewCount": 0,
-        "id": "P0jJARH"
-      },
-      {
-        "createdDate": "2023-04-21T01:35:03.595Z",
-        "updateDate": "2023-04-21T01:35:03.595Z",
-        "title": "AWS RDS에 쿼리 응답이 늦어진다면.....",
-        "member": {
-          "displayName": "jicoder",
-          "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl01.png"
-        },
-        "answer": [],
-        "content": "<p>오늘 경험한걸 남겨 둬봅니다...\n\nAWS의 RDS MSSQL를 사용하고 있는데..\n\n갑자기 쿼리 응답 시간이 오래 걸리기 시작하였습니다..\n\nDB 최적화를 해도 느립니다..\n\n모든걸 다 해보고 안된다면 인스턴스를 중단 -> 시작 해봅니다..\n\n그리곤 해결 되었습니다..\n\n위 결과는 아마존에 문의해서 받은 답변이였습니다..\n\n100달러 주고 문의한 결과가 중단하고 다시 시작해보세요 라니.. ㅠ.ㅠ\n\n그런데 정말 왜 느려졌는지는 궁금하네요...\n\n딱히 유저가 몰린것도 아니고... 특별한 이슈는 없었는데...\n\n아무튼 오늘도 하나 배웠으니 뭐 된거죠...\n</p>",
-        "viewCount": 0,
-        "id": "44AWZs7"
+        "content": "<p>lalalalalallala</p>",
+        "viewCount": 0
       }
     ]
   }
