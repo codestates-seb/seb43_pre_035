@@ -7,6 +7,8 @@ import com.hoot.answer.entity.Answer;
 import com.hoot.member.Member;
 import com.hoot.member.MemberDto;
 import com.hoot.member.MemberMapper;
+import com.hoot.reply.mapper.AnswerReplyMapper;
+import com.hoot.reply.repository.AnswerReplyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +20,8 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class AnswerMapper {
     private final MemberMapper mapper;
+    private final AnswerReplyMapper answerReplyMapper;
+    private final AnswerReplyRepository answerReplyRepository;
 
     public Answer answerPostToDtoToAnswer(AnswerPostDto answerPostDto) {
         Answer answer = new Answer();
@@ -46,6 +50,7 @@ public class AnswerMapper {
         answerResponseDto.setCreatedDate(answer.getCreatedDate());
         answerResponseDto.setUpdateDate(answer.getUpdateDate());
         answerResponseDto.setSelection(answer.getSelection());
+        answerResponseDto.setAnswerReplies(answerReplyMapper.answerRepliesToAnswerRepliesResponse(answerReplyRepository.findByAnswer(answer)));
 
         return answerResponseDto;
     }

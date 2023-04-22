@@ -18,7 +18,7 @@ import javax.validation.constraints.Positive;
 @CrossOrigin
 @Validated
 @RestController
-@RequestMapping("/answers/{answer_id}")
+@RequestMapping("/questions/{question-id}/answers/{answer-id}")
 public class AnswerReplyController {
     private AnswerReplyService answerReplyService;
 

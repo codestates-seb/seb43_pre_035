@@ -8,6 +8,9 @@ import com.hoot.reply.entity.AnswerReply;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Component
 @RequiredArgsConstructor
 public class AnswerReplyMapper {
@@ -40,5 +43,10 @@ public class AnswerReplyMapper {
         answerReplyResponseDto.setUpdateDate(answerReply.getUpdateDate());
 
         return answerReplyResponseDto;
+    }
+
+    public List<AnswerReplyResponseDto> answerRepliesToAnswerRepliesResponse(List<AnswerReply> answerReplies) {
+        List<AnswerReplyResponseDto> map = answerReplies.stream().map(answerReply -> answerReplyToAnswerReplyResponseDto(answerReply)).collect(Collectors.toList());
+        return map;
     }
 }
