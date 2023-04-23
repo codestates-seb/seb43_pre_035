@@ -12,13 +12,20 @@ ${'' /* @import url('https://fonts.googleapis.com/css2?family=Atomic+Age&family=
     --colors-lightbrown: #DACC96;
     --colors-dullbrown: #8D7B68;
     --colors-mediumbrown: #3F3432;
+    --colors-dullbrown: #8D7B68;
+    --colors-mediumbrown: #3F3432;
+    --colors-darkbrown: #231709;
     --colors-darkred: #AB3E16;
+    --colors-offwhite: #F8F8F8;
     --colors-border: #8D7B68;
     --colors-button-bg-default: #AB3E16;
     ${'' /* --colors-button-bg-default: #b92b27; */}
     --colors-button-bg-active: #A82723;
     ${'' /* --colors-button-bg-active: #7E2B0D; */}
     --colors-text-default: #F8F8F8;
+    --colors-text-title: #F8F8F8;
+    --colors-text-placeholder: #C3C1C1;
+    --colors-text-placeholder-dark: #BEB7B7;
     --colors-text-title: #F8F8F8;
     --colors-text-placeholder: #C3C1C1;
     --colors-text-placeholder-dark: #BEB7B7;
@@ -30,24 +37,29 @@ ${'' /* @import url('https://fonts.googleapis.com/css2?family=Atomic+Age&family=
     --colors-filter-border: rgba(239, 170, 82, 0.5);
     --colors-filter-text-active: #EFAA52;
     --colors-filter-text-inactive: rgba(239, 170, 82, 0.37);
+    --colors-searchbar-bg: #F8F3E6;
 
-    --spacing-topnav: 173px;
-    --spacing-sidenav-top: 173px;
+    --spacing-topnav: 140px;
+    --spacing-sidenav-top: 150px;
     --spacing-sidenav-right: 30px;
 
+    --size-topnav-container: 130px;
     --size-sidenav-container: 180px;
     --size-sidenavitem-minwidth: 170px;
     --size-thread-avatar: 40px;
     --size-text-button: 0.9rem;
     --size-text-headline: 1.5rem;
+    --size-text-headline: 1.5rem;
 
     --fonts-thread-title-weight: 400;
     --fonts-weight-default: 100;
+    --fonts-weight-regular: 300;
     --fonts-weight-regular: 300;
     --fonts-weight-semibold: 500;
     --fonts-weight-bold: 700;
     --fonts-size-icons: 15px;
 
+    --fonts-family-default: 'TheJamsil', 'Noto Sans KR', sans-serif;
 
 }
 
@@ -75,6 +87,18 @@ ul, li {
 button {
     outline: none;
 }
+
+a:link { text-decoration: none; }
+
+
+a:visited { text-decoration: none; }
+
+
+a:hover { text-decoration: none; }
+
+
+a:active { text-decoration: none; }
+
 
 @font-face {
     font-family: 'TheJamsil';

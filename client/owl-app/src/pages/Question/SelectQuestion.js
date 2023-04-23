@@ -2,9 +2,9 @@ import styled from "styled-components";
 import Title from "./Title";
 import QuestionContent from "./QuestionContent"
 import Answerlist from "./Answer/AnswerList"
-import CommentList from "./Comment/CommentList";
+import QuestionCommentList from "./Comment/QuestionCommentList";
 import AnswerCommentList from './Comment/AnswerCommentList'
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from 'axios'
 
 const SelectedWrap = styled.div`
@@ -19,18 +19,20 @@ const SelectedWrap = styled.div`
 
 
 const SelectQuestion = ({question}) => {
-    const [getQuestion,setGetQuestion] = useState([question])
+    const [getQuestion,setGetQuestion] = useState([question]);
+    // const [answersNum, setAnswersNum] = useState(question.answers.length);
+    const answersNum = question.answers?.length;
 
         // console.log([question])
-    
+
     return (
         <>
             {getQuestion.map((question) =>(
-        <SelectedWrap>
+        <SelectedWrap key={question.id}>
                 <Title question={question}></Title>
             <QuestionContent question={question}></QuestionContent>
-                <CommentList  question={question}></CommentList>
-                <Answerlist question={question}>
+                <QuestionCommentList  question={question}></QuestionCommentList>
+                <Answerlist question={question} answersNum={answersNum}>
                 <AnswerCommentList  question={question}></AnswerCommentList>
                 </Answerlist>
         </SelectedWrap>

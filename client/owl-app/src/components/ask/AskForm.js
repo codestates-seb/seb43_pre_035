@@ -51,6 +51,8 @@ const AskForm = ({threads}) => {
     const id = useId();
     const navigate = useNavigate();
     const url_avatars = "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com";
+    const url_threads = 'http://localhost:3001/questions';
+    const url_threads_test = "https://2a51-124-61-224-204.ngrok-free.app/questions"
 
     //default avatar images to shuffle
     const AvatDefaultUrls = [];
@@ -58,7 +60,7 @@ const AskForm = ({threads}) => {
     let imgIdx = 0;
     for (let i = 1; i <= imgNum; i++) AvatDefaultUrls.push(`${url_avatars}/owl0${i}.png`);
     shuffle(AvatDefaultUrls);
-    console.log(AvatDefaultUrls);
+    // console.log(AvatDefaultUrls);
 
     useEffect(() => {
         console.log("title: ", title, "content: ", content);
@@ -70,7 +72,7 @@ const AskForm = ({threads}) => {
 
         const date = new Date();
         const newThread = {
-            // "id": id,
+            // "id": id // id는 자동생성됨
             "createdDate": date.toISOString(),
             "updateDate": date.toISOString(),
             "title": title,
@@ -81,7 +83,7 @@ const AskForm = ({threads}) => {
             "viewCount" : 0,
         };
 
-        //shuffle for later
+        //if it's the last image, shuffle again
         if (imgIdx >= imgNum-1){
             imgIdx = 0;
             shuffle(AvatDefaultUrls);
@@ -89,7 +91,7 @@ const AskForm = ({threads}) => {
             imgIdx++;
           }
 
-        axios.post(`http://localhost:3001/questions`, newThread)
+        axios.post(url_threads, newThread)
         .then((res) => console.log(res))
         .catch((err) => console.log(err))
         // .then(() => {
@@ -99,10 +101,6 @@ const AskForm = ({threads}) => {
 
         navigate('/');
         navigate(0); //refresh page
-        // setThreads([...threads, newThread]);
-
-            //if it's the last image, shuffle the image again
-
     }
 
     return (

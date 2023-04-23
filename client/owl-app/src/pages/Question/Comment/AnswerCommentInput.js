@@ -30,16 +30,22 @@ const CreatButton = styled.button`
     background-color: #BF8B67;
 `
 
-const CommentInput = ({addCommentHandler, answerCommentHandler})=>{
-    
-    const [answerCommentContent, setAnswerCommentContent] =useState([])
-    const onTextChange = (e) => { 
+const AnswerCommentInput = ({addAnswerCommentHandler, answerCommentsNum})=>{
+
+    const [answerCommentContent, setAnswerCommentContent] =useState('');
+    const [invalidComment, setInvalidComment] = useState(false);
+    const [commentsNum, setCommentsNum] = useState(answerCommentsNum);
+
+    const onTextChange = (e) => {
         setAnswerCommentContent(e.target.value);
       };
-    
-    const onClickCommentSubmit = ()=>{
+
+    const onClickCommentSubmit = (e) => {
+        e.stopPropagation();
+        console.log("answer content: ", answerCommentContent);
+        if (!answerCommentContent) {console.log("no content!"); setInvalidComment(true); return;}
         let newComment = {
-            "id" : "1",
+            "id" : commentsNum + 1,
             "member" : {
               "displayName": "zeeeeeeee",
               "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
@@ -48,13 +54,21 @@ const CommentInput = ({addCommentHandler, answerCommentHandler})=>{
             "updateDate" : "2023-04-19"
         }
 
-        answerCommentHandler(newComment)
+        addAnswerCommentHandler(newComment);
+        setAnswerCommentContent('');
+        setInvalidComment(false);
+        setCommentsNum(commentsNum + 1);
+        // answerCommentsNum++;
+        // setAnswerCommentsNum(answerCommentsNum + 1);
     }
-    
+
     return (
         <>
         <CommentInputWrap>
-            <CommentInputCompo type="text" placeholder="Comment를 달아주세요"
+            {invalidComment ? <div>내용을 적어주셔야 합니다.</div> : null}
+            <CommentInputCompo type="text"
+                                placeholder="Comment를 달아주세요"
+                                value={answerCommentContent}
             onChange={onTextChange}
             />
             <CreatButton onClick={onClickCommentSubmit}>작성하기</CreatButton>
@@ -63,4 +77,4 @@ const CommentInput = ({addCommentHandler, answerCommentHandler})=>{
     )
 }
 
-export default CommentInput
+export default AnswerCommentInput;

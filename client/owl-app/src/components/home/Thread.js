@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBinoculars } from '@fortawesome/free-solid-svg-icons';
@@ -101,7 +103,9 @@ const Thread = ({thread}) => {
     return (
         <ThreadContainer>
             <ThreadContent>
-                <ThreadTitle>{thread.title}</ThreadTitle>
+                <Link to={`/questions/${thread.id}`}>
+                    <ThreadTitle>{thread.title}</ThreadTitle>
+                </Link>
                 <ThreadContribution>
                     <TextAlign>
                         <Contributor>{thread.member.displayName} </Contributor><span>님께서 {convertDate(thread.createdDate)}에 질문 </span>
