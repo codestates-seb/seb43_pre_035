@@ -17,15 +17,14 @@ const AddCommentWrap = styled.div`
 
 const AddAnswerComment = ({addAnswerCommentHandler, answerCommentsNum}) => {
 
+    
     const [comment,setComment] = useState(true);
 
 
     return (
         <>
             <AddCommentWrap onClick={()=>{setComment(false)}}>
-            {comment ? <div> Add a Comment </div> :<AnswerCommentInput addAnswerCommentHandler={addAnswerCommentHandler}
-                                                                        answerCommentsNum={answerCommentsNum}
-                                                                        />}
+            {comment ? <div> Add a Comment </div> : <AnswerCommentInput addAnswerCommentHandler={addAnswerCommentHandler} answerCommentsNum={answerCommentsNum}/>}
             </AddCommentWrap>
         </>
     )

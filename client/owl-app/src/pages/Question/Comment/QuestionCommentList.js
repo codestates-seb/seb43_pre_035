@@ -1,71 +1,122 @@
 import styled from "styled-components";
 import CommentCreated from "./CommentCreated";
 import { useState } from "react";
-import AddComment from "./AddComment"
-import axios from 'axios';
-
+import AddComment from "./AddComment";
+import axios from "axios";
+import { useEffect } from "react";
 
 const CommentListWrap = styled.div`
-    padding: 10px;
-    width: 750px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    border-bottom: 2px solid white;
-`
+  padding: 10px;
+  width: 750px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: 2px solid white;
+`;
 
 const QuestionCommentList = ({ question }) => {
+  const [comments, setComments] = useState(
+    question.questionReplies ? question.questionReplies : []
+  );
+  const qCommentNum = question.questionReplies
+    ? question.questionReplies.length
+    : 0;
+  const url_patch = `http://localhost:3001/questions/${question.id}`;
+  console.log(comments);
 
-    const [comments, setComment] = useState(question.questionReplies ? question.questionReplies : []);
-    const qCommentNum = question.questionReplies? question.questionReplies.length : 0;
-    const url_patch = `http://localhost:3001/questions/${question.id}`;
-    // console.log(comments)
+//   useEffect(()=>{
 
-    const addCommentHandler = (newComment) => {
-        // console.log("comments: ", comments);
-        setComment([...comments, newComment])
+//   },[comments])
 
-        //axios.patch to add comments...-----> with real server, revise to use post to add comments
-        if(question.questionReplies && comments.length){
-            axios.patch(url_patch, {...question, "questionReplies": [...question.questionReplies, newComment]})
-                .then((res) => {console.log("there arepatch success!", res)})
-                .catch(err => {console.log("patch fail!", err)})
+  const addCommentHandler = (newComment) => {
+    // console.log("comments: ", comments);
+    setComments([...comments, newComment]);
 
-        }else{
-            axios.patch(url_patch, {...question, "questionReplies": [newComment]})
-            .then((res) => {console.log("patch success!", res)})
-            .catch(err => {console.log("patch fail!", err)})
-        }
-
+    //axios.patch to add comments...-----> with real server, revise to use post to add comments
+    if (question.questionReplies && comments.length) {
+      axios
+        .patch(url_patch, {
+          ...question,
+          questionReplies: [...comments, newComment]
+        //   questionReplies: [...question.questionReplies, newComment],
+        })
+        .then((res) => {
+          console.log("add QComment success! id: ", newComment.id, " ", res);
+        })
+        .catch((err) => {
+          console.log("add QComment fail!", err);
+        });
+    } else {
+      axios
+        .patch(url_patch, { ...question, questionReplies: [newComment] })
+        .then((res) => {
+          console.log("add first QComment success! id: ", newComment.id, " ", res);
+        })
+        .catch((err) => {
+          console.log("add QComment fail!", err);
+        });
     }
+  };
 
-    const updateHandler = () => {
-        //change into updatable form
-    }
+  const updateQuestionCommentHandler = (comment_id, updatedComment) => {
+    console.log("comment update is being handled");
+    //use map to change the comment_id content
+    const newComments = comments.map((el) => {
+      if (el.id === comment_id) el.content = updatedComment;
+      return el;
+    });
 
-    const deleteQuestionCommentHandler = (comment_id) => {
-        //can only use patch ...
-        console.log("delete question comment!");
-        const newComments = comments.filter(el => el.id !== comment_id);
-        setComment(newComments);
+    setComments(newComments);
 
-        axios.patch(url_patch, {...question, "questionReplies" : newComments})
-            .then((res) => {console.log("delete Qcomment success!", res)})
-            .catch(err => {console.log("delete Qcomment fail!", err)})
+    axios
+      .patch(url_patch, { ...question, questionReplies: newComments })
+      .then((res) => {
+        console.log("update Qcomment success!", res);
+      })
+      .catch((err) => {
+        console.log("update Qcomment fail!", err);
+      });
+  };
 
 
-    }
+  const deleteQuestionCommentHandler = (comment_id) => {
+    //can only use patch ...
+    console.log("delete question comment!");
+    const newComments = comments.filter((el) => el.id !== comment_id);
+    setComments(newComments);
 
-    return (
-        <>
-            {!!comments.length && <CommentListWrap>
-                {comments.map((comment, idx) => <CommentCreated comment={comment} key={idx} deleteAnswerCommentHandler={deleteQuestionCommentHandler}/>)}
-            </CommentListWrap>}
-            <AddComment addCommentHandler={addCommentHandler} qCommentNum={qCommentNum} ></AddComment>
-        </>
+    axios
+      .patch(url_patch, { ...question, questionReplies: newComments })
+      .then((res) => {
+        console.log("delete Qcomment success!", res);
+      })
+      .catch((err) => {
+        console.log("delete Qcomment fail!", err);
+      });
+  };
 
-    )
-}
+  return (
+    <>
+      {!!comments.length && (
+        <CommentListWrap>
+          {comments.map((comment) => (
+            <CommentCreated
+              comment={comment}
+              key={comment.id}
+              commentType='qComment'
+              deleteAnswerCommentHandler={deleteQuestionCommentHandler}
+              updateQuestionCommentHandler={updateQuestionCommentHandler}
+            ></CommentCreated>
+          ))}
+        </CommentListWrap>
+      )}
+      <AddComment
+        addCommentHandler={addCommentHandler}
+        qCommentNum={qCommentNum}
+      ></AddComment>
+    </>
+  );
+};
 
-export default QuestionCommentList
+export default QuestionCommentList;
