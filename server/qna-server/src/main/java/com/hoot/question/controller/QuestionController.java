@@ -71,8 +71,8 @@ public class QuestionController {
 	}
 
 	@GetMapping("/search")
-	public ResponseEntity<Page<QuestResponseDto>> searchPaging(@RequestParam String title,
-															   @RequestParam String content,
+	public ResponseEntity<Page<QuestResponseDto>> searchPaging(@RequestParam(required = false) String title,
+															   @RequestParam(required = false) String content,
 															   @PageableDefault(size = 10, page = 0, sort="questionId", direction = Sort.Direction.DESC) Pageable pageable){
 
 		Page<Question> questionPage = questionService.searchQuestions(title, content, pageable);
