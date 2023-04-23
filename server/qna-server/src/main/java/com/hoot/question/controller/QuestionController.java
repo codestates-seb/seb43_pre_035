@@ -64,7 +64,7 @@ public class QuestionController {
 
 	//전체목록조회하기
 	@GetMapping
-	public ResponseEntity<Page<QuestResponseDto>> getQuestions(@PageableDefault(size = 10, page = 0, sort="questionId", direction = Sort.Direction.DESC) Pageable pageable) {
+	public ResponseEntity<Page<QuestResponseDto>> getQuestions(@PageableDefault(size = 30, page = 0, sort="questionId", direction = Sort.Direction.DESC) Pageable pageable) {
 		Page<Question> questionPage = questionService.getQuestions(pageable);
 		Page<QuestResponseDto> questResponsePage = mapper.questPageToQuestResponsePage(questionPage);
 		return new ResponseEntity<>(questResponsePage, HttpStatus.OK);
@@ -73,7 +73,7 @@ public class QuestionController {
 	@GetMapping("/search")
 	public ResponseEntity<Page<QuestResponseDto>> searchPaging(@RequestParam(required = false) String title,
 															   @RequestParam(required = false) String content,
-															   @PageableDefault(size = 10, page = 0, sort="questionId", direction = Sort.Direction.DESC) Pageable pageable){
+															   @PageableDefault(size = 30, page = 0, sort="questionId", direction = Sort.Direction.DESC) Pageable pageable){
 
 		Page<Question> questionPage = questionService.searchQuestions(title, content, pageable);
 		Page<QuestResponseDto> questResponsePage = mapper.questPageToQuestResponsePage(questionPage);
