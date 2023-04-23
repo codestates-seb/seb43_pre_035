@@ -14,7 +14,7 @@ const AnswerCreate = ({addAnswerHandler, answersNum}) =>{
     return (
         <>
         <CreateWrap>
-           {log ? <AnswerLogin addAnswerHandler={addAnswerHandler} answersNum={answersNum}/> : <AnswerLogout logClick={logClick}/>}
+           {log ? <AnswerLogin addAnswerHandler={addAnswerHandler} answersNum={answersNum} /> : <AnswerLogout logClick={logClick}/>}
         </CreateWrap>
         </>
     )

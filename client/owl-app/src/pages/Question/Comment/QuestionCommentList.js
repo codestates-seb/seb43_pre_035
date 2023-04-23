@@ -17,16 +17,17 @@ const CommentListWrap = styled.div`
 
 const QuestionCommentList = ({ question }) => {
 
-    const [comment, setComment] = useState(question.questionReplies ? question.questionReplies : []);
+    const [comments, setComment] = useState(question.questionReplies ? question.questionReplies : []);
+    const qCommentNum = question.questionReplies? question.questionReplies.length : 0;
     const url_patch = `http://localhost:3001/questions/${question.id}`;
-    // console.log(comment)
+    // console.log(comments)
 
     const addCommentHandler = (newComment) => {
-        // console.log("comment: ", comment);
-        setComment([...comment, newComment])
+        // console.log("comments: ", comments);
+        setComment([...comments, newComment])
 
         //axios.patch to add comments...-----> with real server, revise to use post to add comments
-        if(question.questionReplies && comment.length){
+        if(question.questionReplies && comments.length){
             axios.patch(url_patch, {...question, "questionReplies": [...question.questionReplies, newComment]})
                 .then((res) => {console.log("there arepatch success!", res)})
                 .catch(err => {console.log("patch fail!", err)})
@@ -43,16 +44,25 @@ const QuestionCommentList = ({ question }) => {
         //change into updatable form
     }
 
-    const deleteHandler = () => {
+    const deleteQuestionCommentHandler = (comment_id) => {
         //can only use patch ...
+        console.log("delete question comment!");
+        const newComments = comments.filter(el => el.id !== comment_id);
+        setComment(newComments);
+
+        axios.patch(url_patch, {...question, "questionReplies" : newComments})
+            .then((res) => {console.log("delete Qcomment success!", res)})
+            .catch(err => {console.log("delete Qcomment fail!", err)})
+
+
     }
 
     return (
         <>
-            {!!comment.length && <CommentListWrap>
-                {comment.map((comment, idx) => <CommentCreated comment={comment} key={idx} />)}
+            {!!comments.length && <CommentListWrap>
+                {comments.map((comment, idx) => <CommentCreated comment={comment} key={idx} deleteAnswerCommentHandler={deleteQuestionCommentHandler}/>)}
             </CommentListWrap>}
-            <AddComment addCommentHandler={addCommentHandler} ></AddComment>
+            <AddComment addCommentHandler={addCommentHandler} qCommentNum={qCommentNum} ></AddComment>
         </>
 
     )

@@ -40,16 +40,17 @@ const ReviseButton = styled(UpdateButton) `
 const AnswerDetail = ({ q_id, answer, answers, deleteAnswerHandler }) => {
 
     const [answerComments, setAnswerComments] = useState((answer.answerReplies ? answer.answerReplies : []));
+    const answerCommentsNum = answer.answerReplies ? answer.answerReplies.length : 0;
     const url_patch = `http://localhost:3001/questions/${q_id}`;
     console.log(answer.member.displayName)
 
-    const answerCommentHandler = (newComment) => {
+    const addAnswerCommentHandler = (newComment) => {
         setAnswerComments([...answerComments, newComment]);
         const newAnswerReplies = [...answerComments, newComment]; //set함수는 다음렌더링되서야 업데이트를 하기 때문에!
 
         const newAnswers = answers.map(el => {
             // console.log("date: ", el.createdDate); //date를 나중에 id로 대치!
-            if (el.createdDate === answer.createdDate) {
+            if (el.id === answer.id) {
                 if (el.answerReplies) {
                     el.answerReplies = [...newAnswerReplies];
                 }
@@ -66,6 +67,9 @@ const AnswerDetail = ({ q_id, answer, answers, deleteAnswerHandler }) => {
                 .catch(err => { console.log("answerReplies patch fail!", err) })
         } else {
             console.log("there are no answerReplies ready!"); //이럴 경우는 없을 듯!
+            axios.patch(url_patch, { "answers": newAnswers })
+            .then(res => { console.log("answerReplies patch success!", res) })
+            .catch(err => { console.log("answerReplies patch fail!", err) })
         }
     }
 
@@ -75,7 +79,22 @@ const AnswerDetail = ({ q_id, answer, answers, deleteAnswerHandler }) => {
         deleteAnswerHandler(answer.id);
     }
 
-    const deleteCommentHandler = () => {
+    const deleteAnswerCommentHandler = (comment_id) => {
+        console.log("the deleting actually happens here, comment id:", comment_id);
+        const filteredAnswerComments = answerComments.filter(el => el.id !== comment_id);
+
+        setAnswerComments(filteredAnswerComments);
+
+        const newAnswers = answers.map(el => {
+            if (el.id === answer.id){
+                el.answerReplies = el.answerReplies.filter(reply => reply.id !== comment_id);
+            }
+            return el;
+        })
+
+        axios.patch(url_patch, {"answers": newAnswers})
+            .then(res => { console.log("delete answercomment success!", res) })
+            .catch(err => { console.log("delete answercomment fail!", err) })
 
     }
 
@@ -89,9 +108,12 @@ const AnswerDetail = ({ q_id, answer, answers, deleteAnswerHandler }) => {
                     <ReviseButton>수정</ReviseButton>
                     <ReviseButton onClick={deleteClickHandler}>삭제</ReviseButton>
                 </AnsweruserBlock>
-                <AnswerCommentList answerComments={answerComments}></AnswerCommentList>
+                <AnswerCommentList answerComments={answerComments}
+                                    deleteAnswerCommentHandler={deleteAnswerCommentHandler}></AnswerCommentList>
             </AnswerBlock>
-            <AddAnswerComment answerCommentHandler={answerCommentHandler} ></AddAnswerComment>
+            <AddAnswerComment addAnswerCommentHandler={addAnswerCommentHandler}
+                              answerCommentsNum={answerCommentsNum}
+                              ></AddAnswerComment>
         </>
 
 

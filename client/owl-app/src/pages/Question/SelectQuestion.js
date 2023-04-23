@@ -20,7 +20,8 @@ const SelectedWrap = styled.div`
 
 const SelectQuestion = ({question}) => {
     const [getQuestion,setGetQuestion] = useState([question]);
-    const [answersNum, setAnswersNum] = useState(question.answers.length);
+    // const [answersNum, setAnswersNum] = useState(question.answers.length);
+    const answersNum = question.answers?.length;
 
         // console.log([question])
 

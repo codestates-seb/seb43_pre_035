@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React,{useState} from "react"
+import {useState} from "react"
 
 const CommentInputWrap = styled.div`
     padding: 10px;
@@ -30,9 +30,10 @@ const CreatButton = styled.button`
     background-color: #BF8B67;
 `
 
-const CommentInput = ({addCommentHandler, AnswerCommentHandler})=>{
+const CommentInput = ({addCommentHandler, qCommentNum})=>{
     const [newCommentContent, setNewCommentContent] = useState('');
     const [invalidComment, setInvalidComment] = useState(false);
+    const [cNum, setCNum] = useState(qCommentNum);
 
     const onTextChange = (e) => {
         setNewCommentContent(e.target.value);
@@ -42,7 +43,7 @@ const CommentInput = ({addCommentHandler, AnswerCommentHandler})=>{
         // console.log("comment content: ", newCommentContent);
         if (!newCommentContent) {console.log("no content!"); setInvalidComment(true); return;};
         let newComment = {
-            "id" : "1",
+            "id" : cNum + 1,
             "member" : {
               "displayName": "zeeeeeeee",
               "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
@@ -55,6 +56,7 @@ const CommentInput = ({addCommentHandler, AnswerCommentHandler})=>{
         console.log(newComment)
         setInvalidComment(false);
         setNewCommentContent('');
+        setCNum(cNum + 1);
     }
 
     return (

@@ -1259,52 +1259,10 @@
         "displayName": "jicoder",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl06.png"
       },
-      "answers": [
-        {
-          "id": 1,
-          "createdDate": "2022-05-16T02:09:52Z",
-          "updateDate": "2022-05-16T02:09:52Z",
-          "url": "https://github.com/codestates-seb/agora-states-fe/discussions/45#discussioncomment-2756236",
-          "member": {
-            "displayName": "zzzzzzoooooooooo"
-          },
-          "content": "test1",
-          "answerReplies": [
-            {
-              "id": 1,
-              "member": {
-                "displayName": "zeeeeeeee",
-                "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
-              },
-              "content": "comment1",
-              "updateDate": "2023-04-19"
-            },
-            {
-              "id": 2,
-              "member": {
-                "displayName": "zeeeeeeee",
-                "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
-              },
-              "content": "comment2",
-              "updateDate": "2023-04-19"
-            }
-          ]
-        }
-      ],
+      "answers": [],
       "content": "<p>테스트4 콘텐츠</p>",
       "viewCount": 0,
-      "id": "ixfzIuG",
-      "questionReplies": [
-        {
-          "id": "1",
-          "member": {
-            "displayName": "zeeeeeeee",
-            "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
-          },
-          "content": "comment1",
-          "updateDate": "2023-04-19"
-        }
-      ]
+      "id": "ixfzIuG"
     },
     {
       "createdDate": "2023-04-22T15:00:04.685Z",
@@ -1435,6 +1393,15 @@
               },
               "content": "comment 1_1",
               "updateDate": "2023-04-19"
+            },
+            {
+              "id": 2,
+              "member": {
+                "displayName": "zeeeeeeee",
+                "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
+              },
+              "content": "comment 1_2",
+              "updateDate": "2023-04-19"
             }
           ]
         }
@@ -1444,12 +1411,21 @@
       "id": "RiHeo8-",
       "questionReplies": [
         {
-          "id": 2,
+          "id": "1",
           "member": {
             "displayName": "zeeeeeeee",
             "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
           },
-          "content": "qcomment2",
+          "content": "dfdfdf",
+          "updateDate": "2023-04-19"
+        },
+        {
+          "id": "1",
+          "member": {
+            "displayName": "zeeeeeeee",
+            "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
+          },
+          "content": "abc",
           "updateDate": "2023-04-19"
         }
       ]

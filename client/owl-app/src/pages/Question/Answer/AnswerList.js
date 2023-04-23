@@ -14,7 +14,7 @@ const AnswerWrap = styled.div`
     flex-direction: column;
 `
 
-const Answerlist = ({ question, answersNum }) => {
+const Answerlist = ({ question, answersNum}) => {
 
     const [answers, setAnswers] = useState(question.answers);
     const url_patch = `http://localhost:3001/questions/${question.id}`;
@@ -40,6 +40,8 @@ const Answerlist = ({ question, answersNum }) => {
             .then(res => {console.log("delete answer success!")})
             .catch(err => {console.log("delete answer fail!", err)});
     }
+
+    // setAnswersNum(answersNum - 1);
     // console.log(answers)
 
     return (

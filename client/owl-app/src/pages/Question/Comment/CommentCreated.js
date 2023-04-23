@@ -27,9 +27,15 @@ const CommentDate = styled.div`
     width: 20vw;
 `
 
-const CommentCreated = ({comment})=>{
+const CommentCreated = ({comment, deleteAnswerCommentHandler})=>{
 
     // console.log(comment.member)
+    const deleteClickHandler = (e) => {
+        e.stopPropagation();
+        console.log("comment delete clicked!");
+        deleteAnswerCommentHandler(comment.id);
+    }
+
     return(
         <>
         <CommentWrap>
@@ -37,7 +43,7 @@ const CommentCreated = ({comment})=>{
             <CommentUser>{comment.member.displayName}</CommentUser>
             <CommentDate>{comment.updateDate}</CommentDate>
             <UpdateButton>수정</UpdateButton>
-            <UpdateButton>삭제</UpdateButton>
+            <UpdateButton onClick={deleteClickHandler}>삭제</UpdateButton>
         </CommentWrap>
         </>
 

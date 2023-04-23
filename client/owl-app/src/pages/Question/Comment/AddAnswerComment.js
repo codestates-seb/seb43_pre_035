@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import {useState} from 'react'
-import AddCommentInput from "./AnswerCommentInput"
+import AnswerCommentInput from "./AnswerCommentInput"
 
 
 const AddCommentWrap = styled.div`
@@ -15,7 +15,7 @@ const AddCommentWrap = styled.div`
 `
 
 
-const AddAnswerComment = ({answerCommentHandler}) => {
+const AddAnswerComment = ({addAnswerCommentHandler, answerCommentsNum}) => {
 
     const [comment,setComment] = useState(true);
 
@@ -23,7 +23,9 @@ const AddAnswerComment = ({answerCommentHandler}) => {
     return (
         <>
             <AddCommentWrap onClick={()=>{setComment(false)}}>
-            {comment ? <div> Add a Comment </div> :<AddCommentInput answerCommentHandler={answerCommentHandler}/>}
+            {comment ? <div> Add a Comment </div> :<AnswerCommentInput addAnswerCommentHandler={addAnswerCommentHandler}
+                                                                        answerCommentsNum={answerCommentsNum}
+                                                                        />}
             </AddCommentWrap>
         </>
     )
