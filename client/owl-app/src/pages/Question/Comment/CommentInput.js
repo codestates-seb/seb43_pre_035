@@ -1,7 +1,5 @@
 import styled from "styled-components";
-import React,{useState} from "react"
-import { fetchPatch } from '../../../utils/api'
-import axios from 'axios'
+import {useState} from "react"
 
 const CommentInputWrap = styled.div`
     padding: 10px;
@@ -32,17 +30,20 @@ const CreatButton = styled.button`
     background-color: #BF8B67;
 `
 
-const CommentInput = ({addCommentHandler, AnswerCommentHandler})=>{
-    const [newCommentContent, setNewCommentContent] = useState([])
+const CommentInput = ({addCommentHandler, qCommentNum})=>{
+    const [newCommentContent, setNewCommentContent] = useState('');
+    const [invalidComment, setInvalidComment] = useState(false);
+    const [cNum, setCNum] = useState(qCommentNum);
 
-    const onTextChange = (e) => { 
+    const onTextChange = (e) => {
         setNewCommentContent(e.target.value);
       };
-    
-    const onClickCommentSubmit = (e)=>{
-         e.preventDefault()
+
+    const onClickCommentSubmit = ()=>{
+        // console.log("comment content: ", newCommentContent);
+        if (!newCommentContent) {console.log("no content!"); setInvalidComment(true); return;};
         let newComment = {
-            "id" : "0",
+            "id" : cNum + 1,
             "member" : {
               "displayName": "zeeeeeeee",
               "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
@@ -52,14 +53,18 @@ const CommentInput = ({addCommentHandler, AnswerCommentHandler})=>{
         }
 
         console.log(newComment)
-        fetchPatch(`http://localhost:3001/questions/`, newComment)
+        setInvalidComment(false);
+        setNewCommentContent('');
+        setCNum(cNum + 1);
     }
 
     return (
         <>
         <CommentInputWrap>
+            {invalidComment ? <div>내용이 없습니다</div>: null}
             <CommentInputCompo type="text" placeholder="Comment를 달아주세요"
             onChange={onTextChange}
+            value={newCommentContent}
             />
             <CreatButton onClick={onClickCommentSubmit}>작성하기</CreatButton>
         </CommentInputWrap>

@@ -4,7 +4,7 @@ import {CreateWrap,CreateBlock, CreateHeader,CreateEditorLogout,CreateButtonLogo
 const AnswerLogout = ({logClick}) => {
 
     return (
-        
+
         <>
             <CreateBlock>
                 <CreateHeader>답변작성</CreateHeader>

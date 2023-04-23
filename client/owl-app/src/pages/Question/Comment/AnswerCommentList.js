@@ -13,19 +13,21 @@ const CommentListWrap = styled.div`
 
 `
 
-const AnswerCommentList = ({addanswerComment}) => {
+const AnswerCommentList = ({answerComments, deleteAnswerCommentHandler}) => {
 
-    console.log(addanswerComment)
+    console.log(answerComments)
 
     return (
         <>
 
         <CommentListWrap>
-            {addanswerComment.map((comment, idx)=><CommentCreated comment={comment} key={idx} />)}
+            {answerComments && answerComments.map((comment, idx)=><CommentCreated comment={comment}
+                                                                                    deleteAnswerCommentHandler={deleteAnswerCommentHandler}
+                                                                                    key={idx} />)}
         </CommentListWrap>
         </>
 
-    )   
+    )
 }
 
 export default AnswerCommentList

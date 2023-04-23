@@ -12,8 +12,9 @@ export const CreateBlock = styled.div`
     padding: 10px;
     width: 750px;
 `
-export const CreateHeader = styled.div`
+export const CreateHeader = styled.span`
     height: 30px;
+    padding-right: 10px;
     border-bottom: 2px solid white;
 
 `

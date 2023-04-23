@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { useState } from 'react';
 
 const SideNavContainer = styled.aside`
   ${'' /* width: 200px; */}
@@ -60,18 +60,33 @@ const SideNavItem = styled.div`
 `;
 
 const LoginCheckBtn = styled.button`
+    display: flex;
+    align-self: center;
     outline: none;
     color: var(--colors-text-default);
     background: var(--colors-green);
-    border-radius: 10px;
+    border-radius: 25px;
     border: 1px solid transparent;
-    padding: 5px;
-    margin-top: 50px;
-    opacity: 30%;
+    padding: 5px 10px;
+    margin-top: 35px;
+    opacity: 50%;
     max-width: 100px;
+
+
+    &:hover {
+      opacity: 100%;
+    }
 `
 
 const SideNav = ({toggleLogin, sidebarStatus, clickHomeHandler, clickTagsHandler, clickUsersHandler}) => {
+
+  const [logState, setLogState] = useState('LOGIN');
+
+  const logHandler = () => {
+    toggleLogin();
+    if(logState === 'LOGIN') setLogState('LOGOUT');
+    else setLogState('LOGIN');
+  }
 
   return (
     <SideNavContainer>
@@ -82,7 +97,7 @@ const SideNav = ({toggleLogin, sidebarStatus, clickHomeHandler, clickTagsHandler
                       onClick={clickTagsHandler}>Tags</SideNavItem>
         <SideNavItem className={sidebarStatus.usersOn ? 'selected' : ''}
                       onClick={clickUsersHandler}>Users</SideNavItem>
-        <LoginCheckBtn onClick={toggleLogin}>Login Toggle </LoginCheckBtn>
+        <LoginCheckBtn onClick={logHandler}>{logState}</LoginCheckBtn>
       </SideNavStickyContainer>
     </SideNavContainer>
   );
