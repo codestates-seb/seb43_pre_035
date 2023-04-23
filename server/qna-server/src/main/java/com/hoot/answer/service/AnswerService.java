@@ -8,17 +8,11 @@ import com.hoot.member.Member;
 import com.hoot.member.MemberRepository;
 import com.hoot.member.MemberService;
 import com.hoot.question.Question;
-import com.hoot.question.repository.QuestionRepository;
 import com.hoot.question.service.QuestionService;
-import com.hoot.reply.entity.AnswerReply;
-import com.hoot.reply.entity.QuestionReply;
 import com.hoot.security.UserDetailsImpl;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,20 +21,20 @@ public class AnswerService {
 	private final AnswerRepository answerRepository;
 	private final MemberRepository memberRepository;
 	private final MemberService memberService;
-	private final QuestionRepository questionRepository;
+	private final QuestionService questionService;
 
-	public AnswerService(AnswerRepository answerRepository, MemberRepository memberRepository, MemberService memberService, QuestionRepository questionRepository) {
+	public AnswerService(AnswerRepository answerRepository, MemberRepository memberRepository, MemberService memberService, QuestionService questionService) {
 		this.answerRepository = answerRepository;
 		this.memberRepository = memberRepository;
 		this.memberService = memberService;
-		this.questionRepository = questionRepository;
+		this.questionService = questionService;
 	}
 
 	public Answer createdAnswer(UserDetailsImpl user, Long questionId, Answer answer){
 		replaceAnswerToLogInMember(user, answer);
-		Question question = questionRepository.findById(questionId).orElseThrow(() ->
-                      new BusinessLogicException(ExceptionCode.QUESTION_NOT_FOUND));
-		answer.setQuestion(question);
+
+		Question findQuestion = questionService.findVerifiedQuestion(questionId);
+		answer.setQuestion(findQuestion);
 
 		return answerRepository.save(answer);
 	}
@@ -63,6 +57,25 @@ public class AnswerService {
 		answerRepository.delete(findAnswer);
 	}
 
+	public void adoptAnswer(UserDetailsImpl user, Long questionId, Long answerId) {
+		// 해당 질문에 대하여
+		Question findQuestion = questionService.findVerifiedQuestion(questionId);
+		// 채택하는 사람은 질문을 올린 사람이어야한다 (채택 버튼을 누른 로그인 사용자 == 질문올린 사람)
+		memberService.verifyLogInMemberMatchesMember(user.getMemberId(), findQuestion.getMember().getMemberId());
+
+		// 채택이 완료 되지 않은 질문만
+		List<Answer> allAnswer = answerRepository.findByQuestion(findQuestion);
+		long adoptCount = allAnswer.stream().filter(answer -> answer.getSelection().equals(true)).count();
+
+		// 채택을 진행한다
+		if (adoptCount == 0){
+			Answer findAnswer = findVerifiedAnswer(answerId);
+			findAnswer.setSelection(true);
+			answerRepository.save(findAnswer);
+		} else {
+			throw new BusinessLogicException(ExceptionCode.CANNOT_ADOPT);
+		}
+	}
 
 	private Answer findVerifiedAnswer(Long answerId){
 		Optional<Answer> optionalAnswer =
