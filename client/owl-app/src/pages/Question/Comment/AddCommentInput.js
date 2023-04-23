@@ -38,6 +38,8 @@ const CommentInput = ({addCommentHandler, answerCommentHandler})=>{
       };
     
     const onClickCommentSubmit = ()=>{
+
+        //if (!answerCommentHandler) 
         let newComment = {
             "id" : "1",
             "member" : {

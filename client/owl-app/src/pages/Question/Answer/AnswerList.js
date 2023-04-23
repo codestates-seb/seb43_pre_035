@@ -15,9 +15,8 @@ const AnswerWrap = styled.div`
 
 const Answerlist = ({question})=>{
 
-    const [answers,setAnswers] = useState(question.answer)
+    const [answers,setAnswers] = useState(question.answers)
     const addAnswerHandler = (newAnswer) => {
-        
         
         setAnswers([...answers,newAnswer])
     }

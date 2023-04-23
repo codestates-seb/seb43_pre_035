@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import React,{useState} from "react"
-import { fetchCreate } from '../../../utils/api'
+import { fetchPatch } from '../../../utils/api'
+import axios from 'axios'
 
 const CommentInputWrap = styled.div`
     padding: 10px;
@@ -38,8 +39,8 @@ const CommentInput = ({addCommentHandler, AnswerCommentHandler})=>{
         setNewCommentContent(e.target.value);
       };
     
-    const onClickCommentSubmit = async (e)=>{
-        // const comment = e.target.newCommentContent.value
+    const onClickCommentSubmit = (e)=>{
+         e.preventDefault()
         let newComment = {
             "id" : "0",
             "member" : {
@@ -49,12 +50,11 @@ const CommentInput = ({addCommentHandler, AnswerCommentHandler})=>{
             "content" : newCommentContent,
             "updateDate" : "2023-04-19"
         }
-        
+
         console.log(newComment)
-        fetchCreate(`http://localhost:3001/questions/1`, newComment)
-        
+        fetchPatch(`http://localhost:3001/questions/`, newComment)
     }
-    
+
     return (
         <>
         <CommentInputWrap>

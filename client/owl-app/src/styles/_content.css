@@ -12881,7 +12881,7 @@ pre.notranslate {
     margin-block-end:var(--base-size-8, 8px);margin-block-start: calc(var(--base-size-8, 8px) - var(--primer-borderWidth-thin, 1px));
     margin-inline:calc(var(--base-size-8, 8px)*-1)}
 
-.ActionList-sectionDivider--filled: empty {
+.ActionList-sectionDivider--filled:empty {
     box-sizing:border-box;
     height: var(--base-size-8, 8px)
 }
@@ -30139,9 +30139,9 @@ pre.notranslate {
     margin-block-end:var(--base-size-8, 8px);margin-block-start: calc(var(--base-size-8, 8px) - var(--primer-borderWidth-thin, 1px));
     margin-inline:calc(var(--base-size-8, 8px)*-1)}
 
-.ActionList-sectionDivider--filled: empty {
+.ActionList-sectionDivider--filled:empty {
     box-sizing:border-box;
-    height: var(--base-size-8, 8px)
+    height: var(--base-size-8, 8px);
 }
 
 .ActionList-sectionDivider--filled:first-child {

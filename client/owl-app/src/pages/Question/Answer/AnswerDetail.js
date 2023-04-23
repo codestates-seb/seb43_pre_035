@@ -41,6 +41,7 @@ const AnswerDetail = ({answer})=>{
 
     const answerCommentHandler = (newComment) => {
         setAddAnswerComment([...addanswerComment, newComment])
+
         }
 
     

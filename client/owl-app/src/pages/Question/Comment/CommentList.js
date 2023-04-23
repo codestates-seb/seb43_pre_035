@@ -15,20 +15,24 @@ const CommentListWrap = styled.div`
 `
 
 const CommentList = ({question}) => {
+    // question_reply
 
-    const [comment,setComment] = useState(question.question_reply)
+    const [comment,setComment] = useState(question.question_reply ? question.question_reply : [])
     
     // console.log(comment)
 
     const addCommentHandler = (newComment) => {
         setComment([...comment, newComment])
+
+        
         }
 
     return (
         <>
+        {comment.length &&
         <CommentListWrap>
             {comment.map((comment, idx)=><CommentCreated comment={comment} key={idx} />)}
-        </CommentListWrap>
+        </CommentListWrap>}
             <AddComment addCommentHandler={addCommentHandler} ></AddComment>
         </>
 

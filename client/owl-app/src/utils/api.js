@@ -20,15 +20,6 @@ export const fetchCreate = (url, data) => {
     })
 }
 
-// export const Create =
-//     axios.post(Q_URL, {
-//         method : "POST",
-//         headers : {
-//             "Content-Type" : "application/json",
-//             Accept: "application/json"
-//         },
-//         body : 
-//     })
 
 export const fetchDelete = (url, id) => {
     fetch(`${url}${id}`, {
@@ -42,8 +33,8 @@ export const fetchDelete = (url, id) => {
     })
 }
 
-export const fetchPatch = (url, id, data) => {
-    fetch(`${url}${id}`, {
+export const fetchPatch = (url, data) => {
+    fetch(url, {
         method : "PATCH",
         headers: {
             "Content-Type" : "application/json",
@@ -52,7 +43,7 @@ export const fetchPatch = (url, id, data) => {
         body: JSON.stringify(data)
     })
     .then(() => {
-        window.location.href = `${Q_URL}${id}`;
+        // window.location.href = `${Q_URL}${id}`;
     })
     .catch((error) => {
         console.error('Error', error);
