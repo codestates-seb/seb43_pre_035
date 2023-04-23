@@ -5,7 +5,7 @@ import { MdLogout } from 'react-icons/md';
 import { AiOutlineQuestionCircle } from 'react-icons/ai';
 import owltime  from './logo_pink.png';
 import {TopnavTemplate,LogoWrap,InputWrap,IconButton,TopnavInput} from './HeadStyle'
-import { useUserState, useUserDispatch } from '../UserContext'; //토큰 상태 불러오기
+import { useUserState, useUserDispatch } from '../member/UserContext'; //토큰 상태 불러오기
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
@@ -19,6 +19,25 @@ const StyledIcon = styled(FontAwesomeIcon)`
 
 
 const TopNavlogged = ({toggleLogin}) => {
+
+    //     //여기서부터 로그아웃 버튼구현
+    //     const { user } = useUserState();
+    //     const dispatch = useUserDispatch();
+      
+    //     const handleLogout = () => {
+    //       // 로컬 스토리지에서 토큰 제거
+    //       localStorage.removeItem('token');
+      
+    //       // 전역 상태에서 사용자 정보 제거
+    //       dispatch({ type: 'LOGOUT' });
+    //     };
+      
+    //     if (!user) {
+    //       return null;
+    //     }
+    //    onClick={handleLogout}을 버튼에 부여하면 로그아웃인데 충돌함 ...
+    //여기까지 로그아웃 버튼 기능 구현
+
     return (
         <>
             <TopnavTemplate>
@@ -39,7 +58,7 @@ const TopNavlogged = ({toggleLogin}) => {
                     <IconButton onClick={toggleLogin}>
                         <Link to = '/'><StyledIcon icon={faArrowRightFromBracket} /></Link>
                     </IconButton>
-                    <IconButton>
+                    <IconButton >
                         <StyledIcon icon={faCircleQuestion} />
                     </IconButton>
             </TopnavTemplate>
