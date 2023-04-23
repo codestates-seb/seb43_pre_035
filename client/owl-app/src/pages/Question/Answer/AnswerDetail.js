@@ -4,7 +4,7 @@ import AnswerCommentList from '../Comment/AnswerCommentList'
 import { UpdateButton } from "../../../styles/UIStyles";
 import { useState } from "react";
 import axios from 'axios';
-
+import AnswerPatch from "./AnswerPatch";
 
 const AnswerBlock = styled.div`
     display: flex;
@@ -37,7 +37,7 @@ const ReviseButton = styled(UpdateButton) `
     background: var(--colors-darkred);
 `
 
-const AnswerDetail = ({ q_id, answer, answers, deleteAnswerHandler }) => {
+const AnswerDetail = ({ q_id, answer, answers, updateAnswerHandler, deleteAnswerHandler }) => {
 
     const [answerComments, setAnswerComments] = useState((answer.answerReplies ? answer.answerReplies : []));
     const answerCommentsNum = answer.answerReplies ? answer.answerReplies.length : 0;
@@ -127,17 +127,32 @@ const AnswerDetail = ({ q_id, answer, answers, deleteAnswerHandler }) => {
             .catch(err => { console.log("delete answercomment fail!", err) })
 
     }
-
+    const [invalidEdit,setInvalidEdit] = useState(false)
+    const [updatedAnswer,setUpdatedAnswer] = useState(answer.content)
+  
+    const handleEditClick = ()=>{
+        setInvalidEdit(true);
+        updateAnswerHandler(answer.id, updatedAnswer)
+        console.log("돼라:", updatedAnswer )
+    }
 
     return (
         <>
             <AnswerBlock>
                 <AnsweruserBlock>
+        {invalidEdit? <AnswerPatch setInvalidEdit={setInvalidEdit}
+                                   setUpdatedAnswer={setUpdatedAnswer}
+                                   updatedAnswer={updatedAnswer} />  :
+                    <>
                     <AnswerContent>{answer.content}</AnswerContent>
                     <CreateUserA>{answer.member.displayName}</CreateUserA>
-                    <ReviseButton>수정</ReviseButton>
-                    <ReviseButton onClick={deleteClickHandler}>삭제</ReviseButton>
+                    <ReviseButton onClick={handleEditClick}>수정</ReviseButton>
+                    <ReviseButton onClick={deleteClickHandler}>삭제</ReviseButton> 
+                    </>
+                    }
+                    
                 </AnsweruserBlock>
+                
                 <AnswerCommentList answerComments={answerComments}
                                     deleteAnswerCommentHandler={deleteAnswerCommentHandler}
                                     updateAnswerCommentHandler={updateAnswerCommentHandler}
