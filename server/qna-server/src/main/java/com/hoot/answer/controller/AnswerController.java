@@ -6,9 +6,6 @@ import com.hoot.answer.dto.AnswerResponseDto;
 import com.hoot.answer.entity.Answer;
 import com.hoot.answer.mapper.AnswerMapper;
 import com.hoot.answer.service.AnswerService;
-import com.hoot.member.Member;
-import com.hoot.question.Question;
-import com.hoot.question.dto.QuestResponseDto;
 import com.hoot.security.UserDetailsImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +14,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.Positive;
 
 @CrossOrigin
@@ -56,5 +51,13 @@ public class AnswerController {
 	public ResponseEntity deleteAnswer(@AuthenticationPrincipal UserDetailsImpl user, @PathVariable("answer-id") @Positive Long answerId){
 		answerService.deleteAnswer(user, answerId);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
+
+	@PostMapping("/{question-id}/answers/{answer-id}/adopt")
+	public ResponseEntity adoptAnswer(@AuthenticationPrincipal UserDetailsImpl user,
+									  @PathVariable("question-id") @Positive Long questionId,
+									  @PathVariable("answer-id") @Positive Long answerId){
+		answerService.adoptAnswer(user, questionId, answerId);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }
