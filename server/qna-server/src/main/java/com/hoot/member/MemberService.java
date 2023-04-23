@@ -70,7 +70,7 @@ public class MemberService {
         Member loginMember = findVerifiedMemberById(loginMemberId);
         Member findMember = findVerifiedMemberById(memberId);
 
-        if (!findMember.equals(loginMember)) throw new RuntimeException("자신의 정보만 수정 및 삭제할 수 있습니다.");
+        if (!findMember.equals(loginMember)) throw new BusinessLogicException(ExceptionCode.MEMBER_CANNOT_USE_FEATURE);
         return findMember;
     }
 
