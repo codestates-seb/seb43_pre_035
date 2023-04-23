@@ -47,12 +47,12 @@ const Answerlist = ({ question, answersNum}) => {
     return (
         <>
             <AnswerWrap>
-                {answers.map((answer, idx) => <AnswerDetail
+                {answers.map((answer) => <AnswerDetail
                                                     q_id={question.id}
                                                     answer={answer}
                                                     answers={answers}
                                                     deleteAnswerHandler={deleteAnswerHandler}
-                                                    key={idx}></AnswerDetail>)}
+                                                    key={answer.id}></AnswerDetail>)}
             </AnswerWrap>
             <AnswerCreate
                 addAnswerHandler={addAnswerHandler}

@@ -6,7 +6,6 @@ const AnswerLogout = ({logClick}) => {
     return (
 
         <>
-
             <CreateBlock>
                 <CreateHeader>답변작성</CreateHeader>
                 <CreateEditorLogout onClick={logClick}>로그인해야 답변가능합니다.</CreateEditorLogout>
@@ -16,7 +15,6 @@ const AnswerLogout = ({logClick}) => {
                     <SignupButton>회원가입</SignupButton>
                 </ButtonBlock>
             </CreateBlock>
-
         </>
     )
 }
