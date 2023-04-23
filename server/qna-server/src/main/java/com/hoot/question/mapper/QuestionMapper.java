@@ -49,7 +49,7 @@ public class QuestionMapper {
 		questResponseDto.setCreatedDate(question.getCreatedDate());
 		questResponseDto.setUpdateDate(question.getUpdateDate());
 		questResponseDto.setQuestionStatus(question.getQuestionStatus());
-		questResponseDto.setViewCont(question.getViewCount());
+		questResponseDto.setViewCount(question.getViewCount());
 		questResponseDto.setMember(memberMapper.entityToResponse(question.getMember()));
 		questResponseDto.setAnswers(answerMapper.answerListToAnswerResponseList(answerRepository.findByQuestion(question)));
 		questResponseDto.setQuestionReplies(questionReplyMapper.questionRepliesToQuestionRepliesResponse(questionReplyRepository.findByQuestion(question)));

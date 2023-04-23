@@ -21,7 +21,7 @@ public class QuestResponseDto {
 	private Long questionId;
 	private String title;
 	private String content;
-	private int viewCont;
+	private int viewCount;
 	private LocalDateTime createdDate;
 	private LocalDateTime updateDate;
 	private Question.QuestionStatus questionStatus;
