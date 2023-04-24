@@ -24,7 +24,7 @@ const convertDate = (string) => {
   return `${string.substring(0, 4)}년 ${String(Number(string.substring(5, 7)))}월 ${String(Number(string.substring(8, 10)))}일`
 }
 
-const url_threads = "http://localhost:3001/questions";
+const url_threads = `${process.env.REACT_APP_URL_JSON_QUESTIONS}`;
 const url_threads_test = "https://2026-124-61-224-204.ngrok-free.app/questions";
 const url_threads_test_search1 = "https://2026-124-61-224-204.ngrok-free.app/questions/search/?title=제목30&content=내용30"
 const url_threads_test_search2 = "https://2026-124-61-224-204.ngrok-free.app/questions/search/?title=제목30"
@@ -32,7 +32,7 @@ const url_threads_test_search2 = "https://2026-124-61-224-204.ngrok-free.app/que
 // const url_threads_test2 = "/questions";
 function App() {
 
-
+  // console.log('this is not working', process.env.REACT_APP_URL_JSON);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [threads, isPending, error] = useFetch(url_threads);
   const [renderThreads, setRenderThreads] = useState(null);

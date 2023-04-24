@@ -51,7 +51,7 @@ const AskForm = ({threads}) => {
     const id = useId();
     const navigate = useNavigate();
     const url_avatars = "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com";
-    const url_threads = 'http://localhost:3001/questions';
+    const url_threads = `${process.env.REACT_APP_URL_JSON_QUESTIONS}`;
     const url_threads_test = "https://2026-124-61-224-204.ngrok-free.app/questions"
 
     //default avatar images to shuffle
