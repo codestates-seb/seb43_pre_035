@@ -15,19 +15,20 @@ const AddCommentWrap = styled.div`
 `
 
 
-const AddAnswerComment = ({addAnswerCommentHandler, answerCommentsNum}) => {
+const AddAnswerComment = ({addAnswerCommentHandler, answerCommentsNum,isLoggedIn}) => {
 
-    
-    const [comment,setComment] = useState(true);
+    const [comment,setComment] = useState(false);
 
-
+<div> Add a Comment </div>
     return (
         <>
-            <AddCommentWrap onClick={()=>{setComment(false)}}>
-            {comment ? <div> Add a Comment </div> : <AnswerCommentInput addAnswerCommentHandler={addAnswerCommentHandler} answerCommentsNum={answerCommentsNum}/>}
+            <AddCommentWrap onClick={()=>{setComment(true)}}>
+            {isLoggedIn && comment ? 
+            <AnswerCommentInput addAnswerCommentHandler={addAnswerCommentHandler} answerCommentsNum={answerCommentsNum}/> : 
+            <div> Add a Comment </div>
+            }
             </AddCommentWrap>
         </>
     )
 }
-
 export default AddAnswerComment

@@ -25,8 +25,7 @@ const EditorInput =styled.input`
 const AnswerLogin = ({addAnswerHandler, answersNum}) => {
     const [newAnswerContent, setNewAnswerContent] = useState('');
     const [invalidAnswer, setInvalidAnswer] = useState(false);
-    // const [aNum, setANum] = useState(answersNum);
-    const[aId, setaId] = useState(Math.floor(Math.random()*1000)); 
+    const[aId, setaId] = useState(Math.floor(Math.random()*1000));
 
     const onAnswerTextChange = (e) => {
         setNewAnswerContent(e.target.value);

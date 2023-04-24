@@ -14,7 +14,7 @@ const AnswerWrap = styled.div`
     flex-direction: column;
 `
 
-const Answerlist = ({ question, answersNum}) => {
+const Answerlist = ({ question, answersNum,isLoggedIn}) => {
 
     const [answers, setAnswers] = useState(question.answers);
 
@@ -22,11 +22,14 @@ const Answerlist = ({ question, answersNum}) => {
     const url_patch = `http://localhost:3001/questions/${question.id}`;
 
     const addAnswerHandler = (newAnswer) => {
-        setAnswers([...answers, newAnswer])
-        console.log(newAnswer);
+
+        const newAnswers = answers? [...answers, newAnswer] : [newAnswer];
+        if (answers) setAnswers(newAnswers);
+        else setAnswers(newAnswers);
+        // console.log(newAnswer);
         //patch, add answers
 
-        axios.patch(url_patch, { ...question, "answers": [...answers, newAnswer] })
+        axios.patch(url_patch, { ...question, "answers": newAnswers })
             .then(res => { console.log("answer patch success!", res) })
             .catch(err => { console.log("answer patch fail!", err) });
 
@@ -40,14 +43,14 @@ const Answerlist = ({ question, answersNum}) => {
         setAnswers(editAnswer)
         console.log("제발:" ,editAnswer)
 
-        // axios
-        //     .patch(url_patch, { ...question, answers : editAnswer})
-        //     .then((res) => {
-        //         console.log("update EditAnswer success!", res)
-        //     })
-        //     .catch((err)=>{
-        //         console.log("update EditAnswer fail!", err)
-        //     })
+        axios
+            .patch(url_patch, { ...question, "answers" : editAnswer})
+            .then((res) => {
+                console.log("update EditAnswer success!", res)
+            })
+            .catch((err)=>{
+                console.log("update EditAnswer fail!", err)
+            })
 
     }
 
@@ -68,15 +71,17 @@ const Answerlist = ({ question, answersNum}) => {
     return (
         <>
             <AnswerWrap>
-                {answers.map((answer) => <AnswerDetail
+                {answers ? answers.map((answer) => <AnswerDetail
+                                                    isLoggedIn={isLoggedIn}
                                                     q_id={question.id}
                                                     answer={answer}
                                                     answers={answers}
                                                     updateAnswerHandler={updateAnswerHandler}
                                                     deleteAnswerHandler={deleteAnswerHandler}
-                                                    key={answer.id}></AnswerDetail>)}
+                                                    key={answer.id}></AnswerDetail>) : null}
             </AnswerWrap>
             <AnswerCreate
+                isLoggedIn={isLoggedIn}
                 addAnswerHandler={addAnswerHandler}
                 answersNum={answersNum}
             ></AnswerCreate>

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import HandleSignup from '../components/HandleSignup';
+import HandleSignup from '../components/member/HandleSignup';
 import { Link } from 'react-router-dom';
 
 const Container = styled.div`
@@ -8,7 +8,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 110%;
   background-color:#322A28 ;
 `;
 

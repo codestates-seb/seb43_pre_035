@@ -15,15 +15,18 @@ const AddCommentWrap = styled.div`
 `
 
 
-const AddComment = ({addCommentHandler,AnswerCommentHandler, qCommentNum}) => {
+const AddComment = ({addCommentHandler,AnswerCommentHandler, qCommentNum,isLoggedIn}) => {
 
-    const [comment,setComment] = useState(true);
+    const [comment,setComment] = useState(false);
 
 
     return (
         <>
-            <AddCommentWrap onClick={()=>{setComment(false)}}>
-            {comment ? <div> Add a Comment </div> :<CommentInput addCommentHandler={addCommentHandler} qCommentNum={qCommentNum}/>}
+            <AddCommentWrap onClick={()=>{setComment(true)}}>
+            {isLoggedIn && comment ?  
+            (<CommentInput addCommentHandler={addCommentHandler} qCommentNum={qCommentNum}/>) :
+             <div> Add a Comment </div>}
+
             </AddCommentWrap>
         </>
     )

@@ -32,12 +32,12 @@ const CreatButton = styled.button`
 
 const CommentInputPatch = ({ updatedContent, setUpdatedContent, editClickHandler, setIsEditable})=>{
     const [newCommentContent, setNewCommentContent] = useState(updatedContent);
-    const [invalidComment, setInvalidComment] = useState(true);
-    
-    
-    // useEffect (()=>{
-    //     console.log("Comment 내용", newCommentContent)
-    // },[newCommentContent])
+    const [invalidComment, setInvalidComment] = useState(false);
+
+
+    useEffect (()=>{
+        console.log("Comment 내용", newCommentContent)
+    },[newCommentContent])
 
     const onTextChange = (e) => {
         setNewCommentContent(e.target.value);
@@ -47,12 +47,11 @@ const CommentInputPatch = ({ updatedContent, setUpdatedContent, editClickHandler
 
     const onClickCommentSubmit = (e) => {
         e.stopPropagation();
-        console.log("comment content: ", newCommentContent);
+        // console.log("comment content: ", newCommentContent);
         if (!newCommentContent) {console.log("no content!"); setInvalidComment(true); return;};
         // let newComment = {
         //     "content" : newCommentContent,
         // }
-        
         setUpdatedContent(newCommentContent);
         editClickHandler();
         setInvalidComment(false);

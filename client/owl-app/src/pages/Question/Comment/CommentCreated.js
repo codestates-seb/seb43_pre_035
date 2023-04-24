@@ -36,8 +36,8 @@ const CommentCreated = ({comment, commentType, deleteAnswerCommentHandler, updat
 
     const  [isEditable,setIsEditable] = useState(false);
     const  [updatedContent, setUpdatedContent] = useState(comment.content);
-    
-    
+
+
     const deleteClickHandler = (e) => {
         e.stopPropagation();
         console.log("comment delete clicked!");
@@ -45,20 +45,20 @@ const CommentCreated = ({comment, commentType, deleteAnswerCommentHandler, updat
     }
 
     const editClickHandler = () => {
-        console.log("comment update clicked!"); 
+        console.log("comment update clicked!");
         setIsEditable(true);
         if (commentType==='qComment') updateQuestionCommentHandler(comment.id, updatedContent);
-        if (commentType==='aComment') updateAnswerCommentHandler(comment.id, updatedContent); 
+        if (commentType==='aComment') updateAnswerCommentHandler(comment.id, updatedContent);
     }
 
-    
+
     return(
         <>
-            {isEditable? (commentType === 'qComment' ? <CommentInputPatch updatedContent={updatedContent} 
+            {isEditable? (commentType === 'qComment' ? <CommentInputPatch updatedContent={updatedContent}
                                             setUpdatedContent={setUpdatedContent}
                                             editClickHandler={editClickHandler}
-            setIsEditable={setIsEditable}/> : 
-            <AnswerCommentInputPatch updatedContent={updatedContent} 
+            setIsEditable={setIsEditable}/> :
+            <AnswerCommentInputPatch updatedContent={updatedContent}
                                 setUpdatedContent={setUpdatedContent}
                                 editClickHandler={editClickHandler}
                                 setIsEditable={setIsEditable}/>) :
@@ -69,11 +69,11 @@ const CommentCreated = ({comment, commentType, deleteAnswerCommentHandler, updat
                             <UpdateButton onClick={editClickHandler}>수정
                             </UpdateButton>
                             <UpdateButton onClick={deleteClickHandler}>삭제</UpdateButton>
-                        </CommentWrap>          
+                        </CommentWrap>
             }
         </>
 
     )
 }
 
-export default CommentCreated
+export default CommentCreated;

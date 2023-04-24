@@ -15,7 +15,7 @@ const CommentListWrap = styled.div`
   border-bottom: 2px solid white;
 `;
 
-const QuestionCommentList = ({ question }) => {
+const QuestionCommentList = ({ question,isLoggedIn }) => {
   const [comments, setComments] = useState(
     question.questionReplies ? question.questionReplies : []
   );
@@ -112,6 +112,7 @@ const QuestionCommentList = ({ question }) => {
         </CommentListWrap>
       )}
       <AddComment
+        isLoggedIn={isLoggedIn}
         addCommentHandler={addCommentHandler}
         qCommentNum={qCommentNum}
       ></AddComment>
