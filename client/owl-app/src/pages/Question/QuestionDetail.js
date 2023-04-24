@@ -11,7 +11,7 @@ import Users from "../../components/home/Users";
 
 const QuestionWrap = styled.div`
     padding: 10px;
-    width: 100%;
+    width: 90%;
     color: white;
     display: flex;
     flex-direction: row;
