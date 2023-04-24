@@ -1,6 +1,5 @@
 package com.hoot.question.controller;
 
-import com.hoot.question.dto.PagingDto;
 import com.hoot.question.mapper.QuestionMapper;
 import com.hoot.question.Question;
 import com.hoot.question.dto.QuestPatchDto;
@@ -14,14 +13,13 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.ui.Model;
+
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
-import java.util.List;
-import java.util.stream.Collectors;
+
 
 @CrossOrigin
 @Validated
