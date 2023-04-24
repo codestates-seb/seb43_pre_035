@@ -33,8 +33,8 @@ const CreatButton = styled.button`
 const AnswerCommentInputPatch = ({updatedContent, setUpdatedContent, editClickHandler, setIsEditable})=>{
 
     const [answerCommentContent, setAnswerCommentContent] = useState(updatedContent);
-    const [invalidComment, setInvalidComment] = useState(true);
-    
+    const [invalidComment, setInvalidComment] = useState(false);
+
 
     const onTextChange = (e) => {
         setAnswerCommentContent(e.target.value);

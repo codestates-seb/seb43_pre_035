@@ -34,7 +34,7 @@ const AnswerCommentInput = ({addAnswerCommentHandler})=>{
 
     const [answerCommentContent, setAnswerCommentContent] =useState('');
     const [invalidComment, setInvalidComment] = useState(false);
-    const[cId, setcId] = useState(Math.floor(Math.random()*1000)); 
+    const[cId, setcId] = useState(Math.floor(Math.random()*1000));
 
     const onTextChange = (e) => {
         setAnswerCommentContent(e.target.value);

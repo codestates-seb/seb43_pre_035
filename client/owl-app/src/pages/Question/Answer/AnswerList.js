@@ -20,11 +20,14 @@ const Answerlist = ({ question, answersNum}) => {
     const url_patch = `http://localhost:3001/questions/${question.id}`;
 
     const addAnswerHandler = (newAnswer) => {
-        setAnswers([...answers, newAnswer])
-        console.log(newAnswer);
+
+        const newAnswers = answers? [...answers, newAnswer] : [newAnswer];
+        if (answers) setAnswers(newAnswers);
+        else setAnswers(newAnswers);
+        // console.log(newAnswer);
         //patch, add answers
 
-        axios.patch(url_patch, { ...question, "answers": [...answers, newAnswer] })
+        axios.patch(url_patch, { ...question, "answers": newAnswers })
             .then(res => { console.log("answer patch success!", res) })
             .catch(err => { console.log("answer patch fail!", err) });
 
@@ -47,12 +50,12 @@ const Answerlist = ({ question, answersNum}) => {
     return (
         <>
             <AnswerWrap>
-                {answers.map((answer) => <AnswerDetail
+                {answers ? answers.map((answer) => <AnswerDetail
                                                     q_id={question.id}
                                                     answer={answer}
                                                     answers={answers}
                                                     deleteAnswerHandler={deleteAnswerHandler}
-                                                    key={answer.id}></AnswerDetail>)}
+                                                    key={answer.id}></AnswerDetail>) : null}
             </AnswerWrap>
             <AnswerCreate
                 addAnswerHandler={addAnswerHandler}

@@ -32,9 +32,9 @@ const CreatButton = styled.button`
 
 const CommentInputPatch = ({ updatedContent, setUpdatedContent, editClickHandler, setIsEditable})=>{
     const [newCommentContent, setNewCommentContent] = useState(updatedContent);
-    const [invalidComment, setInvalidComment] = useState(true);
-    
-    
+    const [invalidComment, setInvalidComment] = useState(false);
+
+
     useEffect (()=>{
         console.log("Comment 내용", newCommentContent)
     },[newCommentContent])
@@ -52,7 +52,7 @@ const CommentInputPatch = ({ updatedContent, setUpdatedContent, editClickHandler
         // let newComment = {
         //     "content" : newCommentContent,
         // }
-        
+
         setUpdatedContent(newCommentContent);
         editClickHandler();
         setInvalidComment(false);

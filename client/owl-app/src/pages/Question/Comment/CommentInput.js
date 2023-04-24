@@ -33,7 +33,7 @@ const CreatButton = styled.button`
 const CommentInput = ({addCommentHandler})=>{
     const [newCommentContent, setNewCommentContent] = useState('');
     const [invalidComment, setInvalidComment] = useState(false);
-    const[cId, setcId] = useState(Math.floor(Math.random()*1000)); 
+    const[cId, setcId] = useState(Math.floor(Math.random()*1000));
 
     const onTextChange = (e) => {
         setNewCommentContent(e.target.value);

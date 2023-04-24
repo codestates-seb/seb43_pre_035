@@ -1412,7 +1412,7 @@
                 "displayName": "zeeeeeeee",
                 "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
               },
-              "content": "789",
+              "content": "78910",
               "updateDate": "2023-04-19"
             },
             {
@@ -1467,8 +1467,127 @@
             "displayName": "zeeeeeeee",
             "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
           },
-          "content": "3333333",
+          "content": "8888888",
           "updateDate": "2023-04-19"
+        },
+        {
+          "id": 105,
+          "member": {
+            "displayName": "zeeeeeeee",
+            "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
+          },
+          "content": "5555555",
+          "updateDate": "2023-04-19"
+        }
+      ]
+    },
+    {
+      "createdDate": "2023-04-24T03:22:38.910Z",
+      "updateDate": "2023-04-24T03:22:38.910Z",
+      "title": "환경변수가 만 먹힙니다 ",
+      "member": {
+        "displayName": "jicoder",
+        "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl04.png"
+      },
+      "answer": [],
+      "content": "<p>REACT_APP prefix를 달았는데... 대체 뭐가 문제일까요</p>",
+      "viewCount": 0,
+      "id": "zM-R-x2"
+    },
+    {
+      "createdDate": "2023-04-24T03:24:03.026Z",
+      "updateDate": "2023-04-24T03:24:03.026Z",
+      "title": "ngrok 테스트에서 에러",
+      "member": {
+        "displayName": "jicoder",
+        "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl03.png"
+      },
+      "answer": [],
+      "content": "<p>에러에러에러</p>",
+      "viewCount": 0,
+      "id": "cFIsYcj",
+      "questionReplies": [
+        {
+          "id": 486,
+          "member": {
+            "displayName": "zeeeeeeee",
+            "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
+          },
+          "content": "에러에러1_1",
+          "updateDate": "2023-04-19"
+        }
+      ],
+      "answers": [
+        {
+          "id": 843,
+          "createdDate": "2022-05-16T02:09:52Z",
+          "updateDate": "2022-05-16T02:09:52Z",
+          "url": "https://github.com/codestates-seb/agora-states-fe/discussions/45#discussioncomment-2756236",
+          "member": {
+            "displayName": "zzzzzzoooooooooo"
+          },
+          "content": "에러2",
+          "answerReplies": [
+            {
+              "id": 779,
+              "member": {
+                "displayName": "zeeeeeeee",
+                "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
+              },
+              "content": "comment1_1",
+              "updateDate": "2023-04-19"
+            },
+            {
+              "id": 431,
+              "member": {
+                "displayName": "zeeeeeeee",
+                "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
+              },
+              "content": "comment1_2",
+              "updateDate": "2023-04-19"
+            }
+          ]
+        },
+        {
+          "id": 843,
+          "createdDate": "2022-05-16T02:09:52Z",
+          "updateDate": "2022-05-16T02:09:52Z",
+          "url": "https://github.com/codestates-seb/agora-states-fe/discussions/45#discussioncomment-2756236",
+          "member": {
+            "displayName": "zzzzzzoooooooooo"
+          },
+          "content": "에러2",
+          "answerReplies": [
+            {
+              "id": 779,
+              "member": {
+                "displayName": "zeeeeeeee",
+                "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
+              },
+              "content": "comment1_1",
+              "updateDate": "2023-04-19"
+            },
+            {
+              "id": 431,
+              "member": {
+                "displayName": "zeeeeeeee",
+                "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
+              },
+              "content": "comment1_2",
+              "updateDate": "2023-04-19"
+            }
+          ]
+        },
+        {
+          "id": 119,
+          "createdDate": "2022-05-16T02:09:52Z",
+          "updateDate": "2022-05-16T02:09:52Z",
+          "url": "https://github.com/codestates-seb/agora-states-fe/discussions/45#discussioncomment-2756236",
+          "member": {
+            "displayName": "zzzzzzoooooooooo"
+          },
+          "content": "에러3",
+          "answerReplies": []
         }
       ]
     }

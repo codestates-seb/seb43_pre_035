@@ -31,7 +31,9 @@ const useFetch = (url) => {
     // }, [url]);
 
         axios.get(url, {headers : {
-            'ngrok-skip-browser-warning': '69420'
+            'ngrok-skip-browser-warning': '69420',
+            'Access-Control-Allow-Origin': 'http://localhost:3000'
+            // 'Access-Control-Allow-Header
         }})
             .then(res => {
                 return res.data;
