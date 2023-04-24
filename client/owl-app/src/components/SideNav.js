@@ -78,9 +78,9 @@ const LoginCheckBtn = styled.button`
     }
 `
 
-const SideNav = ({toggleLogin, sidebarStatus, clickHomeHandler, clickTagsHandler, clickUsersHandler}) => {
+const SideNav = ({toggleLogin, sidebarStatus, clickHomeHandler, clickTagsHandler, clickUsersHandler, isLoggedIn}) => {
 
-  const [logState, setLogState] = useState('LOGIN');
+  const [logState, setLogState] = useState(isLoggedIn ? "LOGIN" : "LOGOUT");
 
   const logHandler = () => {
     toggleLogin();
@@ -101,7 +101,7 @@ const SideNav = ({toggleLogin, sidebarStatus, clickHomeHandler, clickTagsHandler
       </SideNavStickyContainer>
     </SideNavContainer>
   );
-};
+}; 
 
 
 

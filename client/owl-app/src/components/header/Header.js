@@ -21,7 +21,7 @@ const HeaderWrap = styled.div`
     height: 100%;
 `
 
-const Header = ({threads, sortThreads, setSidebarStatus, isLoggedIn, toggleLogin}) => {
+const Header = ({threads, sortThreads, setSidebarStatus, isLoggedIn, toggleLogin, openModal}) => {
 
     const location = useLocation();
 
@@ -44,7 +44,7 @@ const Header = ({threads, sortThreads, setSidebarStatus, isLoggedIn, toggleLogin
     return(
         <HeaderBlock>
             <HeaderWrap >
-                {isLoggedIn ? <TopNavlogged toggleLogin={toggleLogin}/> : <TopNav /> }
+                {isLoggedIn ? <TopNavlogged toggleLogin={toggleLogin} openModal={openModal}/> : <TopNav openModal={openModal}/> }
             </HeaderWrap>
         </HeaderBlock>
  )

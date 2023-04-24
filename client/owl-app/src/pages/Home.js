@@ -23,7 +23,7 @@ const Main = styled.div`
 
 
 
-const Home = ({threads, isPending, toggleLogin, sidebarStatus, setSidebarStatus}) => {
+const Home = ({threads, isPending, toggleLogin, sidebarStatus, setSidebarStatus, isLoggedIn}) => {
 
     // useEffect(() => {
     //     console.log("is this working?");
@@ -57,7 +57,8 @@ const Home = ({threads, isPending, toggleLogin, sidebarStatus, setSidebarStatus}
                     sidebarStatus={sidebarStatus}
                     clickHomeHandler={clickHomeHandler}
                     clickTagsHandler={clickTagsHandler}
-                    clickUsersHandler={clickUsersHandler}/>
+                    clickUsersHandler={clickUsersHandler}
+                    isLoggedIn={isLoggedIn}/>
             {sidebarStatus.homeOn ? threads && <Threads threads={threads}
                                 dimensionsHandler={dimensionsHandler}
                                 refContainer={refContainer}/>
