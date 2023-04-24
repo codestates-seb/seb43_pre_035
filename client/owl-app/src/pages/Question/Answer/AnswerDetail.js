@@ -45,7 +45,6 @@ const ReviseButton = styled(UpdateButton) `
 const AnswerDetail = ({ q_id, answer, answers, updateAnswerHandler, deleteAnswerHandler, isLoggedIn, openModal }) => {
 
     const [answerComments, setAnswerComments] = useState((answer.answerReplies ? answer.answerReplies : []));
-    // const answerCommentsNum = answer.answerReplies ? answer.answerReplies.length : 0;
     const url_patch = `http://localhost:3001/questions/${q_id}`;
     console.log(answer.member.displayName)
 
@@ -64,8 +63,6 @@ const AnswerDetail = ({ q_id, answer, answers, updateAnswerHandler, deleteAnswer
             return el;
         });
 
-
-
         if (answer.answerReplies) {
             axios.patch(url_patch, { "answers": newAnswers })
                 .then(res => { console.log("answerReplies patch success!", res) })
@@ -76,12 +73,6 @@ const AnswerDetail = ({ q_id, answer, answers, updateAnswerHandler, deleteAnswer
             .then(res => { console.log("answerReplies patch success!", res) })
             .catch(err => { console.log("answerReplies patch fail!", err) })
         }
-    }
-
-    const deleteClickHandler = (e) => {
-        //삭제 전 묻기 - 진짜 삭제하고 싶으신가요?
-        e.stopPropagation();
-        deleteAnswerHandler(answer.id);
     }
 
     const updateAnswerCommentHandler = (comment_id, updatedComment) => {
@@ -132,6 +123,13 @@ const AnswerDetail = ({ q_id, answer, answers, updateAnswerHandler, deleteAnswer
             .catch(err => { console.log("delete answercomment fail!", err) })
 
     }
+
+    const deleteClickHandler = (e) => {
+        //삭제 전 묻기 - 진짜 삭제하고 싶으신가요?
+        e.stopPropagation();
+        deleteAnswerHandler(answer.id);
+    }
+
     const [isEditState, setIsEditState] = useState(false);
     const [updatedAnswer, setUpdatedAnswer] = useState(answer.content);
 

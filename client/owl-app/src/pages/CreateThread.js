@@ -30,7 +30,7 @@ const CreateThread = ({threads, setThreads}) => {
             <Headline>
                 똑부러지게 질문하기
             </Headline>
-            <AskForm threads={threads} setThreads={setThreads} />
+            <AskForm />
         </AskFormWrapper>
     )
 

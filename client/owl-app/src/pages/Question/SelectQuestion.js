@@ -5,7 +5,6 @@ import Answerlist from "./Answer/AnswerList"
 import QuestionCommentList from "./Comment/QuestionCommentList";
 import AnswerCommentList from './Comment/AnswerCommentList'
 import { useState, useEffect } from "react";
-import axios from 'axios'
 import SideNav from "../../components/SideNav";
 
 const SelectedWrap = styled.div`
@@ -21,7 +20,6 @@ const SelectedWrap = styled.div`
 
 const SelectQuestion = ({question,isLoggedIn,openModal, dimensionsHandler, refContainer}) => {
     const [getQuestion,setGetQuestion] = useState([question]);
-    // const answersNum = question.answers?.length;
         console.log([question])
 
     useEffect(() => {
