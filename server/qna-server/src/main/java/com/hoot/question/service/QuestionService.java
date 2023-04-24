@@ -4,20 +4,12 @@ import com.hoot.exception.BusinessLogicException;
 import com.hoot.exception.ExceptionCode;
 import com.hoot.member.*;
 import com.hoot.question.Question;
-import com.hoot.question.dto.PagingDto;
-import com.hoot.question.dto.QuestResponseDto;
 import com.hoot.question.repository.QuestionRepository;
 import com.hoot.security.UserDetailsImpl;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -66,12 +58,20 @@ public class QuestionService {
 			throw  new BusinessLogicException(ExceptionCode.QUESTION_NOT_FOUND);
 		}
 	}
-	//페이지 조회
+	//페이지 검색어 조회
 	public Page<Question> searchQuestions(String title, String content, Pageable pageable) {
-		Page<Question> questionPage = questionRepository.findAllSearch(title, content, pageable);
-
-		return questionPage;
-	}
+		Page<Question> questionPage;
+		if (title != null && content != null) {
+			questionPage = questionRepository.findByTitleContainingAndContentContaining(title, content, pageable);
+		} else if (title != null) {
+			questionPage = questionRepository.findByTitleContaining(title, pageable);
+		} else if (content != null) {
+			questionPage = questionRepository.findByContentContaining(content, pageable);
+		} else {
+			questionPage = questionRepository.findAll(pageable);
+		}
+			return questionPage;
+		}
 
 	public Page<Question> getQuestions(Pageable pageable){
 		Page<Question> questionPage = questionRepository.findByQuestionStatusNot(Question.QuestionStatus.QUESTION_DELETE, pageable);
