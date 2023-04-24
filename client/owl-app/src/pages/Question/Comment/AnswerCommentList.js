@@ -13,16 +13,19 @@ const CommentListWrap = styled.div`
 
 `
 
-const AnswerCommentList = ({answerComments, deleteAnswerCommentHandler}) => {
+const AnswerCommentList = ({answerComments, updateAnswerCommentHandler, deleteAnswerCommentHandler}) => {
 
     console.log(answerComments)
 
     return (
         <>
         <CommentListWrap>
-            {answerComments && answerComments.map((comment, idx)=><CommentCreated comment={comment}
-                                                                                    deleteAnswerCommentHandler={deleteAnswerCommentHandler}
-                                                                                    key={idx} />)}
+            {answerComments && answerComments.map((comment)=>
+            <CommentCreated comment={comment}
+                            commentType={'aComment'}
+                            updateAnswerCommentHandler={updateAnswerCommentHandler}
+                            deleteAnswerCommentHandler={deleteAnswerCommentHandler}
+                            key={comment.id} />)}
         </CommentListWrap>
         </>
 

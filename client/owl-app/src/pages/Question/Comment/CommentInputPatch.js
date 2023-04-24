@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {useState} from "react"
+import {useState,useEffect} from "react"
 
 const CommentInputWrap = styled.div`
     padding: 10px;
@@ -30,34 +30,35 @@ const CreatButton = styled.button`
     background-color: #BF8B67;
 `
 
-const CommentInput = ({addCommentHandler})=>{
-    const [newCommentContent, setNewCommentContent] = useState('');
+const CommentInputPatch = ({ updatedContent, setUpdatedContent, editClickHandler, setIsEditable})=>{
+    const [newCommentContent, setNewCommentContent] = useState(updatedContent);
     const [invalidComment, setInvalidComment] = useState(false);
-    const[cId, setcId] = useState(Math.floor(Math.random()*1000));
+
+
+    useEffect (()=>{
+        console.log("Comment 내용", newCommentContent)
+    },[newCommentContent])
 
     const onTextChange = (e) => {
         setNewCommentContent(e.target.value);
+        setUpdatedContent(e.target.value);
       };
 
-    const onClickCommentSubmit = (e)=>{
+
+    const onClickCommentSubmit = (e) => {
         e.stopPropagation();
         // console.log("comment content: ", newCommentContent);
         if (!newCommentContent) {console.log("no content!"); setInvalidComment(true); return;};
-        let newComment = {
-            "id" : cId,
-            "member" : {
-              "displayName": "zeeeeeeee",
-              "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
-            },
-            "content" : newCommentContent,
-            "updateDate" : "2023-04-19"
-        }
+        // let newComment = {
+        //     "content" : newCommentContent,
+        // }
 
-        addCommentHandler(newComment);
+        setUpdatedContent(newCommentContent);
+        editClickHandler();
         setInvalidComment(false);
-        setNewCommentContent('');
-        setcId(Math.floor(Math.random()*1000));
+        setIsEditable(false);
     }
+
 
     return (
         <>
@@ -65,12 +66,12 @@ const CommentInput = ({addCommentHandler})=>{
             {invalidComment ? <div>내용이 없습니다</div>: null}
             <CommentInputCompo type="text" placeholder="Comment를 달아주세요"
             onChange={onTextChange}
-            value={newCommentContent}
+            value={updatedContent}
             />
-            <CreatButton onClick={onClickCommentSubmit}>작성하기</CreatButton>
+            <CreatButton onClick={onClickCommentSubmit}>수정하기</CreatButton>
         </CommentInputWrap>
         </>
     )
 }
 
-export default CommentInput
+export default CommentInputPatch;

@@ -30,34 +30,27 @@ const CreatButton = styled.button`
     background-color: #BF8B67;
 `
 
-const AnswerCommentInput = ({addAnswerCommentHandler})=>{
+const AnswerCommentInputPatch = ({updatedContent, setUpdatedContent, editClickHandler, setIsEditable})=>{
 
-    const [answerCommentContent, setAnswerCommentContent] =useState('');
+    const [answerCommentContent, setAnswerCommentContent] = useState(updatedContent);
     const [invalidComment, setInvalidComment] = useState(false);
-    const[cId, setcId] = useState(Math.floor(Math.random()*1000));
+
 
     const onTextChange = (e) => {
         setAnswerCommentContent(e.target.value);
+        setUpdatedContent(e.target.value);
       };
 
     const onClickCommentSubmit = (e) => {
         e.stopPropagation();
-        console.log("answer content: ", answerCommentContent);
+        console.log("this is onclickCommentSubmit!");
+        // console.log("answer content: ", answerCommentContent);
         if (!answerCommentContent) {console.log("no content!"); setInvalidComment(true); return;}
-        let newComment = {
-            "id" : cId,
-            "member" : {
-              "displayName": "zeeeeeeee",
-              "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
-            },
-            "content" : answerCommentContent,
-            "updateDate" : "2023-04-19"
-        }
 
-        addAnswerCommentHandler(newComment);
-        setAnswerCommentContent('');
+        setUpdatedContent(answerCommentContent);
+        editClickHandler();
         setInvalidComment(false);
-        setcId(Math.floor(Math.random()*1000));
+        setIsEditable(false);
     }
 
     return (
@@ -67,12 +60,12 @@ const AnswerCommentInput = ({addAnswerCommentHandler})=>{
             <CommentInputCompo type="text"
                                 placeholder="Comment를 달아주세요"
                                 value={answerCommentContent}
-            onChange={onTextChange}
+                                onChange={onTextChange}
             />
-            <CreatButton onClick={onClickCommentSubmit}>작성하기</CreatButton>
+            <CreatButton onClick={onClickCommentSubmit}>수정하기</CreatButton>
         </CommentInputWrap>
         </>
     )
 }
 
-export default AnswerCommentInput;
+export default AnswerCommentInputPatch;

@@ -79,6 +79,36 @@ const AnswerDetail = ({ q_id, answer, answers, deleteAnswerHandler }) => {
         deleteAnswerHandler(answer.id);
     }
 
+    const updateAnswerCommentHandler = (comment_id, updatedComment) => {
+        console.log('update answer comment being handled!');
+        const newComments = answerComments.map((el) => {
+            if (el.id === comment_id) el.content = updatedComment;
+            return el;
+        })
+
+        setAnswerComments(newComments);
+        console.log("newcomments:", newComments);
+
+        const newAnswers = answers.map(el => {
+            if (el.id === answer.id){
+                el.answerReplies = el.answerReplies.map(reply => {
+                    if (reply.id === comment_id) reply.content = updatedComment;
+                    return reply;
+                })
+            }
+            return el;
+        })
+        console.log("newanswers:", newAnswers);
+
+        axios.patch(url_patch, {"answers": newAnswers})
+            .then((res) => {
+                console.log("update answercomment success!", res);
+            })
+            .catch((err) => {
+                console.log("update answercomment fail!", err);
+            });
+    }
+
     const deleteAnswerCommentHandler = (comment_id) => {
         console.log("the deleting actually happens here, comment id:", comment_id);
         const filteredAnswerComments = answerComments.filter(el => el.id !== comment_id);
@@ -109,7 +139,9 @@ const AnswerDetail = ({ q_id, answer, answers, deleteAnswerHandler }) => {
                     <ReviseButton onClick={deleteClickHandler}>삭제</ReviseButton>
                 </AnsweruserBlock>
                 <AnswerCommentList answerComments={answerComments}
-                                    deleteAnswerCommentHandler={deleteAnswerCommentHandler}></AnswerCommentList>
+                                    deleteAnswerCommentHandler={deleteAnswerCommentHandler}
+                                    updateAnswerCommentHandler={updateAnswerCommentHandler}
+                ></AnswerCommentList>
             </AnswerBlock>
             <AddAnswerComment addAnswerCommentHandler={addAnswerCommentHandler}
                               answerCommentsNum={answerCommentsNum}

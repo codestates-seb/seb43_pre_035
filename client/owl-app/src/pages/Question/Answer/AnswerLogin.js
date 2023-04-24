@@ -25,8 +25,7 @@ const EditorInput =styled.input`
 const AnswerLogin = ({addAnswerHandler, answersNum}) => {
     const [newAnswerContent, setNewAnswerContent] = useState('');
     const [invalidAnswer, setInvalidAnswer] = useState(false);
-    const [aNum, setANum] = useState(answersNum);
-    // let id = useId();
+    const[aId, setaId] = useState(Math.floor(Math.random()*1000));
 
     const onAnswerTextChange = (e) => {
         setNewAnswerContent(e.target.value);
@@ -34,10 +33,10 @@ const AnswerLogin = ({addAnswerHandler, answersNum}) => {
 
     const onClickSubmit = ()=> {
       if (!newAnswerContent){console.log("invalid answer!"); setInvalidAnswer(true); return;}
-      console.log("answersNum: ", answersNum);
+      // console.log("answersNum: ", answersNum);
         let newAnswer =
             {
-              "id": aNum + 1,
+              "id": aId,
               "createdDate": "2022-05-16T02:09:52Z",
               "updateDate": "2022-05-16T02:09:52Z",
               "url": "https://github.com/codestates-seb/agora-states-fe/discussions/45#discussioncomment-2756236",
@@ -53,9 +52,7 @@ const AnswerLogin = ({addAnswerHandler, answersNum}) => {
         addAnswerHandler(newAnswer);
         setNewAnswerContent('');
         setInvalidAnswer(false);
-        setANum(aNum + 1);
-      //  answersNum++;
-      // setAnswersNum(answersNum + 1);
+        setaId(Math.floor(Math.random()*1000));
 
 
         console.log(newAnswerContent)
