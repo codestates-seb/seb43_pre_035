@@ -27,9 +27,9 @@ const AddAnswerComment = ({addAnswerCommentHandler, isLoggedIn, openModal}) => {
 
     return (
         <>
-            <AddCommentWrap onClick={loginCheckAnswer}>
-            {isLoggedIn && comment ? 
-            <AnswerCommentInput addAnswerCommentHandler={addAnswerCommentHandler}/> : 
+        <AddCommentWrap onClick={loginCheckAnswer}>
+            {isLoggedIn && comment ?
+            <AnswerCommentInput addAnswerCommentHandler={addAnswerCommentHandler}/> :
             <div> Add a Comment </div>
             }
             </AddCommentWrap>

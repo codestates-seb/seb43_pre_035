@@ -52,7 +52,7 @@ const AskForm = ({threads}) => {
     const navigate = useNavigate();
     const url_avatars = "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com";
     const url_threads = `${process.env.REACT_APP_URL_JSON_QUESTIONS}`;
-    const url_threads_test = "https://2026-124-61-224-204.ngrok-free.app/questions"
+    const url_threads_test = `${process.env.REACT_APP_URL_NGROKTEST}/questions`
 
     //default avatar images to shuffle
     const AvatDefaultUrls = [];
@@ -64,9 +64,8 @@ const AskForm = ({threads}) => {
 
     // useEffect(() => {
     //     console.log("title: ", title, "content: ", content);
-    const accessToken = `eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzcHJpbmdAZ21haWwuY29tIiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTY4MjI2MDc0NSwiZXhwIjoxNjgyMjY0MzQ1fQ.MMD5m5_D-PuKnzglKDB2v1FM0_PUqSg3a9CIayVqSkA`;
     const headers = { headers :
-        {Authorization : `Bearer ${accessToken}`}
+        {Authorization : `Bearer ${process.env.REACT_APP_NGROK_TOKEN}`}
     };
 
     const submitThreadHandler = (e) => {
@@ -81,7 +80,7 @@ const AskForm = ({threads}) => {
             "member": {"displayName" : 'jicoder', "avatarLink" : AvatDefaultUrls[imgIdx]},
             "answer": [],
             "content":
-                `<p>${content}</p>`,
+                `${content}`,
             "viewCount" : 0,
         };
 
@@ -93,9 +92,11 @@ const AskForm = ({threads}) => {
             imgIdx++;
           }
 
-        axios.post(url_threads, newThread, headers)
+        axios.post(url_threads_test, newThread, headers)
         .then((res) => {console.log("axios ask post request success!", res)
-          console.log('url: ', url_threads_test);
+          // console.log('url: ', url_threads_test);
+          navigate('/');
+          navigate(0);
         })
         .catch((err) => {console.log("axios post request fail!", err)})
         // .then(() => {
@@ -103,8 +104,6 @@ const AskForm = ({threads}) => {
         //     navigate(0);
         // })
 
-        navigate('/');
-        navigate(0); //refresh page
     }
 
     return (

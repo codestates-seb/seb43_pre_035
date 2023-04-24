@@ -3,7 +3,7 @@ import { TempContainer } from './Threads';
 
 const Tags = ({dimensions}) => {
     // console.log(dimensions.width);
-    const tempWidth = dimensions.width + 115;
+    const tempWidth = dimensions.width;
 
     return (
         <TempContainer width={tempWidth}>

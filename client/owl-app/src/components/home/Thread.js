@@ -103,7 +103,7 @@ const Thread = ({thread}) => {
     return (
         <ThreadContainer>
             <ThreadContent>
-                <Link to={`/questions/${thread.id}`}>
+                <Link to={`/questions/${thread.questionId}`}>
                     <ThreadTitle>{thread.title}</ThreadTitle>
                 </Link>
                 <ThreadContribution>
