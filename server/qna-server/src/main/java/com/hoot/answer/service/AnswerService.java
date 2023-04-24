@@ -64,15 +64,14 @@ public class AnswerService {
 		memberService.verifyLogInMemberMatchesMember(user.getMemberId(), findQuestion.getMember().getMemberId());
 
 		// 채택이 완료 되지 않은 질문만
-		List<Answer> allAnswer = answerRepository.findByQuestion(findQuestion);
-		long adoptCount = allAnswer.stream().filter(answer -> answer.getSelection().equals(true)).count();
-
 		// 채택을 진행한다
-		if (adoptCount == 0){
+		if (findQuestion.getQuestionStatus() != Question.QuestionStatus.QUESTION_ANSWERED) {
 			Answer findAnswer = findVerifiedAnswer(answerId);
 			findAnswer.setSelection(true);
+			findQuestion.setQuestionStatus(Question.QuestionStatus.QUESTION_ANSWERED);
 			answerRepository.save(findAnswer);
-		} else {
+		}
+		else {
 			throw new BusinessLogicException(ExceptionCode.CANNOT_ADOPT);
 		}
 	}
