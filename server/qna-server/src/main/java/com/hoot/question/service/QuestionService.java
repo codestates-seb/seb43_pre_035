@@ -6,6 +6,7 @@ import com.hoot.member.*;
 import com.hoot.question.Question;
 import com.hoot.question.repository.QuestionRepository;
 import com.hoot.security.UserDetailsImpl;
+import com.nimbusds.oauth2.sdk.util.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -58,20 +59,24 @@ public class QuestionService {
 			throw  new BusinessLogicException(ExceptionCode.QUESTION_NOT_FOUND);
 		}
 	}
+
 	//페이지 검색어 조회
-	public Page<Question> searchQuestions(String title, String content, Pageable pageable) {
-		Page<Question> questionPage;
-		if (title != null && content != null) {
-			questionPage = questionRepository.findByTitleContainingAndContentContaining(title, content, pageable);
-		} else if (title != null) {
-			questionPage = questionRepository.findByTitleContaining(title, pageable);
-		} else if (content != null) {
-			questionPage = questionRepository.findByContentContaining(content, pageable);
-		} else {
-			questionPage = questionRepository.findAll(pageable);
+	public Page<Question> searchQuestions(String titleKeyword, String contentKeyword, Pageable pageable) {
+		if (StringUtils.isBlank(titleKeyword) && StringUtils.isBlank(contentKeyword)) {
+			return questionRepository.findAll(pageable);
+		}else
+		if (StringUtils.isNotBlank(titleKeyword) && StringUtils.isNotBlank(contentKeyword)) {
+			return questionRepository.findByTitleContainingIgnoreCaseAndContentContainingIgnoreCase(titleKeyword, contentKeyword, pageable);
 		}
-			return questionPage;
+		else if (StringUtils.isNotBlank(titleKeyword)) {
+			return questionRepository.findByTitleContainingIgnoreCase(titleKeyword, pageable);
 		}
+		else if (StringUtils.isNotBlank(contentKeyword)) {
+			return questionRepository.findByContentContainingIgnoreCase(contentKeyword, pageable);
+		}
+		return Page.empty();
+	}
+
 
 	public Page<Question> getQuestions(Pageable pageable){
 		Page<Question> questionPage = questionRepository.findByQuestionStatusNot(Question.QuestionStatus.QUESTION_DELETE, pageable);
@@ -96,7 +101,4 @@ public class QuestionService {
 				                                                     new BusinessLogicException(ExceptionCode.QUESTION_NOT_FOUND));
 		return findQuestion;
 	}
-
-
-
 }
