@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { UpdateButton,ClickButton } from '../../styles/UIStyles'
 import ReactHTmlParser from 'html-react-parser'
 
 
@@ -23,16 +24,29 @@ const CreateUser = styled.div`
     font-size: 15px;
 `
 
-const QuestionContent = ({question, openModal}) =>{
+const ButtonWrap = styled.div`
+    padding: 20px;
+    display: flex;
+    justify-content: flex-end;
+    border-bottom: 2px solid #FFFFFF;
+`
+
+const QuestionContent = ({question, isLoggedIn}) =>{
     // const paserContent = question.content
     // console.log(question.member)
     return (
         <>
         <ContentWrap>
             {/* {ReactHTmlParser(<ContentDetail>{paserContent}</ContentDetail>) } */}
-        <ContentDetail>{question.content}</ContentDetail>
-        <CreateUser>{question.member.displayName}</CreateUser>
+            <ContentDetail>{question.content}</ContentDetail>
+            <CreateUser>{question.member.displayName}</CreateUser>
         </ContentWrap>
+        {isLoggedIn && 
+        <ButtonWrap>
+            <UpdateButton>수정</UpdateButton>
+            <UpdateButton>삭제</UpdateButton>
+        </ButtonWrap> }
+        
         </>
     )
 }

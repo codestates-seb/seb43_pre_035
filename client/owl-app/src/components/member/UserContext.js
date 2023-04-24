@@ -21,7 +21,16 @@ const userReducer = (state, action) => {
 };
 
 export const UserProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(userReducer, { user: null });
+  const [state, dispatch] = useReducer(userReducer, { user:  {
+        "memberId": 1,
+        "email": "hgd@gmail.com",
+        "name": "홍길동",
+        "avatarLink": "link",
+        "displayName": "gildonglove123",
+        "roles": [
+                       "ROLE_USER"
+                     ]
+    } });
 
   return (
     <UserStateContext.Provider value={state}>

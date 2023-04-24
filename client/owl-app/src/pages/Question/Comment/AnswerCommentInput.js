@@ -42,17 +42,23 @@ const AnswerCommentInput = ({addAnswerCommentHandler})=>{
 
     const onClickCommentSubmit = (e) => {
         e.stopPropagation();
-        console.log("answer content: ", answerCommentContent);
+        const date = new Date();
+        const userName = "null"
+        const userAvatarLink = "null"
+
+        // console.log("answer content: ", answerCommentContent);
         if (!answerCommentContent) {console.log("no content!"); setInvalidComment(true); return;}
         let newComment = {
             "id" : cId,
             "member" : {
-              "displayName": "zeeeeeeee",
-              "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
+              "displayName": userName, 
+              "avatarLink" : userAvatarLink
             },
             "content" : answerCommentContent,
-            "updateDate" : "2023-04-19"
+            "createdDate": date.toISOString(),
+            "updateDate": date.toISOString(),
         }
+
 
         addAnswerCommentHandler(newComment);
         setAnswerCommentContent('');
