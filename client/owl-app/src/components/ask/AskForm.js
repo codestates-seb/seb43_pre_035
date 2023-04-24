@@ -92,7 +92,7 @@ const AskForm = ({threads}) => {
             imgIdx++;
           }
 
-        axios.post(url_threads, newThread, headers)
+        axios.post(url_threads_test, newThread, headers)
         .then((res) => {console.log("axios ask post request success!", res)
           // console.log('url: ', url_threads_test);
           navigate('/');
@@ -104,8 +104,6 @@ const AskForm = ({threads}) => {
         //     navigate(0);
         // })
 
-
-        // navigate(0); //refresh page ---- post
     }
 
     return (

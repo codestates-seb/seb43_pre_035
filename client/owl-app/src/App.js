@@ -11,11 +11,12 @@ import SignUp from './pages/SignUp';
 import QuestionDetail from './pages/Question/QuestionDetail';
 import Header from './components/header/Header';
 import CreateThread from './pages/CreateThread';
+import Mypage from './components/member/MyPage';
 
 //import data
 import useFetch from './utils/useFetch';
 import axios from 'axios';
-
+import ModalContainer from './components/member/ModalContainer'; // 모달 불러오기
 
 //function to convert date
 //ISO-8601 -> if today, how long before current time. or yesterday
@@ -41,7 +42,22 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [threads, isPending, error] = useFetch(url_threads_test);
   const [renderThreads, setRenderThreads] = useState(null);
+//모달 열고 닫는 함수 3개
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
+  const openModal = () => {
+    setModalIsOpen(true);
+    console.log("open Modal")
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+    console.log("close Modal")
+  };
+
+  useEffect(() => {
+    console.log("login state: ", isLoggedIn);
+  },[isLoggedIn]);
   //test with ngrok
   // const [thread1, isPending1, error1] = useFetch(url_threads_test_search1);
   // const [thread2, isPending2, error2] = useFetch(url_threads_test_search2);
@@ -55,6 +71,7 @@ function App() {
   // const sortedThreads = useMemo(() => threads && sortThreads(threads), [threads, sortThreads]);
 
   const toggleLogin = () => {
+    console.log("toggled login!");
     setIsLoggedIn(!isLoggedIn);
   }
 
@@ -94,28 +111,50 @@ function App() {
       <Fragment>
         <GlobalStyle />
         <Router>
+        <ModalContainer isOpen={modalIsOpen}
+                        onRequestClose={closeModal}
+                        setIsLoggedIn={setIsLoggedIn}
+                        toggleLogin={toggleLogin} />
             <Header threads={renderThreads}
                     sortThreads={sortThreads}
                     setSidebarStatus={setSidebarStatus}
                     isLoggedIn={isLoggedIn}
                     toggleLogin={toggleLogin}
+                    openModal={openModal}
             ></Header>
             <Routes>
                   <Route path ="/" element = {<Home threads={renderThreads}
                                                     isPending={isPending}
                                                     sidebarStatus={sidebarStatus}
                                                     setSidebarStatus={setSidebarStatus}
+                                                    toggleLogin={toggleLogin}
+                                                    isLoggedIn={isLoggedIn}/>} />
+                  <Route path ="/login" element = {<Login
+                                                    isOpen={modalIsOpen}
+                                                    onRequestClose={closeModal}
+                                                    setIsLoggedIn={setIsLoggedIn}
+                                                    toggleLogin={toggleLogin}
+                    />} />
+                  <Route path ="/signup" element = {<SignUp
+                                                    isOpen={modalIsOpen}
+                                                    onRequestClose={closeModal}
+                                                    setIsLoggedIn={setIsLoggedIn}
                                                     toggleLogin={toggleLogin}/>} />
-                  <Route path ="/login" element = {<Login />} />
-                  <Route path ="/signup" element = {<SignUp />} />
-                  <Route path ="/mypage" />
+                  <Route path ="/mypage" element = {<Mypage isLoggedIn={isLoggedIn}/>} />
                   <Route path ="/ask" element = {<CreateThread threads={renderThreads} />} />
-                  <Route path ="/questions/:questionId" element = {<QuestionDetail/> } />
+                  <Route path ="/questions/:questionId" element = {<QuestionDetail  isPending={isPending}
+                                                                            sidebarStatus={sidebarStatus}
+                                                                            isLoggedIn={isLoggedIn}
+                                                                            setIsLoggedIn={setIsLoggedIn}
+                                                                            setSidebarStatus={setSidebarStatus}
+                                                                            toggleLogin={toggleLogin}
+                                                                            openModal={openModal}/> } />
             </Routes>
         </Router>
       </Fragment>
       </UserProvider>
   );
 }
+//onClick={openModal}
 //UserProvider - 전역에서 로그인 정보 사용 가능
 export default App;

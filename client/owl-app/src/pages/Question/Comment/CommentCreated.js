@@ -32,7 +32,7 @@ const CommentDate = styled.div`
     width: 20vw;
 `
 
-const CommentCreated = ({comment, commentType, deleteAnswerCommentHandler, updateQuestionCommentHandler, updateAnswerCommentHandler})=>{
+const CommentCreated = ({comment, commentType, deleteAnswerCommentHandler, updateQuestionCommentHandler, updateAnswerCommentHandler, isLoggedIn, openModal})=>{
 
     const  [isEditable,setIsEditable] = useState(false);
     const  [updatedContent, setUpdatedContent] = useState(comment.content);
@@ -41,11 +41,13 @@ const CommentCreated = ({comment, commentType, deleteAnswerCommentHandler, updat
     const deleteClickHandler = (e) => {
         e.stopPropagation();
         console.log("comment delete clicked!");
+        if(!isLoggedIn) {openModal(); return;};
         deleteAnswerCommentHandler(comment.id);
     }
 
     const editClickHandler = () => {
         console.log("comment update clicked!");
+        if(!isLoggedIn) {openModal(); return};
         setIsEditable(true);
         if (commentType==='qComment') updateQuestionCommentHandler(comment.id, updatedContent);
         if (commentType==='aComment') updateAnswerCommentHandler(comment.id, updatedContent);

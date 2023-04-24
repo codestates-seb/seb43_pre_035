@@ -5,6 +5,7 @@ import { useState,useEffect } from "react";
 import{ useParams } from "react-router-dom";
 import axios from 'axios'
 import useFetch from "../../utils/useFetch";
+import SideNav from "../../components/SideNav";
 
 
 
@@ -13,12 +14,12 @@ const QuestionWrap = styled.div`
     width: 100%;
     color: white;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 `
 
-const QuestionDetail = () => {
+const QuestionDetail = ({toggleLogin, sidebarStatus, setSidebarStatus, isLoggedIn, openModal}) => {
 
     // const [question,setQuestion] = useState(initialData.questions[0])
     const { questionId } = useParams();
@@ -51,10 +52,15 @@ const QuestionDetail = () => {
     return (
         <>
         <QuestionWrap>
+        <SideNav    toggleLogin={toggleLogin}
+                    sidebarStatus={sidebarStatus}                                      
+                    setSidebarStatus={setSidebarStatus}     
+                    isLoggedIn={isLoggedIn}                                                  
+                ></SideNav>
             {isPending && <div>로딩중..</div>}
                 {error && <div>error</div>}
                 {question && (
-                    <SelectQuestion question={question} />
+                    <SelectQuestion question={question} isLoggedIn={isLoggedIn} openModal={openModal}/>
                 )
                 }
             {/* <SelectQuestion questions={questions}/> */}

@@ -1520,12 +1520,12 @@
       "id": "cFIsYcj",
       "questionReplies": [
         {
-          "id": 486,
+          "id": 688,
           "member": {
             "displayName": "zeeeeeeee",
             "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
           },
-          "content": "에러에러1_1",
+          "content": "sadfsf",
           "updateDate": "2023-04-19"
         }
       ],
@@ -1546,7 +1546,7 @@
                 "displayName": "zeeeeeeee",
                 "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
               },
-              "content": "comment1_1",
+              "content": "11111",
               "updateDate": "2023-04-19"
             },
             {
@@ -1576,7 +1576,7 @@
                 "displayName": "zeeeeeeee",
                 "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
               },
-              "content": "comment1_1",
+              "content": "11111",
               "updateDate": "2023-04-19"
             },
             {
@@ -1602,97 +1602,6 @@
           "answerReplies": []
         }
       ]
-    },
-    {
-      "createdDate": "2023-04-24T04:05:45.146Z",
-      "updateDate": "2023-04-24T04:05:45.146Z",
-      "title": "AWS 시험 ",
-      "member": {
-        "displayName": "jicoder",
-        "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl03.png"
-      },
-      "answer": [],
-      "content": "<p>AWS test </p>",
-      "viewCount": 0,
-      "id": "17YSNmE",
-      "answers": [
-        {
-          "id": 381,
-          "createdDate": "2022-05-16T02:09:52Z",
-          "updateDate": "2022-05-16T02:09:52Z",
-          "url": "https://github.com/codestates-seb/agora-states-fe/discussions/45#discussioncomment-2756236",
-          "member": {
-            "displayName": "zzzzzzoooooooooo"
-          },
-          "content": "답변1",
-          "answerReplies": [
-            {
-              "id": 829,
-              "member": {
-                "displayName": "zeeeeeeee",
-                "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
-              },
-              "content": "답변댓글 수정본",
-              "updateDate": "2023-04-19"
-            },
-            {
-              "id": 748,
-              "member": {
-                "displayName": "zeeeeeeee",
-                "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
-              },
-              "content": "답변댓글2 수정본2",
-              "updateDate": "2023-04-19"
-            }
-          ]
-        },
-        {
-          "id": 999,
-          "createdDate": "2022-05-16T02:09:52Z",
-          "updateDate": "2022-05-16T02:09:52Z",
-          "url": "https://github.com/codestates-seb/agora-states-fe/discussions/45#discussioncomment-2756236",
-          "member": {
-            "displayName": "zzzzzzoooooooooo"
-          },
-          "content": "답변2",
-          "answerReplies": []
-        },
-        {
-          "id": 500,
-          "createdDate": "2022-05-16T02:09:52Z",
-          "updateDate": "2022-05-16T02:09:52Z",
-          "url": "https://github.com/codestates-seb/agora-states-fe/discussions/45#discussioncomment-2756236",
-          "member": {
-            "displayName": "zzzzzzoooooooooo"
-          },
-          "content": "답변3",
-          "answerReplies": []
-        }
-      ],
-      "questionReplies": [
-        {
-          "id": 696,
-          "member": {
-            "displayName": "zeeeeeeee",
-            "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
-          },
-          "content": "댓글2",
-          "updateDate": "2023-04-19"
-        }
-      ]
-    },
-    {
-      "createdDate": "2023-04-24T08:28:56.975Z",
-      "updateDate": "2023-04-24T08:28:56.975Z",
-      "title": "laala",
-      "member": {
-        "displayName": "jicoder",
-        "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl05.png"
-      },
-      "answer": [],
-      "content": "lalalalalal",
-      "viewCount": 0,
-      "id": "E6fSpGU"
     }
   ]
 }

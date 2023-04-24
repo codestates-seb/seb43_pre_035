@@ -14,9 +14,11 @@ const AnswerWrap = styled.div`
     flex-direction: column;
 `
 
-const Answerlist = ({ question, answersNum}) => {
+const Answerlist = ({ question, isLoggedIn, openModal}) => {
 
     const [answers, setAnswers] = useState(question.answers);
+
+
     const url_patch = `http://localhost:3001/questions/${question.id}`;
 
     const addAnswerHandler = (newAnswer) => {
@@ -30,6 +32,30 @@ const Answerlist = ({ question, answersNum}) => {
         axios.patch(url_patch, { ...question, "answers": newAnswers })
             .then(res => { console.log("answer patch success!", res) })
             .catch(err => { console.log("answer patch fail!", err) });
+
+    }
+
+
+    // const loginCheck = () => {
+    //     if (!isLoggedIn) {openModal()};
+    // }
+
+    const updateAnswerHandler = (answer_id, updateAnswer) => {
+        const editAnswer = answers.map((el) =>{
+            if (el.id === answer_id) el.content = updateAnswer;
+            return el
+        })
+        setAnswers(editAnswer)
+        console.log("제발:" ,editAnswer)
+
+        axios
+            .patch(url_patch, { ...question, "answers" : editAnswer})
+            .then((res) => {
+                console.log("update EditAnswer success!", res)
+            })
+            .catch((err)=>{
+                console.log("update EditAnswer fail!", err)
+            })
 
     }
 
@@ -51,15 +77,19 @@ const Answerlist = ({ question, answersNum}) => {
         <>
             <AnswerWrap>
                 {answers ? answers.map((answer) => <AnswerDetail
+                                                    isLoggedIn={isLoggedIn}
                                                     q_id={question.id}
                                                     answer={answer}
                                                     answers={answers}
+                                                    updateAnswerHandler={updateAnswerHandler}
                                                     deleteAnswerHandler={deleteAnswerHandler}
+                                                    openModal={openModal}
                                                     key={answer.id}></AnswerDetail>) : null}
             </AnswerWrap>
             <AnswerCreate
+                isLoggedIn={isLoggedIn}
+                openModal={openModal}
                 addAnswerHandler={addAnswerHandler}
-                answersNum={answersNum}
             ></AnswerCreate>
         </>
     )

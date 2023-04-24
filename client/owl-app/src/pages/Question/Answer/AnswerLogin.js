@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import {CreateWrap,CreateBlock, CreateHeader,CreateButtonLogin} from './AnswerStyle'
-import { useState, useId } from "react"
+import { useState } from "react"
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
@@ -22,7 +22,7 @@ const EditorInput =styled.input`
 
 
 
-const AnswerLogin = ({addAnswerHandler, answersNum}) => {
+const AnswerLogin = ({addAnswerHandler}) => {
     const [newAnswerContent, setNewAnswerContent] = useState('');
     const [invalidAnswer, setInvalidAnswer] = useState(false);
     const[aId, setaId] = useState(Math.floor(Math.random()*1000));
@@ -33,7 +33,6 @@ const AnswerLogin = ({addAnswerHandler, answersNum}) => {
 
     const onClickSubmit = ()=> {
       if (!newAnswerContent){console.log("invalid answer!"); setInvalidAnswer(true); return;}
-      // console.log("answersNum: ", answersNum);
         let newAnswer =
             {
               "id": aId,
