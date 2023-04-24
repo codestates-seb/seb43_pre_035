@@ -19,11 +19,9 @@ const SelectedWrap = styled.div`
 
 
 
-const SelectQuestion = ({question,isLoggedIn}) => {
+const SelectQuestion = ({question,isLoggedIn,openModal}) => {
     const [getQuestion,setGetQuestion] = useState([question]);
-    // const [answersNum, setAnswersNum] = useState(question.answers.length);
-    const answersNum = question.answers?.length;
-
+    // const answersNum = question.answers?.length;
         // console.log([question])
 
     return (
@@ -31,10 +29,21 @@ const SelectQuestion = ({question,isLoggedIn}) => {
             {getQuestion.map((question) =>(
         <SelectedWrap key={question.id}>
                 <Title question={question}></Title>
-            <QuestionContent question={question}></QuestionContent>
-                <QuestionCommentList isLoggedIn={isLoggedIn} question={question}></QuestionCommentList>
-                <Answerlist question={question} isLoggedIn={isLoggedIn}answersNum={answersNum}>
-                <AnswerCommentList  isLoggedIn={isLoggedIn}question={question}></AnswerCommentList>
+            <QuestionContent openModal={openModal}
+            isLoggedIn={isLoggedIn}
+            question={question}></QuestionContent>
+                <QuestionCommentList 
+                isLoggedIn={isLoggedIn} 
+                question={question}
+                openModal={openModal}></QuestionCommentList>
+                <Answerlist 
+                openModal={openModal}
+                question={question} 
+                isLoggedIn={isLoggedIn}>
+                <AnswerCommentList  
+                openModal={openModal}
+                isLoggedIn={isLoggedIn}
+                question={question}></AnswerCommentList>
                 </Answerlist>
         </SelectedWrap>
             )

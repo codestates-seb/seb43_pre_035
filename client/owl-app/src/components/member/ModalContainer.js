@@ -37,7 +37,7 @@ function ModalContainer({ isOpen, onRequestClose, setIsLoggedIn, toggleLogin }) 
         <Backdrop onClick={onRequestClose}>
           <ModalWrapper onClick={(e) => e.stopPropagation()}>
             <SocialLoginButtons onSubmit={onRequestClose}/>
-            <EmailPasswordForm onSubmit={onRequestClose} setIsLoggedIn={setIsLoggedIn} toggleLogin={toggleLogin}/>
+            <EmailPasswordForm isOpen={isOpen} onSubmit={onRequestClose} setIsLoggedIn={setIsLoggedIn} toggleLogin={toggleLogin}/>
           </ModalWrapper>
         </Backdrop>
       )}

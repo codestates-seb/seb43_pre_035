@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import EmailPasswordForm from '../components/member/EmailPasswordForm';
 import SocialLoginButtons from '../components/member/SocialLoginButtons';
@@ -17,12 +16,16 @@ const Logo = styled.img`
   margin-bottom: 20px;
 `;
 
-function Login() {
+function Login({isOpen, onRequestClose, setIsLoggedIn, toggleLogin}) {
+
   return (
     <Container>
       <Logo src="logo.svg" />
       <SocialLoginButtons/>
-      <EmailPasswordForm />
+      <EmailPasswordForm  isOpen={isOpen}
+                          setIsLoggedIn={setIsLoggedIn} 
+                          onSubmit={onRequestClose}
+                          toggleLogin={toggleLogin} />
     </Container>
   );
 }

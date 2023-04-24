@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import HandleLogin from './HandleLogin';
 import { useUserDispatch } from './UserContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Form = styled.form`
  display: flex;
@@ -90,10 +90,12 @@ const SignUpContainer = styled.div`
  width: 300px;
 `;
 
-function EmailPasswordForm({ onSubmit, setIsLoggedIn, toggleLogin}) {
+function EmailPasswordForm({ isOpen, onSubmit, setIsLoggedIn, toggleLogin}) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useUserDispatch(); //전역 상태 받아오기
+
+    const navigate = useNavigate(); 
 
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
@@ -121,9 +123,9 @@ function EmailPasswordForm({ onSubmit, setIsLoggedIn, toggleLogin}) {
     };
 
     const handleLogin = () =>{
-        onSubmit();
-        setIsLoggedIn(true)
-        toggleLogin();
+        if (isOpen) onSubmit(); //closing the modal window
+        setIsLoggedIn(true);
+        if (!isOpen) navigate(-1); 
     }
 
     return (

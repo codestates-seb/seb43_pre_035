@@ -19,7 +19,7 @@ const QuestionWrap = styled.div`
     align-items: flex-start;
 `
 
-const QuestionDetail = ({toggleLogin, sidebarStatus, setSidebarStatus, isLoggedIn}) => {
+const QuestionDetail = ({toggleLogin, sidebarStatus, setSidebarStatus, isLoggedIn, openModal}) => {
 
     // const [question,setQuestion] = useState(initialData.questions[0])
     const { id } = useParams();
@@ -53,12 +53,13 @@ const QuestionDetail = ({toggleLogin, sidebarStatus, setSidebarStatus, isLoggedI
         <QuestionWrap>
         <SideNav    toggleLogin={toggleLogin}
                     sidebarStatus={sidebarStatus}                                      
-                    setSidebarStatus={setSidebarStatus}                                                       
+                    setSidebarStatus={setSidebarStatus}     
+                    isLoggedIn={isLoggedIn}                                                  
                 ></SideNav>
             {isPending && <div>로딩중..</div>}
                 {error && <div>error</div>}
                 {question && (
-                    <SelectQuestion question={question} isLoggedIn={isLoggedIn} />
+                    <SelectQuestion question={question} isLoggedIn={isLoggedIn} openModal={openModal}/>
                 )
                 }
             {/* <SelectQuestion questions={questions}/> */}

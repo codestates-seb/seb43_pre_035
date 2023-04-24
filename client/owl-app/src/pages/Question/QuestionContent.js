@@ -23,7 +23,7 @@ const CreateUser = styled.div`
     font-size: 15px;
 `
 
-const QuestionContent = ({question}) =>{
+const QuestionContent = ({question, openModal}) =>{
     // const paserContent = question.content
     // console.log(question.member)
     return (

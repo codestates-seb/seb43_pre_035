@@ -14,7 +14,7 @@ const AnswerWrap = styled.div`
     flex-direction: column;
 `
 
-const Answerlist = ({ question, answersNum,isLoggedIn}) => {
+const Answerlist = ({ question, isLoggedIn, openModal}) => {
 
     const [answers, setAnswers] = useState(question.answers);
 
@@ -34,6 +34,11 @@ const Answerlist = ({ question, answersNum,isLoggedIn}) => {
             .catch(err => { console.log("answer patch fail!", err) });
 
     }
+
+
+    // const loginCheck = () => {
+    //     if (!isLoggedIn) {openModal()};
+    // }
 
     const updateAnswerHandler = (answer_id, updateAnswer) => {
         const editAnswer = answers.map((el) =>{
@@ -78,12 +83,13 @@ const Answerlist = ({ question, answersNum,isLoggedIn}) => {
                                                     answers={answers}
                                                     updateAnswerHandler={updateAnswerHandler}
                                                     deleteAnswerHandler={deleteAnswerHandler}
+                                                    openModal={openModal}
                                                     key={answer.id}></AnswerDetail>) : null}
             </AnswerWrap>
             <AnswerCreate
                 isLoggedIn={isLoggedIn}
+                openModal={openModal}
                 addAnswerHandler={addAnswerHandler}
-                answersNum={answersNum}
             ></AnswerCreate>
         </>
     )

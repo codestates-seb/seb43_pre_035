@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 
 const SideNavContainer = styled.aside`
   ${'' /* width: 200px; */}
@@ -80,13 +80,18 @@ const LoginCheckBtn = styled.button`
 
 const SideNav = ({toggleLogin, sidebarStatus, clickHomeHandler, clickTagsHandler, clickUsersHandler, isLoggedIn}) => {
 
-  const [logState, setLogState] = useState(isLoggedIn ? "LOGIN" : "LOGOUT");
+  const [logState, setLogState] = useState(isLoggedIn ? "LOGOUT" : "LOGIN");
 
   const logHandler = () => {
     toggleLogin();
     if(logState === 'LOGIN') setLogState('LOGOUT');
     else setLogState('LOGIN');
   }
+
+  useEffect(()=> {
+    console.log('useEffect! sidenav text change');
+    setLogState(isLoggedIn ? "LOGOUT" : "LOGIN");
+  }, [isLoggedIn]);
 
   return (
     <SideNavContainer>

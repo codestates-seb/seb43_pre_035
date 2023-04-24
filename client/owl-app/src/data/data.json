@@ -1508,15 +1508,6 @@
       "id": "cFIsYcj",
       "questionReplies": [
         {
-          "id": 486,
-          "member": {
-            "displayName": "zeeeeeeee",
-            "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
-          },
-          "content": "에러에러1_1",
-          "updateDate": "2023-04-19"
-        },
-        {
           "id": 688,
           "member": {
             "displayName": "zeeeeeeee",
@@ -1543,7 +1534,7 @@
                 "displayName": "zeeeeeeee",
                 "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
               },
-              "content": "comment1_1",
+              "content": "11111",
               "updateDate": "2023-04-19"
             },
             {
@@ -1573,7 +1564,7 @@
                 "displayName": "zeeeeeeee",
                 "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
               },
-              "content": "comment1_1",
+              "content": "11111",
               "updateDate": "2023-04-19"
             },
             {

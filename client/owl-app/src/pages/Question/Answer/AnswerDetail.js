@@ -37,10 +37,10 @@ const ReviseButton = styled(UpdateButton) `
     background: var(--colors-darkred);
 `
 
-const AnswerDetail = ({ q_id, answer, answers, updateAnswerHandler, deleteAnswerHandler,isLoggedIn }) => {
+const AnswerDetail = ({ q_id, answer, answers, updateAnswerHandler, deleteAnswerHandler, isLoggedIn, openModal }) => {
 
     const [answerComments, setAnswerComments] = useState((answer.answerReplies ? answer.answerReplies : []));
-    const answerCommentsNum = answer.answerReplies ? answer.answerReplies.length : 0;
+    // const answerCommentsNum = answer.answerReplies ? answer.answerReplies.length : 0;
     const url_patch = `http://localhost:3001/questions/${q_id}`;
     console.log(answer.member.displayName)
 
@@ -127,39 +127,41 @@ const AnswerDetail = ({ q_id, answer, answers, updateAnswerHandler, deleteAnswer
             .catch(err => { console.log("delete answercomment fail!", err) })
 
     }
-    const [invalidEdit,setInvalidEdit] = useState(false)
-    const [updatedAnswer,setUpdatedAnswer] = useState(answer.content)
+    const [isEditState, setIsEditState] = useState(false);
+    const [updatedAnswer, setUpdatedAnswer] = useState(answer.content);
   
     const handleEditClick = ()=>{
-        setInvalidEdit(true);
+        setIsEditState(true);
         updateAnswerHandler(answer.id, updatedAnswer)
         console.log("돼라:", updatedAnswer )
+    }
+
+    const onTextChange = (e) => {
+        setUpdatedAnswer(e.target.value);
     }
 
     return (
         <>
             <AnswerBlock>
                 <AnsweruserBlock>
-        {invalidEdit? <AnswerPatch setInvalidEdit={setInvalidEdit}
-                                   setUpdatedAnswer={setUpdatedAnswer}
-                                   updatedAnswer={updatedAnswer} />  :
-                    <>
-                    <AnswerContent>{answer.content}</AnswerContent>
+        { isEditState ? <>
+        <input type="text" value={updatedAnswer} onChange={onTextChange} />
+                    <ReviseButton>답변 수정하기</ReviseButton> </>: 
+                    <AnswerContent>{answer.content}</AnswerContent>}
                     <CreateUserA>{answer.member.displayName}</CreateUserA>
                     <ReviseButton onClick={handleEditClick}>수정</ReviseButton>
                     <ReviseButton onClick={deleteClickHandler}>삭제</ReviseButton> 
-                    </>
-                    }
-                    
                 </AnsweruserBlock>
                 
                 <AnswerCommentList answerComments={answerComments}
                                     deleteAnswerCommentHandler={deleteAnswerCommentHandler}
                                     updateAnswerCommentHandler={updateAnswerCommentHandler}
+                                    openModal={openModal}
+                                    isLoggedIn={isLoggedIn}
                 ></AnswerCommentList>
             </AnswerBlock>
             <AddAnswerComment addAnswerCommentHandler={addAnswerCommentHandler}
-                              answerCommentsNum={answerCommentsNum}
+                              openModal={openModal}
                               isLoggedIn={isLoggedIn}
                               ></AddAnswerComment>
         </>

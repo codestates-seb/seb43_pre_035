@@ -51,8 +51,8 @@ function App() {
   };
   
   useEffect(() => {
-    if(isLoggedIn) closeModal();
-  },{isLoggedIn})
+    console.log("login state: ", isLoggedIn); 
+  },[isLoggedIn]);
   //test with ngrok
   // const [thread1, isPending1, error1] = useFetch(url_threads_test_search1);
   // const [thread2, isPending2, error2] = useFetch(url_threads_test_search2);
@@ -66,6 +66,7 @@ function App() {
   // const sortedThreads = useMemo(() => threads && sortThreads(threads), [threads, sortThreads]);
 
   const toggleLogin = () => {
+    console.log("toggled login!");
     setIsLoggedIn(!isLoggedIn);
   }
 
@@ -121,8 +122,17 @@ function App() {
                                                     setSidebarStatus={setSidebarStatus}
                                                     toggleLogin={toggleLogin}
                                                     isLoggedIn={isLoggedIn}/>} />
-                  <Route path ="/login" element = {<Login />} />
-                  <Route path ="/signup" element = {<SignUp />} />
+                  <Route path ="/login" element = {<Login 
+                                                    isOpen={modalIsOpen}
+                                                    onRequestClose={closeModal} 
+                                                    setIsLoggedIn={setIsLoggedIn} 
+                                                    toggleLogin={toggleLogin}
+                    />} />
+                  <Route path ="/signup" element = {<SignUp 
+                                                    isOpen={modalIsOpen}
+                                                    onRequestClose={closeModal} 
+                                                    setIsLoggedIn={setIsLoggedIn} 
+                                                    toggleLogin={toggleLogin}/>} />
                   <Route path ="/mypage" element = {<Mypage isLoggedIn={isLoggedIn}/>} />
                   <Route path ="/ask" element = {<CreateThread threads={renderThreads} />} />
                   <Route path ="/questions/:id" element = {<QuestionDetail  isPending={isPending}
@@ -130,7 +140,8 @@ function App() {
                                                                             isLoggedIn={isLoggedIn}
                                                                             setIsLoggedIn={setIsLoggedIn}
                                                                             setSidebarStatus={setSidebarStatus}
-                                                                            toggleLogin={toggleLogin}/> } />
+                                                                            toggleLogin={toggleLogin}
+                                                                            openModal={openModal}/> } />
             </Routes>
         </Router>
       </Fragment>
