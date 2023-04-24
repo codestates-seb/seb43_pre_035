@@ -15,7 +15,6 @@ import Mypage from './components/member/MyPage';
 
 //import data
 import useFetch from './utils/useFetch';
-import axios from 'axios';
 import ModalContainer from './components/member/ModalContainer'; // 모달 불러오기
 
 //function to convert date
@@ -26,7 +25,6 @@ const convertDate = (string) => {
 }
 
 const url_threads = `${process.env.REACT_APP_URL_JSON_QUESTIONS}`;
-
 // const url_threads_test = `https://1cca-124-61-224-204.ngrok-free.app/questions`
 // const url_threads_test_search1 = `https://1cca-124-61-224-204.ngrok-free.app/questions/search/?title=제목&content=내용30`
 // const url_threads_test_search2 = `https://1cca-124-61-224-204.ngrok-free.app/questions/search/?content=내용29`
@@ -35,14 +33,10 @@ const url_threads_test = `${process.env.REACT_APP_URL_NGROKTEST}/questions`
 // const url_threads_test_search1 = `${process.env.REACT_APP_URL_NGROKTEST}/questions/search/?title=제목&content=내용30`
 // const url_threads_test_search2 = `${process.env.REACT_APP_URL_NGROKTEST}/questions/search/?title=제목`
 
-// const url_threads_test2 = "/questions";
 function App() {
-
-  // console.log('this is not working', process.env.REACT_APP_URL_NGROKTEST);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [threads, isPending, error] = useFetch(url_threads_test);
+  const [threads, isPending, error] = useFetch(url_threads);
   const [renderThreads, setRenderThreads] = useState(null);
-//모달 열고 닫는 함수 3개
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const openModal = () => {
@@ -69,7 +63,6 @@ function App() {
     usersOn: false,
     qOn: false
   });
-  // const sortedThreads = useMemo(() => threads && sortThreads(threads), [threads, sortThreads]);
 
   const toggleLogin = () => {
     console.log("toggled login!");
@@ -77,7 +70,6 @@ function App() {
   }
 
   function sortThreads(threads){
-    // console.log("threads sorted!");
     const sorted = [...threads].sort((a, b) => b.createdDate.localeCompare(a.createdDate));
     return sorted;
   }
@@ -92,8 +84,9 @@ function App() {
       // setRenderThreads(sorted);
       console.log('ngrok threads: ', threads);
       //for testing with ngrok
-      console.log(threads.content);
-      setRenderThreads(threads.content);
+      // console.log('ngrok threads: ', threads);
+      // console.log(threads.content);
+      // setRenderThreads(threads.content);
     }
     // if (thread1) console.log("thread1", thread1);
     // if (thread2) console.log("thread2", thread2);
