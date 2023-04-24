@@ -77,6 +77,7 @@ const AskForm = () => {
 
         axios.post(url_threads_test, {'title': title, 'content': content}, headers)
         .then((res) => {console.log("axios ask post request success!", res)
+
           navigate('/');
           navigate(0);
         })

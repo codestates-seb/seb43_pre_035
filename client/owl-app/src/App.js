@@ -25,7 +25,6 @@ const convertDate = (string) => {
 }
 
 const url_threads = `${process.env.REACT_APP_URL_JSON_QUESTIONS}`;
-
 // const url_threads_test = `https://1cca-124-61-224-204.ngrok-free.app/questions`
 // const url_threads_test_search1 = `https://1cca-124-61-224-204.ngrok-free.app/questions/search/?title=제목&content=내용30`
 // const url_threads_test_search2 = `https://1cca-124-61-224-204.ngrok-free.app/questions/search/?content=내용29`
@@ -80,10 +79,10 @@ function App() {
     if (threads){
       console.log("initial threads loaded!");
       //for dummy data (+sorting)
-      const sorted = sortThreads(threads);
-      // console.log(threads);
-      setRenderThreads(sorted);
-
+      // const sorted = sortThreads(threads);
+      // // console.log(threads);
+      // setRenderThreads(sorted);
+      console.log('ngrok threads: ', threads);
       //for testing with ngrok
       // console.log('ngrok threads: ', threads);
       // console.log(threads.content);
