@@ -15,16 +15,23 @@ const AddCommentWrap = styled.div`
 `
 
 
-const AddAnswerComment = ({addAnswerCommentHandler, answerCommentsNum}) => {
+const AddAnswerComment = ({addAnswerCommentHandler, isLoggedIn, openModal}) => {
 
+    const [comment,setComment] = useState(false);
 
-    const [comment,setComment] = useState(true);
+    const loginCheckAnswer = () => {
+        if (!isLoggedIn) {openModal(); return;}
+        setComment(true);
+    }
 
 
     return (
         <>
-            <AddCommentWrap onClick={()=>{setComment(false)}}>
-            {comment ? <div> Add a Comment </div> : <AnswerCommentInput addAnswerCommentHandler={addAnswerCommentHandler} answerCommentsNum={answerCommentsNum}/>}
+            <AddCommentWrap onClick={loginCheckAnswer}>
+            {isLoggedIn && comment ? 
+            <AnswerCommentInput addAnswerCommentHandler={addAnswerCommentHandler}/> : 
+            <div> Add a Comment </div>
+            }
             </AddCommentWrap>
         </>
     )

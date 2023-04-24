@@ -15,19 +15,13 @@ const CommentListWrap = styled.div`
   border-bottom: 2px solid white;
 `;
 
-const QuestionCommentList = ({ question }) => {
+const QuestionCommentList = ({ question, isLoggedIn, openModal }) => {
   const [comments, setComments] = useState(
     question.questionReplies ? question.questionReplies : []
   );
-  const qCommentNum = question.questionReplies
-    ? question.questionReplies.length
-    : 0;
+
   const url_patch = `http://localhost:3001/questions/${question.id}`;
   console.log(comments);
-
-//   useEffect(()=>{
-
-//   },[comments])
 
   const addCommentHandler = (newComment) => {
     // console.log("comments: ", comments);
@@ -107,13 +101,16 @@ const QuestionCommentList = ({ question }) => {
               commentType='qComment'
               deleteAnswerCommentHandler={deleteQuestionCommentHandler}
               updateQuestionCommentHandler={updateQuestionCommentHandler}
+              openModal={openModal}
+              isLoggedIn={isLoggedIn}
             ></CommentCreated>
           ))}
         </CommentListWrap>
       )}
       <AddComment
+        openModal={openModal}
+        isLoggedIn={isLoggedIn}
         addCommentHandler={addCommentHandler}
-        qCommentNum={qCommentNum}
       ></AddComment>
     </>
   );

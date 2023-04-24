@@ -52,7 +52,6 @@ const CommentInputPatch = ({ updatedContent, setUpdatedContent, editClickHandler
         // let newComment = {
         //     "content" : newCommentContent,
         // }
-
         setUpdatedContent(newCommentContent);
         editClickHandler();
         setInvalidComment(false);

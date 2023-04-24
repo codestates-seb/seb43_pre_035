@@ -21,13 +21,10 @@ const HeaderWrap = styled.div`
     height: 100%;
 `
 
-const Header = ({threads, sortThreads, setSidebarStatus, isLoggedIn, toggleLogin, openModal}) => {
+const Header = ({threads, setSidebarStatus, isLoggedIn, toggleLogin, openModal}) => {
 
     const location = useLocation();
 
-    // const sortNewest = () => {
-    //     sortThreads(threads);
-    // }
 
     const clickHomeHandler = () => {
         setSidebarStatus({homeOn: true, tagsOn: false, usersOn: false});
@@ -36,7 +33,6 @@ const Header = ({threads, sortThreads, setSidebarStatus, isLoggedIn, toggleLogin
     useEffect(() => {
         console.log(location);
         if (location.pathname === '/' && threads) {
-            // sortNewest();
             clickHomeHandler();
         }
     }, [location]);
