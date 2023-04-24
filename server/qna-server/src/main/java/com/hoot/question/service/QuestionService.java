@@ -6,11 +6,20 @@ import com.hoot.member.*;
 import com.hoot.question.Question;
 import com.hoot.question.repository.QuestionRepository;
 import com.hoot.security.UserDetailsImpl;
+
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+
+
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+
+import static antlr.build.ANTLR.root;
 
 @Service
 public class QuestionService {
@@ -60,18 +69,17 @@ public class QuestionService {
 	}
 	//페이지 검색어 조회
 	public Page<Question> searchQuestions(String title, String content, Pageable pageable) {
-		Page<Question> questionPage;
-		if (title != null && content != null) {
-			questionPage = questionRepository.findByTitleContainingAndContentContaining(title, content, pageable);
-		} else if (title != null) {
-			questionPage = questionRepository.findByTitleContaining(title, pageable);
-		} else if (content != null) {
-			questionPage = questionRepository.findByContentContaining(content, pageable);
-		} else {
-			questionPage = questionRepository.findAll(pageable);
+		if (Objects.isNull(title) && Objects.isNull(content)) {
+			return questionRepository.findAll(pageable);
 		}
-			return questionPage;
+		if (Objects.nonNull(title) && Objects.nonNull(content)) {
+			return questionRepository.findByTitleContainingAndContentContaining(title, content, pageable);
+	}
+		if (Objects.nonNull(title)) {
+			return questionRepository.findByTitleContaining(title, pageable);
 		}
+		return questionRepository.findByContentContaining(content, pageable);
+	}
 
 	public Page<Question> getQuestions(Pageable pageable){
 		Page<Question> questionPage = questionRepository.findByQuestionStatusNot(Question.QuestionStatus.QUESTION_DELETE, pageable);
