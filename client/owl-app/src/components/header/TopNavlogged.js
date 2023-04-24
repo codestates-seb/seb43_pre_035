@@ -19,7 +19,7 @@ const StyledIcon = styled(FontAwesomeIcon)`
 `
 
 
-const TopNavlogged = ({toggleLogin}) => {
+const TopNavlogged = ({toggleLogin, openModal }) => {
 
     //     //여기서부터 로그아웃 버튼구현
     //     const { user } = useUserState();
@@ -60,7 +60,7 @@ const TopNavlogged = ({toggleLogin}) => {
                         <Link to = '/'><StyledIcon icon={faArrowRightFromBracket} /></Link>
                     </IconButton>
                     <IconButton >
-                        <StyledIcon icon={faCircleQuestion} />
+                        <StyledIcon icon={faCircleQuestion} onClick={openModal}/>
                     </IconButton>
             </TopnavTemplate>
         </>

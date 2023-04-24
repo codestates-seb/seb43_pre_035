@@ -90,7 +90,7 @@ const SignUpContainer = styled.div`
  width: 300px;
 `;
 
-function EmailPasswordForm({ onSubmit }) {
+function EmailPasswordForm({ onSubmit, setIsLoggedIn, toggleLogin}) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useUserDispatch(); //전역 상태 받아오기
@@ -120,6 +120,12 @@ function EmailPasswordForm({ onSubmit }) {
         return regex.test(email);
     };
 
+    const handleLogin = () =>{
+        onSubmit();
+        setIsLoggedIn(true)
+        toggleLogin();
+    }
+
     return (
         <>
             <Form onSubmit={handleSubmit} >
@@ -139,6 +145,7 @@ function EmailPasswordForm({ onSubmit }) {
                 <Link to="/signup" onClick={onSubmit}>
                     <SignUp>Sign up</SignUp>
                 </Link>
+                <SignUp onClick={handleLogin}>Test Login</SignUp>
             </SignUpContainer>
         </>
     );
