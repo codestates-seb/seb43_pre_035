@@ -40,15 +40,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 // request 에 대한 인증 및 권한 부여 설정
                 .authorizeRequests()
-                .antMatchers("/oauth2/**").permitAll()
                 .antMatchers("/users/signup", "/users/login").permitAll()
-                .antMatchers(HttpMethod.GET,"/users/**").hasRole("USER")
-                .antMatchers(HttpMethod.PATCH,"/users/**").hasRole("USER")
-                .antMatchers(HttpMethod.DELETE,"/users/**").hasRole("USER")
-                .antMatchers(HttpMethod.GET,"/questions/**").permitAll()
-                .antMatchers(HttpMethod.POST,"/questions/**").hasRole("USER")
-                .antMatchers(HttpMethod.PATCH,"/questions/**").hasRole("USER")
-                .antMatchers(HttpMethod.DELETE,"/questions/**").hasRole("USER")
+                .antMatchers("/oauth2/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/questions/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 // JWT Token 필터를 id,password 인증 필터 이전에 추가하여, JWT로 인증 처리를 하도록 한다
