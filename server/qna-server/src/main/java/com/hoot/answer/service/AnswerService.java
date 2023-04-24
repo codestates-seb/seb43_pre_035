@@ -65,7 +65,7 @@ public class AnswerService {
 
 		// 채택이 완료 되지 않은 질문만
 		// 채택을 진행한다
-		if (findQuestion.getQuestionStatus() != Question.QuestionStatus.QUESTION_ANSWERED) {
+		if (!findQuestion.getQuestionStatus().equals(Question.QuestionStatus.QUESTION_ANSWERED)) {
 			Answer findAnswer = findVerifiedAnswer(answerId);
 			findAnswer.setSelection(true);
 			findQuestion.setQuestionStatus(Question.QuestionStatus.QUESTION_ANSWERED);
