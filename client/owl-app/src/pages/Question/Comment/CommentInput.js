@@ -41,16 +41,21 @@ const CommentInput = ({addCommentHandler})=>{
 
     const onClickCommentSubmit = (e)=>{
         e.stopPropagation();
+        const date = new Date();
+        const userName = "null"
+        const userAvatarLink = "null"
+
         // console.log("comment content: ", newCommentContent);
         if (!newCommentContent) {console.log("no content!"); setInvalidComment(true); return;};
         let newComment = {
             "id" : cId,
             "member" : {
-              "displayName": "zeeeeeeee",
-              "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
+              "displayName": userName, 
+              "avatarLink" : userAvatarLink
             },
             "content" : newCommentContent,
-            "updateDate" : "2023-04-19"
+            "createdDate": date.toISOString(),
+            "updateDate": date.toISOString(),
         }
 
         addCommentHandler(newComment);

@@ -32,6 +32,11 @@ const CreateUserA = styled.div`
     font-size: 15px;
 `
 
+const EditorInput =styled.input`
+    height: 400px;
+    width: 100%;
+`
+
 const ReviseButton = styled(UpdateButton) `
     ${'' /* height: 10%; */}
     background: var(--colors-darkred);
@@ -145,6 +150,15 @@ const AnswerDetail = ({ q_id, answer, answers, updateAnswerHandler, deleteAnswer
             <AnswerBlock>
                 <AnsweruserBlock>
         { isEditState ? <>
+                    <EditorInput type="text" value={updatedAnswer} onChange={onTextChange} />
+                    <ReviseButton >답변 수정하기</ReviseButton> </>: 
+                    <AnswerContent>{answer.content}</AnswerContent>}
+                    <CreateUserA>{answer.member.displayName}</CreateUserA>
+                    {isLoggedIn &&
+                    <>
+                    <ReviseButton onClick={handleEditClick}>수정</ReviseButton>
+                    <ReviseButton onClick={deleteClickHandler}>삭제</ReviseButton> 
+                    </>}
         <input type="text" value={updatedAnswer} onChange={onTextChange} />
                     <ReviseButton>답변 수정하기</ReviseButton> </>: 
                     <AnswerContent>{answer.content}</AnswerContent>}

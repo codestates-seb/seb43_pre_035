@@ -32,15 +32,19 @@ const AnswerLogin = ({addAnswerHandler}) => {
       };
 
     const onClickSubmit = ()=> {
+        const data = new Date();
+        const userName = "null"
+        const userAvatarLink = "null"
+
       if (!newAnswerContent){console.log("invalid answer!"); setInvalidAnswer(true); return;}
         let newAnswer =
             {
               "id": aId,
-              "createdDate": "2022-05-16T02:09:52Z",
-              "updateDate": "2022-05-16T02:09:52Z",
-              "url": "https://github.com/codestates-seb/agora-states-fe/discussions/45#discussioncomment-2756236",
+              "createdDate": data.toISOString(),
+              "updateDate": data.toISOString(),
               "member": {
-                "displayName": "zzzzzzoooooooooo"
+                "displayName": userName, 
+                "avatarLink" : userAvatarLink
               },
               "content": newAnswerContent,
               "answerReplies": [
