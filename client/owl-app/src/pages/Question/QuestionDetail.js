@@ -21,8 +21,9 @@ const QuestionWrap = styled.div`
 const QuestionDetail = () => {
 
     // const [question,setQuestion] = useState(initialData.questions[0])
-    const { id } = useParams();
-    const url = `http://localhost:3001/questions/${id}`;
+    const { questionId } = useParams();
+    // const url = `http://localhost:3001/questions/${questionId}`;
+    const url = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${questionId}`
 
     // const [question,setQuestion] = useState(null);
     // const [isPending, setIsPending] = useState(true);

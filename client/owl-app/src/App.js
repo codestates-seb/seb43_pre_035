@@ -25,16 +25,21 @@ const convertDate = (string) => {
 }
 
 const url_threads = `${process.env.REACT_APP_URL_JSON_QUESTIONS}`;
-const url_threads_test = "https://2026-124-61-224-204.ngrok-free.app/questions";
-const url_threads_test_search1 = "https://2026-124-61-224-204.ngrok-free.app/questions/search/?title=제목30&content=내용30"
-const url_threads_test_search2 = "https://2026-124-61-224-204.ngrok-free.app/questions/search/?title=제목30"
+
+// const url_threads_test = `https://1cca-124-61-224-204.ngrok-free.app/questions`
+// const url_threads_test_search1 = `https://1cca-124-61-224-204.ngrok-free.app/questions/search/?title=제목&content=내용30`
+// const url_threads_test_search2 = `https://1cca-124-61-224-204.ngrok-free.app/questions/search/?content=내용29`
+
+const url_threads_test = `${process.env.REACT_APP_URL_NGROKTEST}/questions`
+// const url_threads_test_search1 = `${process.env.REACT_APP_URL_NGROKTEST}/questions/search/?title=제목&content=내용30`
+// const url_threads_test_search2 = `${process.env.REACT_APP_URL_NGROKTEST}/questions/search/?title=제목`
 
 // const url_threads_test2 = "/questions";
 function App() {
 
-  // console.log('this is not working', process.env.REACT_APP_URL_JSON);
+  // console.log('this is not working', process.env.REACT_APP_URL_NGROKTEST);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [threads, isPending, error] = useFetch(url_threads);
+  const [threads, isPending, error] = useFetch(url_threads_test);
   const [renderThreads, setRenderThreads] = useState(null);
 
   //test with ngrok
@@ -61,18 +66,20 @@ function App() {
 
 
   useEffect(()=> {
-    console.log("initial threads loaded!");
     if (threads){
-
+      console.log("initial threads loaded!");
       //for dummy data (+sorting)
-      const sorted = sortThreads(threads);
-      // console.log(threads);
-      setRenderThreads(sorted);
-
+      // const sorted = sortThreads(threads);
+      // // console.log(threads);
+      // setRenderThreads(sorted);
+      console.log('ngrok threads: ', threads);
       //for testing with ngrok
-      // console.log(threads.content);
-      // setRenderThreads(threads.content);
+      console.log(threads.content);
+      setRenderThreads(threads.content);
     }
+    // if (thread1) console.log("thread1", thread1);
+    // if (thread2) console.log("thread2", thread2);
+
   },[threads]);
 
   //for testing
@@ -80,7 +87,7 @@ function App() {
   //   if (thread1) console.log("thread1", thread1);
   //   if (thread1) console.log("thread2", thread2);
 
-  // }, [thread1, thread2]);
+  // }, []);
 
   return (
     <UserProvider>
@@ -103,7 +110,7 @@ function App() {
                   <Route path ="/signup" element = {<SignUp />} />
                   <Route path ="/mypage" />
                   <Route path ="/ask" element = {<CreateThread threads={renderThreads} />} />
-                  <Route path ="/questions/:id" element = {<QuestionDetail/> } />
+                  <Route path ="/questions/:questionId" element = {<QuestionDetail/> } />
             </Routes>
         </Router>
       </Fragment>

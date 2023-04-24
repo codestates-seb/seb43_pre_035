@@ -1195,7 +1195,19 @@
         "displayName": "jicoder",
         "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl03.png"
       },
-      "answers": [],
+      "answers": [
+        {
+          "id": 521,
+          "createdDate": "2022-05-16T02:09:52Z",
+          "updateDate": "2022-05-16T02:09:52Z",
+          "url": "https://github.com/codestates-seb/agora-states-fe/discussions/45#discussioncomment-2756236",
+          "member": {
+            "displayName": "zzzzzzoooooooooo"
+          },
+          "content": "답변1",
+          "answerReplies": []
+        }
+      ],
       "content": "<p>안녕하세요 어제부터 계속 여러가지 방법으로 배포를 시도해보고 있습니다만... 계속해서 빈 화면이 나와서 질문드립니다.\n위 화면이 현재 깃허브 페이지 URL로 들어가면 나오는 화면입니다.\n\n처음에는 gh-pages가 문제인가 해서 1번 방법에서 2번 방법으로 바꾸어서 github pages를 생성해보았지만 동일하게 빈화면이 나왔습니다.\n\nwebpack과 gh-pages를 install 해서 번들링 후 gh-pages에 업로드\n: 아래와 같이 jsx 관련 에러가 떴습니다. 에러구문에 나온대로 @barbel/plugin-syntax-jsx를 추가해봤는데 해결이 되지 않았습니다.\n</p>",
       "viewCount": 0,
       "id": "MaV-WS3"
@@ -1590,6 +1602,97 @@
           "answerReplies": []
         }
       ]
+    },
+    {
+      "createdDate": "2023-04-24T04:05:45.146Z",
+      "updateDate": "2023-04-24T04:05:45.146Z",
+      "title": "AWS 시험 ",
+      "member": {
+        "displayName": "jicoder",
+        "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl03.png"
+      },
+      "answer": [],
+      "content": "<p>AWS test </p>",
+      "viewCount": 0,
+      "id": "17YSNmE",
+      "answers": [
+        {
+          "id": 381,
+          "createdDate": "2022-05-16T02:09:52Z",
+          "updateDate": "2022-05-16T02:09:52Z",
+          "url": "https://github.com/codestates-seb/agora-states-fe/discussions/45#discussioncomment-2756236",
+          "member": {
+            "displayName": "zzzzzzoooooooooo"
+          },
+          "content": "답변1",
+          "answerReplies": [
+            {
+              "id": 829,
+              "member": {
+                "displayName": "zeeeeeeee",
+                "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
+              },
+              "content": "답변댓글 수정본",
+              "updateDate": "2023-04-19"
+            },
+            {
+              "id": 748,
+              "member": {
+                "displayName": "zeeeeeeee",
+                "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
+              },
+              "content": "답변댓글2 수정본2",
+              "updateDate": "2023-04-19"
+            }
+          ]
+        },
+        {
+          "id": 999,
+          "createdDate": "2022-05-16T02:09:52Z",
+          "updateDate": "2022-05-16T02:09:52Z",
+          "url": "https://github.com/codestates-seb/agora-states-fe/discussions/45#discussioncomment-2756236",
+          "member": {
+            "displayName": "zzzzzzoooooooooo"
+          },
+          "content": "답변2",
+          "answerReplies": []
+        },
+        {
+          "id": 500,
+          "createdDate": "2022-05-16T02:09:52Z",
+          "updateDate": "2022-05-16T02:09:52Z",
+          "url": "https://github.com/codestates-seb/agora-states-fe/discussions/45#discussioncomment-2756236",
+          "member": {
+            "displayName": "zzzzzzoooooooooo"
+          },
+          "content": "답변3",
+          "answerReplies": []
+        }
+      ],
+      "questionReplies": [
+        {
+          "id": 696,
+          "member": {
+            "displayName": "zeeeeeeee",
+            "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
+          },
+          "content": "댓글2",
+          "updateDate": "2023-04-19"
+        }
+      ]
+    },
+    {
+      "createdDate": "2023-04-24T08:28:56.975Z",
+      "updateDate": "2023-04-24T08:28:56.975Z",
+      "title": "laala",
+      "member": {
+        "displayName": "jicoder",
+        "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl05.png"
+      },
+      "answer": [],
+      "content": "lalalalalal",
+      "viewCount": 0,
+      "id": "E6fSpGU"
     }
   ]
 }
