@@ -87,18 +87,18 @@ const AnswerDetail = ({ q_id, answer, answers, deleteAnswerHandler }) => {
         })
 
         setAnswerComments(newComments);
-        console.log("newcomments:", newComments); 
+        console.log("newcomments:", newComments);
 
         const newAnswers = answers.map(el => {
             if (el.id === answer.id){
                 el.answerReplies = el.answerReplies.map(reply => {
-                    if (reply.id === comment_id) reply.content = updatedComment; 
+                    if (reply.id === comment_id) reply.content = updatedComment;
                     return reply;
                 })
             }
             return el;
         })
-        console.log("newanswers:", newAnswers); 
+        console.log("newanswers:", newAnswers);
 
         axios.patch(url_patch, {"answers": newAnswers})
             .then((res) => {

@@ -17,7 +17,7 @@ const AddCommentWrap = styled.div`
 
 const AddAnswerComment = ({addAnswerCommentHandler, answerCommentsNum}) => {
 
-    
+
     const [comment,setComment] = useState(true);
 
 
@@ -29,5 +29,4 @@ const AddAnswerComment = ({addAnswerCommentHandler, answerCommentsNum}) => {
         </>
     )
 }
-
 export default AddAnswerComment
