@@ -16,7 +16,7 @@ const url_signup = "https://2a51-124-61-224-204.ngrok-free.app/users/signup";
 //   });
 
 const Users = ({dimensions}) => {
-    const tempWidth = dimensions.width + 115;
+    const tempWidth = dimensions.width;
     const [userInfo, setUserInfo] = useState({email: 'aaaa', displayName: 'aaaa', name: 'aaaaa'});
     let alreadyDidOnce = false;
 

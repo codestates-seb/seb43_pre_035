@@ -38,13 +38,12 @@ const CreateDate = styled.div`
 
 const Title = ({question}) =>{
 
-    // console.log(question)
+    console.log(question)
 
     return (
         <TitleWrap>
             <TitleName>{question.title}</TitleName>
             <TitleBlock>
-            
             <CreateName>{question.member.displayName}</CreateName>
             <CreateDate>{question.createdDate}</CreateDate>
             </TitleBlock>

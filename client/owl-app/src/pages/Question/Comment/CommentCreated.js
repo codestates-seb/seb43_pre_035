@@ -68,9 +68,12 @@ const CommentCreated = ({comment, commentType, deleteAnswerCommentHandler, updat
                             <CommentDetail>{updatedContent}</CommentDetail>
                             <CommentUser>{comment.member.displayName}</CommentUser>
                             <CommentDate>{comment.updateDate}</CommentDate>
+                            {isLoggedIn &&
+                            <>
                             <UpdateButton onClick={editClickHandler}>수정
                             </UpdateButton>
                             <UpdateButton onClick={deleteClickHandler}>삭제</UpdateButton>
+                            </>}
                         </CommentWrap>
             }
         </>

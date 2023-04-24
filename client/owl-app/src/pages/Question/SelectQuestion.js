@@ -19,19 +19,26 @@ const SelectedWrap = styled.div`
 
 
 
-const SelectQuestion = ({question,isLoggedIn,openModal}) => {
+const SelectQuestion = ({question,isLoggedIn,openModal, dimensionsHandler, refContainer}) => {
     const [getQuestion,setGetQuestion] = useState([question]);
     // const answersNum = question.answers?.length;
-        // console.log([question])
+        console.log([question])
+
+    useEffect(() => {
+        if (refContainer.current) {
+            dimensionsHandler(refContainer.current.offsetWidth, refContainer.current.offsetHeight);
+        }
+        }, []);
 
     return (
         <>
             {getQuestion.map((question) =>(
-        <SelectedWrap key={question.questionId}>
+        <SelectedWrap key={question} ref={refContainer}>
                 <Title question={question}></Title>
-            <QuestionContent openModal={openModal}
-            isLoggedIn={isLoggedIn}
-            question={question}></QuestionContent>
+                <QuestionContent openModal={openModal}
+                isLoggedIn={isLoggedIn}
+                question={question}></QuestionContent>
+
                 <QuestionCommentList
                 isLoggedIn={isLoggedIn}
                 question={question}

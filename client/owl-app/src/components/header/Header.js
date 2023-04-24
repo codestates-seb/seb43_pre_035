@@ -26,14 +26,20 @@ const Header = ({threads, setSidebarStatus, isLoggedIn, toggleLogin, openModal})
     const location = useLocation();
 
 
-    const clickHomeHandler = () => {
-        setSidebarStatus({homeOn: true, tagsOn: false, usersOn: false});
+    const clickRouteHandler = (pathName) => {
+        if (pathName === 'Home') setSidebarStatus({homeOn: true, tagsOn: false, usersOn: false, qOn: false});
+        if (pathName === 'Question') setSidebarStatus({homeOn: false, tagsOn: false, usersOn: false, qOn: true});
+
     }
 
     useEffect(() => {
         console.log(location);
         if (location.pathname === '/' && threads) {
-            clickHomeHandler();
+            clickRouteHandler('Home');
+        }
+        if (location.pathname.includes('/questions')){
+            console.log('routed to question page!');
+            clickRouteHandler('Question');
         }
     }, [location]);
 

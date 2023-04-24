@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import ReactHTmlParser from 'html-react-parser';
-import { UpdateButton } from "../../styles/UIStyles";
 import axios from 'axios';
+import { UpdateButton, ClickButton } from '../../styles/UIStyles'
+import ReactHTmlParser from 'html-react-parser'
 
 const ContentWrap = styled.div`
     width: 750px;
@@ -24,8 +24,14 @@ const CreateUser = styled.div`
     font-size: 15px;
 `
 
+const ButtonWrap = styled.div`
+    padding: 20px;
+    display: flex;
+    justify-content: flex-end;
+    border-bottom: 2px solid #FFFFFF;
+`
 
-const QuestionContent = ({question, openModal}) =>{
+const QuestionContent = ({question, isLoggedIn}) =>{
     // const paserContent = question.content
     // console.log(question.member)
     const url = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}`;
@@ -50,11 +56,13 @@ const QuestionContent = ({question, openModal}) =>{
         <>
         <ContentWrap>
             {/* {ReactHTmlParser(<ContentDetail>{paserContent}</ContentDetail>) } */}
-        <ContentDetail>{question.content}</ContentDetail>
-        <CreateUser>{question.member.displayName}</CreateUser>
-        <UpdateButton onClick={updateQHandler}>수정</UpdateButton>
-        <UpdateButton onClick={deleteQHandler}>삭제</UpdateButton>
-        </ContentWrap>
+            <ContentDetail>{question.content}</ContentDetail>
+            <CreateUser>{question.member.displayName}</CreateUser>
+            </ContentWrap>
+            {isLoggedIn  && <ButtonWrap>
+                <UpdateButton onClick={updateQHandler}>수정</UpdateButton>
+                <UpdateButton onClick={deleteQHandler}>삭제</UpdateButton>
+            </ButtonWrap>}
         </>
     )
 }

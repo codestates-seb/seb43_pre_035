@@ -78,7 +78,7 @@ const LoginCheckBtn = styled.button`
     }
 `
 
-const SideNav = ({toggleLogin, sidebarStatus, clickHomeHandler, clickTagsHandler, clickUsersHandler, isLoggedIn}) => {
+const SideNav = ({toggleLogin, sidebarStatus, isLoggedIn, clickSidebarHandler}) => {
 
   const [logState, setLogState] = useState(isLoggedIn ? "LOGOUT" : "LOGIN");
 
@@ -89,7 +89,7 @@ const SideNav = ({toggleLogin, sidebarStatus, clickHomeHandler, clickTagsHandler
   }
 
   useEffect(()=> {
-    console.log('useEffect! sidenav text change');
+    // console.log('useEffect! sidenav text change');
     setLogState(isLoggedIn ? "LOGOUT" : "LOGIN");
   }, [isLoggedIn]);
 
@@ -97,16 +97,16 @@ const SideNav = ({toggleLogin, sidebarStatus, clickHomeHandler, clickTagsHandler
     <SideNavContainer>
       <SideNavStickyContainer>
         <SideNavItem className={`top ${sidebarStatus.homeOn ? 'selected' : ''}`}
-                      onClick={clickHomeHandler}>Home</SideNavItem>
+                      onClick={()=>{clickSidebarHandler('Home')}}>Home</SideNavItem>
         <SideNavItem className={sidebarStatus.tagsOn ? 'selected' : ''}
-                      onClick={clickTagsHandler}>Tags</SideNavItem>
+                      onClick={()=>{clickSidebarHandler('Tags')}}>Tags</SideNavItem>
         <SideNavItem className={sidebarStatus.usersOn ? 'selected' : ''}
-                      onClick={clickUsersHandler}>Users</SideNavItem>
+                      onClick={()=>{clickSidebarHandler('Users')}}>Users</SideNavItem>
         <LoginCheckBtn onClick={logHandler}>{logState}</LoginCheckBtn>
       </SideNavStickyContainer>
     </SideNavContainer>
   );
-}; 
+};
 
 
 

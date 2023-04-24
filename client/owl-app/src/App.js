@@ -66,7 +66,8 @@ function App() {
   const [sidebarStatus, setSidebarStatus] = useState({
     homeOn: true,
     tagsOn: false,
-    usersOn: false
+    usersOn: false,
+    qOn: false
   });
   // const sortedThreads = useMemo(() => threads && sortThreads(threads), [threads, sortThreads]);
 
