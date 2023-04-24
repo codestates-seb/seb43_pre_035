@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useMemo, Fragment} from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import GlobalStyle from './theme/GlobalStyle';
-import { UserProvider } from './components/UserContext'; // 로그인 정보
+import { UserProvider } from './components/member/UserContext'; // 로그인 정보
 
 //import pages
 //import with Lazy, and load Suspense while loading

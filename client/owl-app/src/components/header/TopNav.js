@@ -8,6 +8,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightToBracket } from '@fortawesome/free-solid-svg-icons';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { faCircleQuestion } from '@fortawesome/free-regular-svg-icons';
+import React, { useState } from 'react';
+import ModalContainer from '../member/ModalContainer'; // 모달 불러오기
 
 const StyledIcon = styled(FontAwesomeIcon)`
     color: var(--colors-offwhite);
@@ -15,8 +17,20 @@ const StyledIcon = styled(FontAwesomeIcon)`
 `
 
 const TopNav = () => {
+    //모달 열고 닫는 함수 3개
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+
+    const openModal = () => {
+      setModalIsOpen(true);
+    };
+  
+    const closeModal = () => {
+      setModalIsOpen(false);
+    };
+
     return (
         <>
+        <ModalContainer isOpen={modalIsOpen} onRequestClose={closeModal} />
             <TopnavTemplate>
                 <Link to = '/'>
                     <LogoWrap>
@@ -35,7 +49,7 @@ const TopNav = () => {
                     <IconButton>
                         <Link to = '/signup'><StyledIcon icon={faUserPlus} /></Link>
                     </IconButton>
-                    <IconButton>
+                    <IconButton onClick={openModal}>
                     <StyledIcon icon={faCircleQuestion} />
                     </IconButton>
             </TopnavTemplate>

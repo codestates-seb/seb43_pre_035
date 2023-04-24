@@ -34,10 +34,33 @@
     -->
 
     <title>React App</title>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script type="text/javascript">
+      window.handleCredentialResponse = function (response) {
+        fetch('/api/auth/google', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ credential: response.credential }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            // 인증 성공 시 처리할 로직을 작성합니다.
+          })
+          .catch((error) => {
+            console.error('Google login error:', error);
+            // 인증 실패 시 처리할 로직을 작성합니다.
+          });
+      };
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <div id="modal-root"></div> 
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -48,5 +71,12 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <div id="g_id_onload"
+  data-client_id="687801549261-t1to0l0fur981fqvmsk307cvn29bmen0.apps.googleusercontent.com"
+  data-login_uri="http://localhost:8000"
+  data-callback="handleCredentialResponse"
+  data-auto_prompt="false"
+  data-context="signin">
+</div>
   </body>
 </html>
