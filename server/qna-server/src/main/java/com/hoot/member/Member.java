@@ -1,5 +1,6 @@
 package com.hoot.member;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.hoot.audit.Timestamped;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,6 +24,7 @@ public class Member extends Timestamped {
     private String email;
 
     @Column(nullable = false)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     private String name;
