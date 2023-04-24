@@ -159,6 +159,12 @@ const AnswerDetail = ({ q_id, answer, answers, updateAnswerHandler, deleteAnswer
                     <ReviseButton onClick={handleEditClick}>수정</ReviseButton>
                     <ReviseButton onClick={deleteClickHandler}>삭제</ReviseButton> 
                     </>}
+        <input type="text" value={updatedAnswer} onChange={onTextChange} />
+                    <ReviseButton>답변 수정하기</ReviseButton> </>: 
+                    <AnswerContent>{answer.content}</AnswerContent>}
+                    <CreateUserA>{answer.member.displayName}</CreateUserA>
+                    <ReviseButton onClick={handleEditClick}>수정</ReviseButton>
+                    <ReviseButton onClick={deleteClickHandler}>삭제</ReviseButton> 
                 </AnsweruserBlock>
                 
                 <AnswerCommentList answerComments={answerComments}

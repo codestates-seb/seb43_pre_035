@@ -24,6 +24,7 @@ const SelectQuestion = ({question,isLoggedIn,openModal}) => {
     // const answersNum = question.answers?.length;
         console.log([question])
 
+
     return (
         <>
             {getQuestion.map((question) =>(
@@ -32,6 +33,7 @@ const SelectQuestion = ({question,isLoggedIn,openModal}) => {
                 <QuestionContent openModal={openModal}
                 isLoggedIn={isLoggedIn}
                 question={question}></QuestionContent>
+
                 <QuestionCommentList 
                 isLoggedIn={isLoggedIn} 
                 question={question}
