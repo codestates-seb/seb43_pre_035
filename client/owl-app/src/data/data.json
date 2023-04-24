@@ -1453,6 +1453,123 @@
           "updateDate": "2023-04-19"
         }
       ]
+    },
+    {
+      "createdDate": "2023-04-23T09:56:45.328Z",
+      "updateDate": "2023-04-23T09:56:45.328Z",
+      "title": "제목테스트1",
+      "member": {
+        "displayName": "jicoder",
+        "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl07.png"
+      },
+      "answer": [],
+      "content": "<p>내용테스트1</p>",
+      "viewCount": 0,
+      "id": "b7OdGXo"
+    },
+    {
+      "createdDate": "2023-04-23T09:57:09.742Z",
+      "updateDate": "2023-04-23T09:57:09.742Z",
+      "title": "제목테스트2",
+      "member": {
+        "displayName": "jicoder",
+        "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl02.png"
+      },
+      "answer": [],
+      "content": "<p>내용테스트2</p>",
+      "viewCount": 0,
+      "id": "YsWh-t1"
+    },
+    {
+      "createdDate": "2023-04-23T09:58:08.128Z",
+      "updateDate": "2023-04-23T09:58:08.128Z",
+      "title": "제목테스트3",
+      "member": {
+        "displayName": "jicoder",
+        "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl04.png"
+      },
+      "answer": [],
+      "content": "<p>내용테스트3</p>",
+      "viewCount": 0,
+      "id": "jXW8JpA"
+    },
+    {
+      "createdDate": "2023-04-23T09:58:45.612Z",
+      "updateDate": "2023-04-23T09:58:45.612Z",
+      "title": "제목테스트4",
+      "member": {
+        "displayName": "jicoder",
+        "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl03.png"
+      },
+      "answer": [],
+      "content": "<p>내용테스트4</p>",
+      "viewCount": 0,
+      "id": "_ksNdzN"
+    },
+    {
+      "createdDate": "2023-04-23T10:08:37.119Z",
+      "updateDate": "2023-04-23T10:08:37.119Z",
+      "title": "이건 액서스 토큰 포함한 포스트 테스트 ",
+      "member": {
+        "displayName": "jicoder",
+        "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
+      },
+      "answer": [],
+      "content": "<p>이건 액서스 토큰 포함한 포스트 테스트 내용</p>",
+      "viewCount": 0,
+      "id": "yQaZY3R"
+    },
+    {
+      "createdDate": "2023-04-23T10:10:01.729Z",
+      "updateDate": "2023-04-23T10:10:01.729Z",
+      "title": "랄랄라",
+      "member": {
+        "displayName": "jicoder",
+        "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl05.png"
+      },
+      "answer": [],
+      "content": "<p>랄랄라</p>",
+      "viewCount": 0,
+      "id": "-AotS_Y"
+    },
+    {
+      "createdDate": "2023-04-23T10:10:16.124Z",
+      "updateDate": "2023-04-23T10:10:16.124Z",
+      "title": "랄랄라",
+      "member": {
+        "displayName": "jicoder",
+        "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png"
+      },
+      "answer": [],
+      "content": "<p>라랄라라라ㅏ라라랄ㄹ</p>",
+      "viewCount": 0,
+      "id": "9VXOBtc"
+    },
+    {
+      "createdDate": "2023-04-24T02:39:48.922Z",
+      "updateDate": "2023-04-24T02:39:48.922Z",
+      "title": "랄랄라3",
+      "member": {
+        "displayName": "jicoder",
+        "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl07.png"
+      },
+      "answer": [],
+      "content": "<p>랄랄라3 내용</p>",
+      "viewCount": 0,
+      "id": "8F6Z50p"
+    },
+    {
+      "createdDate": "2023-04-24T02:40:39.910Z",
+      "updateDate": "2023-04-24T02:40:39.910Z",
+      "title": "json-server의 custom route",
+      "member": {
+        "displayName": "jicoder",
+        "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl03.png"
+      },
+      "answer": [],
+      "content": "<p>post/patch 가능한가요</p>",
+      "viewCount": 0,
+      "id": "fNG13Id"
     }
   ]
 }

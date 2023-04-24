@@ -14,6 +14,7 @@ import CreateThread from './pages/CreateThread';
 
 //import data
 import useFetch from './utils/useFetch';
+import axios from 'axios';
 
 
 //function to convert date
@@ -24,7 +25,10 @@ const convertDate = (string) => {
 }
 
 const url_threads = "http://localhost:3001/questions";
-// const url_threads_test = "https://2e7f-124-61-224-204.ngrok-free.app/questions";
+const url_threads_test = "https://2026-124-61-224-204.ngrok-free.app/questions";
+const url_threads_test_search1 = "https://2026-124-61-224-204.ngrok-free.app/questions/search/?title=제목30&content=내용30"
+const url_threads_test_search2 = "https://2026-124-61-224-204.ngrok-free.app/questions/search/?title=제목30"
+
 // const url_threads_test2 = "/questions";
 function App() {
 
@@ -32,7 +36,12 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [threads, isPending, error] = useFetch(url_threads);
   const [renderThreads, setRenderThreads] = useState(null);
-  // const [preenderedThreads, setPrerenderedThreads] = useState(null);
+
+  //test with ngrok
+  // const [thread1, isPending1, error1] = useFetch(url_threads_test_search1);
+  // const [thread2, isPending2, error2] = useFetch(url_threads_test_search2);
+
+
   const [sidebarStatus, setSidebarStatus] = useState({
     homeOn: true,
     tagsOn: false,
@@ -54,10 +63,24 @@ function App() {
   useEffect(()=> {
     console.log("initial threads loaded!");
     if (threads){
+
+      //for dummy data (+sorting)
       const sorted = sortThreads(threads);
+      // console.log(threads);
       setRenderThreads(sorted);
+
+      //for testing with ngrok
+      // console.log(threads.content);
+      // setRenderThreads(threads.content);
     }
   },[threads]);
+
+  //for testing
+  // useEffect(()=> {
+  //   if (thread1) console.log("thread1", thread1);
+  //   if (thread1) console.log("thread2", thread2);
+
+  // }, [thread1, thread2]);
 
   return (
     <UserProvider>
