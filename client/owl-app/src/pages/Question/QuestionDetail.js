@@ -23,8 +23,8 @@ const QuestionDetail = ({ toggleLogin, sidebarStatus, setSidebarStatus, isLogged
 
     // const [question,setQuestion] = useState(initialData.questions[0])
     const { questionId } = useParams();
-    const url = `http://localhost:3001/questions/${questionId}`;
-    // const url = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${questionId}`;
+    // const url = `http://localhost:3001/questions/${questionId}`;
+    const url = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${questionId}`;
     const [question, isPending, error] = useFetch(url);
 
     const navigate = useNavigate();
