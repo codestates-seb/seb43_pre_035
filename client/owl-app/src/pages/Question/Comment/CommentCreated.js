@@ -13,8 +13,8 @@ const CommentWrap = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: center;
-    border-bottom: 2px solid white;
-    color: #DACC96;
+    border-bottom: 2px solid #E7CC8F;
+    color: white;
 `
 
 const CommentDetail = styled.div`
@@ -25,13 +25,17 @@ const CommentDetail = styled.div`
 const CommentUser = styled.div`
     padding: 10px;
     width: 20vw;
+    color: var(--colors-lightbrown);
 `
 
 const CommentDate = styled.div`
     padding: 10px;
     width: 20vw;
+    color: var(--colors-lightbrown);
 `
-
+const convertDate = (string) => {
+    return `${string.substring(0, 4)}년 ${String(Number(string.substring(5, 7)))}월 ${String(Number(string.substring(8, 10)))}일`
+  }
 const CommentCreated = ({comment, commentType, deleteAnswerCommentHandler, updateQuestionCommentHandler, updateAnswerCommentHandler, isLoggedIn, openModal})=>{
 
     const  [isEditable,setIsEditable] = useState(false);
@@ -67,7 +71,7 @@ const CommentCreated = ({comment, commentType, deleteAnswerCommentHandler, updat
                             <CommentWrap>
                             <CommentDetail>{updatedContent}</CommentDetail>
                             <CommentUser>{comment.member.displayName}</CommentUser>
-                            <CommentDate>{comment.updateDate}</CommentDate>
+                            <CommentDate>{convertDate(comment.updateDate)}</CommentDate>
                             {isLoggedIn &&
                             <>
                             <UpdateButton onClick={editClickHandler}>수정

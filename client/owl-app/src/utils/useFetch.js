@@ -9,38 +9,16 @@ const useFetch = (url) => {
 
   useEffect(() => {
 
-    // fetch(url, {headers: {
-    //     'ngrok-skip-browser-warning': '69420'
-    // }})
-    //     .then(res => {
-    //         if(!res.ok){
-    //             throw Error('could not fetch the data for that resource');
-    //         }
-    //         return res.json();
-    //     })
-    //     .then(data=> {
-    //         console.log(data);
-    //         setIsPending(false);
-    //         setThreads(data);
-    //         setError(null);
-    //     })
-    //     .catch(err => {
-    //         setIsPending(false);
-    //         setError(err.message);
-    //     })
-    // }, [url]);
-
         axios.get(url, {headers : {
             'ngrok-skip-browser-warning': '69420',
-            'Access-Control-Allow-Origin': 'http://localhost:3000'
-            // 'Access-Control-Allow-Header
+            'Access-Control-Allow-Origin': 'http://localhost:3000',
+            // 'Authorization' : `Bearer ${process.env.REACT_APP_NGROK_TOKEN}`
         }})
             .then(res => {
                 return res.data;
             })
             .then(data => {
                 console.log('data fetched!');
-                // console.log(data);
                 setIsPending(false);
                 setThreads(data);
                 setError(null);
@@ -48,7 +26,6 @@ const useFetch = (url) => {
             .catch(err => {
                 setIsPending(false);
                 setError(err.message);
-                // console.log(err.message);
             })
         }, [url]);
 

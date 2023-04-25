@@ -12,7 +12,6 @@ const CommentListWrap = styled.div`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  border-bottom: 2px solid white;
 `;
 
 const QuestionCommentList = ({ question, isLoggedIn, openModal }) => {

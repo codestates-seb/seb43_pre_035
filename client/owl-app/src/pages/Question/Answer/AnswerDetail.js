@@ -17,7 +17,7 @@ const AnswerBlock = styled.div`
 const AnsweruserBlock = styled.div`
     display: flex;
     padding: 10px;
-    border-bottom: 1px solid white;
+    border-bottom: 2px solid #DACC96;
     align-items: center;
 `
 
@@ -30,6 +30,12 @@ const CreateUserA = styled.div`
     padding-top: 60px;
     width: 130px;
     font-size: 15px;
+    color: #8D7B68;
+`
+const CreateAvatar = styled.img`
+    width: var(--size-thread-avatar);
+    height: var(--size-thread-avatar);
+    border-radius: 50%;
 `
 
 const EditorInput =styled.input`
@@ -45,7 +51,6 @@ const ReviseButton = styled(UpdateButton) `
 const AnswerDetail = ({ q_id, answer, answers, updateAnswerHandler, deleteAnswerHandler, isLoggedIn, openModal }) => {
 
     const [answerComments, setAnswerComments] = useState((answer.answerReplies ? answer.answerReplies : []));
-    // const answerCommentsNum = answer.answerReplies ? answer.answerReplies.length : 0;
     const url_patch = `http://localhost:3001/questions/${q_id}`;
     console.log(answer.member.displayName)
 
@@ -64,8 +69,6 @@ const AnswerDetail = ({ q_id, answer, answers, updateAnswerHandler, deleteAnswer
             return el;
         });
 
-
-
         if (answer.answerReplies) {
             axios.patch(url_patch, { "answers": newAnswers })
                 .then(res => { console.log("answerReplies patch success!", res) })
@@ -76,12 +79,6 @@ const AnswerDetail = ({ q_id, answer, answers, updateAnswerHandler, deleteAnswer
             .then(res => { console.log("answerReplies patch success!", res) })
             .catch(err => { console.log("answerReplies patch fail!", err) })
         }
-    }
-
-    const deleteClickHandler = (e) => {
-        //삭제 전 묻기 - 진짜 삭제하고 싶으신가요?
-        e.stopPropagation();
-        deleteAnswerHandler(answer.id);
     }
 
     const updateAnswerCommentHandler = (comment_id, updatedComment) => {
@@ -141,6 +138,14 @@ const AnswerDetail = ({ q_id, answer, answers, updateAnswerHandler, deleteAnswer
         console.log("돼라:", updatedAnswer )
     }
 
+    const deleteClickHandler = (e) => {
+        //삭제 전 묻기 - 진짜 삭제하고 싶으신가요?
+        e.stopPropagation();
+        deleteAnswerHandler(answer.id);
+    }
+
+
+
     const onTextChange = (e) => {
         setUpdatedAnswer(e.target.value);
     }
@@ -151,16 +156,20 @@ const AnswerDetail = ({ q_id, answer, answers, updateAnswerHandler, deleteAnswer
                 <AnsweruserBlock>
         { isEditState ? <>
                     <EditorInput type="text" value={updatedAnswer} onChange={onTextChange} />
-                    <ReviseButton >답변 수정하기</ReviseButton> </>: 
-                    <AnswerContent>{answer.content}</AnswerContent>}
+                    <ReviseButton >답변 수정하기</ReviseButton> </>:
+                    <>
+                    <AnswerContent>{answer.content}</AnswerContent>
+                    <CreateAvatar scr={answer.member.avatarLink}/>
+                    </>
+                    }
                     <CreateUserA>{answer.member.displayName}</CreateUserA>
                     {isLoggedIn &&
                     <>
                     <ReviseButton onClick={handleEditClick}>수정</ReviseButton>
-                    <ReviseButton onClick={deleteClickHandler}>삭제</ReviseButton> 
+                    <ReviseButton onClick={deleteClickHandler}>삭제</ReviseButton>
                     </>}
                 </AnsweruserBlock>
-                
+
                 <AnswerCommentList answerComments={answerComments}
                                     deleteAnswerCommentHandler={deleteAnswerCommentHandler}
                                     updateAnswerCommentHandler={updateAnswerCommentHandler}

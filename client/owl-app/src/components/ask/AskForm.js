@@ -1,10 +1,8 @@
 import styled from 'styled-components';
 import axios from 'axios';
 import FormInput from './FormInput';
-import { useState, useEffect, useId } from 'react';
+import { useState, useEffect } from 'react';
 import { ClickButton } from '../../styles/UIStyles.js';
-
-// import { initialData } from '../../data/dummyThreads_sung';
 import { useNavigate } from 'react-router-dom';
 
 const FormWrapper = styled.form`
@@ -44,46 +42,30 @@ const shuffle = (array) => {
     }
   }
 
-const AskForm = ({threads}) => {
+const AskForm = () => {
 
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
-    const id = useId();
     const navigate = useNavigate();
+
     const url_avatars = "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com";
     const url_threads = `${process.env.REACT_APP_URL_JSON_QUESTIONS}`;
-    const url_threads_test = "https://2026-124-61-224-204.ngrok-free.app/questions"
+    const url_threads_test = `${process.env.REACT_APP_URL_NGROKTEST}/questions`
 
-    //default avatar images to shuffle
+    //default avatar images to shuffle ----- for signup.
     const AvatDefaultUrls = [];
     const imgNum = 8;
     let imgIdx = 0;
     for (let i = 1; i <= imgNum; i++) AvatDefaultUrls.push(`${url_avatars}/owl0${i}.png`);
     shuffle(AvatDefaultUrls);
-    // console.log(AvatDefaultUrls);
 
-    // useEffect(() => {
-    //     console.log("title: ", title, "content: ", content);
-    const accessToken = `eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzcHJpbmdAZ21haWwuY29tIiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTY4MjI2MDc0NSwiZXhwIjoxNjgyMjY0MzQ1fQ.MMD5m5_D-PuKnzglKDB2v1FM0_PUqSg3a9CIayVqSkA`;
     const headers = { headers :
-        {Authorization : `Bearer ${accessToken}`}
+        {Authorization : `Bearer ${process.env.REACT_APP_NGROK_TOKEN}`}
     };
 
     const submitThreadHandler = (e) => {
         e.preventDefault();
-
-        const date = new Date();
-        const newThread = {
-            // "id": id // id는 자동생성됨
-            "createdDate": date.toISOString(),
-            "updateDate": date.toISOString(),
-            "title": title,
-            "member": {"displayName" : 'jicoder', "avatarLink" : AvatDefaultUrls[imgIdx]},
-            "answer": [],
-            "content":
-                `<p>${content}</p>`,
-            "viewCount" : 0,
-        };
+        e.stopPropagation();
 
         //if it's the last image, shuffle again
         if (imgIdx >= imgNum-1){
@@ -93,9 +75,11 @@ const AskForm = ({threads}) => {
             imgIdx++;
           }
 
-        axios.post(url_threads, newThread, headers)
+        axios.post(url_threads_test, {'title': title, 'content': content}, headers)
         .then((res) => {console.log("axios ask post request success!", res)
-          console.log('url: ', url_threads_test);
+
+          navigate('/');
+          navigate(0);
         })
         .catch((err) => {console.log("axios post request fail!", err)})
         // .then(() => {
@@ -103,8 +87,6 @@ const AskForm = ({threads}) => {
         //     navigate(0);
         // })
 
-        navigate('/');
-        navigate(0); //refresh page
     }
 
     return (

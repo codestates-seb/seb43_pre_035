@@ -1,9 +1,6 @@
 import styled from "styled-components";
 import SelectQuestion from "./SelectQuestion";
-import { initialData } from "../../data/dummyQuestion";
-import { useState,useEffect } from "react";
 import{ useParams } from "react-router-dom";
-import axios from 'axios'
 import useFetch from "../../utils/useFetch";
 import SideNav from "../../components/SideNav";
 
