@@ -1,10 +1,12 @@
 package com.hoot.member;
 
+import com.hoot.email.MemberRegistrationApplicationEvent;
 import com.hoot.exception.BusinessLogicException;
 import com.hoot.exception.ExceptionCode;
 import com.hoot.security.CustomAuthorityUtils;
 import com.hoot.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -18,12 +20,15 @@ public class MemberService {
     private final MemberMapper mapper;
     private final PasswordEncoder passwordEncoder;
     private final CustomAuthorityUtils customAuthorityUtils;
+    private final ApplicationEventPublisher publisher;
 
     public MemberDto.Response signup(MemberDto.Post postDto) {
         Member member = mapper.postDtoToEntity(postDto);
         member.encodePassword(passwordEncoder);
         member.setRoles(customAuthorityUtils.createRoles(postDto.getEmail()));
         Member save = memberRepository.save(member);
+
+        publisher.publishEvent(new MemberRegistrationApplicationEvent(this, save));
         return mapper.entityToResponse(save);
     }
 
@@ -65,6 +70,11 @@ public class MemberService {
 
     public void deleteMember(UserDetailsImpl user, long memberId) {
         Member findMember = verifyLogInMemberMatchesMember(user.getMemberId(), memberId);
+        memberRepository.delete(findMember);
+    }
+
+    public void deleteMember(long memberId) {
+        Member findMember = findVerifiedMemberById(memberId);
         memberRepository.delete(findMember);
     }
 

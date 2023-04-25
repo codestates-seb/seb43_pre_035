@@ -9,7 +9,8 @@ public enum ExceptionCode {
     QUESTION_NOT_FOUND(404, "Question Comment Not Found"),
     ANSWER_NOT_FOUND(404, "Answer Comment Not Found"),
     CANNOT_ADOPT(404, "Question Already Has Been Adopted" ),
-    MEMBER_CANNOT_USE_FEATURE(404, "Feature Not Available To This User");
+    MEMBER_CANNOT_USE_FEATURE(404, "Feature Not Available To This User"),
+    FAILED_TO_JOIN(404, "Email Fail");
 
     @Getter
     private int status;
