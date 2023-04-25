@@ -44,24 +44,23 @@ const CommentInput = ({addCommentHandler})=>{
         const date = new Date();
         const userName = "null"
         const userAvatarLink = "null"
-
         // console.log("comment content: ", newCommentContent);
         if (!newCommentContent) {console.log("no content!"); setInvalidComment(true); return;};
-        let newComment = {
-            "id" : cId,
-            "member" : {
-              "displayName": userName, 
-              "avatarLink" : userAvatarLink
-            },
-            "content" : newCommentContent,
-            "createdDate": date.toISOString(),
-            "updateDate": date.toISOString(),
-        }
+        // console.log(addCommentHandler)
+        // let newComment = {
+        //     "member" : {
+        //       "displayName": userName, 
+        //       "avatarLink" : userAvatarLink
+        //     },
+        //     "content" : newCommentContent,
+        //     "createdDate": date.toISOString(),
+        //     "updateDate": date.toISOString(),
+        // }
 
-        addCommentHandler(newComment);
+        addCommentHandler(newCommentContent);
         setInvalidComment(false);
         setNewCommentContent('');
-        setcId(Math.floor(Math.random()*1000));
+
     }
 
     return (

@@ -6,6 +6,7 @@ import CommentInputPatch from "./CommentInputPatch";
 import AnswerCommentInputPatch from "./AnswerCommentInputPatch";
 
 
+
 const CommentWrap = styled.div`
     padding: 10px;
     padding-left: 50px;
@@ -13,8 +14,8 @@ const CommentWrap = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: center;
-    border-bottom: 2px solid white;
-    color: #DACC96;
+    border-bottom: 2px solid #E7CC8F;
+    color: white;
 `
 
 const CommentDetail = styled.div`
@@ -25,19 +26,25 @@ const CommentDetail = styled.div`
 const CommentUser = styled.div`
     padding: 10px;
     width: 20vw;
+    color: var(--colors-lightbrown);
 `
 
 const CommentDate = styled.div`
     padding: 10px;
+    font-size: 13px;
     width: 20vw;
+    color: var(--colors-lightbrown);
 `
-
-const CommentCreated = ({comment, commentType, deleteAnswerCommentHandler, updateQuestionCommentHandler, updateAnswerCommentHandler, isLoggedIn, openModal})=>{
+const convertDate = (string) => {
+    return `${string.substring(0, 4)}년 ${String(Number(string.substring(5, 7)))}월 ${String(Number(string.substring(8, 10)))}일`
+  }
+const CommentCreated = ({comment, commentType, deleteAnswerCommentHandler,updateQuestionCommentHandler, updateAnswerCommentHandler, isLoggedIn, openModal})=>{
 
     const  [isEditable,setIsEditable] = useState(false);
     const  [updatedContent, setUpdatedContent] = useState(comment.content);
+    
 
-
+    // console.log(comment)
     const deleteClickHandler = (e) => {
         e.stopPropagation();
         console.log("comment delete clicked!");
@@ -45,21 +52,25 @@ const CommentCreated = ({comment, commentType, deleteAnswerCommentHandler, updat
         deleteAnswerCommentHandler(comment.id);
     }
 
+    
+    
+
     const editClickHandler = () => {
         console.log("comment update clicked!");
         if(!isLoggedIn) {openModal(); return};
-        setIsEditable(true);
         if (commentType==='qComment') updateQuestionCommentHandler(comment.id, updatedContent);
         if (commentType==='aComment') updateAnswerCommentHandler(comment.id, updatedContent);
     }
+    
 
 
     return(
         <>
-            {isEditable? (commentType === 'qComment' ? <CommentInputPatch updatedContent={updatedContent}
+            {isEditable? (commentType === 'qComment' ? <CommentInputPatch     
+                                            updatedContent={updatedContent}
                                             setUpdatedContent={setUpdatedContent}
                                             editClickHandler={editClickHandler}
-            setIsEditable={setIsEditable}/> :
+                                            setIsEditable={setIsEditable}/> :
             <AnswerCommentInputPatch updatedContent={updatedContent}
                                 setUpdatedContent={setUpdatedContent}
                                 editClickHandler={editClickHandler}
@@ -67,10 +78,10 @@ const CommentCreated = ({comment, commentType, deleteAnswerCommentHandler, updat
                             <CommentWrap>
                             <CommentDetail>{updatedContent}</CommentDetail>
                             <CommentUser>{comment.member.displayName}</CommentUser>
-                            <CommentDate>{comment.updateDate}</CommentDate>
+                            <CommentDate>{convertDate(comment.updateDate)}</CommentDate>
                             {isLoggedIn &&
                             <>
-                            <UpdateButton onClick={editClickHandler}>수정
+                            <UpdateButton onClick={()=>{setIsEditable(true)}}>수정
                             </UpdateButton>
                             <UpdateButton onClick={deleteClickHandler}>삭제</UpdateButton>
                             </>}
