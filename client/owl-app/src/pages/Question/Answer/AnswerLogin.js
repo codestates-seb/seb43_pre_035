@@ -31,7 +31,7 @@ const AnswerLogin = ({addAnswerHandler}) => {
       };
 
     const onClickSubmit = ()=> {
-        const data = new Date();
+
 
       if (!newAnswerContent){console.log("invalid answer!"); setInvalidAnswer(true); return;}
         // let newAnswer =

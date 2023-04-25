@@ -35,9 +35,6 @@ const CommentInputPatch = ({ updatedContent, setUpdatedContent, editClickHandler
     const [invalidComment, setInvalidComment] = useState(false);
 
 
-    useEffect (()=>{
-        console.log("Comment 내용", newCommentContent)
-    },[newCommentContent])
 
     const onTextChange = (e) => {
         setNewCommentContent(e.target.value);

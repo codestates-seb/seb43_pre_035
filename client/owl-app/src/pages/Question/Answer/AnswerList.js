@@ -19,29 +19,34 @@ const Answerlist = ({ question, isLoggedIn, openModal}) => {
 
     const [answers, setAnswers] = useState(question.answers);
 
-    const navigate = useNavigate(); //change into useFetch later
+    const navigate = useNavigate();
 
-
-
-    const url_patch = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/answers`;
+    // const url_patch = `http://localhost:3001/questions/${question.id}`;
+    const url_apost = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/answers`
+    const url_apatch = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/answers`
 
     const addAnswerHandler = (newAnswer) => {
-
         // const newAnswers = answers? [...answers, newAnswer] : [newAnswer];
         // if (answers) setAnswers(newAnswers);
         // else setAnswers(newAnswers);
-        // console.log(newAnswer);
         //patch, add answers
-
-        const headers = {
-            headers : {
-                Authorization : `Bearer ${process.env.REACT_APP_NGROK_TOKEN}`
-            }
+        const headers = { headers :
+            {Authorization : `Bearer ${process.env.REACT_APP_NGROK_TOKEN}`
         }
+        };
 
-        axios.post(url_patch, {"content": newAnswer}, headers)
-            .then(res => { console.log("answer patch success!", res) })
-            .catch(err => { console.log("answer patch fail!", err) });
+        axios.post(url_apost, { "content": newAnswer }, headers)
+        .then(res => { console.log("answer patch success!", res)
+        navigate(0);
+    })
+        .catch(err => { console.log("answer patch fail!", err) });
+
+
+        console.log(newAnswer);
+        // json.server
+        // axios.patch(url_patch, { ...question, "answers": newAnswers })
+        //     .then(res => { console.log("answer patch success!", res) })
+        //     .catch(err => { console.log("answer patch fail!", err) });
 
         navigate(0);
         //json-server
@@ -65,7 +70,7 @@ const Answerlist = ({ question, isLoggedIn, openModal}) => {
         console.log("제발:" ,editAnswer)
 
         axios
-            .patch(url_patch, { ...question, "answers" : editAnswer})
+            .patch(url_apatch, { ...question, "answers" : editAnswer})
             .then((res) => {
                 console.log("update EditAnswer success!", res)
             })
@@ -81,7 +86,7 @@ const Answerlist = ({ question, isLoggedIn, openModal}) => {
         const newAnswers = answers.filter(el => el.id !== answer_id);
         setAnswers(newAnswers);
         //this should be replaced with 'delete'
-        axios.patch(url_patch, {...question, "answers" : newAnswers})
+        axios.patch(url_apatch, {...question, "answers" : newAnswers})
             .then(res => {console.log("delete answer success!")})
             .catch(err => {console.log("delete answer fail!", err)});
     }
@@ -94,6 +99,7 @@ const Answerlist = ({ question, isLoggedIn, openModal}) => {
             <AnswerWrap>
                 {answers ? answers.map((answer) => <AnswerDetail
                                                     isLoggedIn={isLoggedIn}
+                                                    question={question}
                                                     q_id={question.id}
                                                     answer={answer}
                                                     answers={answers}
