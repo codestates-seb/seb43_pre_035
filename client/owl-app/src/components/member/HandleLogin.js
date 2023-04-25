@@ -11,19 +11,19 @@ const HandleLogin = async ({ email, password }) => {
       email,
       password
     });
-    console.log("서버로부터 받은 로그인확인 정보", response.data); // 서버로부터 받은 응답 데이터 확인
-    console.log("response 객체", response.headers);
+    // console.log("서버로부터 받은 로그인확인 정보", response.data); // 서버로부터 받은 응답 데이터 확인
+    // console.log("response 객체", response.headers);
     const token = response.headers.authorization;
     console.log('JWT Token:', token);
 
     // JWT 토큰을 로컬 스토리지에 저장
-    localStorage.setItem('userInfo', JSON.stringify(response.data));
+    localStorage.setItem('userInfo', {
+      isLoggedIn: true,
+      ...JSON.stringify(response.data)
+    });
     localStorage.setItem('token', token);
-    // console.log('local storage:', token);
 
-    // dispatch({ type: 'LOGIN', payload: response.data });
-    // 전역 상태에 사용자 정보 저장
-    return [response.data, token];
+    return response.data;
 
   } catch (error) {
     console.error(error);

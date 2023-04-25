@@ -42,7 +42,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  const [state, dispatch] = useReducer(AuthReducer.AuthReducer, AuthReducer.initialState);
+  const [userInfo, dispatch] = useReducer(AuthReducer.AuthReducer, AuthReducer.initialState);
 
   // const { state } = useContext(UserContext);
 
@@ -113,10 +113,9 @@ function App() {
 
   return (
     <UserContext.Provider value={{
-      state,
+      userInfo,
       dispatch,
-      isLoggedIn: state.isLoggedIn,
-      token: state.token,
+      isLoggedIn: userInfo.isLoggedIn,
       handleUserLogin: (userInfo, token) => handleLogin(userInfo, token),
       handleUserLogout: () => handleLogout()
     }}>

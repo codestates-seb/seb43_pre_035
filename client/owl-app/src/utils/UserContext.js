@@ -6,33 +6,23 @@ export const UserContext = createContext();
 
 export function UserProvider(props){
 
-    const [state, dispatch] = useReducer(AuthReducer.AuthReducer, AuthReducer.initialState);
+    const storedInfo = localStorage.getItem('userInfo');
+    const [userInfo, dispatch] = useReducer(AuthReducer.AuthReducer, storedInfo ? storedInfo : AuthReducer.initialState);
 
-    const handleLogin = (data, token) => {
-        dispatch(ACTIONS.login(data, token));
+    const handleLogin = (data) => {
+        dispatch(ACTIONS.login(data));
       }
 
       const handleLogout = () => {
         dispatch(ACTIONS.logout());
       }
-    const [userInfo, setUserInfo] = useState({
-        isLoggedIn: false,
-        memberId: '',
-        email: '',
-        name: '',
-        avatarLink: '',
-        displayName: '',
-        roles: [],
-        token: ''
-      });
-
 
       useEffect(() => {
         const savedUserInfo = localStorage.getItem('userInfo');
         const savedToken = localStorage.getItem('token');
 
         if (savedUserInfo && savedToken){
-            setUserInfo({isLoggedIn: true, ...JSON.parse(savedUserInfo), token: token})
+            handleLogin(savedUserInfo);
         }
 
       }, []);
@@ -41,14 +31,10 @@ export function UserProvider(props){
         localStorage.setItem('userInfo', {
             isLoggedIn: userInfo.isLoggedIn,
             memberId: userInfo.memberId,
-            email: userInfo.email,
             name: userInfo.name,
             avatarLink : userInfo.avatarLink,
             displayName : userInfo.displayName,
-            roles : userInfo.roles
         });
-
-        localStorage.setItem('token', userInfo.token);
 
       }, [userInfo]);
 
@@ -56,9 +42,9 @@ export function UserProvider(props){
 
       return (
         <UserContext.Provider value={{
-            state,
+            userInfo,
             dispatch,
-            isLoggedIn: state.isLoggedIn,
+            isLoggedIn: userInfo.isLoggedIn,
             handleUserLogin: (userInfo, token) => handleLogin(userInfo, token),
             handleUserLogout: () => handleLogout()
           }}>

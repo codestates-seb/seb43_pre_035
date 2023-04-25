@@ -38,7 +38,8 @@ const AskForm = () => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const navigate = useNavigate();
-    const { token } = useContext(UserContext);
+    // const { token } = useContext(UserContext);
+    const token = localStorage.getItem('token');
 
 
     // const url_threads = `${process.env.REACT_APP_URL_JSON_QUESTIONS}`;

@@ -3,11 +3,10 @@ import * as ACTION_TYPES from "../actions/action_types";
 export const initialState = {
     isLoggedIn: false,
     memberId: '',
-    email: '',
     name: '',
     avatarLink: '',
     displayName: '',
-    token: ''
+    // token: ''
 };
 
 export const AuthReducer = (state, action) => {
@@ -18,22 +17,20 @@ export const AuthReducer = (state, action) => {
             ...state,
             isLoggedIn: true,
             memberId: action.memberId,
-            email: action.email,
             name: action.name,
             avatarLink: action.avatarLink,
             displayName: action.displayName,
-            token: action.token
+            // token: action.token
         };
         case ACTION_TYPES.LOGOUT:
         return {
             ...state,
             isLoggedIn: false,
             memberId: '',
-            email: '',
             name: '',
             avatarLink: '',
             displayName: '',
-            token: ''
+            // token: ''
         };
         default:
             return state;

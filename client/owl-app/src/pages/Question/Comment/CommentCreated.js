@@ -58,8 +58,8 @@ const CommentCreated = ({comment, commentType, deleteAnswerCommentHandler,update
     const editClickHandler = () => {
         console.log("comment update clicked!");
         if(!isLoggedIn) {openModal(); return};
-        if (commentType==='qComment') updateQuestionCommentHandler(comment.id, updatedContent);
-        if (commentType==='aComment') updateAnswerCommentHandler(comment.id, updatedContent);
+        if (commentType==='qComment') updateQuestionCommentHandler(comment.questionReplyId, updatedContent);
+        if (commentType==='aComment') updateAnswerCommentHandler(comment.answerReplyId, updatedContent);
     }
     
 

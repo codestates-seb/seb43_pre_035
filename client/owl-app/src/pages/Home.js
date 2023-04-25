@@ -34,9 +34,9 @@ const Home = ({threads, isPending, isLoggedIn, toggleLogin, sidebarStatus, setSi
         setDimensions({width, height});
     }
 
-    const {state} = useContext(UserContext);
+    const {userInfo} = useContext(UserContext);
 
-    // console.log(state);
+    // console.log(userInfo);
 
     const clickSidebarHandler = (item) => {
         if (item === 'Home') setSidebarStatus({homeOn: true, tagsOn: false, usersOn: false, qOn: false});
@@ -47,10 +47,9 @@ const Home = ({threads, isPending, isLoggedIn, toggleLogin, sidebarStatus, setSi
     return (
         <Main>
             {/* <div>
-                login state? {`${state.isLoggedIn}`}
-                 login state? {`${isLoggedIn}`}
-                 email: {`${state.email}`}
-                 token: {`${state.token}`}
+                login userInfo? {`${userInfo.isLoggedIn}`}
+                 login userInfo? {`${isLoggedIn}`}
+                 token: {`${userInfo.token}`}
             </div> */}
             <SideNav toggleLogin={toggleLogin}
                     sidebarStatus={sidebarStatus}

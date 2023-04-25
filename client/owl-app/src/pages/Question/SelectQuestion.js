@@ -76,7 +76,7 @@ const SelectQuestion = ({ question, isLoggedIn, openModal, dimensionsHandler, re
     const [isEditState, setIsEditState] = useState(true);
     const [editTitleQuestion, setEditTitleQuestion] = useState(question.title)
     const [editContentQuestion, setEditContentQuestion] = useState(question.content)
-    // console.log(editQuestion)
+    console.log(question.title)
 
     const onEditTitle = (e) => {
         setEditTitleQuestion(e.target.value)
@@ -92,11 +92,15 @@ const SelectQuestion = ({ question, isLoggedIn, openModal, dimensionsHandler, re
 
     const updateQHandler = () => {
 
-        axios.patch(url, { 'title': editTitleQuestion, 'content': editContentQuestion }, headers)
-            .then(res => { console.log("res: ", res.data) })
-            .catch(err => { console.log(err.message) })
-        // 수정으로 바꾸기
+        axios.patch(url, {'title': editTitleQuestion, 'content': editContentQuestion}, headers)
+            .then(res => {console.log("res: ", res.data)}
+
+            )
+            .catch(err => {console.log(err.message)})
+
+            // 수정으로 바꾸기
     }
+
 
     useEffect(() => {
         if (refContainer.current) {
@@ -106,21 +110,21 @@ const SelectQuestion = ({ question, isLoggedIn, openModal, dimensionsHandler, re
 
     return (
         <>
-            {getQuestion.map((question) => (
-                <SelectedWrap key={question} ref={refContainer}>
-                    {isEditState ?
-                        <Title question={question} isLoggedIn={isLoggedIn}></Title>
-                        : <StyledTextHead
-                            value={editTitleQuestion.title}
-                            onChange={onEditTitle} />}
-                    {isEditState ?
-                        <QuestionContent openModal={openModal}
-                            isLoggedIn={isLoggedIn}
-                            question={question}
-                            setIsEditState={setIsEditState}
-                        ></QuestionContent>
-                        : <><StyledTextContent
-                            value={editContentQuestion.content}
+            {getQuestion.map((question) =>(
+        <SelectedWrap key={question} ref={refContainer}>
+            {isEditState ?
+                <Title question={question} isLoggedIn={isLoggedIn}></Title>
+                : <StyledTextHead
+                value={editTitleQuestion}
+                onChange={onEditTitle}/>}
+            {isEditState ?
+                <QuestionContent openModal={openModal}
+                isLoggedIn={isLoggedIn}
+                question={question}
+                setIsEditState={setIsEditState}
+                ></QuestionContent>
+                : <><StyledTextContent
+                            value={editContentQuestion}
                             onChange={onEditContent} />
                             <ClickButton onClick={updateQHandler} >수정하기</ClickButton></>
                     }
