@@ -1,7 +1,6 @@
-import React, {useState, useEffect, useMemo, Fragment} from 'react';
+import {useState, useEffect, Fragment, createContext, useReducer} from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import GlobalStyle from './theme/GlobalStyle';
-import { UserProvider } from './components/member/UserContext'; // 로그인 정보
 
 //import pages
 //import with Lazy, and load Suspense while loading
@@ -17,27 +16,41 @@ import Mypage from './components/member/MyPage';
 import useFetch from './utils/useFetch';
 import ModalContainer from './components/member/ModalContainer'; // 모달 불러오기
 
+//login state management
+import * as AuthReducer from './utils/store/reducers/authReducer';
+import * as ACTIONS from './utils/store/actions/actions';
+
 //function to convert date
 //ISO-8601 -> if today, how long before current time. or yesterday
 //if this year, only return month/date, if not, include year: 2022년 12월 3일
-const convertDate = (string) => {
-  return `${string.substring(0, 4)}년 ${String(Number(string.substring(5, 7)))}월 ${String(Number(string.substring(8, 10)))}일`
-}
+// const convertDate = (string) => {
+//   return `${string.substring(0, 4)}년 ${String(Number(string.substring(5, 7)))}월 ${String(Number(string.substring(8, 10)))}일`
+// }
 
 const url_threads = `${process.env.REACT_APP_URL_JSON_QUESTIONS}`;
-// const url_threads_test = `https://1cca-124-61-224-204.ngrok-free.app/questions`
-// const url_threads_test_search1 = `https://1cca-124-61-224-204.ngrok-free.app/questions/search/?title=제목&content=내용30`
-// const url_threads_test_search2 = `https://1cca-124-61-224-204.ngrok-free.app/questions/search/?content=내용29`
-
 const url_threads_test = `${process.env.REACT_APP_URL_NGROKTEST}/questions`
 // const url_threads_test_search1 = `${process.env.REACT_APP_URL_NGROKTEST}/questions/search/?title=제목&content=내용30`
 // const url_threads_test_search2 = `${process.env.REACT_APP_URL_NGROKTEST}/questions/search/?title=제목`
+
+//로그인 context 정보
+export const UserContext = createContext();
+
 
 function App() {
   const [threads, isPending, error] = useFetch(url_threads_test);
   const [renderThreads, setRenderThreads] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const [state, dispatch] = useReducer(AuthReducer.AuthReducer, AuthReducer.initialState);
+
+  const handleLogin = (data) => {
+    dispatch(ACTIONS.login(data));
+  }
+
+  const handleLogout = () => {
+    dispatch(ACTIONS.logout());
+  }
 
   const openModal = () => {
     setModalIsOpen(true);
@@ -52,6 +65,8 @@ function App() {
   useEffect(() => {
     console.log("login state: ", isLoggedIn);
   },[isLoggedIn]);
+
+
   //test with ngrok
   // const [thread1, isPending1, error1] = useFetch(url_threads_test_search1);
   // const [thread2, isPending2, error2] = useFetch(url_threads_test_search2);
@@ -69,19 +84,15 @@ function App() {
     setIsLoggedIn(!isLoggedIn);
   }
 
-  function sortThreads(threads){
-    const sorted = [...threads].sort((a, b) => b.createdDate.localeCompare(a.createdDate));
-    return sorted;
-  }
+  // function sortThreads(threads){
+  //   const sorted = [...threads].sort((a, b) => b.createdDate.localeCompare(a.createdDate));
+  //   return sorted;
+  // }
 
 
   useEffect(()=> {
     if (threads){
       console.log("initial threads loaded!");
-      //for dummy data (+sorting)
-      // const sorted = sortThreads(threads);
-      // // console.log(threads);
-      // setRenderThreads(sorted);
 
       //for testing with ngrok
       console.log('ngrok threads: ', threads);
@@ -93,16 +104,13 @@ function App() {
 
   },[threads]);
 
-  //for testing
-  // useEffect(()=> {
-  //   if (thread1) console.log("thread1", thread1);
-  //   if (thread1) console.log("thread2", thread2);
-
-  // }, []);
-
   return (
-    <UserProvider>
-      <Fragment>
+    <UserContext.Provider value={{
+      state,
+      dispatch,
+      handleUserLogin: (userInfo, token) => handleLogin(userInfo, token),
+      handleUserLogout: () => handleLogout()
+    }}>
         <GlobalStyle />
         <Router>
         <ModalContainer isOpen={modalIsOpen}
@@ -110,7 +118,6 @@ function App() {
                         setIsLoggedIn={setIsLoggedIn}
                         toggleLogin={toggleLogin} />
             <Header threads={renderThreads}
-                    sortThreads={sortThreads}
                     setSidebarStatus={setSidebarStatus}
                     isLoggedIn={isLoggedIn}
                     toggleLogin={toggleLogin}
@@ -145,8 +152,8 @@ function App() {
                                                                             openModal={openModal}/> } />
             </Routes>
         </Router>
-      </Fragment>
-      </UserProvider>
+
+      </UserContext.Provider>
   );
 }
 //onClick={openModal}

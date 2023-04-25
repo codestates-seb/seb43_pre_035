@@ -29,18 +29,6 @@ const convertDate = (string) => {
     return `${string.substring(0, 4)}년 ${String(Number(string.substring(5, 7)))}월 ${String(Number(string.substring(8, 10)))}일`
   }
 
-const shuffle = (array) => {
-    let currentIndex = array.length,  randomIndex;
-    // While there remain elements to shuffle.
-    while (currentIndex != 0) {
-      // Pick a remaining element.
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-      // And swap it with the current element.
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex], array[currentIndex]];
-    }
-  }
 
 const AskForm = () => {
 
@@ -48,16 +36,10 @@ const AskForm = () => {
     const [content, setContent] = useState('');
     const navigate = useNavigate();
 
-    const url_avatars = "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com";
     const url_threads = `${process.env.REACT_APP_URL_JSON_QUESTIONS}`;
     const url_threads_test = `${process.env.REACT_APP_URL_NGROKTEST}/questions`
 
     //default avatar images to shuffle ----- for signup.
-    const AvatDefaultUrls = [];
-    const imgNum = 8;
-    let imgIdx = 0;
-    for (let i = 1; i <= imgNum; i++) AvatDefaultUrls.push(`${url_avatars}/owl0${i}.png`);
-    shuffle(AvatDefaultUrls);
 
     const headers = { headers :
         {Authorization : `Bearer ${process.env.REACT_APP_NGROK_TOKEN}`}
@@ -66,14 +48,6 @@ const AskForm = () => {
     const submitThreadHandler = (e) => {
         e.preventDefault();
         e.stopPropagation();
-
-        //if it's the last image, shuffle again
-        if (imgIdx >= imgNum-1){
-            imgIdx = 0;
-            shuffle(AvatDefaultUrls);
-          }else{
-            imgIdx++;
-          }
 
         axios.post(url_threads_test, {'title': title, 'content': content}, headers)
         .then((res) => {console.log("axios ask post request success!", res)

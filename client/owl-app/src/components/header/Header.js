@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import TopNav from "./TopNav";
 import TopNavlogged from "./TopNavlogged";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
+import { UserContext } from "../../App";
 
 const HeaderBlock = styled.header`
     display: flex;
@@ -24,7 +25,7 @@ const HeaderWrap = styled.div`
 const Header = ({threads, setSidebarStatus, isLoggedIn, toggleLogin, openModal}) => {
 
     const location = useLocation();
-
+    const {state} = useContext(UserContext);
 
     const clickRouteHandler = (pathName) => {
         if (pathName === 'Home') setSidebarStatus({homeOn: true, tagsOn: false, usersOn: false, qOn: false});
@@ -46,7 +47,7 @@ const Header = ({threads, setSidebarStatus, isLoggedIn, toggleLogin, openModal})
     return(
         <HeaderBlock>
             <HeaderWrap >
-                {isLoggedIn ? <TopNavlogged toggleLogin={toggleLogin} openModal={openModal}/> : <TopNav openModal={openModal}/> }
+                {state.isLoggedIn ? <TopNavlogged toggleLogin={toggleLogin} openModal={openModal}/> : <TopNav openModal={openModal}/> }
             </HeaderWrap>
         </HeaderBlock>
  )

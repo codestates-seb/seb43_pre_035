@@ -25,7 +25,6 @@ const EditorInput =styled.input`
 const AnswerLogin = ({addAnswerHandler}) => {
     const [newAnswerContent, setNewAnswerContent] = useState('');
     const [invalidAnswer, setInvalidAnswer] = useState(false);
-    const[aId, setaId] = useState(Math.floor(Math.random()*1000));
 
     const onAnswerTextChange = (e) => {
         setNewAnswerContent(e.target.value);
@@ -33,32 +32,29 @@ const AnswerLogin = ({addAnswerHandler}) => {
 
     const onClickSubmit = ()=> {
         const data = new Date();
-        const userName = "null"
-        const userAvatarLink = "null"
 
       if (!newAnswerContent){console.log("invalid answer!"); setInvalidAnswer(true); return;}
-        let newAnswer =
-            {
-              "id": aId,
-              "createdDate": data.toISOString(),
-              "updateDate": data.toISOString(),
-              "member": {
-                "displayName": userName, 
-                "avatarLink" : userAvatarLink
-              },
-              "content": newAnswerContent,
-              "answerReplies": [
-              ]
-            }
+        // let newAnswer =
+        //     {
+        //       "id": aId,
+        //       "createdDate": data.toISOString(),
+        //       "updateDate": data.toISOString(),
+        //       "member": {
+        //         "displayName": userName,
+        //         "avatarLink" : userAvatarLink
+        //       },
+        //       "content": newAnswerContent,
+        //       "answerReplies": [
+        //       ]
+        //     }
 
 
-        addAnswerHandler(newAnswer);
+        addAnswerHandler(newAnswerContent);
         setNewAnswerContent('');
         setInvalidAnswer(false);
-        setaId(Math.floor(Math.random()*1000));
 
 
-        console.log(newAnswerContent)
+        // console.log(newAnswerContent)
     }
 
 

@@ -4,7 +4,8 @@ import Tags from '../components/home/Tags';
 import Users from '../components/home/Users';
 
 import styled from 'styled-components';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useContext } from 'react';
+import { UserContext } from '../App';
 
 
 const Main = styled.div`
@@ -33,6 +34,10 @@ const Home = ({threads, isPending, toggleLogin, sidebarStatus, setSidebarStatus,
         setDimensions({width, height});
     }
 
+    const {state, dispatch} = useContext(UserContext);
+
+    // console.log(state);
+
     const clickSidebarHandler = (item) => {
         if (item === 'Home') setSidebarStatus({homeOn: true, tagsOn: false, usersOn: false, qOn: false});
         if (item === 'Tags') setSidebarStatus({homeOn: false, tagsOn: true, usersOn: false, qOn: false});
@@ -41,6 +46,10 @@ const Home = ({threads, isPending, toggleLogin, sidebarStatus, setSidebarStatus,
 
     return (
         <Main>
+            <div>
+                login state? {`${state.isLoggedIn}`}
+                email: {`${state.email}`}
+            </div>
             <SideNav toggleLogin={toggleLogin}
                     sidebarStatus={sidebarStatus}
                     clickSidebarHandler={clickSidebarHandler}

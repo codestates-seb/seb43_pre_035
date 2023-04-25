@@ -3,6 +3,7 @@ import AnswerDetail from "./AnswerDetail";
 import { useState } from "react";
 import AnswerCreate from "./AnswerCreate";
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 
 const AnswerWrap = styled.div`
@@ -18,20 +19,35 @@ const Answerlist = ({ question, isLoggedIn, openModal}) => {
 
     const [answers, setAnswers] = useState(question.answers);
 
+    const navigate = useNavigate(); //change into useFetch later
 
-    const url_patch = `http://localhost:3001/questions/${question.id}`;
+
+
+    const url_patch = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/answers`;
 
     const addAnswerHandler = (newAnswer) => {
 
-        const newAnswers = answers? [...answers, newAnswer] : [newAnswer];
-        if (answers) setAnswers(newAnswers);
-        else setAnswers(newAnswers);
+        // const newAnswers = answers? [...answers, newAnswer] : [newAnswer];
+        // if (answers) setAnswers(newAnswers);
+        // else setAnswers(newAnswers);
         // console.log(newAnswer);
         //patch, add answers
 
-        axios.patch(url_patch, { ...question, "answers": newAnswers })
+        const headers = {
+            headers : {
+                Authorization : `Bearer ${process.env.REACT_APP_NGROK_TOKEN}`
+            }
+        }
+
+        axios.post(url_patch, {"content": newAnswer}, headers)
             .then(res => { console.log("answer patch success!", res) })
             .catch(err => { console.log("answer patch fail!", err) });
+
+        navigate(0);
+        //json-server
+        // axios.patch(url_patch, { ...question, "answers": newAnswers })
+        //     .then(res => { console.log("answer patch success!", res) })
+        //     .catch(err => { console.log("answer patch fail!", err) });
 
     }
 
