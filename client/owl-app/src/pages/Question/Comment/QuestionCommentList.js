@@ -3,7 +3,7 @@ import CommentCreated from "./CommentCreated";
 import { useState } from "react";
 import AddComment from "./AddComment";
 import axios from "axios";
-import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const CommentListWrap = styled.div`
   padding: 10px;
@@ -15,61 +15,54 @@ const CommentListWrap = styled.div`
 `;
 
 const QuestionCommentList = ({ question, isLoggedIn, openModal }) => {
-  const [comments, setComments] = useState(
-    question.questionReplies ? question.questionReplies : []
-  );
+  const [comments, setComments] = useState(question.questionReplies);
+  const replies = question.questionReplies
+  const navigate = useNavigate();
 
-  const url_patch = `http://localhost:3001/questions/${question.id}`;
-  console.log(comments);
+  const url_qpost = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/question_replies`;
+  const url_qpatch = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/question_replies/${question.questionReplies[0]}`;
 
+  
+  
+  const headers = { headers :
+    {Authorization : `Bearer ${process.env.REACT_APP_NGROK_TOKEN}`
+}
+};
+  // console.log(question.questionReplies)
+  
   const addCommentHandler = (newComment) => {
-    // console.log("comments: ", comments);
-    setComments([...comments, newComment]);
-
+    // console.log("comments: ", newComment);
+    // setComments([...comments, newComment]);
+    
     //axios.patch to add comments...-----> with real server, revise to use post to add comments
-    if (question.questionReplies && comments.length) {
-      axios
-        .patch(url_patch, {
-          ...question,
-          questionReplies: [...comments, newComment]
+    axios
+        .post(url_qpost, {"content" : newComment}, headers)
         //   questionReplies: [...question.questionReplies, newComment],
-        })
         .then((res) => {
-          console.log("add QComment success! id: ", newComment.id, " ", res);
+          console.log("add QComment success! id: ", res.questionReplyId);
+          navigate(0)
         })
         .catch((err) => {
           console.log("add QComment fail!", err);
         });
-    } else {
-      axios
-        .patch(url_patch, { ...question, questionReplies: [newComment] })
-        .then((res) => {
-          console.log("add first QComment success! id: ", newComment.id, " ", res);
-        })
-        .catch((err) => {
-          console.log("add QComment fail!", err);
-        });
-    }
-  };
+      }
 
-  const updateQuestionCommentHandler = (comment_id, updatedComment) => {
+  const updateQuestionCommentHandler = (updatedComment) => {
     console.log("comment update is being handled");
     //use map to change the comment_id content
-    const newComments = comments.map((el) => {
-      if (el.id === comment_id) el.content = updatedComment;
-      return el;
-    });
-
-    setComments(newComments);
-
+   
     axios
-      .patch(url_patch, { ...question, questionReplies: newComments })
+      .patch(url_qpatch, { "content" : updatedComment })
       .then((res) => {
-        console.log("update Qcomment success!", res);
+        console.log("update Qcomment success!", res.questionReplies.questionReplyId);
       })
       .catch((err) => {
         console.log("update Qcomment fail!", err);
       });
+
+      navigate(0);
+
+
   };
 
 
@@ -80,7 +73,7 @@ const QuestionCommentList = ({ question, isLoggedIn, openModal }) => {
     setComments(newComments);
 
     axios
-      .patch(url_patch, { ...question, questionReplies: newComments })
+      .patch(url_qpatch, { ...question, questionReplies: newComments })
       .then((res) => {
         console.log("delete Qcomment success!", res);
       })

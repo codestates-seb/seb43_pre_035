@@ -2,6 +2,9 @@ import styled from "styled-components";
 import axios from 'axios';
 import { UpdateButton, ClickButton } from '../../styles/UIStyles'
 import ReactHTmlParser from 'html-react-parser'
+import { useNavigate,Link } from "react-router-dom";
+import { useState } from "react";
+import FormInput from "../../components/ask/FormInput";
 
 const ContentWrap = styled.div`
     width: 750px;
@@ -42,37 +45,42 @@ const CreateAvatar = styled.img`
     border-radius: 50%;
 `
 
-const QuestionContent = ({question, isLoggedIn}) =>{
+const QuestionContent = ({question, isLoggedIn, setIsEditState}) =>{
+
+    
     // const paserContent = question.content
     // console.log(question.member)
     const url = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}`;
+    
     const headers = { headers :
         {Authorization : `Bearer ${process.env.REACT_APP_NGROK_TOKEN}`}
     };
 
-    const updateQHandler = () => {
-        axios.patch(url, {'title': '수정제목', 'content': '수정콘텐츠'}, headers)
-            .then(res => {console.log("res: ", res.data)})
-            .catch(err => {console.log(err.message)})
+    const EditQuestion = () =>{
+        setIsEditState(false)
     }
+
+    
 
     const deleteQHandler = () => {
         axios.delete(url, headers)
             .then(res => {console.log("delete Q success!")})
             .catch(err => {console.log("delete Q fail! ", err)})
+            // 질문 목록으로 돌아가기
+            // 성공하면 돌아가라
+            // navigate("/")
     }
 
 
     return (
         <>
         <ContentWrap>
-            {/* {ReactHTmlParser(<ContentDetail>{paserContent}</ContentDetail>) } */}
             <ContentDetail>{question.content}</ContentDetail>
             <UserWrap>
                 <CreateAvatar src={question.member.avatarLink}></CreateAvatar>
                 <CreateUser>{question.member.displayName}</CreateUser>
             {isLoggedIn  && <ButtonWrap>
-                <UpdateButton onClick={updateQHandler}>수정</UpdateButton>
+                <UpdateButton onClick={EditQuestion}>수정</UpdateButton>
                 <UpdateButton onClick={deleteQHandler}>삭제</UpdateButton>
             </ButtonWrap>}
             </UserWrap>

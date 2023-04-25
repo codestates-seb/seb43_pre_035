@@ -56,7 +56,7 @@ const convertDate = (string) => {
 
 const Title = ({question}) =>{
 
-    console.log(question)
+    // console.log(question)
 
     return (
         <>

@@ -19,29 +19,10 @@ const QuestionWrap = styled.div`
 const QuestionDetail = ({toggleLogin, sidebarStatus, setSidebarStatus, isLoggedIn, openModal}) => {
 
     // const [question,setQuestion] = useState(initialData.questions[0])
-    const { id } = useParams();
-    const url = `http://localhost:3001/questions/${id}`;
-
-    // const [question,setQuestion] = useState(null);
-    // const [isPending, setIsPending] = useState(true);
-    // const [error, setError] = useState(null);
+    const { questionId } = useParams();
+    // const url = `http://localhost:3001/questions/${questionId}`;
+    const url = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${questionId}`;
     const [question, isPending, error] = useFetch(url);
-    // useEffect(()=>{
-
-    // },[])
-    // axios.get(url)
-    //     .then(res => {
-    //         console.log(res.data)
-    //         setQuestion(res.data)
-    //         setIsPending(true)
-    //         setError(null)
-    //         })
-
-    // console.log(question)
-
-    // if (isPending) return <div>로딩중..</div>;
-    // if (error) return <div>에러가 발생했습니다</div>;
-    // if (!question) return null;
 
 
 

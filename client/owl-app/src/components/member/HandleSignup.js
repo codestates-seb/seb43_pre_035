@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const HandleSignup = async ({ Name, displayName, email, password, avatarLink }) => {
   try {
-    const response = await axios.post('https://24d1-124-61-224-204.ngrok-free.app/users/signup', {
+    const response = await axios.post(`${process.env.REACT_APP_URL_NGROKTEST}/users/signup`, {
       Name,
       displayName,
       email,
