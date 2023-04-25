@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import HandleLogin from './HandleLogin';
 import { useUserDispatch } from './UserContext';
 import { Link } from 'react-router-dom';
+// import jwt from 'jsonwebtoken';
+//npm install jsonwebtoken 해야함
 
 const Form = styled.form`
  display: flex;
@@ -90,7 +92,12 @@ const SignUpContainer = styled.div`
  width: 300px;
 `;
 
-function EmailPasswordForm({ onSubmit, setIsLoggedIn, toggleLogin}) {
+// function generateDummyToken(payload, secret, expiresIn) {
+//     const token = jwt.sign(payload, secret, { expiresIn });
+//     return token;
+// }
+
+function EmailPasswordForm({ onSubmit, setIsLoggedIn, toggleLogin }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useUserDispatch(); //전역 상태 받아오기
@@ -106,25 +113,36 @@ function EmailPasswordForm({ onSubmit, setIsLoggedIn, toggleLogin}) {
     const handleSubmit = (event) => {
         event.preventDefault();
         if (!isValidEmail(email)) {
-            alert('정확한 이메일 주소를 입력해주세요.');
-            return;
+          alert('정확한 이메일 주소를 입력해주세요.');
+          return;
         }
         console.log('Email:', email);
         console.log('Password:', password);
         HandleLogin({ email, password, dispatch });
         onSubmit();
-    };
+      };
 
     const isValidEmail = (email) => {
         const regex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
         return regex.test(email);
     };
 
-    const handleLogin = () =>{
-        onSubmit();
-        setIsLoggedIn(true)
-        toggleLogin();
-    }
+    // const handleLogin = () => {
+    //     // 더미 토큰 발급
+    //     const dummyPayload = { userId: 1, username: 'John Doe', email: 'john.doe@example.com' };
+    //     const dummySecret = 'your_dummy_secret';
+    //     const dummyToken = generateDummyToken(dummyPayload, dummySecret, '1h');
+
+    //     // JWT 토큰을 로컬 스토리지에 저장
+    //     localStorage.setItem('token', dummyToken);
+
+    //     // 전역 상태에 사용자 정보 저장
+    //     dispatch({ type: 'LOGIN', payload: dummyPayload });
+
+    //     onSubmit();
+    //     setIsLoggedIn(true)
+    //     toggleLogin();
+    // }
 
     return (
         <>

@@ -38,6 +38,7 @@ const TopNavlogged = ({toggleLogin, openModal }) => {
     //     }
     //    버튼에 onClick={handleLogout} 입력하면 구현인데 충돌남...
     //여기까지 로그아웃 버튼 기능 구현
+    //null 대신 유저
 
     return (
         <>
