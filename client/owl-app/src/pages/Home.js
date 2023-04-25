@@ -24,7 +24,7 @@ const Main = styled.div`
 
 
 
-const Home = ({threads, isPending, toggleLogin, sidebarStatus, setSidebarStatus, isLoggedIn}) => {
+const Home = ({threads, isPending, isLoggedIn, toggleLogin, sidebarStatus, setSidebarStatus}) => {
 
     //for setting the tags/users pages
     const refContainer = useRef(null);
@@ -34,7 +34,7 @@ const Home = ({threads, isPending, toggleLogin, sidebarStatus, setSidebarStatus,
         setDimensions({width, height});
     }
 
-    const {state, dispatch} = useContext(UserContext);
+    const {state} = useContext(UserContext);
 
     // console.log(state);
 
@@ -46,10 +46,12 @@ const Home = ({threads, isPending, toggleLogin, sidebarStatus, setSidebarStatus,
 
     return (
         <Main>
-            <div>
+            {/* <div>
                 login state? {`${state.isLoggedIn}`}
-                email: {`${state.email}`}
-            </div>
+                 login state? {`${isLoggedIn}`}
+                 email: {`${state.email}`}
+                 token: {`${state.token}`}
+            </div> */}
             <SideNav toggleLogin={toggleLogin}
                     sidebarStatus={sidebarStatus}
                     clickSidebarHandler={clickSidebarHandler}

@@ -1,4 +1,4 @@
-import {useState, useEffect, Fragment, createContext, useReducer} from 'react';
+import {useState, useEffect, Fragment, createContext, useReducer, useContext} from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import GlobalStyle from './theme/GlobalStyle';
 
@@ -44,8 +44,14 @@ function App() {
 
   const [state, dispatch] = useReducer(AuthReducer.AuthReducer, AuthReducer.initialState);
 
-  const handleLogin = (data) => {
-    dispatch(ACTIONS.login(data));
+  // const { state } = useContext(UserContext);
+
+  // useEffect (() => {
+  //   setIsLoggedIn(state.isLoggedIn);
+  // }, []);
+
+  const handleLogin = (data, token) => {
+    dispatch(ACTIONS.login(data, token));
   }
 
   const handleLogout = () => {
@@ -108,6 +114,8 @@ function App() {
     <UserContext.Provider value={{
       state,
       dispatch,
+      isLoggedIn: state.isLoggedIn,
+      token: state.token,
       handleUserLogin: (userInfo, token) => handleLogin(userInfo, token),
       handleUserLogout: () => handleLogout()
     }}>

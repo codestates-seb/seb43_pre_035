@@ -4,7 +4,10 @@ import FormInput from './FormInput';
 import { useState, useEffect } from 'react';
 import { ClickButton } from '../../styles/UIStyles.js';
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { UserContext } from '../../App';
 
+// import  useApiHeaders from '../../utils/useApiHeaders';
 const FormWrapper = styled.form`
     display: flex;
     flex-direction: column;
@@ -35,14 +38,16 @@ const AskForm = () => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const navigate = useNavigate();
+    const { token } = useContext(UserContext);
 
-    const url_threads = `${process.env.REACT_APP_URL_JSON_QUESTIONS}`;
+
+    // const url_threads = `${process.env.REACT_APP_URL_JSON_QUESTIONS}`;
     const url_threads_test = `${process.env.REACT_APP_URL_NGROKTEST}/questions`
 
     //default avatar images to shuffle ----- for signup.
 
     const headers = { headers :
-        {Authorization : `Bearer ${process.env.REACT_APP_NGROK_TOKEN}`}
+        {Authorization : token}
     };
 
     const submitThreadHandler = (e) => {
@@ -53,6 +58,7 @@ const AskForm = () => {
         .then((res) => {console.log("axios ask post request success!", res)
 
           navigate('/');
+          console.log('token:', token);
           navigate(0);
         })
         .catch((err) => {console.log("axios post request fail!", err)})

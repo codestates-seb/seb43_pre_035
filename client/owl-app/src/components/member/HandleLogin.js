@@ -12,12 +12,13 @@ const HandleLogin = async ({ email, password }) => {
       password
     });
     console.log("서버로부터 받은 로그인확인 정보", response.data); // 서버로부터 받은 응답 데이터 확인
-    // console.log("response 객체", response.headers);
+    console.log("response 객체", response.headers);
     const token = response.headers.authorization;
-    // console.log('JWT Token:', token);
+    console.log('JWT Token:', token);
 
     // JWT 토큰을 로컬 스토리지에 저장
-    // localStorage.setItem('token', token);
+    localStorage.setItem('userInfo', JSON.stringify(response.data));
+    localStorage.setItem('token', token);
     // console.log('local storage:', token);
 
     // dispatch({ type: 'LOGIN', payload: response.data });

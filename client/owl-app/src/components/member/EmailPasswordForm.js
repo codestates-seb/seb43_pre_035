@@ -1,7 +1,6 @@
 import { useState, useContext } from 'react';
 import styled from 'styled-components';
 import HandleLogin from './HandleLogin';
-// import { useUserDispatch } from './UserContext';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../App';
 
@@ -95,7 +94,6 @@ function EmailPasswordForm({ isOpen, onSubmit, setIsLoggedIn, toggleLogin}) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const { handleUserLogin } = useContext(UserContext);
-    // const dispatch = useUserDispatch(); //전역 상태 받아오기
 
     const navigate = useNavigate();
 
@@ -117,6 +115,7 @@ function EmailPasswordForm({ isOpen, onSubmit, setIsLoggedIn, toggleLogin}) {
         console.log('Password:', password);
 
         const [userData, token] = await HandleLogin({ email, password });
+        console.log('handling: ', token);
         handleUserLogin(userData, token);
 
         if (isOpen) onSubmit();
