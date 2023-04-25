@@ -15,6 +15,11 @@ const userReducer = (state, action) => {
         ...state,
         user: null,
       };
+      case 'UPDATE_USER':
+        return {
+          ...state,
+          user: action.payload,
+        };
     default:
       throw new Error(`Unknown action: ${action.type}`);
   }

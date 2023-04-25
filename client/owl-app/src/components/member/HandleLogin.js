@@ -1,9 +1,6 @@
 import axios from 'axios';
 // import { useUserDispatch } from './UserContext';
 
-import axios from 'axios';
-
-
 const handleLogin = async ({ email, password, dispatch }) => {
   try {
     const response = await axios.post(`${process.env.REACT_APP_URL_NGROKTEST}/users/login`, {

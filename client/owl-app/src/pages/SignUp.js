@@ -283,6 +283,7 @@ function SignUp() {
             value={avatarLink}
             onChange={(event) => setAvatarLink(event.target.value)}
           />
+          {/* 아바타 링크 지우고 8개 이미지중에 1개 넘겨주기 - suffle 함수 가져오기 */}
         </InputContainer>
 
         <Guide>Passwords must contain at least eight characters, including at least 1 letter and 1 number.</Guide>
