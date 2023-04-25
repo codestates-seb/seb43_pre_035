@@ -4,8 +4,7 @@ import FormInput from './FormInput';
 import { useState, useEffect } from 'react';
 import { ClickButton } from '../../styles/UIStyles.js';
 import { useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
-import { UserContext } from '../../App';
+
 
 // import  useApiHeaders from '../../utils/useApiHeaders';
 const FormWrapper = styled.form`
@@ -28,9 +27,6 @@ const SubmitButton = styled(ClickButton)`
     padding: 10px 30px;
 `
 
-// const convertDate = (string) => {
-//     return `${string.substring(0, 4)}년 ${String(Number(string.substring(5, 7)))}월 ${String(Number(string.substring(8, 10)))}일`
-//   }
 
 
 const AskForm = () => {
@@ -38,17 +34,14 @@ const AskForm = () => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const navigate = useNavigate();
-    // const { token } = useContext(UserContext);
     const token = localStorage.getItem('token');
-
 
     // const url_threads = `${process.env.REACT_APP_URL_JSON_QUESTIONS}`;
     const url_threads_test = `${process.env.REACT_APP_URL_NGROKTEST}/questions`
     const tempToken = token ? token : `Bearer ${process.env.REACT_APP_NGROK_TOKEN}`;
-    //default avatar images to shuffle ----- for signup.
 
     const headers = { headers :
-        {Authorization : tempToken}
+        { Authorization : tempToken }
     };
 
     const submitThreadHandler = (e) => {

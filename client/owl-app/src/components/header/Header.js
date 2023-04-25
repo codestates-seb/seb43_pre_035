@@ -8,6 +8,7 @@ import { UserContext } from "../../App";
 const HeaderBlock = styled.header`
     display: flex;
     justify-content: center;
+    ${'' /* align-items: flex-start; */}
     position: fixed;
     top : 0;
     left : 0;
@@ -22,10 +23,10 @@ const HeaderWrap = styled.div`
     height: 100%;
 `
 
-const Header = ({threads, setSidebarStatus, isLoggedIn, toggleLogin, openModal}) => {
+const Header = ({threads, setSidebarStatus, toggleLogin, openModal}) => {
 
     const location = useLocation();
-    const {state} = useContext(UserContext);
+    const { isLoggedIn } = useContext(UserContext);
 
     const clickRouteHandler = (pathName) => {
         if (pathName === 'Home') setSidebarStatus({homeOn: true, tagsOn: false, usersOn: false, qOn: false});
@@ -47,7 +48,7 @@ const Header = ({threads, setSidebarStatus, isLoggedIn, toggleLogin, openModal})
     return(
         <HeaderBlock>
             <HeaderWrap >
-                {state.isLoggedIn ? <TopNavlogged toggleLogin={toggleLogin} openModal={openModal}/> : <TopNav openModal={openModal}/> }
+                {isLoggedIn ? <TopNavlogged toggleLogin={toggleLogin} openModal={openModal}/> : <TopNav openModal={openModal}/> }
             </HeaderWrap>
         </HeaderBlock>
  )

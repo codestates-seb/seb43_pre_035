@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, useContext } from 'react';
+import { createContext, useEffect } from 'react';
 import * as AuthReducer  from './store/reducers/authReducer';
 import * as ACTIONS from './store/actions/actions';
 
