@@ -16,11 +16,11 @@ const CommentListWrap = styled.div`
 
 const QuestionCommentList = ({ question, isLoggedIn, openModal }) => {
   const [comments, setComments] = useState(question.questionReplies);
-  const replies = question.questionReplies
+  // const replies = question.questionReplies
   const navigate = useNavigate();
 
   const url_qpost = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/question_replies`;
-  const url_qpatch = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/question_replies/${question.questionReplies[0]}`;
+  
 
   
   
@@ -28,7 +28,8 @@ const QuestionCommentList = ({ question, isLoggedIn, openModal }) => {
     {Authorization : `Bearer ${process.env.REACT_APP_NGROK_TOKEN}`
 }
 };
-  // console.log(question.questionReplies)
+  console.log(question.questionReplies)
+
   
   const addCommentHandler = (newComment) => {
     // console.log("comments: ", newComment);
@@ -50,18 +51,19 @@ const QuestionCommentList = ({ question, isLoggedIn, openModal }) => {
   const updateQuestionCommentHandler = (updatedComment) => {
     console.log("comment update is being handled");
     //use map to change the comment_id content
+  const url_qpatch = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/question_replies/${comment_id}`;
    
+    console.log(updatedComment)
     axios
-      .patch(url_qpatch, { "content" : updatedComment })
+      .patch(url_qpatch, { "content" : updatedComment },headers)
       .then((res) => {
-        console.log("update Qcomment success!", res.questionReplies.questionReplyId);
+        console.log("update Qcomment success!", res.questionReplyId);
+        navigate(0);
+
       })
       .catch((err) => {
         console.log("update Qcomment fail!", err);
       });
-
-      navigate(0);
-
 
   };
 
@@ -71,6 +73,7 @@ const QuestionCommentList = ({ question, isLoggedIn, openModal }) => {
     console.log("delete question comment!");
     const newComments = comments.filter((el) => el.id !== comment_id);
     setComments(newComments);
+    const url_qpatch = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/question_replies/${comment_id}`;
 
     axios
       .patch(url_qpatch, { ...question, questionReplies: newComments })
