@@ -34,34 +34,24 @@ const Home = ({threads, isPending, toggleLogin, sidebarStatus, setSidebarStatus,
     const [dimensions, setDimensions] = useState({width: 0, height: 0});
 
     const dimensionsHandler = (width, height) => {
-        // console.log("width: ", width, " height, ", height);
         setDimensions({width, height});
     }
 
-    //refactor this handler into a reusable component
-    const clickHomeHandler = () => {
-        setSidebarStatus({homeOn: true, tagsOn: false, usersOn: false});
-    }
-
-    const clickTagsHandler = () => {
-        setSidebarStatus({homeOn: false, tagsOn: true, usersOn: false});
-    }
-
-    const clickUsersHandler = () => {
-        setSidebarStatus({homeOn: false, tagsOn: false, usersOn: true})
+    const clickSidebarHandler = (item) => {
+        if (item === 'Home') setSidebarStatus({homeOn: true, tagsOn: false, usersOn: false, qOn: false});
+        if (item === 'Tags') setSidebarStatus({homeOn: false, tagsOn: true, usersOn: false, qOn: false});
+        if (item === 'Users') setSidebarStatus({homeOn: false, usersOn: false, usersOn: true, qOn: false});
     }
 
     return (
         <Main>
             <SideNav toggleLogin={toggleLogin}
                     sidebarStatus={sidebarStatus}
-                    clickHomeHandler={clickHomeHandler}
-                    clickTagsHandler={clickTagsHandler}
-                    clickUsersHandler={clickUsersHandler}
+                    clickSidebarHandler={clickSidebarHandler}
                     isLoggedIn={isLoggedIn}/>
             {sidebarStatus.homeOn ? threads && <Threads threads={threads}
-                                dimensionsHandler={dimensionsHandler}
-                                refContainer={refContainer}/>
+                                                        dimensionsHandler={dimensionsHandler}
+                                                        refContainer={refContainer}/>
                                 : null}
             {sidebarStatus.tagsOn ? <Tags dimensions={dimensions}/> : null}
             {sidebarStatus.usersOn ? <Users dimensions={dimensions}/> : null}

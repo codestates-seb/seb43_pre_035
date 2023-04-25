@@ -4,7 +4,7 @@ import AnswerCommentList from '../Comment/AnswerCommentList'
 import { UpdateButton } from "../../../styles/UIStyles";
 import { useState } from "react";
 import axios from 'axios';
-
+import AnswerPatch from "./AnswerPatch";
 
 const AnswerBlock = styled.div`
     display: flex;
@@ -32,15 +32,19 @@ const CreateUserA = styled.div`
     font-size: 15px;
 `
 
+const EditorInput =styled.input`
+    height: 400px;
+    width: 100%;
+`
+
 const ReviseButton = styled(UpdateButton) `
     ${'' /* height: 10%; */}
     background: var(--colors-darkred);
 `
 
-const AnswerDetail = ({ q_id, answer, answers, deleteAnswerHandler }) => {
+const AnswerDetail = ({ q_id, answer, answers, updateAnswerHandler, deleteAnswerHandler, isLoggedIn, openModal }) => {
 
     const [answerComments, setAnswerComments] = useState((answer.answerReplies ? answer.answerReplies : []));
-    const answerCommentsNum = answer.answerReplies ? answer.answerReplies.length : 0;
     const url_patch = `http://localhost:3001/questions/${q_id}`;
     console.log(answer.member.displayName)
 
@@ -59,8 +63,6 @@ const AnswerDetail = ({ q_id, answer, answers, deleteAnswerHandler }) => {
             return el;
         });
 
-
-
         if (answer.answerReplies) {
             axios.patch(url_patch, { "answers": newAnswers })
                 .then(res => { console.log("answerReplies patch success!", res) })
@@ -71,12 +73,6 @@ const AnswerDetail = ({ q_id, answer, answers, deleteAnswerHandler }) => {
             .then(res => { console.log("answerReplies patch success!", res) })
             .catch(err => { console.log("answerReplies patch fail!", err) })
         }
-    }
-
-    const deleteClickHandler = (e) => {
-        //삭제 전 묻기 - 진짜 삭제하고 싶으신가요?
-        e.stopPropagation();
-        deleteAnswerHandler(answer.id);
     }
 
     const updateAnswerCommentHandler = (comment_id, updatedComment) => {
@@ -128,23 +124,51 @@ const AnswerDetail = ({ q_id, answer, answers, deleteAnswerHandler }) => {
 
     }
 
+    const deleteClickHandler = (e) => {
+        //삭제 전 묻기 - 진짜 삭제하고 싶으신가요?
+        e.stopPropagation();
+        deleteAnswerHandler(answer.id);
+    }
+
+    const [isEditState, setIsEditState] = useState(false);
+    const [updatedAnswer, setUpdatedAnswer] = useState(answer.content);
+
+    const handleEditClick = ()=>{
+        setIsEditState(true);
+        updateAnswerHandler(answer.id, updatedAnswer)
+        console.log("돼라:", updatedAnswer )
+    }
+
+    const onTextChange = (e) => {
+        setUpdatedAnswer(e.target.value);
+    }
 
     return (
         <>
             <AnswerBlock>
                 <AnsweruserBlock>
-                    <AnswerContent>{answer.content}</AnswerContent>
+        { isEditState ? <>
+                    <EditorInput type="text" value={updatedAnswer} onChange={onTextChange} />
+                    <ReviseButton >답변 수정하기</ReviseButton> </>:
+                    <AnswerContent>{answer.content}</AnswerContent>}
                     <CreateUserA>{answer.member.displayName}</CreateUserA>
-                    <ReviseButton>수정</ReviseButton>
+                    {isLoggedIn &&
+                    <>
+                    <ReviseButton onClick={handleEditClick}>수정</ReviseButton>
                     <ReviseButton onClick={deleteClickHandler}>삭제</ReviseButton>
+                    </>}
                 </AnsweruserBlock>
+
                 <AnswerCommentList answerComments={answerComments}
                                     deleteAnswerCommentHandler={deleteAnswerCommentHandler}
                                     updateAnswerCommentHandler={updateAnswerCommentHandler}
+                                    openModal={openModal}
+                                    isLoggedIn={isLoggedIn}
                 ></AnswerCommentList>
             </AnswerBlock>
             <AddAnswerComment addAnswerCommentHandler={addAnswerCommentHandler}
-                              answerCommentsNum={answerCommentsNum}
+                              openModal={openModal}
+                              isLoggedIn={isLoggedIn}
                               ></AddAnswerComment>
         </>
 

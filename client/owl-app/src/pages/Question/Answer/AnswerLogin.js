@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import {CreateWrap,CreateBlock, CreateHeader,CreateButtonLogin} from './AnswerStyle'
-import { useState, useId } from "react"
+import { useState } from "react"
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
@@ -22,7 +22,7 @@ const EditorInput =styled.input`
 
 
 
-const AnswerLogin = ({addAnswerHandler, answersNum}) => {
+const AnswerLogin = ({addAnswerHandler}) => {
     const [newAnswerContent, setNewAnswerContent] = useState('');
     const [invalidAnswer, setInvalidAnswer] = useState(false);
     const[aId, setaId] = useState(Math.floor(Math.random()*1000));
@@ -32,16 +32,19 @@ const AnswerLogin = ({addAnswerHandler, answersNum}) => {
       };
 
     const onClickSubmit = ()=> {
+        const data = new Date();
+        const userName = "null"
+        const userAvatarLink = "null"
+
       if (!newAnswerContent){console.log("invalid answer!"); setInvalidAnswer(true); return;}
-      // console.log("answersNum: ", answersNum);
         let newAnswer =
             {
               "id": aId,
-              "createdDate": "2022-05-16T02:09:52Z",
-              "updateDate": "2022-05-16T02:09:52Z",
-              "url": "https://github.com/codestates-seb/agora-states-fe/discussions/45#discussioncomment-2756236",
+              "createdDate": data.toISOString(),
+              "updateDate": data.toISOString(),
               "member": {
-                "displayName": "zzzzzzoooooooooo"
+                "displayName": userName, 
+                "avatarLink" : userAvatarLink
               },
               "content": newAnswerContent,
               "answerReplies": [

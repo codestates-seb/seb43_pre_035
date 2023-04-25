@@ -100,29 +100,29 @@ const GithubButtonText = styled.span`
 
 function SocialLoginButtons({ onSubmit }) {
 
-  useEffect(() => {
-    window.gapi.load('client:auth2', () => {
-      window.gapi.client
-        .init({
-          clientId: '687801549261-t1to0l0fur981fqvmsk307cvn29bmen0.apps.googleusercontent.com',
-          scope: 'profile email',
-        })
-        .then(() => {
-          const authInstance = window.gapi.auth2.getAuthInstance();
-          // authInstance로 로그인, 로그아웃 등을 처리
-        });
-    });
-  }, []);
+  // useEffect(() => {
+  //   window.gapi.load('client:auth2', () => {
+  //     window.gapi.client
+  //       .init({
+  //         clientId: '687801549261-t1to0l0fur981fqvmsk307cvn29bmen0.apps.googleusercontent.com',
+  //         scope: 'profile email',
+  //       })
+  //       .then(() => {
+  //         const authInstance = window.gapi.auth2.getAuthInstance();
+  //         // authInstance로 로그인, 로그아웃 등을 처리
+  //       });
+  //   });
+  // }, []);
 
   const handleGoogleLogin = () => {
-    const authInstance = window.gapi.auth2.getAuthInstance();
-    authInstance.grantOfflineAccess().then((response) => {
-      console.log(response);
-      handleCredentialResponse(response);
-    }).catch((error) => {
-      console.error('Google login error:', error);
-      // 여기에 구글 로그인 실패? handleCredentialResponse.js에서 할까?
-    });
+  //   const authInstance = window.gapi.auth2.getAuthInstance();
+  //   authInstance.grantOfflineAccess().then((response) => {
+  //     console.log(response);
+  //     handleCredentialResponse(response);
+  //   }).catch((error) => {
+  //     console.error('Google login error:', error);
+  //     // 여기에 구글 로그인 실패? handleCredentialResponse.js에서 할까?
+  //   });
   };
 
   return (

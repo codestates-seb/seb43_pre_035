@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 
 const SideNavContainer = styled.aside`
   ${'' /* width: 200px; */}
@@ -78,9 +78,9 @@ const LoginCheckBtn = styled.button`
     }
 `
 
-const SideNav = ({toggleLogin, sidebarStatus, clickHomeHandler, clickTagsHandler, clickUsersHandler, isLoggedIn}) => {
+const SideNav = ({toggleLogin, sidebarStatus, isLoggedIn, clickSidebarHandler}) => {
 
-  const [logState, setLogState] = useState(isLoggedIn ? "LOGIN" : "LOGOUT");
+  const [logState, setLogState] = useState(isLoggedIn ? "LOGOUT" : "LOGIN");
 
   const logHandler = () => {
     toggleLogin();
@@ -88,15 +88,20 @@ const SideNav = ({toggleLogin, sidebarStatus, clickHomeHandler, clickTagsHandler
     else setLogState('LOGIN');
   }
 
+  useEffect(()=> {
+    // console.log('useEffect! sidenav text change');
+    setLogState(isLoggedIn ? "LOGOUT" : "LOGIN");
+  }, [isLoggedIn]);
+
   return (
     <SideNavContainer>
       <SideNavStickyContainer>
         <SideNavItem className={`top ${sidebarStatus.homeOn ? 'selected' : ''}`}
-                      onClick={clickHomeHandler}>Home</SideNavItem>
+                      onClick={()=>{clickSidebarHandler('Home')}}>Home</SideNavItem>
         <SideNavItem className={sidebarStatus.tagsOn ? 'selected' : ''}
-                      onClick={clickTagsHandler}>Tags</SideNavItem>
+                      onClick={()=>{clickSidebarHandler('Tags')}}>Tags</SideNavItem>
         <SideNavItem className={sidebarStatus.usersOn ? 'selected' : ''}
-                      onClick={clickUsersHandler}>Users</SideNavItem>
+                      onClick={()=>{clickSidebarHandler('Users')}}>Users</SideNavItem>
         <LoginCheckBtn onClick={logHandler}>{logState}</LoginCheckBtn>
       </SideNavStickyContainer>
     </SideNavContainer>
