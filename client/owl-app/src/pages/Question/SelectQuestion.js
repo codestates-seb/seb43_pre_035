@@ -76,7 +76,7 @@ const SelectQuestion = ({question,isLoggedIn,openModal, dimensionsHandler, refCo
     const [isEditState, setIsEditState] = useState(true);
     const [editTitleQuestion, setEditTitleQuestion] = useState(question.title)
     const [editContentQuestion, setEditContentQuestion] = useState(question.content)
-    // console.log(editQuestion)
+    console.log(question.title)
 
     const onEditTitle = (e)=>{
         setEditTitleQuestion(e.target.value)
@@ -91,9 +91,12 @@ const SelectQuestion = ({question,isLoggedIn,openModal, dimensionsHandler, refCo
 
     const updateQHandler = () => {
 
-        axios.petch(url, {'title': editTitleQuestion, 'content': editContentQuestion}, headers)
-            .then(res => {console.log("res: ", res.data)})
+        axios.patch(url, {'title': editTitleQuestion, 'content': editContentQuestion}, headers)
+            .then(res => {console.log("res: ", res.data)}
+            
+            )
             .catch(err => {console.log(err.message)})
+
             // 수정으로 바꾸기
     }
 
@@ -110,7 +113,7 @@ const SelectQuestion = ({question,isLoggedIn,openModal, dimensionsHandler, refCo
             {isEditState ? 
                 <Title question={question} isLoggedIn={isLoggedIn}></Title>
                 : <StyledTextHead 
-                value={editTitleQuestion.title}
+                value={editTitleQuestion}
                 onChange={onEditTitle}/>}
             {isEditState ? 
                 <QuestionContent openModal={openModal}
@@ -119,7 +122,7 @@ const SelectQuestion = ({question,isLoggedIn,openModal, dimensionsHandler, refCo
                 setIsEditState={setIsEditState}
                 ></QuestionContent>
                 : <><StyledTextContent
-                            value={editContentQuestion.content}
+                            value={editContentQuestion}
                             onChange={onEditContent} />
                             <ClickButton onClick={updateQHandler} >수정하기</ClickButton></>
                 }
