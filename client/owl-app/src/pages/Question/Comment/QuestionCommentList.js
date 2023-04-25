@@ -29,6 +29,7 @@ const QuestionCommentList = ({ question, isLoggedIn, openModal }) => {
 }
 };
   console.log(question.questionReplies)
+
   
   const addCommentHandler = (newComment) => {
     // console.log("comments: ", newComment);
@@ -47,7 +48,7 @@ const QuestionCommentList = ({ question, isLoggedIn, openModal }) => {
         });
       }
 
-  const updateQuestionCommentHandler = (comment_id, updatedComment) => {
+  const updateQuestionCommentHandler = (updatedComment) => {
     console.log("comment update is being handled");
     //use map to change the comment_id content
   const url_qpatch = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/question_replies/${comment_id}`;
@@ -58,12 +59,11 @@ const QuestionCommentList = ({ question, isLoggedIn, openModal }) => {
       .then((res) => {
         console.log("update Qcomment success!", res.questionReplyId);
         navigate(0);
+
       })
       .catch((err) => {
         console.log("update Qcomment fail!", err);
       });
-
-
 
   };
 

@@ -100,6 +100,7 @@ const SelectQuestion = ({question,isLoggedIn,openModal, dimensionsHandler, refCo
             // 수정으로 바꾸기
     }
 
+
     // useEffect(() => {
     //     if (refContainer.current) {
     //         dimensionsHandler(refContainer.current.offsetWidth, refContainer.current.offsetHeight);
