@@ -35,7 +35,7 @@ const url_threads_test = `${process.env.REACT_APP_URL_NGROKTEST}/questions`
 // const url_threads_test_search2 = `${process.env.REACT_APP_URL_NGROKTEST}/questions/search/?title=제목`
 
 function App() {
-  const [threads, isPending, error] = useFetch(url_threads);
+  const [threads, isPending, error] = useFetch(url_threads_test);
   const [renderThreads, setRenderThreads] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -80,14 +80,14 @@ function App() {
     if (threads){
       console.log("initial threads loaded!");
       //for dummy data (+sorting)
-      const sorted = sortThreads(threads);
-      // console.log(threads);
-      setRenderThreads(sorted);
+      // const sorted = sortThreads(threads);
+      // // console.log(threads);
+      // setRenderThreads(sorted);
 
       //for testing with ngrok
-      // console.log('ngrok threads: ', threads);
-      // console.log(threads.content);
-      // setRenderThreads(threads.content);
+      console.log('ngrok threads: ', threads);
+      console.log(threads.content);
+      setRenderThreads(threads.content);
     }
     // if (thread1) console.log("thread1", thread1);
     // if (thread2) console.log("thread2", thread2);

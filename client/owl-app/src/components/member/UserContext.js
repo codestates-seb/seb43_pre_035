@@ -25,11 +25,8 @@ export const UserProvider = ({ children }) => {
         "memberId": 1,
         "email": "hgd@gmail.com",
         "name": "홍길동",
-        "avatarLink": "link",
-        "displayName": "gildonglove123",
-        "roles": [
-                       "ROLE_USER"
-                     ]
+        "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png",
+        "displayName": "gildonglove123"
     } });
 
   return (

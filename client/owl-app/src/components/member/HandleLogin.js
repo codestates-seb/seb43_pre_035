@@ -1,9 +1,9 @@
 import axios from 'axios';
-  
+
 
 const handleLogin = async ({ email, password, dispatch }) => {
   try {
-    const response = await axios.post('https://24d1-124-61-224-204.ngrok-free.app/users/login', {
+    const response = await axios.post(`${process.env.REACT_APP_URL_NGROKTEST}/users/login`, {
       email,
       password,
     });
@@ -14,7 +14,7 @@ const handleLogin = async ({ email, password, dispatch }) => {
 
     // JWT 토큰을 로컬 스토리지에 저장
     localStorage.setItem('token', token);
-  
+
     // Redux?
     dispatch({ type: 'LOGIN', payload: response.data });
     // 전역 상태에 사용자 정보 저장
