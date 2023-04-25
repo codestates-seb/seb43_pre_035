@@ -87,6 +87,7 @@ function App() {
       console.log('ngrok threads: ', threads);
       console.log(threads.content);
       setRenderThreads(threads.content);
+
     }
     // if (thread1) console.log("thread1", thread1);
     // if (thread2) console.log("thread2", thread2);
