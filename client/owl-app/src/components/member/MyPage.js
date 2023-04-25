@@ -6,7 +6,7 @@ import EditProfileModal from './EditProfileModal';
 
 const MypageWrap = styled.div`
     width: 100%;
-    height: 100%;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -15,12 +15,13 @@ const MypageWrap = styled.div`
 const MypageBlock = styled.div`
     margin-top: 10px;
     padding: 20px;
-    height: 500px;
-    width: 800px;
+    height: 95vh;
+    width: 700px;
     background-color: #BF8B67;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: flex-start;
+    border-radius: 5px;
 `
 
 const UserBlock = styled.div`
@@ -28,7 +29,7 @@ const UserBlock = styled.div`
     display: flex;
     flex-direction: center;
     margin-bottom:10px;
-    width: 800px;
+    width: 700px;
     height: 100px;
     align-items: center;
 `
@@ -50,6 +51,11 @@ const DisplayName = styled.div`
     font-weight: bold;
 `
 
+const EmailText = styled.div`
+    width: 185px;
+    height: 40px;
+    margin-top: 10px;
+`
 const EditProfile = styled.button`
     position: absolute;
     right: 100px;
@@ -64,8 +70,8 @@ const EditProfile = styled.button`
 `
 
 const StatusBlock = styled.div`
-    width: 730px;
-    height: 220px;
+    width: 650px;
+    height: 160px;
     size: 20px;
     border-bottom: 1px solid #48120E;
 `
@@ -101,19 +107,17 @@ const StatusState = styled.div`
 `;
 
 const QnABlock = styled.div`
-    margin-top: 20px;
+    display: flex;
     width: 740px;
     height: 220px;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: center;
-    align-items: center;
+    margin-top: 20px;
+    flex-direction: column;
 `
 
 const QnAList = styled.div`
     width: 280px;
     height: 130px;
-    margin-right: 20px;
+    margin-bottom: 20px;
     border: 1px solid #48120E;
     border-radius: 5px;
 `
@@ -130,11 +134,11 @@ const Mypage = ({ user_id }) => {
     const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
 
     const openEditProfile = () => {
-      setIsEditProfileOpen(true);
+        setIsEditProfileOpen(true);
     };
-  
+
     const closeEditProfile = () => {
-      setIsEditProfileOpen(false);
+        setIsEditProfileOpen(false);
     };
 
     return (
@@ -145,6 +149,7 @@ const Mypage = ({ user_id }) => {
                         style={{ backgroundImage: `url(${userData?.avatarLink})` }}
                     ></UserAvatar>
                     <DisplayName>{userData?.displayName}</DisplayName>
+                    <EmailText>/ {userData?.email}</EmailText>
                     <EditProfile onClick={openEditProfile}>Edit profile</EditProfile>
                 </UserBlock>
                 <StatusBlock>
@@ -162,20 +167,20 @@ const Mypage = ({ user_id }) => {
                 </StatusBlock>
                 <QnABlock>
                     <div>
-                        <QnAText>Answers</QnAText>
-                        <QnAList>
-                            {userData?.answer?.map((answer) => (
-                                <div key={answer.id}>{answer.content}</div>
-                            ))}
-                        </QnAList>
+                    <QnAText>Questions</QnAText>
+                    <QnAList>
+                        {userData?.question?.map((question) => (
+                            <div key={question.id}>{question.title}</div>
+                        ))}
+                    </QnAList>
                     </div>
                     <div>
-                        <QnAText>Questions</QnAText>
-                        <QnAList>
-                            {userData?.question?.map((question) => (
-                                <div key={question.id}>{question.title}</div>
-                            ))}
-                        </QnAList>
+                    <QnAText>Answers</QnAText>
+                    <QnAList>
+                        {userData?.answer?.map((answer) => (
+                            <div key={answer.id}>{answer.content}</div>
+                        ))}
+                    </QnAList>
                     </div>
                 </QnABlock>
             </MypageBlock>

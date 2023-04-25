@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import AddAnswerComment from "../Comment/AddAnswerComment";
 import AnswerCommentList from '../Comment/AnswerCommentList'
-import { UpdateButton } from "../../../styles/UIStyles";
+import { ClickButton,UpdateButton } from "../../../styles/UIStyles";
 import { useState } from "react";
 import axios from 'axios';
 import AnswerPatch from "./AnswerPatch";
+import { useNavigate } from "react-router-dom";
 
 const AnswerBlock = styled.div`
     display: flex;
@@ -17,8 +18,12 @@ const AnswerBlock = styled.div`
 const AnsweruserBlock = styled.div`
     display: flex;
     padding: 10px;
-    border-bottom: 1px solid white;
-    align-items: center;
+    flex-direction: column;
+    border-bottom: 2px solid #DACC96;
+`
+const Answeruserwrap = styled.div`
+    display: flex;
+    padding: 10px;
 `
 
 const AnswerContent = styled.div`
@@ -30,49 +35,60 @@ const CreateUserA = styled.div`
     padding-top: 60px;
     width: 130px;
     font-size: 15px;
+    color: #8D7B68;
+`
+
+const CreateAvatar = styled.img`
+    width: var(--size-thread-avatar);
+    height: var(--size-thread-avatar);
+    border-radius: 50%;
 `
 
 const EditorInput =styled.input`
-    height: 400px;
+    height: 20vh;
     width: 100%;
 `
-
 const ReviseButton = styled(UpdateButton) `
     ${'' /* height: 10%; */}
     background: var(--colors-darkred);
 `
 
-const AnswerDetail = ({ q_id, answer, answers, updateAnswerHandler, deleteAnswerHandler, isLoggedIn, openModal }) => {
 
-    const [answerComments, setAnswerComments] = useState((answer.answerReplies ? answer.answerReplies : []));
-    const url_patch = `http://localhost:3001/questions/${q_id}`;
-    console.log(answer.member.displayName)
+const AnswerDetail = ({ question, answer, answers, updateAnswerHandler, deleteAnswerHandler, isLoggedIn, openModal }) => {
+
+    
+    const navigate= useNavigate();
+    const [answerComments, setAnswerComments] = useState(answer.answerReplies);
+
+    const url_acpost = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/answers/${answer.answerId}/answer_replies`;
+
+    const url_acpatch = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/answers/${answer.answerId}/answer_replies`;
+
+    const headers = { headers :
+        {Authorization : `Bearer ${process.env.REACT_APP_NGROK_TOKEN}`}};
+
+    console.log(answer.answerId.answerReplyId)
 
     const addAnswerCommentHandler = (newComment) => {
-        setAnswerComments([...answerComments, newComment]);
-        const newAnswerReplies = [...answerComments, newComment]; //set함수는 다음렌더링되서야 업데이트를 하기 때문에!
+        // setAnswerComments([...answerComments, newComment]);
+        // const newAnswerReplies = [...answerComments, newComment]; //set함수는 다음렌더링되서야 업데이트를 하기 때문에!
 
-        const newAnswers = answers.map(el => {
-            // console.log("date: ", el.createdDate); //date를 나중에 id로 대치!
-            if (el.id === answer.id) {
-                if (el.answerReplies) {
-                    el.answerReplies = [...newAnswerReplies];
-                }
-                // console.log("result:", el.answerReplies);
-            }
-            return el;
-        });
-
-        if (answer.answerReplies) {
-            axios.patch(url_patch, { "answers": newAnswers })
-                .then(res => { console.log("answerReplies patch success!", res) })
+        // const newAnswers = answers.map(el => {
+        //     // console.log("date: ", el.createdDate); //date를 나중에 id로 대치!
+        //     if (el.id === answer.id) {
+        //         if (el.answerReplies) {
+        //             el.answerReplies = [...newAnswerReplies];
+        //         }
+        //         // console.log("result:", el.answerReplies);
+        //     }
+        //     return el;
+        // });
+        console.log(newComment)
+            axios.post(url_acpost, { "content": newComment }, headers)
+            .then(res => { console.log("answerReplies patch success!", res) 
+            navigate(0)
+        })
                 .catch(err => { console.log("answerReplies patch fail!", err) })
-        } else {
-            console.log("there are no answerReplies ready!"); //이럴 경우는 없을 듯!
-            axios.patch(url_patch, { "answers": newAnswers })
-            .then(res => { console.log("answerReplies patch success!", res) })
-            .catch(err => { console.log("answerReplies patch fail!", err) })
-        }
     }
 
     const updateAnswerCommentHandler = (comment_id, updatedComment) => {
@@ -96,7 +112,7 @@ const AnswerDetail = ({ q_id, answer, answers, updateAnswerHandler, deleteAnswer
         })
         console.log("newanswers:", newAnswers);
 
-        axios.patch(url_patch, {"answers": newAnswers})
+        axios.patch(url_acpatch, {"answers": newAnswers})
             .then((res) => {
                 console.log("update answercomment success!", res);
             })
@@ -118,10 +134,18 @@ const AnswerDetail = ({ q_id, answer, answers, updateAnswerHandler, deleteAnswer
             return el;
         })
 
-        axios.patch(url_patch, {"answers": newAnswers})
+        axios.patch(url_acpatch, {"answers": newAnswers})
             .then(res => { console.log("delete answercomment success!", res) })
             .catch(err => { console.log("delete answercomment fail!", err) })
 
+    }
+    const [isEditState, setIsEditState] = useState(false);
+    const [updatedAnswer, setUpdatedAnswer] = useState(answer.content);
+  
+    const handleEditClick = ()=>{
+        setIsEditState(!isEditState);
+        // updateAnswerHandler(answer.id, updatedAnswer)
+        // console.log("돼라:", updatedAnswer )
     }
 
     const deleteClickHandler = (e) => {
@@ -130,14 +154,7 @@ const AnswerDetail = ({ q_id, answer, answers, updateAnswerHandler, deleteAnswer
         deleteAnswerHandler(answer.id);
     }
 
-    const [isEditState, setIsEditState] = useState(false);
-    const [updatedAnswer, setUpdatedAnswer] = useState(answer.content);
 
-    const handleEditClick = ()=>{
-        setIsEditState(true);
-        updateAnswerHandler(answer.id, updatedAnswer)
-        console.log("돼라:", updatedAnswer )
-    }
 
     const onTextChange = (e) => {
         setUpdatedAnswer(e.target.value);
@@ -149,14 +166,19 @@ const AnswerDetail = ({ q_id, answer, answers, updateAnswerHandler, deleteAnswer
                 <AnsweruserBlock>
         { isEditState ? <>
                     <EditorInput type="text" value={updatedAnswer} onChange={onTextChange} />
-                    <ReviseButton >답변 수정하기</ReviseButton> </>:
-                    <AnswerContent>{answer.content}</AnswerContent>}
+                    <ClickButton >답변 수정하기</ClickButton> </>:
+                    <Answeruserwrap>
+                    <AnswerContent>{answer.content}</AnswerContent>
+                    <CreateAvatar scr={answer.member.avatarLink}/>
                     <CreateUserA>{answer.member.displayName}</CreateUserA>
                     {isLoggedIn &&
                     <>
                     <ReviseButton onClick={handleEditClick}>수정</ReviseButton>
                     <ReviseButton onClick={deleteClickHandler}>삭제</ReviseButton>
                     </>}
+                    </Answeruserwrap>
+                    }
+
                 </AnsweruserBlock>
 
                 <AnswerCommentList answerComments={answerComments}

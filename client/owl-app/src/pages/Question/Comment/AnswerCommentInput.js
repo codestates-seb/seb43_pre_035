@@ -34,7 +34,7 @@ const AnswerCommentInput = ({addAnswerCommentHandler})=>{
 
     const [answerCommentContent, setAnswerCommentContent] =useState('');
     const [invalidComment, setInvalidComment] = useState(false);
-    const[cId, setcId] = useState(Math.floor(Math.random()*1000));
+
 
     const onTextChange = (e) => {
         setAnswerCommentContent(e.target.value);
@@ -42,28 +42,27 @@ const AnswerCommentInput = ({addAnswerCommentHandler})=>{
 
     const onClickCommentSubmit = (e) => {
         e.stopPropagation();
-        const date = new Date();
-        const userName = "null"
-        const userAvatarLink = "null"
+        // const date = new Date();
+        // const userName = "null"
+        // const userAvatarLink = "null"
 
         // console.log("answer content: ", answerCommentContent);
         if (!answerCommentContent) {console.log("no content!"); setInvalidComment(true); return;}
-        let newComment = {
-            "id" : cId,
-            "member" : {
-              "displayName": userName, 
-              "avatarLink" : userAvatarLink
-            },
-            "content" : answerCommentContent,
-            "createdDate": date.toISOString(),
-            "updateDate": date.toISOString(),
-        }
+        // let newComment = {
+        //     "id" : cId,
+        //     "member" : {
+        //       "displayName": userName, 
+        //       "avatarLink" : userAvatarLink
+        //     },
+        //     "content" : answerCommentContent,
+        //     "createdDate": date.toISOString(),
+        //     "updateDate": date.toISOString(),
+        // }
 
 
-        addAnswerCommentHandler(newComment);
+        addAnswerCommentHandler(answerCommentContent);
         setAnswerCommentContent('');
         setInvalidComment(false);
-        setcId(Math.floor(Math.random()*1000));
     }
 
     return (
@@ -73,7 +72,7 @@ const AnswerCommentInput = ({addAnswerCommentHandler})=>{
             <CommentInputCompo type="text"
                                 placeholder="Comment를 달아주세요"
                                 value={answerCommentContent}
-            onChange={onTextChange}
+                                onChange={onTextChange}
             />
             <CreatButton onClick={onClickCommentSubmit}>작성하기</CreatButton>
         </CommentInputWrap>
