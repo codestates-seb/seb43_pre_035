@@ -47,14 +47,16 @@ public class MemberService {
         Member findMember = verifyLogInMemberMatchesMember(user.getMemberId(), memberId);
 
         Optional.ofNullable(patchDto.getPassword())
-                        .ifPresent(password -> {
-                            findMember.setPassword(password);
-                            findMember.encodePassword(passwordEncoder);
-                        });
+                .ifPresent(password -> {
+                    findMember.setPassword(password);
+                    findMember.encodePassword(passwordEncoder);
+                });
         Optional.ofNullable(patchDto.getName())
-                        .ifPresent(findMember::setName);
+                .ifPresent(findMember::setName);
         Optional.ofNullable(patchDto.getDisplayName())
-                        .ifPresent(findMember::setDisplayName);
+                .ifPresent(findMember::setDisplayName);
+        Optional.ofNullable(patchDto.getAvatarLink())
+                .ifPresent(findMember::setAvatarLink);
 
         Member save = memberRepository.save(findMember);
 
