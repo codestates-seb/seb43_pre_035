@@ -36,10 +36,10 @@ const Answerlist = ({ question, isLoggedIn, openModal}) => {
         };
 
         axios.post(url_apost, { "content": newAnswer }, headers)
-        .then(res => { console.log("answer patch success!", res)
+        .then(res => { console.log("answer post success!", res)
         navigate(0);
     })
-        .catch(err => { console.log("answer patch fail!", err) });
+        .catch(err => { console.log("answer post fail!", err) });
 
 
         console.log(newAnswer);

@@ -70,74 +70,75 @@ const StyledTextContent = styled.textarea`
 
 
 
-const SelectQuestion = ({question,isLoggedIn,openModal, dimensionsHandler, refContainer}) => {
+const SelectQuestion = ({ question, isLoggedIn, openModal, dimensionsHandler, refContainer }) => {
     const url = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}`
-    const [getQuestion,setGetQuestion] = useState([question]);
+    const [getQuestion, setGetQuestion] = useState([question]);
     const [isEditState, setIsEditState] = useState(true);
     const [editTitleQuestion, setEditTitleQuestion] = useState(question.title)
     const [editContentQuestion, setEditContentQuestion] = useState(question.content)
     // console.log(editQuestion)
 
-    const onEditTitle = (e)=>{
+    const onEditTitle = (e) => {
         setEditTitleQuestion(e.target.value)
         console.log(e.target.value)
     }
-    const onEditContent = (e) =>{
+    const onEditContent = (e) => {
         setEditContentQuestion(e.target.value)
     }
-    const headers = { headers :
-        {Authorization : `Bearer ${process.env.REACT_APP_NGROK_TOKEN}`}
+    const headers = {
+        headers:
+            { Authorization: `Bearer ${process.env.REACT_APP_NGROK_TOKEN}` }
     };
 
     const updateQHandler = () => {
 
-        axios.petch(url, {'title': editTitleQuestion, 'content': editContentQuestion}, headers)
-            .then(res => {console.log("res: ", res.data)})
-            .catch(err => {console.log(err.message)})
-            // 수정으로 바꾸기
+        axios.patch(url, { 'title': editTitleQuestion, 'content': editContentQuestion }, headers)
+            .then(res => { console.log("res: ", res.data) })
+            .catch(err => { console.log(err.message) })
+        // 수정으로 바꾸기
     }
 
-    // useEffect(() => {
-    //     if (refContainer.current) {
-    //         dimensionsHandler(refContainer.current.offsetWidth, refContainer.current.offsetHeight);
-    //     }
-    //     }, []);
+    useEffect(() => {
+        if (refContainer.current) {
+            dimensionsHandler(refContainer.current.offsetWidth, refContainer.current.offsetHeight);
+        }
+        }, []);
 
     return (
         <>
-            {getQuestion.map((question) =>(
-        <SelectedWrap key={question} ref={refContainer}>
-           {isEditState ?
-                <Title question={question} isLoggedIn={isLoggedIn}></Title>
-                : <StyledTextHead
-                value={editTitleQuestion.title}
-                onChange={onEditTitle}/>}
-            {isEditState ?
-                <QuestionContent openModal={openModal}
-                isLoggedIn={isLoggedIn}
-                question={question}
-                setIsEditState={setIsEditState}
-                ></QuestionContent>
-                : <><StyledTextContent
+            {getQuestion.map((question) => (
+                <SelectedWrap key={question} ref={refContainer}>
+                    {isEditState ?
+                        <Title question={question} isLoggedIn={isLoggedIn}></Title>
+                        : <StyledTextHead
+                            value={editTitleQuestion.title}
+                            onChange={onEditTitle} />}
+                    {isEditState ?
+                        <QuestionContent openModal={openModal}
+                            isLoggedIn={isLoggedIn}
+                            question={question}
+                            setIsEditState={setIsEditState}
+                        ></QuestionContent>
+                        : <><StyledTextContent
                             value={editContentQuestion.content}
                             onChange={onEditContent} />
                             <ClickButton onClick={updateQHandler} >수정하기</ClickButton></>
-                }
-                <QuestionCommentList
-                isLoggedIn={isLoggedIn}
-                question={question}
-                openModal={openModal}></QuestionCommentList>
-                <Answerlist
-                openModal={openModal}
-                question={question}
-                isLoggedIn={isLoggedIn}>
-                <AnswerCommentList
-                openModal={openModal}
-                isLoggedIn={isLoggedIn}
-                question={question}></AnswerCommentList>
-                </Answerlist>
+                    }
+                    <QuestionCommentList
+                        isLoggedIn={isLoggedIn}
+                        question={question}
+                        openModal={openModal}></QuestionCommentList>
+                    <Answerlist
+                        openModal={openModal}
+                        question={question}
+                        isLoggedIn={isLoggedIn}>
+                        <AnswerCommentList
+                            openModal={openModal}
+                            isLoggedIn={isLoggedIn}
+                            question={question}></AnswerCommentList>
+                    </Answerlist>
 
-        </SelectedWrap>
+                </SelectedWrap>
             )
             )}
         </>
