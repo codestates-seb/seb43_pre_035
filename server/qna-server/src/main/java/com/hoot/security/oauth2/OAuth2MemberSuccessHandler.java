@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URI;
 import java.util.List;
+import java.util.Random;
 
 @RequiredArgsConstructor
 public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
@@ -32,11 +33,19 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
         var oAuth2User = (OAuth2User) authentication.getPrincipal();
         String email = String.valueOf(oAuth2User.getAttributes().get("email"));
         List<String> roles = authorityUtils.createRoles(email);
+        String firstName = String.valueOf(oAuth2User.getAttributes().get("family_name"));
+        String lastName = String.valueOf(oAuth2User.getAttributes().get("given_name"));
+        String name = firstName + lastName;
 
         MemberDto.Post postDto = new MemberDto.Post();
         postDto.setEmail(email);
         postDto.setPassword("password123!!");
-        postDto.setName("임시 이름(수정이 필요합니다)");
+        postDto.setName(name);
+        postDto.setDisplayName(lastName);
+
+        Random random = new Random();
+        String randomNum = String.valueOf(random.nextInt(7) + 1);
+        postDto.setAvatarLink("https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl0" + randomNum + ".png");
         memberService.signup(postDto);
 
         redirect(request, response, email, roles);
