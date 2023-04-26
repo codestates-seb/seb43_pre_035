@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from "styled-components";
-import { useUserState } from "./UserContext"; // UserContext에서 useUserState 불러오기
+// import { useUserState } from "./UserContext"; // UserContext에서 useUserState 불러오기
 import EditProfileModal from './EditProfileModal';
 
 
@@ -46,7 +46,7 @@ const UserAvatar = styled.div`
 const DisplayName = styled.div`
     width: 185px;
     height: 40px;
-    margin-left:20px;   
+    margin-left:20px;
     font-size: x-large;
     font-weight: bold;
 `
@@ -125,11 +125,11 @@ const QnAList = styled.div`
 
 
 const Mypage = ({ user_id }) => {
-    // const user_id = // 
+    // const user_id = //
 
     // axios.get(`http:localhost:8080/users/${user_id}`, )
-    const userState = useUserState(); // userState 불러옴
-    const userData = userState.user; // userData를 userState 불러옴
+    // const userState = useUserState(); // userState 불러옴
+    // const userData = userState.user; // userData를 userState 불러옴
 
     const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
 
@@ -141,52 +141,52 @@ const Mypage = ({ user_id }) => {
         setIsEditProfileOpen(false);
     };
 
-    return (
-        <MypageWrap>
-            <MypageBlock>
-                <UserBlock>
-                    <UserAvatar
-                        style={{ backgroundImage: `url(${userData?.avatarLink})` }}
-                    ></UserAvatar>
-                    <DisplayName>{userData?.displayName}</DisplayName>
-                    <EmailText>/ {userData?.email}</EmailText>
-                    <EditProfile onClick={openEditProfile}>Edit profile</EditProfile>
-                </UserBlock>
-                <StatusBlock>
-                    <StatusText>Stats</StatusText>
-                    <StatusStateBlock>
-                        <div>
-                            <QnAText>Questions</QnAText>
-                            <StatusState>{userData?.question?.length}</StatusState>
-                        </div>
-                        <div>
-                            <QnAText>Answers</QnAText>
-                            <StatusState>{userData?.answer?.length}</StatusState>
-                        </div>
-                    </StatusStateBlock>
-                </StatusBlock>
-                <QnABlock>
-                    <div>
-                    <QnAText>Questions</QnAText>
-                    <QnAList>
-                        {userData?.question?.map((question) => (
-                            <div key={question.id}>{question.title}</div>
-                        ))}
-                    </QnAList>
-                    </div>
-                    <div>
-                    <QnAText>Answers</QnAText>
-                    <QnAList>
-                        {userData?.answer?.map((answer) => (
-                            <div key={answer.id}>{answer.content}</div>
-                        ))}
-                    </QnAList>
-                    </div>
-                </QnABlock>
-            </MypageBlock>
-            <EditProfileModal isOpen={isEditProfileOpen} onRequestClose={closeEditProfile} />
-        </MypageWrap>
-    )
+    // return (
+    //     <MypageWrap>
+    //         <MypageBlock>
+    //             <UserBlock>
+    //                 <UserAvatar
+    //                     style={{ backgroundImage: `url(${userData?.avatarLink})` }}
+    //                 ></UserAvatar>
+    //                 <DisplayName>{userData?.displayName}</DisplayName>
+    //                 <EmailText>/ {userData?.email}</EmailText>
+    //                 <EditProfile onClick={openEditProfile}>Edit profile</EditProfile>
+    //             </UserBlock>
+    //             <StatusBlock>
+    //                 <StatusText>Stats</StatusText>
+    //                 <StatusStateBlock>
+    //                     <div>
+    //                         <QnAText>Questions</QnAText>
+    //                         <StatusState>{userData?.question?.length}</StatusState>
+    //                     </div>
+    //                     <div>
+    //                         <QnAText>Answers</QnAText>
+    //                         <StatusState>{userData?.answer?.length}</StatusState>
+    //                     </div>
+    //                 </StatusStateBlock>
+    //             </StatusBlock>
+    //             <QnABlock>
+    //                 <div>
+    //                     <QnAText>Questions</QnAText>
+    //                     <QnAList>
+    //                         {userData?.question?.map((question) => (
+    //                             <div key={question.id}>{question.title}</div>
+    //                         ))}
+    //                     </QnAList>
+    //                 </div>
+    //                 <div>
+    //                     <QnAText>Answers</QnAText>
+    //                     <QnAList>
+    //                         {userData?.answer?.map((answer) => (
+    //                             <div key={answer.id}>{answer.content}</div>
+    //                         ))}
+    //                     </QnAList>
+    //                 </div>
+    //             </QnABlock>
+    //         </MypageBlock>
+    //         <EditProfileModal isOpen={isEditProfileOpen} onRequestClose={closeEditProfile} />
+    //     </MypageWrap>
+    // )
 }
 
 export default Mypage;

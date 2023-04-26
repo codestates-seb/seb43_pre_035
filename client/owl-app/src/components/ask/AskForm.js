@@ -8,7 +8,6 @@ import { axiosAuth } from '../../utils/axiosConfig';
 import { UserContext } from '../../App';
 
 
-
 // import  useApiHeaders from '../../utils/useApiHeaders';
 const FormWrapper = styled.form`
     display: flex;
@@ -45,15 +44,12 @@ const AskForm = ({openModal}) => {
     // const url_threads = `${process.env.REACT_APP_URL_JSON_QUESTIONS}`;
     const url_threads_test = `${process.env.REACT_APP_URL_NGROKTEST}/questions`
 
-
     const submitThreadHandler = (e) => {
         e.preventDefault();
         e.stopPropagation();
 
-
         if(!isLoggedIn) {openModal(); return;}
         console.log('question submitted!');
-
 
         axiosAuth.post(url_threads_test, {'title': title, 'content': content})
         .then((res) => {console.log("axios ask post request success!", res)
