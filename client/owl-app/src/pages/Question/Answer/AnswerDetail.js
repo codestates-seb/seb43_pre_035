@@ -3,8 +3,8 @@ import AddAnswerComment from "../Comment/AddAnswerComment";
 import AnswerCommentList from '../Comment/AnswerCommentList'
 import { ClickButton,UpdateButton } from "../../../styles/UIStyles";
 import { useState } from "react";
-import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import { axiosAuth } from "../../../utils/axiosConfig";
 
 const AnswerBlock = styled.div`
     display: flex;
@@ -91,15 +91,10 @@ const AnswerDetail = ({ question, answer, answers, updateAnswerHandler, deleteAn
     const url_acpost = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/answers/${answer.answerId}/answer_replies`;
 
 
-    const headers = { headers :
-        {Authorization : `Bearer ${process.env.REACT_APP_NGROK_TOKEN}`}};
-
-    console.log(answer.answerId.answerReplyId)
-
     const addAnswerCommentHandler = (newComment) => {
         
         
-            axios.post(url_acpost, { "content": newComment }, headers)
+        axiosAuth.post(url_acpost, { "content": newComment })
             .then(res => { console.log("answerReplies patch success!", res)
             navigate(0)
         })
@@ -109,9 +104,10 @@ const AnswerDetail = ({ question, answer, answers, updateAnswerHandler, deleteAn
     const updateAnswerCommentHandler = (comment_id, updatedComment) => {
 
         const url_acpatch = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/answers/${answer.answerId}/answer_replies/${comment_id}`;
-        console.log('update answer comment being handled!');
+
+        // console.log('update answer comment being handled!');
         
-        axios.patch(url_acpatch, {"content": updatedComment}, headers)
+        axiosAuth.patch(url_acpatch, {"content": updatedComment})
             .then((res) => {
                 console.log("update answercomment success!", res);
                 navigate(0)
@@ -125,7 +121,7 @@ const AnswerDetail = ({ question, answer, answers, updateAnswerHandler, deleteAn
         const url_acpatch = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/answers/${answer.answerId}/answer_replies/${comment_id}`;
 
         
-        axios.delete(url_acpatch ,headers )
+        axiosAuth.delete(url_acpatch )
             .then(res => { console.log("delete answercomment success!", res);navigate(0) })
             .catch(err => { console.log("delete answercomment fail!", err) })
 
@@ -134,7 +130,7 @@ const AnswerDetail = ({ question, answer, answers, updateAnswerHandler, deleteAn
     const deleteClickHandler = (e) => {
         //삭제 전 묻기 - 진짜 삭제하고 싶으신가요?
         e.stopPropagation();
-        deleteAnswerHandler(answer.id);
+        deleteAnswerHandler(answer.answerId);
     }
 
     const [isEditState, setIsEditState] = useState(false);

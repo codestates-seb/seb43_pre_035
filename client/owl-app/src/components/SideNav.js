@@ -102,7 +102,7 @@ const SideNav = ({toggleLogin, sidebarStatus, isLoggedIn, clickSidebarHandler}) 
                       onClick={()=>{clickSidebarHandler('Tags')}}>Tags</SideNavItem>
         <SideNavItem className={sidebarStatus.usersOn ? 'selected' : ''}
                       onClick={()=>{clickSidebarHandler('Users')}}>Users</SideNavItem>
-        <LoginCheckBtn onClick={logHandler}>{logState}</LoginCheckBtn>
+        {/* <LoginCheckBtn onClick={logHandler}>{logState}</LoginCheckBtn> */}
       </SideNavStickyContainer>
     </SideNavContainer>
   );

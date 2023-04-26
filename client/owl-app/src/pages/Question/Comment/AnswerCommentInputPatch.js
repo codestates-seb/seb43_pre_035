@@ -35,7 +35,6 @@ const AnswerCommentInputPatch = ({updatedContent, setUpdatedContent, editClickHa
     const [answerCommentContent, setAnswerCommentContent] = useState(updatedContent);
     const [invalidComment, setInvalidComment] = useState(false);
 
-    console.log(answerCommentContent)
 
     const onTextChange = (e) => {
         setAnswerCommentContent(e.target.value);

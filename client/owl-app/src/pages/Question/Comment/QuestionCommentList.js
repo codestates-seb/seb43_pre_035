@@ -4,6 +4,7 @@ import { useState } from "react";
 import AddComment from "./AddComment";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { axiosAuth } from "../../../utils/axiosConfig";
 
 const CommentListWrap = styled.div`
   padding: 10px;
@@ -15,6 +16,7 @@ const CommentListWrap = styled.div`
 `;
 
 const QuestionCommentList = ({ question, isLoggedIn, openModal }) => {
+
   const [comments, setComments] = useState(question.questionReplies);
   
   const navigate = useNavigate();
@@ -23,19 +25,12 @@ const QuestionCommentList = ({ question, isLoggedIn, openModal }) => {
   
 
 
-
-  const headers = { headers :
-    {Authorization : `Bearer ${process.env.REACT_APP_NGROK_TOKEN}`
-}
-};
-  console.log(question.questionReplies)
-
   
   const addCommentHandler = (newComment) => {
     
     //axios.patch to add comments...-----> with real server, revise to use post to add comments
-    axios
-        .post(url_qpost, {"content" : newComment}, headers)
+    axiosAuth
+        .post(url_qpost, {"content" : newComment})
         .then((res) => {
           console.log("add QComment success! id: ", res.questionReplyId);
           navigate(0)
@@ -45,14 +40,14 @@ const QuestionCommentList = ({ question, isLoggedIn, openModal }) => {
         });
       }
 
-  const updateQuestionCommentHandler = (comment_id, updatedComment) => {
+  
   const updateQuestionCommentHandler = (comment_id, updatedComment) => {
     console.log("comment update is being handled");
     //use map to change the comment_id content
+    const url_qpatch = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/question_replies/${comment_id}`;
    
-    axios
-      .patch(url_qpatch, { "content" : updatedComment },headers)
-      .patch(url_qpatch, { "content" : updatedComment },headers)
+    axiosAuth
+      .patch(url_qpatch, { "content" : updatedComment })
       .then((res) => {
         console.log("update Qcomment success!", res.questionReplyId);
         navigate(0);
@@ -69,8 +64,8 @@ const QuestionCommentList = ({ question, isLoggedIn, openModal }) => {
 
     const url_qpatch = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/question_replies/${comment_id}`;
 
-    axios
-      .delete(url_qpatch, headers)
+    axiosAuth
+      .delete(url_qpatch)
       .then((res) => {
         console.log("delete Qcomment success!", res);
         navigate(0)
@@ -104,6 +99,6 @@ const QuestionCommentList = ({ question, isLoggedIn, openModal }) => {
       ></AddComment>
     </>
   );
-};
+ };
 
 export default QuestionCommentList;

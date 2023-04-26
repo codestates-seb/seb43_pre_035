@@ -6,6 +6,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 
 
+
 const EditorBlock =styled.div`
     height: 500px;
     .ck.ck-editor__editable:not(.ck-editor__nested-editable) {

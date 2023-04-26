@@ -85,7 +85,6 @@ const SelectQuestion = ({ question, openModal, dimensionsHandler, refContainer }
 
     const onEditTitle = (e) => {
         setEditTitleQuestion(e.target.value)
-        console.log(e.target.value)
     }
     const onEditContent = (e) => {
         setEditContentQuestion(e.target.value)
@@ -99,7 +98,6 @@ const SelectQuestion = ({ question, openModal, dimensionsHandler, refContainer }
                 setIsEditState(false);
                 navigate(0);
             }
-
             )
             .catch(err => {console.log(err.message)})
             // 수정으로 바꾸기

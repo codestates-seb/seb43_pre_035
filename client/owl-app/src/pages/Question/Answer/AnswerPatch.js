@@ -40,7 +40,6 @@ const AnswerPatch = ({updatedAnswer, setUpdatedAnswer, setInvalidEdit}) => {
       setUpdatedAnswer(newUpdateAnswer);
       setInvalidEdit(false);
       setInvalidAnswer(true);
-      
 
 
     }

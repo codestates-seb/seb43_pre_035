@@ -55,15 +55,17 @@ const QuestionContent = ({question, isLoggedIn, setIsEditState}) =>{
     // console.log(question.member)
     const url = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}`;
 
+    console.log(isLoggedIn)
 
     const EditQuestion = () =>{
         setIsEditState(false)
     }
 
+  
 
 
     const deleteQHandler = () => {
-        axios.delete(url, headers)
+        axiosAuth.delete(url)
             .then(res => {console.log("delete Q success!")}
             ,navigate("/")
             )

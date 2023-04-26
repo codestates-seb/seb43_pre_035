@@ -2,9 +2,8 @@ import styled from "styled-components";
 import AnswerDetail from "./AnswerDetail";
 import { useState } from "react";
 import AnswerCreate from "./AnswerCreate";
-import axios from 'axios';
 import { useNavigate } from "react-router-dom"
-
+import { axiosAuth } from "../../../../src/utils/axiosConfig";
 
 const AnswerWrap = styled.div`
     padding-top: 10px;
@@ -22,14 +21,15 @@ const Answerlist = ({ question, isLoggedIn, openModal}) => {
     const navigate = useNavigate();
 
 
-    const url_apost = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/answers`
-    const headers = { headers :
-            {Authorization : `Bearer ${process.env.REACT_APP_NGROK_TOKEN}`
-                }};
+    
+    // const headers = { headers :
+    //         {Authorization : `Bearer ${process.env.REACT_APP_NGROK_TOKEN}`
+    //             }};
     
     const addAnswerHandler = (newAnswer) => {
         
-
+        
+        const url_apost = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/answers`
 
         // const newAnswers = answers? [...answers, newAnswer] : [newAnswer];
         // if (answers) setAnswers(newAnswers);
@@ -37,14 +37,9 @@ const Answerlist = ({ question, isLoggedIn, openModal}) => {
 
         //patch, add answers
 
-        const headers = { headers :
-            {Authorization : `Bearer ${process.env.REACT_APP_NGROK_TOKEN}`
-        }
-        };
-
-        axios.post(url_apost, { "content": newAnswer }, headers)
+        axiosAuth.post(url_apost, { "content": newAnswer })
         .then(res => { console.log("answer patch success!", res)
-        navigate(0);
+        navigate(0)
     })
         .catch(err => { console.log("answer patch fail!", err) });
 
@@ -57,26 +52,24 @@ const Answerlist = ({ question, isLoggedIn, openModal}) => {
     const url_apatch = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/answers/${answer_id}`
 
         
-        axios
-            .patch(url_apatch, { "content" : updateAnswer}, headers)
+    axiosAuth
+            .patch(url_apatch, { "content" : updateAnswer})
             .then((res) => {
                 console.log("update EditAnswer success!", res.answer_id)
-            },navigate(0))
+                navigate(0)
+            })
             .catch((err)=>{
                 console.log("update EditAnswer fail!", err)
             })
-
-            console.log(updateAnswer);
     }
 
     const deleteAnswerHandler = (answer_id) => {
-        console.log('delete clicked!');
+        // console.log('delete clicked!');
     const url_apatch = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/answers/${answer_id}`
 
-      
         //this should be replaced with 'delete'
-        axios.delete(url_apatch, headers)
-            .then(res => {console.log("delete answer success!")})
+        axiosAuth.delete(url_apatch)
+            .then(res => {console.log("delete answer success!")},navigate(0))
             .catch(err => {console.log("delete answer fail!", err)});
     }
 
