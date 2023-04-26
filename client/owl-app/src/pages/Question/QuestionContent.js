@@ -5,6 +5,7 @@ import ReactHTmlParser from 'html-react-parser'
 import { useNavigate,Link } from "react-router-dom";
 import { useState } from "react";
 import FormInput from "../../components/ask/FormInput";
+import { axiosAuth } from "../../utils/axiosConfig";
 
 const ContentWrap = styled.div`
     width: 750px;
@@ -47,23 +48,20 @@ const CreateAvatar = styled.img`
 
 const QuestionContent = ({question, isLoggedIn, setIsEditState}) =>{
 
-    
+
     // const paserContent = question.content
     // console.log(question.member)
     const url = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}`;
-    
-    const headers = { headers :
-        {Authorization : `Bearer ${process.env.REACT_APP_NGROK_TOKEN}`}
-    };
+
 
     const EditQuestion = () =>{
         setIsEditState(false)
     }
 
-    
+
 
     const deleteQHandler = () => {
-        axios.delete(url, headers)
+        axiosAuth.delete(url)
             .then(res => {console.log("delete Q success!")})
             .catch(err => {console.log("delete Q fail! ", err)})
             // 질문 목록으로 돌아가기

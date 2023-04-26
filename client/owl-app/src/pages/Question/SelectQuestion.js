@@ -8,7 +8,11 @@ import { useState, useEffect } from "react";
 import SideNav from "../../components/SideNav";
 import FormInput from "../../components/ask/FormInput";
 import { ClickButton } from "../../styles/UIStyles"
-import axios from "axios";
+import { axiosAuth } from "../../utils/axiosConfig";
+import { useNavigate } from 'react-router-dom';
+import { UserContext } from "../../App";
+import { useContext } from 'react';
+
 
 const SelectedWrap = styled.div`
     padding: 10px;
@@ -70,13 +74,16 @@ const StyledTextContent = styled.textarea`
 
 
 
-const SelectQuestion = ({ question, isLoggedIn, openModal, dimensionsHandler, refContainer }) => {
+const SelectQuestion = ({ question, openModal, dimensionsHandler, refContainer }) => {
+
+    const { isLoggedIn } = useContext(UserContext);
     const url = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}`
     const [getQuestion, setGetQuestion] = useState([question]);
     const [isEditState, setIsEditState] = useState(true);
     const [editTitleQuestion, setEditTitleQuestion] = useState(question.title)
     const [editContentQuestion, setEditContentQuestion] = useState(question.content)
-    console.log(question.title)
+    // console.log(question.title)
+    const navigate = useNavigate();
 
     const onEditTitle = (e) => {
         setEditTitleQuestion(e.target.value)
@@ -85,15 +92,15 @@ const SelectQuestion = ({ question, isLoggedIn, openModal, dimensionsHandler, re
     const onEditContent = (e) => {
         setEditContentQuestion(e.target.value)
     }
-    const headers = {
-        headers:
-            { Authorization: `Bearer ${process.env.REACT_APP_NGROK_TOKEN}` }
-    };
 
     const updateQHandler = () => {
 
-        axios.patch(url, {'title': editTitleQuestion, 'content': editContentQuestion}, headers)
-            .then(res => {console.log("res: ", res.data)}
+        axiosAuth.patch(url, {'title': editTitleQuestion, 'content': editContentQuestion})
+            .then(res => {
+                console.log("res: ", res.data);
+                setIsEditState(false);
+                navigate(0);
+            }
 
             )
             .catch(err => {console.log(err.message)})
