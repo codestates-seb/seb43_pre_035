@@ -3,7 +3,7 @@ import AnswerDetail from "./AnswerDetail";
 import { useState } from "react";
 import AnswerCreate from "./AnswerCreate";
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
 
 
 const AnswerWrap = styled.div`
@@ -30,8 +30,20 @@ const Answerlist = ({ question, isLoggedIn, openModal}) => {
     const addAnswerHandler = (newAnswer) => {
         
 
+
+        // const newAnswers = answers? [...answers, newAnswer] : [newAnswer];
+        // if (answers) setAnswers(newAnswers);
+        // else setAnswers(newAnswers);
+
+        //patch, add answers
+
+        const headers = { headers :
+            {Authorization : `Bearer ${process.env.REACT_APP_NGROK_TOKEN}`
+        }
+        };
+
         axios.post(url_apost, { "content": newAnswer }, headers)
-        .then(res => { console.log("answer patch success!", res) 
+        .then(res => { console.log("answer patch success!", res)
         navigate(0);
     })
         .catch(err => { console.log("answer patch fail!", err) });

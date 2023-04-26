@@ -5,6 +5,7 @@ import ReactHTmlParser from 'html-react-parser'
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import FormInput from "../../components/ask/FormInput";
+import { axiosAuth } from "../../utils/axiosConfig";
 
 const ContentWrap = styled.div`
     width: 750px;
@@ -53,16 +54,13 @@ const QuestionContent = ({question, isLoggedIn, setIsEditState}) =>{
     // const paserContent = question.content
     // console.log(question.member)
     const url = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}`;
-    
-    const headers = { headers :
-        {Authorization : `Bearer ${process.env.REACT_APP_NGROK_TOKEN}`}
-    };
+
 
     const EditQuestion = () =>{
         setIsEditState(false)
     }
 
-    
+
 
     const deleteQHandler = () => {
         axios.delete(url, headers)

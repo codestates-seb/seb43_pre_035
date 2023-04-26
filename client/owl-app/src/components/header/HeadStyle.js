@@ -25,16 +25,18 @@ export const TopnavTemplate = styled.div`
 `
 
 export const LogoWrap = styled.div`
-    padding: 0 50px 0 90px;
+    padding: 0 30px 0 90px;
     display: flex;
-    justify-content: center;
-    height: 100px;
-    left: 100px;
+    justify-content: flex-start;
+    height: 70px;
+    ${'' /* width: 95px; */}
+    ${'' /* left: 100px; */}
     img{
-        width: 95%;
-        height: 90%;
-        filter: grayscale(50%);
-        ${'' /* filter: sepia(50%); */}
+        ${'' /* width: 90%;
+        height: 80%; */}
+        min-width: 100%;
+        ${'' /* filter: grayscale(50%); */}
+        filter: sepia(50%);
         ${'' /* filter: invert(30%); */}
     }
 `

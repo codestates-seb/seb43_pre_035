@@ -4,7 +4,8 @@ import Tags from '../components/home/Tags';
 import Users from '../components/home/Users';
 
 import styled from 'styled-components';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useContext } from 'react';
+import { UserContext } from '../App';
 
 
 const Main = styled.div`
@@ -23,7 +24,11 @@ const Main = styled.div`
 
 
 
-const Home = ({threads, isPending, toggleLogin, sidebarStatus, setSidebarStatus, isLoggedIn}) => {
+const Home = ({threads, isPending, toggleLogin, sidebarStatus, setSidebarStatus}) => {
+
+    // useEffect(() => {
+    //     console.log("is this working?");
+    // }, [threads]);
 
     //for setting the tags/users pages
     const refContainer = useRef(null);
@@ -33,6 +38,18 @@ const Home = ({threads, isPending, toggleLogin, sidebarStatus, setSidebarStatus,
         setDimensions({width, height});
     }
 
+    const {userInfo, isLoggedIn} = useContext(UserContext);
+
+
+    // console.log("is logged in? ", isLoggedIn);
+    // console.log("home: ", userInfo);
+
+    console.log("home is logged in: ", `${userInfo.isLoggedIn}`);
+    console.log("home: memberId ", userInfo.memberId);
+
+    console.log("is token erased? ", localStorage.getItem('token'));
+    // console.log(userInfo);
+
     const clickSidebarHandler = (item) => {
         if (item === 'Home') setSidebarStatus({homeOn: true, tagsOn: false, usersOn: false, qOn: false});
         if (item === 'Tags') setSidebarStatus({homeOn: false, tagsOn: true, usersOn: false, qOn: false});
@@ -41,6 +58,12 @@ const Home = ({threads, isPending, toggleLogin, sidebarStatus, setSidebarStatus,
 
     return (
         <Main>
+           {/* { isLoggedIn ? <div>only show when logged in</div>: null} */}
+            {/* <div>
+                login userInfo? {`${userInfo.isLoggedIn}`}
+                {`${isLoggedIn}`}
+                 token: {`${userInfo.token}`}
+            </div> */}
             <SideNav toggleLogin={toggleLogin}
                     sidebarStatus={sidebarStatus}
                     clickSidebarHandler={clickSidebarHandler}

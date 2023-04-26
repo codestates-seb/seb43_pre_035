@@ -6,8 +6,11 @@ import QuestionCommentList from "./Comment/QuestionCommentList";
 import AnswerCommentList from './Comment/AnswerCommentList'
 import { useState, useEffect } from "react";
 import { ClickButton } from "../../styles/UIStyles"
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { axiosAuth } from "../../utils/axiosConfig";
+import { useNavigate } from 'react-router-dom';
+import { UserContext } from "../../App";
+import { useContext } from 'react';
+
 
 const SelectedWrap = styled.div`
     padding: 10px;
@@ -69,50 +72,61 @@ const StyledTextContent = styled.input`
 
 
 
-const SelectQuestion = ({question,isLoggedIn,openModal, dimensionsHandler, refContainer}) => {
+
+const SelectQuestion = ({ question, openModal, dimensionsHandler, refContainer }) => {
+
+    const { isLoggedIn } = useContext(UserContext);
+
     const url = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}`
-    const [getQuestion,setGetQuestion] = useState([question]);
+    const [getQuestion, setGetQuestion] = useState([question]);
     const [isEditState, setIsEditState] = useState(true);
     const [editTitleQuestion, setEditTitleQuestion] = useState(question.title)
     const [editContentQuestion, setEditContentQuestion] = useState(question.content)
-    const navigate = useNavigate()
-    console.log(question.title)
+    // console.log(question.title)
+    const navigate = useNavigate();
 
-    const onEditTitle = (e)=>{
+    const onEditTitle = (e) => {
         setEditTitleQuestion(e.target.value)
         console.log(e.target.value)
     }
-    const onEditContent = (e) =>{
+    const onEditContent = (e) => {
         setEditContentQuestion(e.target.value)
     }
-    const headers = { headers :
-        {Authorization : `Bearer ${process.env.REACT_APP_NGROK_TOKEN}`}
-    };
+
 
     const updateQHandler = () => {
 
-        axios.patch(url, {'title': editTitleQuestion, 'content': editContentQuestion}, headers)
-            .then(res => {console.log("res: ", res.data)},navigate(0))
+        axiosAuth.patch(url, {'title': editTitleQuestion, 'content': editContentQuestion})
+            .then(res => {
+                console.log("res: ", res.data);
+                setIsEditState(false);
+                navigate(0);
+            }
+
+
+            )
             .catch(err => {console.log(err.message)})
+            // 수정으로 바꾸기
     }
 
 
-    // useEffect(() => {
-    //     if (refContainer.current) {
-    //         dimensionsHandler(refContainer.current.offsetWidth, refContainer.current.offsetHeight);
-    //     }
-    //     }, []);
+
+    useEffect(() => {
+        if (refContainer.current) {
+            dimensionsHandler(refContainer.current.offsetWidth, refContainer.current.offsetHeight);
+        }
+        }, []);
 
     return (
         <>
             {getQuestion.map((question) =>(
         <SelectedWrap key={question} ref={refContainer}>
-            {isEditState ? 
+            {isEditState ?
                 <Title question={question} isLoggedIn={isLoggedIn}></Title>
-                : <StyledTextHead 
+                : <StyledTextHead
                 value={editTitleQuestion}
                 onChange={onEditTitle}/>}
-            {isEditState ? 
+            {isEditState ?
                 <QuestionContent openModal={openModal}
                 isLoggedIn={isLoggedIn}
                 question={question}
@@ -122,22 +136,22 @@ const SelectQuestion = ({question,isLoggedIn,openModal, dimensionsHandler, refCo
                             value={editContentQuestion}
                             onChange={onEditContent} />
                             <ClickButton onClick={updateQHandler} >수정하기</ClickButton></>
-                }
-                <QuestionCommentList
-                isLoggedIn={isLoggedIn}
-                question={question}
-                openModal={openModal}></QuestionCommentList>
-                <Answerlist
-                openModal={openModal}
-                question={question}
-                isLoggedIn={isLoggedIn}>
-                <AnswerCommentList
-                openModal={openModal}
-                isLoggedIn={isLoggedIn}
-                question={question}></AnswerCommentList>
-                </Answerlist>
+                    }
+                    <QuestionCommentList
+                        isLoggedIn={isLoggedIn}
+                        question={question}
+                        openModal={openModal}></QuestionCommentList>
+                    <Answerlist
+                        openModal={openModal}
+                        question={question}
+                        isLoggedIn={isLoggedIn}>
+                        <AnswerCommentList
+                            openModal={openModal}
+                            isLoggedIn={isLoggedIn}
+                            question={question}></AnswerCommentList>
+                    </Answerlist>
 
-        </SelectedWrap>
+                </SelectedWrap>
             )
             )}
         </>

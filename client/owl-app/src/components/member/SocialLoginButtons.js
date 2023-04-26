@@ -128,15 +128,15 @@ function SocialLoginButtons({ onSubmit }) {
   return (
     <ButtonContainer>
       <GoogleButton onClick={handleGoogleLogin}>
-        <GoogleButtonLogo src="glogo.svg" />
+        <GoogleButtonLogo src="/glogo.svg" />
         <GoogleButtonText>Login with Google</GoogleButtonText>
       </GoogleButton>
       <KakaoButton onClick={onSubmit}>
-        <KakaoButtonLogo src="kakaotalk.svg" />
+        <KakaoButtonLogo src="/kakaotalk.svg" />
         <KakaoButtonText>Login with KakaoTalk</KakaoButtonText>
       </KakaoButton>
       <GithubButton onClick={onSubmit}>
-        <GithubButtonLogo src="github.svg" />
+        <GithubButtonLogo src="/github.svg" />
         <GithubButtonText>Login with Github</GithubButtonText>
       </GithubButton>
     </ButtonContainer>

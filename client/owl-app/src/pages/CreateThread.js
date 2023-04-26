@@ -23,14 +23,14 @@ const Headline = styled.h1`
     letter-spacing: .1rem;
 `
 
-const CreateThread = ({threads, setThreads}) => {
+const CreateThread = ({threads, openModal}) => {
 
     return (
         <AskFormWrapper>
             <Headline>
                 똑부러지게 질문하기
             </Headline>
-            <AskForm />
+            <AskForm openModal={openModal}/>
         </AskFormWrapper>
     )
 

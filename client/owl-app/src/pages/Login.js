@@ -20,10 +20,10 @@ function Login({isOpen, onRequestClose, setIsLoggedIn, toggleLogin}) {
 
   return (
     <Container>
-      <Logo src="logo.svg" />
+      <Logo src="/logo/logo_pink_2.svg" />
       <SocialLoginButtons/>
       <EmailPasswordForm  isOpen={isOpen}
-                          setIsLoggedIn={setIsLoggedIn} 
+                          setIsLoggedIn={setIsLoggedIn}
                           onSubmit={onRequestClose}
                           toggleLogin={toggleLogin} />
     </Container>

@@ -15,6 +15,7 @@ const ThreadContainer = styled.li`
     width: 100%;
     padding: 10px 10px 10px 0;
     margin: 1px;
+    ${'' /* min-width: var(--size_thread-minwidth); */}
 `
 
 const ThreadContent = styled.div`

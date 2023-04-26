@@ -1,12 +1,15 @@
 import styled from "styled-components";
 import TopNav from "./TopNav";
 import TopNavlogged from "./TopNavlogged";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
+import { UserContext } from '../../App';
+// import { UserContext } from "../../utils/UserContext";
 
 const HeaderBlock = styled.header`
     display: flex;
     justify-content: center;
+    ${'' /* align-items: flex-start; */}
     position: fixed;
     top : 0;
     left : 0;
@@ -21,10 +24,10 @@ const HeaderWrap = styled.div`
     height: 100%;
 `
 
-const Header = ({threads, setSidebarStatus, isLoggedIn, toggleLogin, openModal}) => {
+const Header = ({threads, setSidebarStatus, toggleLogin, openModal}) => {
 
     const location = useLocation();
-
+    const { isLoggedIn } = useContext(UserContext);
 
     const clickRouteHandler = (pathName) => {
         if (pathName === 'Home') setSidebarStatus({homeOn: true, tagsOn: false, usersOn: false, qOn: false});

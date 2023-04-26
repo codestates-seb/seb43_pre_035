@@ -48,7 +48,6 @@ const AnswerLogin = ({addAnswerHandler}) => {
     const [newAnswerContent, setNewAnswerContent] = useState('');
     const [invalidAnswer, setInvalidAnswer] = useState(false);
 
-
     const onAnswerTextChange = (e) => {
         setNewAnswerContent(e.target.value);
       };
@@ -58,7 +57,6 @@ const AnswerLogin = ({addAnswerHandler}) => {
         
         //   console.log("invalid answer!")
       if (!newAnswerContent){ setInvalidAnswer(true); return;}
-
 
 
         addAnswerHandler(newAnswerContent);

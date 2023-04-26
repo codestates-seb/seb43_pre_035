@@ -22,8 +22,8 @@ const QuestionCommentList = ({ question, isLoggedIn, openModal }) => {
   const url_qpost = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/question_replies`;
   
 
-  
-  
+
+
   const headers = { headers :
     {Authorization : `Bearer ${process.env.REACT_APP_NGROK_TOKEN}`
 }
@@ -46,12 +46,12 @@ const QuestionCommentList = ({ question, isLoggedIn, openModal }) => {
       }
 
   const updateQuestionCommentHandler = (comment_id, updatedComment) => {
+  const updateQuestionCommentHandler = (comment_id, updatedComment) => {
     console.log("comment update is being handled");
     //use map to change the comment_id content
-  const url_qpatch = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/question_replies/${comment_id}`;
    
-    console.log(updatedComment)
     axios
+      .patch(url_qpatch, { "content" : updatedComment },headers)
       .patch(url_qpatch, { "content" : updatedComment },headers)
       .then((res) => {
         console.log("update Qcomment success!", res.questionReplyId);

@@ -17,7 +17,7 @@ const SideNavStickyContainer = styled.div`
     position: sticky;
     position: -webkit-sticky;
     top: var(--spacing-sidenav-top);
-    left: 0;
+    ${'' /* left:  0; */}
     width: 100%;
     height: 25vh;
     min-height: 200px;
@@ -26,7 +26,7 @@ const SideNavStickyContainer = styled.div`
     display: flex;
     flex-direction: column;
     padding: 10px 40px 10px 10px;
-    overflow-x: visible;
+    overflow-x: hidden;
     overflow-y: hidden;
 `;
 
@@ -48,7 +48,7 @@ const SideNavItem = styled.div`
   }
 
   &.selected {
-    padding-left: 20px;
+    ${'' /* padding-left: 20px; */}
     background: var(--colors-green);
     border-radius: 20px;
   }
@@ -106,7 +106,7 @@ const SideNav = ({toggleLogin, sidebarStatus, isLoggedIn, clickSidebarHandler}) 
       </SideNavStickyContainer>
     </SideNavContainer>
   );
-};
+}; 
 
 
 
