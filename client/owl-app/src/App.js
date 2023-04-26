@@ -1,7 +1,6 @@
 import {useState, useEffect, Fragment, createContext, useReducer, useContext} from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import GlobalStyle from './theme/GlobalStyle';
-
 //import pages
 //import with Lazy, and load Suspense while loading
 import Home from './pages/Home';
@@ -20,14 +19,6 @@ import ModalContainer from './components/member/ModalContainer'; // 모달 불�
 import * as AuthReducer from './utils/store/reducers/authReducer';
 import * as ACTIONS from './utils/store/actions/actions';
 
-//function to convert date
-//ISO-8601 -> if today, how long before current time. or yesterday
-//if this year, only return month/date, if not, include year: 2022년 12월 3일
-// const convertDate = (string) => {
-//   return `${string.substring(0, 4)}년 ${String(Number(string.substring(5, 7)))}월 ${String(Number(string.substring(8, 10)))}일`
-// }
-
-
 // const url_threads_test_search1 = `${process.env.REACT_APP_URL_NGROKTEST}/questions/search/?title=제목&content=내용30`
 // const url_threads_test_search2 = `${process.env.REACT_APP_URL_NGROKTEST}/questions/search/?title=제목`
 
@@ -36,7 +27,6 @@ export const UserContext = createContext();
 
 
 function App() {
-
 
   const [queries, setQueries] = useState('');
   const url_threads = `${process.env.REACT_APP_URL_JSON_QUESTIONS}`;
@@ -51,25 +41,21 @@ function App() {
   const storedInfo = JSON.parse(localStorage.getItem('userInfo'));
   const [userInfo, dispatch] = useReducer(AuthReducer.AuthReducer, storedInfo ? storedInfo : AuthReducer.initialState);
 
-  // const storedInfo = JSON.parse(localStorage.getItem('userInfo'));
   console.log(storedInfo);
   console.log("userInfo", userInfo);
-// const { state } = useContext(UserContext);
-
-  // useEffect (() => {
-  //   setIsLoggedIn(state.isLoggedIn);
-  // }, []);
+  console.log("token", localStorage.getItem('token'));
 
   const handleLogin = (data, token) => {
     console.log("app handleLogin");
-    console.log(JSON.parse(localStorage.getItem('userInfo')));    console.log(JSON.parse(localStorage.getItem('userInfo')));
-    console.log(localStorage.getItem('token'));
-    dispatch(ACTIONS.login(data, token));
+    // console.log(JSON.parse(localStorage.getItem('userInfo')));
+    // console.log(localStorage.getItem('token'));
+    dispatch(ACTIONS.login(data));
   }
 
   const handleLogout = () => {
     console.log("app handleLogout");
     dispatch(ACTIONS.logout());
+    localStorage.setItem('token', '');
   }
 
   const openModal = () => {
@@ -94,6 +80,8 @@ function App() {
         avatarLink : userInfo.avatarLink,
         displayName : userInfo.displayName,
     }));
+
+    // localStorage.setItem('token', '');
 
   }, [userInfo]);
 
@@ -189,7 +177,6 @@ function App() {
                                                                             openModal={openModal}/> } />
             </Routes>
         </Router>
-
       </UserContext.Provider>
   );
 }

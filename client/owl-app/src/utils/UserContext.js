@@ -1,4 +1,4 @@
-import { createContext, useEffect } from 'react';
+import { createContext, useEffect, useReducer } from 'react';
 import * as AuthReducer  from './store/reducers/authReducer';
 import * as ACTIONS from './store/actions/actions';
 
@@ -10,10 +10,14 @@ export function UserProvider(props){
     const [userInfo, dispatch] = useReducer(AuthReducer.AuthReducer, storedInfo ? storedInfo : AuthReducer.initialState);
 
     const handleLogin = (data) => {
+        console.log("app handleLogin");
+        console.log(JSON.parse(localStorage.getItem('userInfo')));    console.log(JSON.parse(localStorage.getItem('userInfo')));
+        console.log(localStorage.getItem('token'));
         dispatch(ACTIONS.login(data));
       }
 
       const handleLogout = () => {
+        console.log("app handleLogout");
         dispatch(ACTIONS.logout());
       }
 
@@ -35,6 +39,8 @@ export function UserProvider(props){
             avatarLink : userInfo.avatarLink,
             displayName : userInfo.displayName,
         }));
+
+        localStorage.setItem('token', '');
 
       }, [userInfo]);
 

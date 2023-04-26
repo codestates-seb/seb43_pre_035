@@ -6,6 +6,7 @@ import Users from '../components/home/Users';
 import styled from 'styled-components';
 import { useState, useRef, useEffect, useContext } from 'react';
 import { UserContext } from '../App';
+// import { UserContext } from '../utils/UserContext';
 
 
 const Main = styled.div`
