@@ -84,8 +84,7 @@
 ## 🔖 Project Docs
 
 ### 사용자 요구사항 정의서
-<img alt="requirement" src="./docs/seb43_pre_35_1.jpg" width="500" height=auto>
-<img alt="requirement" src="./docs/seb43_pre_35_2.jpg" width="500" height=auto>
+<img alt="requirement" src="./docs/seb43_pre_35_1.jpg" width="500" height=auto> <img alt="requirement" src="./docs/seb43_pre_35_2.jpg" width="500" height=auto>
 
 ### DB Diagram
 <img alt="schema" src="./docs/table.png" width="500" height=auto>
