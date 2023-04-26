@@ -46,9 +46,6 @@ const CommentInputPatch = ({ updatedContent, setUpdatedContent, editClickHandler
         e.stopPropagation();
         // console.log("comment content: ", newCommentContent);
         if (!newCommentContent) {console.log("no content!"); setInvalidComment(true); return;};
-        // let newComment = {
-        //     "content" : newCommentContent,
-        // }
         setUpdatedContent(newCommentContent);
         editClickHandler();
         setInvalidComment(false);

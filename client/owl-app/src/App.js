@@ -134,6 +134,7 @@ function App() {
     <UserContext.Provider value={{
       userInfo,
       dispatch,
+      memberId : userInfo.memberId,
       isLoggedIn: userInfo.isLoggedIn,
       handleUserLogin: (userInfo, token) => handleLogin(userInfo, token),
       handleUserLogout: () => handleLogout()

@@ -43,7 +43,7 @@ const AnswerCommentInputPatch = ({updatedContent, setUpdatedContent, editClickHa
 
     const onClickCommentSubmit = (e) => {
         e.stopPropagation();
-        console.log("this is onclickCommentSubmit!");
+        // console.log("this is onclickCommentSubmit!");
         // console.log("answer content: ", answerCommentContent);
         if (!answerCommentContent) {console.log("no content!"); setInvalidComment(true); return;}
 

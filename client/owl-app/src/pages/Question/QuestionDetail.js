@@ -6,7 +6,8 @@ import useFetch from "../../utils/useFetch";
 import SideNav from "../../components/SideNav";
 import Tags from "../../components/home/Tags";
 import Users from "../../components/home/Users";
-
+import { UserContext } from "../../App";
+import { useContext } from 'react';
 
 
 const QuestionWrap = styled.div`
@@ -19,9 +20,10 @@ const QuestionWrap = styled.div`
     align-items: flex-start;
 `
 
-const QuestionDetail = ({ toggleLogin, sidebarStatus, setSidebarStatus, isLoggedIn, openModal }) => {
+const QuestionDetail = ({ toggleLogin, sidebarStatus, setSidebarStatus, openModal }) => {
 
-    // const [question,setQuestion] = useState(initialData.questions[0])
+    const { isLoggedIn } = useContext(UserContext);
+
     const { questionId } = useParams();
     // const url = `http://localhost:3001/questions/${questionId}`;
     const url = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${questionId}`;

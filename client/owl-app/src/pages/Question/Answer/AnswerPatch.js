@@ -30,7 +30,6 @@ const AnswerPatch = ({updatedAnswer, setUpdatedAnswer, setInvalidEdit}) => {
 
     const onEditTextChange = (e) => {
         setUpdatedAnswer(e.target.value);
-        // setNewUpdateAnswer(e.taget.value);
       };
 
     const onClickSubmit = (e)=> {
@@ -41,8 +40,7 @@ const AnswerPatch = ({updatedAnswer, setUpdatedAnswer, setInvalidEdit}) => {
       setUpdatedAnswer(newUpdateAnswer);
       setInvalidEdit(false);
       setInvalidAnswer(true);
-      
-      console.log("무엇이 문제냐: ", updatedAnswer);
+
 
     }
 

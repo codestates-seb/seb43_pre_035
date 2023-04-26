@@ -15,8 +15,7 @@ export const CreateBlock = styled.div`
 export const CreateHeader = styled.span`
     height: 30px;
     padding-right: 10px;
-    border-bottom: 2px solid white;
-
+    
 `
 export const CreateEditorLogout = styled.div`
     height: 200px;
