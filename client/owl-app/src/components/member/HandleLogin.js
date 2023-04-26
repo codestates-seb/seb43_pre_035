@@ -17,10 +17,10 @@ const HandleLogin = async ({ email, password }) => {
     console.log('JWT Token:', token);
 
     // JWT 토큰을 로컬 스토리지에 저장
-    localStorage.setItem('userInfo', {
+    localStorage.setItem('userInfo', JSON.stringify({
       isLoggedIn: true,
-      ...JSON.stringify(response.data)
-    });
+      ...response.data
+    }));
     localStorage.setItem('token', token);
 
     return response.data;

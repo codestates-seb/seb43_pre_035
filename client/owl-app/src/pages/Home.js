@@ -35,6 +35,9 @@ const Home = ({threads, isPending, isLoggedIn, toggleLogin, sidebarStatus, setSi
     }
 
     const {userInfo} = useContext(UserContext);
+    console.log("home: ", userInfo);
+    console.log("home is logged in: ", `${userInfo.isLoggedIn}`);
+    console.log("home: memberId ", userInfo.memberId);
 
     // console.log(userInfo);
 
@@ -48,7 +51,7 @@ const Home = ({threads, isPending, isLoggedIn, toggleLogin, sidebarStatus, setSi
         <Main>
             {/* <div>
                 login userInfo? {`${userInfo.isLoggedIn}`}
-                 login userInfo? {`${isLoggedIn}`}
+                {`${isLoggedIn}`}
                  token: {`${userInfo.token}`}
             </div> */}
             <SideNav toggleLogin={toggleLogin}

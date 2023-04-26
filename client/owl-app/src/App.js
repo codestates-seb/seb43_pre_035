@@ -27,8 +27,7 @@ import * as ACTIONS from './utils/store/actions/actions';
 //   return `${string.substring(0, 4)}년 ${String(Number(string.substring(5, 7)))}월 ${String(Number(string.substring(8, 10)))}일`
 // }
 
-const url_threads = `${process.env.REACT_APP_URL_JSON_QUESTIONS}`;
-const url_threads_test = `${process.env.REACT_APP_URL_NGROKTEST}/questions`
+
 // const url_threads_test_search1 = `${process.env.REACT_APP_URL_NGROKTEST}/questions/search/?title=제목&content=내용30`
 // const url_threads_test_search2 = `${process.env.REACT_APP_URL_NGROKTEST}/questions/search/?title=제목`
 
@@ -37,24 +36,39 @@ export const UserContext = createContext();
 
 
 function App() {
+
+
+  const [queries, setQueries] = useState('');
+  const url_threads = `${process.env.REACT_APP_URL_JSON_QUESTIONS}`;
+  const url_threads_test = `${process.env.REACT_APP_URL_NGROKTEST}/questions`
+  const url_threads_test_queries = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${queries}`
+
   const [threads, isPending, error] = useFetch(url_threads_test);
   const [renderThreads, setRenderThreads] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  const [userInfo, dispatch] = useReducer(AuthReducer.AuthReducer, AuthReducer.initialState);
+  const storedInfo = JSON.parse(localStorage.getItem('userInfo'));
+  const [userInfo, dispatch] = useReducer(AuthReducer.AuthReducer, storedInfo ? storedInfo : AuthReducer.initialState);
 
-  // const { state } = useContext(UserContext);
+  // const storedInfo = JSON.parse(localStorage.getItem('userInfo'));
+  console.log(storedInfo);
+  console.log("userInfo", userInfo);
+// const { state } = useContext(UserContext);
 
   // useEffect (() => {
   //   setIsLoggedIn(state.isLoggedIn);
   // }, []);
 
   const handleLogin = (data, token) => {
+    console.log("app handleLogin");
+    console.log(JSON.parse(localStorage.getItem('userInfo')));    console.log(JSON.parse(localStorage.getItem('userInfo')));
+    console.log(localStorage.getItem('token'));
     dispatch(ACTIONS.login(data, token));
   }
 
   const handleLogout = () => {
+    console.log("app handleLogout");
     dispatch(ACTIONS.logout());
   }
 
@@ -71,6 +85,17 @@ function App() {
   useEffect(() => {
     console.log("login state: ", isLoggedIn);
   },[isLoggedIn]);
+
+  useEffect(() => {
+    localStorage.setItem('userInfo', JSON.stringify({
+        isLoggedIn: userInfo.isLoggedIn,
+        memberId: userInfo.memberId,
+        name: userInfo.name,
+        avatarLink : userInfo.avatarLink,
+        displayName : userInfo.displayName,
+    }));
+
+  }, [userInfo]);
 
 
   //test with ngrok
@@ -101,9 +126,13 @@ function App() {
       console.log("initial threads loaded!");
 
       //for testing with ngrok
-      console.log('ngrok threads: ', threads);
+      // console.log('ngrok threads: ', threads);
       console.log(threads.content);
       setRenderThreads(threads.content);
+
+
+      // console.log(threads.content);
+      // setRenderThreads(threads);
 
     }
     // if (thread1) console.log("thread1", thread1);

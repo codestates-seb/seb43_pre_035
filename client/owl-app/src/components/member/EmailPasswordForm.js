@@ -115,7 +115,7 @@ function EmailPasswordForm({ isOpen, onSubmit, setIsLoggedIn, toggleLogin}) {
         console.log('Password:', password);
 
         const userData  = await HandleLogin({ email, password });
-        // console.log('handling: ', token);
+        console.log('handling: ', userData);
         handleUserLogin(userData);
 
         if (isOpen) onSubmit();

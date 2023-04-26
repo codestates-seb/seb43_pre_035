@@ -6,7 +6,7 @@ export const UserContext = createContext();
 
 export function UserProvider(props){
 
-    const storedInfo = localStorage.getItem('userInfo');
+    const storedInfo = JSON.parse(localStorage.getItem('userInfo'));
     const [userInfo, dispatch] = useReducer(AuthReducer.AuthReducer, storedInfo ? storedInfo : AuthReducer.initialState);
 
     const handleLogin = (data) => {
@@ -18,7 +18,7 @@ export function UserProvider(props){
       }
 
       useEffect(() => {
-        const savedUserInfo = localStorage.getItem('userInfo');
+        const savedUserInfo = JSON.parse(localStorage.getItem('userInfo'));
         const savedToken = localStorage.getItem('token');
 
         if (savedUserInfo && savedToken){
@@ -28,13 +28,13 @@ export function UserProvider(props){
       }, []);
 
       useEffect(() => {
-        localStorage.setItem('userInfo', {
+        localStorage.setItem('userInfo', JSON.stringify({
             isLoggedIn: userInfo.isLoggedIn,
             memberId: userInfo.memberId,
             name: userInfo.name,
             avatarLink : userInfo.avatarLink,
             displayName : userInfo.displayName,
-        });
+        }));
 
       }, [userInfo]);
 
