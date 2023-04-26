@@ -1,8 +1,9 @@
 import axios from 'axios';
 
 const BASE_URL = `${process.env.REACT_APP_URL_NGROKTEST}`;
-const token = localStorage.getItem('token') ? localStorage.getItem('token') :
-    `${process.env.REACT_APP_NGROK_TOKEN}`;
+const token = localStorage.getItem('token');
+// const token = localStorage.getItem('token') ? localStorage.getItem('token') :
+//     `${process.env.REACT_APP_NGROK_TOKEN}`;
 
 // 단순 get요청으로 인증값이 필요없는 경우
 const axiosApi = (url, options) => {
@@ -21,7 +22,7 @@ const axiosApi = (url, options) => {
 const axiosAuthApi = (url, options) => {
     const instance = axios.create({
         baseURL: url,
-        headers: { Authorization: 'Bearer ' + token },
+        headers: { Authorization: token },
         ...options
     })
     return instance;

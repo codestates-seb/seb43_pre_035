@@ -35,7 +35,7 @@ const AskForm = () => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const navigate = useNavigate();
-    const token = localStorage.getItem('token');
+    // const token = localStorage.getItem('token');
 
     // const url_threads = `${process.env.REACT_APP_URL_JSON_QUESTIONS}`;
     const url_threads_test = `${process.env.REACT_APP_URL_NGROKTEST}/questions`
@@ -53,7 +53,7 @@ const AskForm = () => {
         .then((res) => {console.log("axios ask post request success!", res)
 
           navigate('/');
-          console.log('token:', token);
+        //   console.log('token:', token);
           navigate(0);
         })
         .catch((err) => {console.log("axios post request fail!", err)})

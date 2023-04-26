@@ -6,7 +6,6 @@ import Users from '../components/home/Users';
 import styled from 'styled-components';
 import { useState, useRef, useEffect, useContext } from 'react';
 import { UserContext } from '../App';
-// import { UserContext } from '../utils/UserContext';
 
 
 const Main = styled.div`
@@ -25,7 +24,7 @@ const Main = styled.div`
 
 
 
-const Home = ({threads, isPending, isLoggedIn, toggleLogin, sidebarStatus, setSidebarStatus}) => {
+const Home = ({threads, isPending, toggleLogin, sidebarStatus, setSidebarStatus}) => {
 
     //for setting the tags/users pages
     const refContainer = useRef(null);
@@ -35,11 +34,15 @@ const Home = ({threads, isPending, isLoggedIn, toggleLogin, sidebarStatus, setSi
         setDimensions({width, height});
     }
 
-    const {userInfo} = useContext(UserContext);
+    const {userInfo, isLoggedIn} = useContext(UserContext);
+
+
+    // console.log("is logged in? ", isLoggedIn);
     console.log("home: ", userInfo);
     console.log("home is logged in: ", `${userInfo.isLoggedIn}`);
     console.log("home: memberId ", userInfo.memberId);
 
+    console.log("is token erased? ", localStorage.getItem('token'));
     // console.log(userInfo);
 
     const clickSidebarHandler = (item) => {
@@ -50,6 +53,7 @@ const Home = ({threads, isPending, isLoggedIn, toggleLogin, sidebarStatus, setSi
 
     return (
         <Main>
+           {/* { isLoggedIn ? <div>only show when logged in</div>: null} */}
             {/* <div>
                 login userInfo? {`${userInfo.isLoggedIn}`}
                 {`${isLoggedIn}`}
