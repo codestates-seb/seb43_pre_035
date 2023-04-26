@@ -16,10 +16,10 @@
 </br>
 
 ## 🧑‍🤝‍🧑 Team members
-| 이연수<br>(BE Leader) | 전지영<br>(BE) | 고유강<br>(BE) | 장성아<br>(FE Leader) | 지우석<br>(FE) | 고상민<br>(FE) |
-| :--------: | :--------: | :--------: | :--------: | :--------: | :--------: |
-| <img src="./images/member/owl05.png" alt="이연수" width="100" height="100"> | <img src="./images/member/owl03.png" alt="전지영" width="100" height="100"> | <img src="./images/member/owl07.png" alt="고유강" width="100" height="100"> | <img src="./images/member/owl08.png" alt="장성아" width="100" height="100"> | <img src="./images/member/owl01.png" alt="지우석" width="100" height="100"> | <img src="./images/member/owl04.png" alt="고상민" width="100" height="100"> |
-| [@yeonssu]((https://github.com/yeonssu)) | [@jyoungGrace](https://github.com/jyoungGrace) | [@KYOOKANG](https://github.com/KYOOKANG) | [@splazt](https://github.com/splazt) | [@Zeereoreo](https://github.com/Zeereoreo) | [@Gorden-Dosi](https://github.com/Gorden-Dosi) |
+|                                                                            이연수<br>(BE Leader)                                                                             | 전지영<br>(BE) | 고유강<br>(BE) | 장성아<br>(FE Leader) | 지우석<br>(FE) | 고상민<br>(FE) |
+|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------:| :--------: | :--------: | :--------: | :--------: | :--------: |
+|                                                 <img src="./images/member/owl05.png" alt="이연수" width="100" height="100">                                                  | <img src="./images/member/owl03.png" alt="전지영" width="100" height="100"> | <img src="./images/member/owl07.png" alt="고유강" width="100" height="100"> | <img src="./images/member/owl08.png" alt="장성아" width="100" height="100"> | <img src="./images/member/owl01.png" alt="지우석" width="100" height="100"> | <img src="./images/member/owl04.png" alt="고상민" width="100" height="100"> |
+|                                                                  [@yeonssu](https://github.com/yeonssu)                                                                   | [@jyoungGrace](https://github.com/jyoungGrace) | [@KYOOKANG](https://github.com/KYOOKANG) | [@splazt](https://github.com/splazt) | [@Zeereoreo](https://github.com/Zeereoreo) | [@Gorden-Dosi](https://github.com/Gorden-Dosi) |
 | <p align="left"><br/>- Signup <br/>- Automated welcome email<br/>- Spring Security<br/>(Authentication, Authorization, JWT, OAuth)<br/>- Member CRUD<br/>- AWS deployment | <p align="left">- Question CRUD<br/>- Answer CUD<br/>- Search by title, content<br> | <p align="left">- Question Reply CUD<br/>- Answer Reply CUD <br/>- Exception Code ||||
 
 </br>
