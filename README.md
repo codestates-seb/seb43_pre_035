@@ -16,11 +16,11 @@
 </br>
 
 ## 🧑‍🤝‍🧑 Team members
-|                                                                            이연수<br>(BE Leader)                                                                             | 전지영<br>(BE) | 고유강<br>(BE) | 장성아<br>(FE Leader) | 지우석<br>(FE) | 고상민<br>(FE) |
-|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------:| :--------: | :--------: | :--------: | :--------: | :--------: |
-|                                                 <img src="./images/member/owl05.png" alt="이연수" width="100" height="100">                                                  | <img src="./images/member/owl03.png" alt="전지영" width="100" height="100"> | <img src="./images/member/owl07.png" alt="고유강" width="100" height="100"> | <img src="./images/member/owl08.png" alt="장성아" width="100" height="100"> | <img src="./images/member/owl01.png" alt="지우석" width="100" height="100"> | <img src="./images/member/owl04.png" alt="고상민" width="100" height="100"> |
-|                                                                  [@yeonssu](https://github.com/yeonssu)                                                                   | [@jyoungGrace](https://github.com/jyoungGrace) | [@KYOOKANG](https://github.com/KYOOKANG) | [@splazt](https://github.com/splazt) | [@Zeereoreo](https://github.com/Zeereoreo) | [@Gorden-Dosi](https://github.com/Gorden-Dosi) |
-| <p align="left"><br/>- Signup <br/>- Automated welcome email<br/>- Spring Security<br/>(Authentication, Authorization, JWT, OAuth)<br/>- Member CRUD<br/>- AWS deployment | <p align="left">- Question CRUD<br/>- Answer CUD<br/>- Search by title, content<br> | <p align="left">- Question Reply CUD<br/>- Answer Reply CUD <br/>- Exception Code ||||
+| 이연수<br>(BE Leader) | 전지영<br>(BE) | 고유강<br>(BE) | 장성아<br>(FE Leader) | 지우석<br>(FE) | 고상민<br>(FE) |
+|:--------:| :--------: | :--------: | :--------: | :--------: | :--------: |
+| <img src="./images/member/owl05.png" alt="이연수" width="100" height="100">| <img src="./images/member/owl03.png" alt="전지영" width="100" height="100"> | <img src="./images/member/owl07.png" alt="고유강" width="100" height="100"> | <img src="./images/member/owl08.png" alt="장성아" width="100" height="100"> | <img src="./images/member/owl01.png" alt="지우석" width="100" height="100"> | <img src="./images/member/owl04.png" alt="고상민" width="100" height="100"> |
+|[@yeonssu](https://github.com/yeonssu) | [@jyoungGrace](https://github.com/jyoungGrace) | [@KYOOKANG](https://github.com/KYOOKANG) | [@splazt](https://github.com/splazt) | [@Zeereoreo](https://github.com/Zeereoreo) | [@Gorden-Dosi](https://github.com/Gorden-Dosi) |
+| <p align="left"><br/>- Signup <br/>- Automated welcome email<br/>- Spring Security<br/>(Authentication, Authorization, JWT, OAuth)<br/>- Member CRUD<br/>- AWS deployment | <p align="left">- Question CRUD<br/>- Answer CUD<br/>- Search by title, content<br>- viewCount increase function <br>- Adopt answers | <p align="left">- Question Reply CUD<br/>- Answer Reply CUD <br/>- Exception Code ||||
 
 </br>
 
@@ -63,7 +63,7 @@
 ### Back-end
 |   Java   |   Spring   |   Spring Boot   |   Spring Security   |   MySQL   |   AWS   |
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/java-icon.svg" alt="icon" width="65" height="65" /></div> | <img alt="spring logo" src="https://www.vectorlogo.zone/logos/springio/springio-icon.svg" height="50" width="50" > | <img alt="spring-boot logo" src="https://t1.daumcdn.net/cfile/tistory/27034D4F58E660F616" width="65" height="65" > | <img alt="spring-boot logo" src="./images/logo/spring_security.png" width="65" height="65" > | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/mysql-icon.svg" alt="icon" width="65" height="65" /></div> | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/aws-icon.svg" alt="icon" width="65" height="65" /></div> |
+| <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/java-icon.svg" alt="icon" width="65" height="65" /></div> | <img alt="spring logo" src="https://www.vectorlogo.zone/logos/springio/springio-icon.svg" height="50" width="50" > | <img alt="spring-boot logo" src="https://t1.daumcdn.net/cfile/tistory/27034D4F58E660F616" width="65" height="65" > | <img alt="spring-security logo" src="./images/logo/spring_security_logo.png" width="85" height=auto > | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/mysql-icon.svg" alt="icon" width="65" height="65" /></div> | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/aws-icon.svg" alt="icon" width="65" height="65" /></div> |
 
 </br>
 
@@ -84,17 +84,16 @@
 ## 🔖 Project Docs
 
 ### 사용자 요구사항 정의서
-![requirements1]
-
-![requirements2]
+<img alt="requirement" src="./docs/seb43_pre_35_1.jpg" width="500" height=auto>
+<img alt="requirement" src="./docs/seb43_pre_35_2.jpg" width="500" height=auto>
 
 ### DB Diagram
-![schema]
+<img alt="schema" src="./docs/table.png" width="500" height=auto>
 
 ### Wireframe
 [Wireframe Link (Figma)](https://www.figma.com/file/MaOjCuQ53oy3nMzOpHCvfi/화면-정의서?node-id=38%3A176&t=hsQJoweA07WvGrFY-1)
 
-![wireframe]
+<img alt="wireframe" src=""" width="600" height=auto>
 
 </br>
 
@@ -121,16 +120,3 @@
 - `fe-dev` : FE 개발 환경 브랜치
 - `be-feat/[feature name]` : BE 기능 개발 브랜치
 - `fe-feat/[feature name]` : FE 기능 개발 브랜치
-
-<!-- Team Member Profile Image Refernces -->
-[ys]: ./images/member/owl05.png
-[jy]: ./images/member/owl03.png
-[yg]: ./images/member/owl07.png
-[sa]: ./images/member/owl08.png
-[us]: ./images/member/owl01.png
-[sm]: ./images/member/owl04.png
-
-[schema]: ./docs/table.png
-[requirements1]: ./docs/seb43_pre_35_1.jpg
-[requirements2]: ./docs/seb43_pre_35_2.jpg
-[wireframe]: ./docs/**
