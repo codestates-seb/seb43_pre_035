@@ -20,21 +20,21 @@ const QuestionCommentList = ({ question, isLoggedIn, openModal }) => {
   const navigate = useNavigate();
 
   const url_qpost = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/question_replies`;
-  
 
-  
-  
+
+
+
   const headers = { headers :
     {Authorization : `Bearer ${process.env.REACT_APP_NGROK_TOKEN}`
 }
 };
   console.log(question.questionReplies)
 
-  
+
   const addCommentHandler = (newComment) => {
     // console.log("comments: ", newComment);
     // setComments([...comments, newComment]);
-    
+
     //axios.patch to add comments...-----> with real server, revise to use post to add comments
     axios
         .post(url_qpost, {"content" : newComment}, headers)
@@ -48,11 +48,11 @@ const QuestionCommentList = ({ question, isLoggedIn, openModal }) => {
         });
       }
 
-  const updateQuestionCommentHandler = (updatedComment) => {
+  const updateQuestionCommentHandler = (comment_id, updatedComment) => {
     console.log("comment update is being handled");
     //use map to change the comment_id content
   const url_qpatch = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/question_replies/${comment_id}`;
-   
+
     console.log(updatedComment)
     axios
       .patch(url_qpatch, { "content" : updatedComment },headers)

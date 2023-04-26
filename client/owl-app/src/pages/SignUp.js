@@ -120,7 +120,7 @@ const SignupContainer = styled.form`
  width: 300px;
 `;
 
-const InputContainer = styled.div` 
+const InputContainer = styled.div`
  display: flex;
  flex-direction: column;
  width: 100%;
@@ -196,14 +196,24 @@ const LoginContainer = styled.div`
  width: 300px;
 `;
 
+
+function randomIntFromInterval(min, max) { // min and max included
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+
 function SignUp() {
 
-  const [Name, setName] = useState('');
-  const [displayName, setDisplayName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [avatarLink, setAvatarLink] = useState('');
+  const url_avatars = "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com";
+  const avatarRandom = `${url_avatars}/owl0${randomIntFromInterval(1, 8)}.png`;
 
+  const [userInfo, setUserInfo] = useState({
+    Name: '',
+    displayName: '',
+    email: '',
+    password: '',
+    avatarLink: avatarRandom
+  });
 
   const validateEmail = (email) => {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -220,25 +230,38 @@ function SignUp() {
     return re.test(displayName);
   };
 
+  const updateUserInfo = (e) => {
+    setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
+  }
+
   const handleSignup = async (event) => {
     event.preventDefault();
 
-    if (!validateEmail(email)) {
+    if (!validateEmail(userInfo.email)) {
       alert('이메일이 올바른 형식이 아닙니다.');
       return;
     }
 
-    if (!validatePassword(password)) {
+    if (!validatePassword(userInfo.password)) {
       alert('비밀번호는 8~16자 영문 대소문자, 숫자, 특수문자를 포함해야 합니다.');
       return;
     }
 
-    if (!validateDisplayName(displayName)) {
+    if (!validateDisplayName(userInfo.displayName)) {
       alert('닉네임은 특수문자를 제외한 2~15자리여야 합니다.');
       return;
     }
 
-    await HandleSignup({ Name, displayName, email, password, avatarLink });
+    // console.log('name:', userInfo.Name, ' displayName:', userInfo.displayName,
+    //     ' email:', userInfo.email, ' password:', userInfo.password, " link:", userInfo.avatarLink
+    // );
+    await HandleSignup({
+      Name: userInfo.Name,
+      displayName: userInfo.displayName,
+      email: userInfo.email,
+      password: userInfo.password,
+      avatarLink: userInfo.avatarLink
+    });
   };
 
 
@@ -261,29 +284,19 @@ function SignUp() {
       <SignupContainer onSubmit={handleSignup}>
         <InputContainer>
           <InputLabel htmlFor="DisplayName">Display name</InputLabel>
-          <Input type="text" id="displayName" value={displayName} onChange={(event) => setDisplayName(event.target.value)} />
+          <Input type="text" name="displayName" value={userInfo.displayName} onChange={updateUserInfo} />
         </InputContainer>
         <InputContainer>
           <InputLabel htmlFor="Name">Name</InputLabel>
-          <Input type="text" id="Name" value={Name} onChange={(event) => setName(event.target.value)} />
+          <Input type="text" name="Name" value={userInfo.Name} onChange={updateUserInfo} />
         </InputContainer>
         <InputContainer>
           <InputLabel htmlFor="email">Email</InputLabel>
-          <Input type="email" id="email" value={email} onChange={(event) => setEmail(event.target.value)} />
+          <Input type="email" name="email" value={userInfo.email} onChange={updateUserInfo} />
         </InputContainer>
         <InputContainer>
           <InputLabel htmlFor="password">Password</InputLabel>
-          <Input type="password" id="password" value={password} onChange={(event) => setPassword(event.target.value)} />
-        </InputContainer>
-        <InputContainer>
-          <InputLabel htmlFor="avatarLink">Avatar Link</InputLabel>
-          <Input
-            type="text"
-            id="avatarLink"
-            value={avatarLink}
-            onChange={(event) => setAvatarLink(event.target.value)}
-          />
-          {/* 아바타 링크 지우고 8개 이미지중에 1개 넘겨주기 - suffle 함수 가져오기 */}
+          <Input type="password" name="password" value={userInfo.password} onChange={updateUserInfo} />
         </InputContainer>
 
         <Guide>Passwords must contain at least eight characters, including at least 1 letter and 1 number.</Guide>

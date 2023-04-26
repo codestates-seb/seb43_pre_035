@@ -4,7 +4,10 @@ import FormInput from './FormInput';
 import { useState, useEffect } from 'react';
 import { ClickButton } from '../../styles/UIStyles.js';
 import { useNavigate } from 'react-router-dom';
+import { axiosAuth } from '../../utils/axiosConfig';
 
+
+// import  useApiHeaders from '../../utils/useApiHeaders';
 const FormWrapper = styled.form`
     display: flex;
     flex-direction: column;
@@ -25,60 +28,32 @@ const SubmitButton = styled(ClickButton)`
     padding: 10px 30px;
 `
 
-const convertDate = (string) => {
-    return `${string.substring(0, 4)}년 ${String(Number(string.substring(5, 7)))}월 ${String(Number(string.substring(8, 10)))}일`
-  }
 
-const shuffle = (array) => {
-    let currentIndex = array.length,  randomIndex;
-    // While there remain elements to shuffle.
-    while (currentIndex != 0) {
-      // Pick a remaining element.
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-      // And swap it with the current element.
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex], array[currentIndex]];
-    }
-  }
 
 const AskForm = () => {
 
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const navigate = useNavigate();
+    // const token = localStorage.getItem('token');
 
-    const url_avatars = "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com";
-    const url_threads = `${process.env.REACT_APP_URL_JSON_QUESTIONS}`;
+    // const url_threads = `${process.env.REACT_APP_URL_JSON_QUESTIONS}`;
     const url_threads_test = `${process.env.REACT_APP_URL_NGROKTEST}/questions`
+    // const tempToken = token ? token : `Bearer ${process.env.REACT_APP_NGROK_TOKEN}`;
 
-    //default avatar images to shuffle ----- for signup.
-    const AvatDefaultUrls = [];
-    const imgNum = 8;
-    let imgIdx = 0;
-    for (let i = 1; i <= imgNum; i++) AvatDefaultUrls.push(`${url_avatars}/owl0${i}.png`);
-    shuffle(AvatDefaultUrls);
-
-    const headers = { headers :
-        {Authorization : `Bearer ${process.env.REACT_APP_NGROK_TOKEN}`}
-    };
+    // const headers = { headers :
+    //     { Authorization : tempToken }
+    // };
 
     const submitThreadHandler = (e) => {
         e.preventDefault();
         e.stopPropagation();
 
-        //if it's the last image, shuffle again
-        if (imgIdx >= imgNum-1){
-            imgIdx = 0;
-            shuffle(AvatDefaultUrls);
-          }else{
-            imgIdx++;
-          }
-
-        axios.post(url_threads_test, {'title': title, 'content': content}, headers)
+        axiosAuth.post(url_threads_test, {'title': title, 'content': content})
         .then((res) => {console.log("axios ask post request success!", res)
 
           navigate('/');
+        //   console.log('token:', token);
           navigate(0);
         })
         .catch((err) => {console.log("axios post request fail!", err)})

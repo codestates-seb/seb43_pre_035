@@ -46,6 +46,7 @@ ${'' /* @import url('https://fonts.googleapis.com/css2?family=Atomic+Age&family=
     --size-topnav-container: 130px;
     --size-sidenav-container: 180px;
     --size-sidenavitem-minwidth: 170px;
+    --size-thread-minwidth: 125px;
     --size-thread-avatar: 40px;
     --size-text-button: 0.9rem;
     --size-text-headline: 1.5rem;

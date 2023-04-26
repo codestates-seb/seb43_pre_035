@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import styled from 'styled-components';
 import HandleLogin from './HandleLogin';
-import { useUserDispatch } from './UserContext';
 import { Link, useNavigate } from 'react-router-dom';
+import { UserContext } from '../../App';
 
 const Form = styled.form`
  display: flex;
@@ -15,7 +15,7 @@ const Form = styled.form`
  width: 300px;
 `;
 
-const InputContainer = styled.div` 
+const InputContainer = styled.div`
  display: flex;
  flex-direction: column;
  width: 100%;
@@ -93,7 +93,7 @@ const SignUpContainer = styled.div`
 function EmailPasswordForm({ isOpen, onSubmit, setIsLoggedIn, toggleLogin }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const dispatch = useUserDispatch(); //전역 상태 받아오기
+    const { handleUserLogin } = useContext(UserContext);
 
     const navigate = useNavigate();
 
@@ -105,7 +105,7 @@ function EmailPasswordForm({ isOpen, onSubmit, setIsLoggedIn, toggleLogin }) {
         setPassword(event.target.value);
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         if (!isValidEmail(email)) {
             alert('정확한 이메일 주소를 입력해주세요.');
@@ -113,8 +113,15 @@ function EmailPasswordForm({ isOpen, onSubmit, setIsLoggedIn, toggleLogin }) {
         }
         console.log('Email:', email);
         console.log('Password:', password);
-        HandleLogin({ email, password, dispatch });
-        onSubmit();
+
+        const userData  = await HandleLogin({ email, password });
+        console.log('handling: ', userData);
+        handleUserLogin(userData);
+        console.log('token', localStorage.getItem('token'));
+
+        if (isOpen) onSubmit();
+        if (!isOpen) navigate('/');
+
     };
 
     const isValidEmail = (email) => {
