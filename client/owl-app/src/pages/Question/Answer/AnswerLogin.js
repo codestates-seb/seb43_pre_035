@@ -15,9 +15,31 @@ const EditorBlock =styled.div`
 }
 `
 
-const EditorInput =styled.input`
-    height: 400px;
-    width: 100%;
+const EditorInput =styled.textarea`
+width: 100%;
+height: 400px;
+display: flex;
+border: none;
+resize: none;
+outline: none;
+margin-bottom: 10px;
+padding: 15px 10px;
+overflow: auto;
+border-radius: 10px;
+font-size: 1em;
+font-family: 'TheJamsil', sans-serif;
+font-weight: var(--fonts-weight-regular);
+background: var(--colors-dullbrown);
+color: var(--colors-text-default);
+
+&::placeholder{
+    color: var(--colors-text-placeholder-dark);
+    font-weight: var(--fonts-weight-regular);
+}
+
+&:focus, &:active{
+    border: 1px solid var(--colors-yellow);
+}
 `
 
 
@@ -34,20 +56,8 @@ const AnswerLogin = ({addAnswerHandler}) => {
     const onClickSubmit = ()=> {
         // const data = new Date();
         
-      if (!newAnswerContent){console.log("invalid answer!"); setInvalidAnswer(true); return;}
-        // let newAnswer =
-        //     {
-        //       "id": aId,
-        //       "createdDate": data.toISOString(),
-        //       "updateDate": data.toISOString(),
-        //       "member": {
-        //         "displayName": userName, 
-        //         "avatarLink" : userAvatarLink
-        //       },
-        //       "content": newAnswerContent,
-        //       "answerReplies": [
-        //       ]
-        //     }
+        //   console.log("invalid answer!")
+      if (!newAnswerContent){ setInvalidAnswer(true); return;}
 
 
 
@@ -55,8 +65,6 @@ const AnswerLogin = ({addAnswerHandler}) => {
         setNewAnswerContent('');
         setInvalidAnswer(false);
 
-
-        console.log(newAnswerContent)
     }
 
 
@@ -69,8 +77,8 @@ const AnswerLogin = ({addAnswerHandler}) => {
                 {invalidAnswer ? <span>내용을 입력해주세요.</span> : null}
                 <EditorBlock>
                     <EditorInput type="text" onChange={onAnswerTextChange} value={newAnswerContent}/>
-                </EditorBlock>
                 <CreateButtonLogin onClick={onClickSubmit}>작성하기</CreateButtonLogin>
+                </EditorBlock>
             </CreateBlock>
         </CreateWrap>
         </>

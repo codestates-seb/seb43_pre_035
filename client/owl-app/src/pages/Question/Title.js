@@ -13,25 +13,24 @@ const TitleWrap = styled.div`
     flex-direction: column;
 `
 const TitleBlock = styled.div`
-    
+    padding-top: 15px;
     height: 20px;
     display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-
+    color: #E7CC8F;
 `
 
 const TitleName = styled.h1`
-    padding: 10px;
-    width: 500px;
+    padding-top: 10px;
     height: 60px;
     font-size: 24px;
 `
 const Stat = styled.span`
-    padding-top: 15px;
-    padding-left: 8px;
     width: 63.5px;
 
+`
+const Statbutton = styled.span`
+    height: 20px;
+    padding-left: 550px;
 `
 
 const StyledIcon = styled(FontAwesomeIcon)`
@@ -42,8 +41,8 @@ const StyledIcon = styled(FontAwesomeIcon)`
 
 
 const CreateDate = styled.div`
-    padding-top: 15px;
-    width: 240px;
+
+    width: 200px;
     height: 20px;
     font-size: 15px;
     display: flex;
@@ -56,12 +55,17 @@ const convertDate = (string) => {
 
 const Title = ({question}) =>{
 
-    // console.log(question)
+
 
     return (
         <>
         <TitleWrap>
             <TitleName>{question.title}</TitleName>
+            <Statbutton>
+             <Link to ='/ask'>
+                <ClickButton>Ask Anything</ClickButton>
+             </Link>
+                </Statbutton>
             <TitleBlock>
             <CreateDate>{convertDate(question.createdDate)}</CreateDate>
             <Stat>
@@ -70,13 +74,12 @@ const Title = ({question}) =>{
                 </Stat>
                 <Stat>
                     <StyledIcon icon={faCommentDots} />
-                    <span>{question.answers?.length ? 1 : 0}</span>
+                    <span>{question.answers?.length ? question.answers.length : 0}</span>
                 </Stat>
-            <Link to ='/ask'>
-                <ClickButton>Ask Anything</ClickButton>
-            </Link>
             </TitleBlock>
+            
         </TitleWrap>
+        
         </>
     )
 }

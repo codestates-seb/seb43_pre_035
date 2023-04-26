@@ -35,6 +35,7 @@ const AnswerCommentInputPatch = ({updatedContent, setUpdatedContent, editClickHa
     const [answerCommentContent, setAnswerCommentContent] = useState(updatedContent);
     const [invalidComment, setInvalidComment] = useState(false);
 
+    console.log(answerCommentContent)
 
     const onTextChange = (e) => {
         setAnswerCommentContent(e.target.value);
@@ -43,7 +44,7 @@ const AnswerCommentInputPatch = ({updatedContent, setUpdatedContent, editClickHa
 
     const onClickCommentSubmit = (e) => {
         e.stopPropagation();
-        console.log("this is onclickCommentSubmit!");
+        // console.log("this is onclickCommentSubmit!");
         // console.log("answer content: ", answerCommentContent);
         if (!answerCommentContent) {console.log("no content!"); setInvalidComment(true); return;}
 

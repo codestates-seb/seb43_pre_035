@@ -38,28 +38,33 @@ const CommentDate = styled.div`
 const convertDate = (string) => {
     return `${string.substring(0, 4)}년 ${String(Number(string.substring(5, 7)))}월 ${String(Number(string.substring(8, 10)))}일`
   }
-const CommentCreated = ({comment, commentType, deleteAnswerCommentHandler,updateQuestionCommentHandler, updateAnswerCommentHandler, isLoggedIn, openModal})=>{
+  
+const CommentCreated = ({comment, commentType, deleteAnswerCommentHandler,updateQuestionCommentHandler, updateAnswerCommentHandler, isLoggedIn, deleteQuestionCommentHandler, openModal})=>{
 
     const  [isEditable,setIsEditable] = useState(false);
     const  [updatedContent, setUpdatedContent] = useState(comment.content);
     
 
-    // console.log(comment)
+
+
     const deleteClickHandler = (e) => {
         e.stopPropagation();
-        console.log("comment delete clicked!");
+        // console.log("comment delete clicked!");
         if(!isLoggedIn) {openModal(); return;};
-        deleteAnswerCommentHandler(comment.id);
+        if (commentType==='qComment') deleteQuestionCommentHandler(comment.questionReplyId);
+        if (commentType==='aComment') deleteAnswerCommentHandler(comment.answerReplyId);
+        
     }
 
     
-    
+     
 
     const editClickHandler = () => {
-        console.log("comment update clicked!");
+        // console.log("comment update clicked!");
         if(!isLoggedIn) {openModal(); return};
         if (commentType==='qComment') updateQuestionCommentHandler(comment.questionReplyId, updatedContent);
         if (commentType==='aComment') updateAnswerCommentHandler(comment.answerReplyId, updatedContent);
+        
     }
     
 

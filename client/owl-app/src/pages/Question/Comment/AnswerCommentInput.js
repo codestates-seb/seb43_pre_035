@@ -42,22 +42,10 @@ const AnswerCommentInput = ({addAnswerCommentHandler})=>{
 
     const onClickCommentSubmit = (e) => {
         e.stopPropagation();
-        // const date = new Date();
-        // const userName = "null"
-        // const userAvatarLink = "null"
-
+        
         // console.log("answer content: ", answerCommentContent);
         if (!answerCommentContent) {console.log("no content!"); setInvalidComment(true); return;}
-        // let newComment = {
-        //     "id" : cId,
-        //     "member" : {
-        //       "displayName": userName, 
-        //       "avatarLink" : userAvatarLink
-        //     },
-        //     "content" : answerCommentContent,
-        //     "createdDate": date.toISOString(),
-        //     "updateDate": date.toISOString(),
-        // }
+       
 
 
         addAnswerCommentHandler(answerCommentContent);

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import axios from 'axios';
 import { UpdateButton, ClickButton } from '../../styles/UIStyles'
 import ReactHTmlParser from 'html-react-parser'
-import { useNavigate,Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import FormInput from "../../components/ask/FormInput";
 
@@ -24,6 +24,8 @@ const UserWrap= styled.div`
     padding: 10px;
     display: flex;
     align-items: end;
+    flex-direction: column;
+    align-items: flex-start;
 `
 
 const ButtonWrap = styled.div`
@@ -34,7 +36,7 @@ const ButtonWrap = styled.div`
 
 
 const CreateUser = styled.div`
-    padding-left: 10px;
+    padding: 15px;
     font-size: 15px;
     color: #8D7B68;
 `
@@ -47,7 +49,7 @@ const CreateAvatar = styled.img`
 
 const QuestionContent = ({question, isLoggedIn, setIsEditState}) =>{
 
-    
+    const navigate = useNavigate()
     // const paserContent = question.content
     // console.log(question.member)
     const url = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}`;
@@ -64,11 +66,10 @@ const QuestionContent = ({question, isLoggedIn, setIsEditState}) =>{
 
     const deleteQHandler = () => {
         axios.delete(url, headers)
-            .then(res => {console.log("delete Q success!")})
+            .then(res => {console.log("delete Q success!")}
+            ,navigate("/")
+            )
             .catch(err => {console.log("delete Q fail! ", err)})
-            // 질문 목록으로 돌아가기
-            // 성공하면 돌아가라
-            // navigate("/")
     }
 
 

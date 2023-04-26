@@ -12,7 +12,7 @@ const useFetch = (url) => {
         axios.get(url, {headers : {
             'ngrok-skip-browser-warning': '69420',
             'Access-Control-Allow-Origin': 'http://localhost:3000',
-            // 'Authorization' : `Bearer ${process.env.REACT_APP_NGROK_TOKEN}`
+            'Authorization' : `Bearer ${process.env.REACT_APP_NGROK_TOKEN}`
         }})
             .then(res => {
                 return res.data;

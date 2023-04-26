@@ -5,9 +5,8 @@ import Answerlist from "./Answer/AnswerList"
 import QuestionCommentList from "./Comment/QuestionCommentList";
 import AnswerCommentList from './Comment/AnswerCommentList'
 import { useState, useEffect } from "react";
-import SideNav from "../../components/SideNav";
-import FormInput from "../../components/ask/FormInput";
 import { ClickButton } from "../../styles/UIStyles"
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const SelectedWrap = styled.div`
@@ -41,7 +40,7 @@ const StyledTextHead = styled.input`
         border: 1px solid var(--colors-yellow);
     }
 `
-const StyledTextContent = styled.textarea`
+const StyledTextContent = styled.input`
     height: 400px;
     display: flex;
     border: none;
@@ -76,6 +75,7 @@ const SelectQuestion = ({question,isLoggedIn,openModal, dimensionsHandler, refCo
     const [isEditState, setIsEditState] = useState(true);
     const [editTitleQuestion, setEditTitleQuestion] = useState(question.title)
     const [editContentQuestion, setEditContentQuestion] = useState(question.content)
+    const navigate = useNavigate()
     console.log(question.title)
 
     const onEditTitle = (e)=>{
@@ -92,12 +92,8 @@ const SelectQuestion = ({question,isLoggedIn,openModal, dimensionsHandler, refCo
     const updateQHandler = () => {
 
         axios.patch(url, {'title': editTitleQuestion, 'content': editContentQuestion}, headers)
-            .then(res => {console.log("res: ", res.data)}
-            
-            )
+            .then(res => {console.log("res: ", res.data)},navigate(0))
             .catch(err => {console.log(err.message)})
-
-            // 수정으로 바꾸기
     }
 
     // useEffect(() => {

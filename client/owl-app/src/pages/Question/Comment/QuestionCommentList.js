@@ -16,7 +16,7 @@ const CommentListWrap = styled.div`
 
 const QuestionCommentList = ({ question, isLoggedIn, openModal }) => {
   const [comments, setComments] = useState(question.questionReplies);
-  // const replies = question.questionReplies
+  
   const navigate = useNavigate();
 
   const url_qpost = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/question_replies`;
@@ -31,13 +31,10 @@ const QuestionCommentList = ({ question, isLoggedIn, openModal }) => {
   console.log(question.questionReplies)
   
   const addCommentHandler = (newComment) => {
-    // console.log("comments: ", newComment);
-    // setComments([...comments, newComment]);
     
     //axios.patch to add comments...-----> with real server, revise to use post to add comments
     axios
         .post(url_qpost, {"content" : newComment}, headers)
-        //   questionReplies: [...question.questionReplies, newComment],
         .then((res) => {
           console.log("add QComment success! id: ", res.questionReplyId);
           navigate(0)
@@ -69,16 +66,14 @@ const QuestionCommentList = ({ question, isLoggedIn, openModal }) => {
 
 
   const deleteQuestionCommentHandler = (comment_id) => {
-    //can only use patch ...
-    console.log("delete question comment!");
-    const newComments = comments.filter((el) => el.id !== comment_id);
-    setComments(newComments);
+
     const url_qpatch = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/question_replies/${comment_id}`;
 
     axios
-      .patch(url_qpatch, { ...question, questionReplies: newComments })
+      .delete(url_qpatch, headers)
       .then((res) => {
         console.log("delete Qcomment success!", res);
+        navigate(0)
       })
       .catch((err) => {
         console.log("delete Qcomment fail!", err);
@@ -94,7 +89,7 @@ const QuestionCommentList = ({ question, isLoggedIn, openModal }) => {
               comment={comment}
               key={comment.id}
               commentType='qComment'
-              deleteAnswerCommentHandler={deleteQuestionCommentHandler}
+              deleteQuestionCommentHandler={deleteQuestionCommentHandler}
               updateQuestionCommentHandler={updateQuestionCommentHandler}
               openModal={openModal}
               isLoggedIn={isLoggedIn}

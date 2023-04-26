@@ -18,7 +18,7 @@ const QuestionWrap = styled.div`
 
 const QuestionDetail = ({toggleLogin, sidebarStatus, setSidebarStatus, isLoggedIn, openModal}) => {
 
-    // const [question,setQuestion] = useState(initialData.questions[0])
+   
     const { questionId } = useParams();
     // const url = `http://localhost:3001/questions/${questionId}`;
     const url = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${questionId}`;
@@ -37,10 +37,7 @@ const QuestionDetail = ({toggleLogin, sidebarStatus, setSidebarStatus, isLoggedI
             {isPending && <div>로딩중..</div>}
                 {error && <div>error</div>}
                 {question && (
-                    <SelectQuestion question={question} isLoggedIn={isLoggedIn} openModal={openModal}/>
-                )
-                }
-            {/* <SelectQuestion questions={questions}/> */}
+                    <SelectQuestion question={question} isLoggedIn={isLoggedIn} openModal={openModal}/>)}
         </QuestionWrap>
     </>
     )
