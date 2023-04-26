@@ -36,6 +36,7 @@ const AskForm = ({openModal}) => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const navigate = useNavigate();
+    // const token = localStorage.getItem('token');
 
     const { isLoggedIn } = useContext(UserContext);
     // const token = localStorage.getItem('token');

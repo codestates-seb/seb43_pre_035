@@ -109,8 +109,8 @@ function App() {
   // }
 
 
-  useEffect(()=> {
-    if (threads){
+  useEffect(() => {
+    if (threads) {
       console.log("initial threads loaded!");
 
       //for testing with ngrok
@@ -127,6 +127,8 @@ function App() {
     // if (thread2) console.log("thread2", thread2);
 
   },[threads]);
+
+
 
   return (
     <UserContext.Provider value={{
