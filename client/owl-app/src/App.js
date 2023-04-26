@@ -154,6 +154,7 @@ function App() {
                                                     sidebarStatus={sidebarStatus}
                                                     setSidebarStatus={setSidebarStatus}
                                                     toggleLogin={toggleLogin}
+                                                    openModal={openModal}
                                                     isLoggedIn={isLoggedIn}/>} />
                   <Route path ="/login" element = {<Login
                                                     isOpen={modalIsOpen}
@@ -167,7 +168,9 @@ function App() {
                                                     setIsLoggedIn={setIsLoggedIn}
                                                     toggleLogin={toggleLogin}/>} />
                   <Route path ="/mypage" element = {<Mypage isLoggedIn={isLoggedIn}/>} />
-                  <Route path ="/ask" element = {<CreateThread threads={renderThreads} />} />
+                  <Route path ="/ask" element = {<CreateThread threads={renderThreads}
+                                                               openModal={openModal}
+                  />} />
                   <Route path ="/questions/:questionId" element = {<QuestionDetail  isPending={isPending}
                                                                             sidebarStatus={sidebarStatus}
                                                                             isLoggedIn={isLoggedIn}

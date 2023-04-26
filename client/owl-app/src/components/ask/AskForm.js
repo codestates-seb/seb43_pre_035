@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 import axios from 'axios';
 import FormInput from './FormInput';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { ClickButton } from '../../styles/UIStyles.js';
 import { useNavigate } from 'react-router-dom';
 import { axiosAuth } from '../../utils/axiosConfig';
+import { UserContext } from '../../App';
+
 
 
 // import  useApiHeaders from '../../utils/useApiHeaders';
@@ -30,24 +32,28 @@ const SubmitButton = styled(ClickButton)`
 
 
 
-const AskForm = () => {
+const AskForm = ({openModal}) => {
 
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const navigate = useNavigate();
     // const token = localStorage.getItem('token');
 
+    const { isLoggedIn } = useContext(UserContext);
+    // const token = localStorage.getItem('token');
+
     // const url_threads = `${process.env.REACT_APP_URL_JSON_QUESTIONS}`;
     const url_threads_test = `${process.env.REACT_APP_URL_NGROKTEST}/questions`
-    // const tempToken = token ? token : `Bearer ${process.env.REACT_APP_NGROK_TOKEN}`;
 
-    // const headers = { headers :
-    //     { Authorization : tempToken }
-    // };
 
     const submitThreadHandler = (e) => {
         e.preventDefault();
         e.stopPropagation();
+
+
+        if(!isLoggedIn) {openModal(); return;}
+        console.log('question submitted!');
+
 
         axiosAuth.post(url_threads_test, {'title': title, 'content': content})
         .then((res) => {console.log("axios ask post request success!", res)
@@ -61,6 +67,10 @@ const AskForm = () => {
         //     navigate('/');
         //     navigate(0);
         // })
+
+    }
+
+    const notLoggedHandler = () => {
 
     }
 
