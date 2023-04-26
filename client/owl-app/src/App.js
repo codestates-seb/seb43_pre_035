@@ -41,9 +41,9 @@ function App() {
   const storedInfo = JSON.parse(localStorage.getItem('userInfo'));
   const [userInfo, dispatch] = useReducer(AuthReducer.AuthReducer, storedInfo ? storedInfo : AuthReducer.initialState);
 
-  console.log(storedInfo);
-  console.log("userInfo", userInfo);
-  console.log("token", localStorage.getItem('token'));
+  // console.log(storedInfo);
+  // console.log("userInfo", userInfo);
+  // console.log("token", localStorage.getItem('token'));
 
   const handleLogin = (data, token) => {
     console.log("app handleLogin");
@@ -69,7 +69,7 @@ function App() {
   };
 
   useEffect(() => {
-    console.log("login state: ", isLoggedIn);
+    console.log("toggle login state: ", isLoggedIn);
   },[isLoggedIn]);
 
   useEffect(() => {
