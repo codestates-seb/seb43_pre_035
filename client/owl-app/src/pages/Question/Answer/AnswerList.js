@@ -3,7 +3,7 @@ import AnswerDetail from "./AnswerDetail";
 import { useState } from "react";
 import AnswerCreate from "./AnswerCreate";
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
 
 
 const AnswerWrap = styled.div`

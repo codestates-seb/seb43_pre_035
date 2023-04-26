@@ -38,7 +38,8 @@ const Home = ({threads, isPending, toggleLogin, sidebarStatus, setSidebarStatus}
 
 
     // console.log("is logged in? ", isLoggedIn);
-    console.log("home: ", userInfo);
+    // console.log("home: ", userInfo);
+
     console.log("home is logged in: ", `${userInfo.isLoggedIn}`);
     console.log("home: memberId ", userInfo.memberId);
 
