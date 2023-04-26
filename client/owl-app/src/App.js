@@ -19,7 +19,7 @@ import ModalContainer from './components/member/ModalContainer'; // 모달 불�
 import * as AuthReducer from './utils/store/reducers/authReducer';
 import * as ACTIONS from './utils/store/actions/actions';
 
-// const url_threads_test_search1 = `${process.env.REACT_APP_URL_NGROKTEST}/questions/search/?title=제목&content=내용30`
+const url_threads_test_search1 = `${process.env.REACT_APP_URL_NGROKTEST}/questions/search/?title=아무거나`
 // const url_threads_test_search2 = `${process.env.REACT_APP_URL_NGROKTEST}/questions/search/?title=제목`
 
 //로그인 context 정보
@@ -87,7 +87,7 @@ function App() {
 
 
   //test with ngrok
-  // const [thread1, isPending1, error1] = useFetch(url_threads_test_search1);
+  const [thread1, isPending1, error1] = useFetch(url_threads_test_search1);
   // const [thread2, isPending2, error2] = useFetch(url_threads_test_search2);
 
 
@@ -128,12 +128,17 @@ function App() {
 
   },[threads]);
 
+  useEffect(() => {
+    console.log("search results", thread1);
+
+  }, [thread1]);
 
 
   return (
     <UserContext.Provider value={{
       userInfo,
       dispatch,
+      memberId: userInfo.memberId,
       isLoggedIn: userInfo.isLoggedIn,
       handleUserLogin: (userInfo, token) => handleLogin(userInfo, token),
       handleUserLogout: () => handleLogout()

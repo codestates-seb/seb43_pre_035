@@ -52,7 +52,7 @@ const QuestionContent = ({question, isLoggedIn, setIsEditState}) =>{
     // const paserContent = question.content
     // console.log(question.member)
     const url = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}`;
-
+    const navigate = useNavigate();
 
     const EditQuestion = () =>{
         setIsEditState(false)
@@ -62,7 +62,11 @@ const QuestionContent = ({question, isLoggedIn, setIsEditState}) =>{
 
     const deleteQHandler = () => {
         axiosAuth.delete(url)
-            .then(res => {console.log("delete Q success!")})
+            .then(res => {
+                console.log("delete Q success!")
+                navigate('/');
+                navigate(0);
+            })
             .catch(err => {console.log("delete Q fail! ", err)})
             // 질문 목록으로 돌아가기
             // 성공하면 돌아가라
