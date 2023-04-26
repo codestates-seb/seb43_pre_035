@@ -26,14 +26,13 @@ const AnswerLogin = ({addAnswerHandler}) => {
     const [newAnswerContent, setNewAnswerContent] = useState('');
     const [invalidAnswer, setInvalidAnswer] = useState(false);
 
-
     const onAnswerTextChange = (e) => {
         setNewAnswerContent(e.target.value);
       };
 
     const onClickSubmit = ()=> {
-        // const data = new Date();
-        
+
+
       if (!newAnswerContent){console.log("invalid answer!"); setInvalidAnswer(true); return;}
         // let newAnswer =
         //     {
@@ -41,7 +40,7 @@ const AnswerLogin = ({addAnswerHandler}) => {
         //       "createdDate": data.toISOString(),
         //       "updateDate": data.toISOString(),
         //       "member": {
-        //         "displayName": userName, 
+        //         "displayName": userName,
         //         "avatarLink" : userAvatarLink
         //       },
         //       "content": newAnswerContent,
@@ -50,13 +49,12 @@ const AnswerLogin = ({addAnswerHandler}) => {
         //     }
 
 
-
         addAnswerHandler(newAnswerContent);
         setNewAnswerContent('');
         setInvalidAnswer(false);
 
 
-        console.log(newAnswerContent)
+        // console.log(newAnswerContent)
     }
 
 

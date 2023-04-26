@@ -56,7 +56,7 @@ const ReviseButton = styled(UpdateButton) `
 
 const AnswerDetail = ({ question, answer, answers, updateAnswerHandler, deleteAnswerHandler, isLoggedIn, openModal }) => {
 
-    
+
     const navigate= useNavigate();
     const [answerComments, setAnswerComments] = useState(answer.answerReplies);
 
@@ -85,7 +85,7 @@ const AnswerDetail = ({ question, answer, answers, updateAnswerHandler, deleteAn
         // });
         console.log(newComment)
             axios.post(url_acpost, { "content": newComment }, headers)
-            .then(res => { console.log("answerReplies patch success!", res) 
+            .then(res => { console.log("answerReplies patch success!", res)
             navigate(0)
         })
                 .catch(err => { console.log("answerReplies patch fail!", err) })
@@ -139,14 +139,6 @@ const AnswerDetail = ({ question, answer, answers, updateAnswerHandler, deleteAn
             .catch(err => { console.log("delete answercomment fail!", err) })
 
     }
-    const [isEditState, setIsEditState] = useState(false);
-    const [updatedAnswer, setUpdatedAnswer] = useState(answer.content);
-  
-    const handleEditClick = ()=>{
-        setIsEditState(!isEditState);
-        // updateAnswerHandler(answer.id, updatedAnswer)
-        // console.log("돼라:", updatedAnswer )
-    }
 
     const deleteClickHandler = (e) => {
         //삭제 전 묻기 - 진짜 삭제하고 싶으신가요?
@@ -154,7 +146,14 @@ const AnswerDetail = ({ question, answer, answers, updateAnswerHandler, deleteAn
         deleteAnswerHandler(answer.id);
     }
 
+    const [isEditState, setIsEditState] = useState(false);
+    const [updatedAnswer, setUpdatedAnswer] = useState(answer.content);
 
+    const handleEditClick = ()=>{
+        setIsEditState(!isEditState);
+        // updateAnswerHandler(answer.id, updatedAnswer)
+        // console.log("돼라:", updatedAnswer )
+    }
 
     const onTextChange = (e) => {
         setUpdatedAnswer(e.target.value);
