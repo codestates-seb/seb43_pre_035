@@ -126,7 +126,9 @@ function App() {
     // if (thread1) console.log("thread1", thread1);
     // if (thread2) console.log("thread2", thread2);
 
-  }, [threads]);
+  },[threads]);
+
+
 
   return (
     <UserContext.Provider value={{

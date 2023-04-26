@@ -74,11 +74,9 @@ const StyledTextContent = styled.textarea`
 
 
 
-
 const SelectQuestion = ({ question, openModal, dimensionsHandler, refContainer }) => {
 
     const { isLoggedIn } = useContext(UserContext);
-
     const url = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}`
     const [getQuestion, setGetQuestion] = useState([question]);
     const [isEditState, setIsEditState] = useState(true);
@@ -95,7 +93,6 @@ const SelectQuestion = ({ question, openModal, dimensionsHandler, refContainer }
         setEditContentQuestion(e.target.value)
     }
 
-
     const updateQHandler = () => {
 
         axiosAuth.patch(url, {'title': editTitleQuestion, 'content': editContentQuestion})
@@ -104,7 +101,6 @@ const SelectQuestion = ({ question, openModal, dimensionsHandler, refContainer }
                 setIsEditState(false);
                 navigate(0);
             }
-
 
             )
             .catch(err => {console.log(err.message)})
