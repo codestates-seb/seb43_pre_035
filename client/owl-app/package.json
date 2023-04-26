@@ -20,6 +20,7 @@
     "fontawesome": "^5.6.3",
     "html-react-parser": "^3.0.15",
     "http-proxy-middleware": "^2.0.6",
+    "jsonwebtoken": "^9.0.0",
     "node-html-parser": "^6.1.5",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.4",

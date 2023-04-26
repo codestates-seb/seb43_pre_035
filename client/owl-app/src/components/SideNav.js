@@ -106,7 +106,7 @@ const SideNav = ({toggleLogin, sidebarStatus, isLoggedIn, clickSidebarHandler}) 
       </SideNavStickyContainer>
     </SideNavContainer>
   );
-};
+}; 
 
 
 

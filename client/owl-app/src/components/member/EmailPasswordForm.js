@@ -90,7 +90,7 @@ const SignUpContainer = styled.div`
  width: 300px;
 `;
 
-function EmailPasswordForm({ isOpen, onSubmit, setIsLoggedIn, toggleLogin}) {
+function EmailPasswordForm({ isOpen, onSubmit, setIsLoggedIn, toggleLogin }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const { handleUserLogin } = useContext(UserContext);
@@ -129,7 +129,7 @@ function EmailPasswordForm({ isOpen, onSubmit, setIsLoggedIn, toggleLogin}) {
         return regex.test(email);
     };
 
-    const handleLogin = () =>{
+    const handleLogin = () => {
         if (isOpen) onSubmit(); //closing the modal window
         setIsLoggedIn(true);
         if (!isOpen) navigate(-1);
