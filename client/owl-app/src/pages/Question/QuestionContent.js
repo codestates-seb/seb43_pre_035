@@ -6,6 +6,9 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import FormInput from "../../components/ask/FormInput";
 import { axiosAuth } from "../../utils/axiosConfig";
+import { UserContext } from "../../App";
+import { useContext } from 'react';
+
 
 const ContentWrap = styled.div`
     width: 750px;
@@ -48,14 +51,14 @@ const CreateAvatar = styled.img`
     border-radius: 50%;
 `
 
-const QuestionContent = ({question, isLoggedIn, setIsEditState}) =>{
+const QuestionContent = ({question, setIsEditState}) =>{
 
+    const { memberId } = useContext(UserContext);
     const navigate = useNavigate()
     // const paserContent = question.content
     // console.log(question.member)
     const url = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}`;
 
-    console.log(isLoggedIn)
 
     const EditQuestion = () =>{
         setIsEditState(false)
@@ -80,10 +83,14 @@ const QuestionContent = ({question, isLoggedIn, setIsEditState}) =>{
             <UserWrap>
                 <CreateAvatar src={question.member.avatarLink}></CreateAvatar>
                 <CreateUser>{question.member.displayName}</CreateUser>
-            {isLoggedIn  && <ButtonWrap>
+            {memberId === question.member.memberId?  <ButtonWrap>
                 <UpdateButton onClick={EditQuestion}>수정</UpdateButton>
                 <UpdateButton onClick={deleteQHandler}>삭제</UpdateButton>
-            </ButtonWrap>}
+            </ButtonWrap>: null}
+            {/* {isLoggedIn  && <ButtonWrap>
+                <UpdateButton onClick={EditQuestion}>수정</UpdateButton>
+                <UpdateButton onClick={deleteQHandler}>삭제</UpdateButton>
+            </ButtonWrap>} */}
             </UserWrap>
             </ContentWrap>
         </>

@@ -5,6 +5,8 @@ import { ClickButton,UpdateButton } from "../../../styles/UIStyles";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { axiosAuth } from "../../../utils/axiosConfig";
+import { UserContext } from "../../../App";
+import { useContext } from 'react';
 
 const AnswerBlock = styled.div`
     display: flex;
@@ -83,8 +85,8 @@ const ReviseButton = styled(UpdateButton) `
 `
 
 const AnswerDetail = ({ question, answer, answers, updateAnswerHandler, deleteAnswerHandler, isLoggedIn, openModal }) => {
-
-
+    const { memberId } = useContext(UserContext);
+    // console.log(answer.member.memberId)
     const navigate= useNavigate();
     const [answerComments, setAnswerComments] = useState(answer.answerReplies);
 
@@ -158,7 +160,7 @@ const AnswerDetail = ({ question, answer, answers, updateAnswerHandler, deleteAn
                     <AnswerUser>
                     <CreateAvatar scr={answer.member.avatarLink}/>
                     <CreateUserA>{answer.member.displayName}</CreateUserA>
-                    {isLoggedIn &&
+                    {memberId === answer.member.memberId &&
                     <>
                     <ReviseButton onClick={()=>{setIsEditState(true)}}>수정</ReviseButton>
                     <ReviseButton onClick={deleteClickHandler}>삭제</ReviseButton>

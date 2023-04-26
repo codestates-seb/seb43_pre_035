@@ -87,14 +87,12 @@ const QuestionCommentList = ({ question, isLoggedIn, openModal }) => {
               deleteQuestionCommentHandler={deleteQuestionCommentHandler}
               updateQuestionCommentHandler={updateQuestionCommentHandler}
               openModal={openModal}
-              isLoggedIn={isLoggedIn}
             ></CommentCreated>
           ))}
         </CommentListWrap>
       )}
       <AddComment
         openModal={openModal}
-        isLoggedIn={isLoggedIn}
         addCommentHandler={addCommentHandler}
       ></AddComment>
     </>

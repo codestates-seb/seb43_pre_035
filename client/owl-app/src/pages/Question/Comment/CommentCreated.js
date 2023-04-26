@@ -4,6 +4,8 @@ import { UpdateButton } from "../../../styles/UIStyles";
 import { useState } from "react";
 import CommentInputPatch from "./CommentInputPatch";
 import AnswerCommentInputPatch from "./AnswerCommentInputPatch";
+import { UserContext } from "../../../App";
+import { useContext } from 'react';
 
 
 
@@ -39,13 +41,13 @@ const convertDate = (string) => {
     return `${string.substring(0, 4)}년 ${String(Number(string.substring(5, 7)))}월 ${String(Number(string.substring(8, 10)))}일`
   }
   
-const CommentCreated = ({comment, commentType, deleteAnswerCommentHandler,updateQuestionCommentHandler, updateAnswerCommentHandler, isLoggedIn, deleteQuestionCommentHandler, openModal})=>{
+const CommentCreated = ({comment, commentType, deleteAnswerCommentHandler,updateQuestionCommentHandler, updateAnswerCommentHandler, deleteQuestionCommentHandler, openModal})=>{
 
     const  [isEditable,setIsEditable] = useState(false);
     const  [updatedContent, setUpdatedContent] = useState(comment.content);
+    const { memberId ,isLoggedIn} = useContext(UserContext);
+
     
-
-
 
     const deleteClickHandler = (e) => {
         e.stopPropagation();
@@ -84,12 +86,12 @@ const CommentCreated = ({comment, commentType, deleteAnswerCommentHandler,update
                             <CommentDetail>{updatedContent}</CommentDetail>
                             <CommentUser>{comment.member.displayName}</CommentUser>
                             <CommentDate>{convertDate(comment.updateDate)}</CommentDate>
-                            {isLoggedIn &&
+                            {memberId===comment.member.memberId ?
                             <>
                             <UpdateButton onClick={()=>{setIsEditable(true)}}>수정
                             </UpdateButton>
                             <UpdateButton onClick={deleteClickHandler}>삭제</UpdateButton>
-                            </>}
+                            </> : null}
                         </CommentWrap>
             }
         </>

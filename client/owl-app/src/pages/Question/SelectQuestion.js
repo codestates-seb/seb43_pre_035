@@ -72,15 +72,17 @@ const StyledTextContent = styled.input`
 
 
 
-const SelectQuestion = ({ question, openModal, dimensionsHandler, refContainer }) => {
+const SelectQuestion = ({ question, openModal, dimensionsHandler, refContainer,isLoggedIn }) => {
 
-    const { isLoggedIn } = useContext(UserContext);
+    // const { isLoggedIn } = useContext(UserContext);
     const url = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}`
     const [getQuestion, setGetQuestion] = useState([question]);
     const [isEditState, setIsEditState] = useState(true);
     const [editTitleQuestion, setEditTitleQuestion] = useState(question.title)
     const [editContentQuestion, setEditContentQuestion] = useState(question.content)
-    // console.log(question.title)
+
+    // console.log(isLoggedIn)
+
     const navigate = useNavigate();
 
     const onEditTitle = (e) => {
@@ -97,10 +99,8 @@ const SelectQuestion = ({ question, openModal, dimensionsHandler, refContainer }
                 console.log("res: ", res.data);
                 setIsEditState(false);
                 navigate(0);
-            }
-            )
+            })
             .catch(err => {console.log(err.message)})
-            // 수정으로 바꾸기
     }
 
 
@@ -116,32 +116,33 @@ const SelectQuestion = ({ question, openModal, dimensionsHandler, refContainer }
             {getQuestion.map((question) =>(
         <SelectedWrap key={question} ref={refContainer}>
             {isEditState ?
-                <Title question={question} isLoggedIn={isLoggedIn}></Title>
+                <Title question={question} isLoggedIn={isLoggedIn} openModal={openModal}></Title>
                 : <StyledTextHead
                 value={editTitleQuestion}
                 onChange={onEditTitle}/>}
             {isEditState ?
-                <QuestionContent openModal={openModal}
-                isLoggedIn={isLoggedIn}
+               ( <QuestionContent openModal={openModal}
                 question={question}
                 setIsEditState={setIsEditState}
-                ></QuestionContent>
-                : <><StyledTextContent
-                            value={editContentQuestion}
-                            onChange={onEditContent} />
-                            <ClickButton onClick={updateQHandler} >수정하기</ClickButton></>
+                ></QuestionContent>)
+                :    
+                     <>
+                        <StyledTextContent
+                          value={editContentQuestion}
+                         onChange={onEditContent} />
+                          <ClickButton onClick={updateQHandler} >수정하기</ClickButton>
+                        </> 
                     }
                     <QuestionCommentList
-                        isLoggedIn={isLoggedIn}
                         question={question}
                         openModal={openModal}></QuestionCommentList>
                     <Answerlist
                         openModal={openModal}
                         question={question}
-                        isLoggedIn={isLoggedIn}>
+                        >
                         <AnswerCommentList
                             openModal={openModal}
-                            isLoggedIn={isLoggedIn}
+                            
                             question={question}></AnswerCommentList>
                     </Answerlist>
 

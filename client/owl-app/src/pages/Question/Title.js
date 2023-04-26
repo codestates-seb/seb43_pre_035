@@ -53,8 +53,9 @@ const convertDate = (string) => {
     return `${string.substring(0, 4)}년 ${String(Number(string.substring(5, 7)))}월 ${String(Number(string.substring(8, 10)))}일`
   }
 
-const Title = ({question}) =>{
+const Title = ({question, isLoggedIn}) =>{
 
+    
 
 
     return (
@@ -62,9 +63,14 @@ const Title = ({question}) =>{
         <TitleWrap>
             <TitleName>{question.title}</TitleName>
             <Statbutton>
+        {isLoggedIn? 
              <Link to ='/ask'>
                 <ClickButton>Ask Anything</ClickButton>
+             </Link> :
+             <Link to = '/Login'>
+                <ClickButton>Ask Anything</ClickButton>
              </Link>
+             }
                 </Statbutton>
             <TitleBlock>
             <CreateDate>{convertDate(question.createdDate)}</CreateDate>

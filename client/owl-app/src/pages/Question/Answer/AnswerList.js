@@ -14,7 +14,7 @@ const AnswerWrap = styled.div`
     flex-direction: column;
 `
 
-const Answerlist = ({ question, isLoggedIn, openModal}) => {
+const Answerlist = ({ question, openModal}) => {
 
     const [answers, setAnswers] = useState(question.answers);
 
@@ -74,12 +74,11 @@ const Answerlist = ({ question, isLoggedIn, openModal}) => {
     }
 
 
-
     return (
         <>
             <AnswerWrap>
                 {answers ? answers.map((answer) => <AnswerDetail
-                                                    isLoggedIn={isLoggedIn}
+                                                    
                                                     question={question}
                                                     q_id={question.id}
                                                     answer={answer}
@@ -90,7 +89,6 @@ const Answerlist = ({ question, isLoggedIn, openModal}) => {
                                                     key={answer.id}></AnswerDetail>) : null}
             </AnswerWrap>
             <AnswerCreate
-                isLoggedIn={isLoggedIn}
                 openModal={openModal}
                 addAnswerHandler={addAnswerHandler}
             ></AnswerCreate>
