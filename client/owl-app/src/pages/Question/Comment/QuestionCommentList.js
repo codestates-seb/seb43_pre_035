@@ -29,6 +29,7 @@ const QuestionCommentList = ({ question, isLoggedIn, openModal }) => {
 }
 };
   console.log(question.questionReplies)
+
   
   const addCommentHandler = (newComment) => {
     
@@ -55,12 +56,11 @@ const QuestionCommentList = ({ question, isLoggedIn, openModal }) => {
       .then((res) => {
         console.log("update Qcomment success!", res.questionReplyId);
         navigate(0);
+
       })
       .catch((err) => {
         console.log("update Qcomment fail!", err);
       });
-
-
 
   };
 

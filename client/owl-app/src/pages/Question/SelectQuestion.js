@@ -96,6 +96,7 @@ const SelectQuestion = ({question,isLoggedIn,openModal, dimensionsHandler, refCo
             .catch(err => {console.log(err.message)})
     }
 
+
     // useEffect(() => {
     //     if (refContainer.current) {
     //         dimensionsHandler(refContainer.current.offsetWidth, refContainer.current.offsetHeight);
