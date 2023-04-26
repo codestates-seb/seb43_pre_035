@@ -4,6 +4,7 @@ import FormInput from './FormInput';
 import { useState, useEffect } from 'react';
 import { ClickButton } from '../../styles/UIStyles.js';
 import { useNavigate } from 'react-router-dom';
+import { axiosAuth } from '../../utils/axiosConfig';
 
 
 // import  useApiHeaders from '../../utils/useApiHeaders';
@@ -38,17 +39,17 @@ const AskForm = () => {
 
     // const url_threads = `${process.env.REACT_APP_URL_JSON_QUESTIONS}`;
     const url_threads_test = `${process.env.REACT_APP_URL_NGROKTEST}/questions`
-    const tempToken = token ? token : `Bearer ${process.env.REACT_APP_NGROK_TOKEN}`;
+    // const tempToken = token ? token : `Bearer ${process.env.REACT_APP_NGROK_TOKEN}`;
 
-    const headers = { headers :
-        { Authorization : tempToken }
-    };
+    // const headers = { headers :
+    //     { Authorization : tempToken }
+    // };
 
     const submitThreadHandler = (e) => {
         e.preventDefault();
         e.stopPropagation();
 
-        axios.post(url_threads_test, {'title': title, 'content': content}, headers)
+        axiosAuth.post(url_threads_test, {'title': title, 'content': content})
         .then((res) => {console.log("axios ask post request success!", res)
 
           navigate('/');
