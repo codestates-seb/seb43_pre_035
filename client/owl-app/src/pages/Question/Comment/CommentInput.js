@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {useState} from "react"
+import { CreateButtonLogin} from '../Answer/AnswerStyle'
 
 const CommentInputWrap = styled.div`
     padding: 10px;
@@ -16,9 +17,14 @@ const CommentInputCompo = styled.textarea`
     height: 40px;
     border: 1px solid #E7CC8F;
     background-color: #493E3B;
+    word-wrap: break-word;      
+    white-space: pre-wrap;    
     .placeholder{
         color : white;
     }
+    ::-webkit-scrollbar {
+     display: none;
+}
 `
 
 const CreatButton = styled.button`
@@ -58,7 +64,7 @@ const CommentInput = ({addCommentHandler})=>{
             onChange={onTextChange}
             value={newCommentContent}
             />
-            <CreatButton onClick={onClickCommentSubmit}>작성하기</CreatButton>
+            <CreateButtonLogin onClick={onClickCommentSubmit}>작성하기</CreateButtonLogin>
         </CommentInputWrap>
         </>
     )

@@ -10,7 +10,7 @@ import { axiosAuth } from "../../utils/axiosConfig";
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from "../../App";
 import { useContext } from 'react';
-
+import { CancleButton} from '../Question/Answer/AnswerStyle'
 
 const SelectedWrap = styled.div`
     padding: 10px;
@@ -33,6 +33,7 @@ const StyledTextHead = styled.input`
     font-weight: var(--fonts-weight-regular);
     background: var(--colors-dullbrown);
     color: var(--colors-text-default);
+    white-space: pre-wrap;
 
     &::placeholder{
         color: var(--colors-text-placeholder-dark);
@@ -43,7 +44,7 @@ const StyledTextHead = styled.input`
         border: 1px solid var(--colors-yellow);
     }
 `
-const StyledTextContent = styled.input`
+const StyledTextContent = styled.textarea`
     height: 400px;
     display: flex;
     border: none;
@@ -58,6 +59,7 @@ const StyledTextContent = styled.input`
     font-weight: var(--fonts-weight-regular);
     background: var(--colors-dullbrown);
     color: var(--colors-text-default);
+    white-space: pre-line;
 
     &::placeholder{
         color: var(--colors-text-placeholder-dark);
@@ -104,7 +106,6 @@ const SelectQuestion = ({ question, openModal, dimensionsHandler, refContainer,i
     }
 
 
-
     useEffect(() => {
         if (refContainer.current) {
             dimensionsHandler(refContainer.current.offsetWidth, refContainer.current.offsetHeight);
@@ -131,6 +132,7 @@ const SelectQuestion = ({ question, openModal, dimensionsHandler, refContainer,i
                           value={editContentQuestion}
                          onChange={onEditContent} />
                           <ClickButton onClick={updateQHandler} >수정하기</ClickButton>
+                          <CancleButton onClick={()=>setIsEditState(true)}>취소하기</CancleButton>
                         </> 
                     }
                     <QuestionCommentList

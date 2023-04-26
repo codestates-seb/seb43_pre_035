@@ -55,7 +55,6 @@ const Answerlist = ({ question, openModal}) => {
     axiosAuth
             .patch(url_apatch, { "content" : updateAnswer})
             .then((res) => {
-                console.log("update EditAnswer success!", res.answer_id)
                 navigate(0)
             })
             .catch((err)=>{
@@ -69,7 +68,7 @@ const Answerlist = ({ question, openModal}) => {
 
         //this should be replaced with 'delete'
         axiosAuth.delete(url_apatch)
-            .then(res => {console.log("delete answer success!")},navigate(0))
+            .then(res => navigate(0))
             .catch(err => {console.log("delete answer fail!", err)});
     }
 

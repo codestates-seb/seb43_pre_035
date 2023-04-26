@@ -23,6 +23,8 @@ const CommentWrap = styled.div`
 const CommentDetail = styled.div`
     padding: 10px;
     width: 60vw;
+    word-wrap: break-word;      
+    white-space: pre-wrap;    
 `
 
 const CommentUser = styled.div`

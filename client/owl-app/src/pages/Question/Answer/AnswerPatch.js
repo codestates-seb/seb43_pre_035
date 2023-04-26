@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import {CreateWrap,CreateBlock, CreateHeader,CreateButtonLogin} from './AnswerStyle'
+import {CreateWrap,CreateBlock, CreateHeader,CreateButtonLogin, CancleButton} from './AnswerStyle'
 import { useState, useEffect } from "react"
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -15,9 +15,10 @@ const EditorBlock =styled.div`
 }
 `
 
-const EditorInput =styled.input`
-    height: 400px;
+const EditorInput =styled.textarea`
+    height: 300px;
     width: 100%;
+    white-space: pre-wrap; 
 `
 
 

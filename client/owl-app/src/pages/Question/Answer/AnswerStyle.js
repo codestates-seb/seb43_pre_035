@@ -31,27 +31,72 @@ export const CreateEditorLogIn = styled.div`
 `
 
 
-export const CreateButtonLogout = styled.button`
-    width: 100px;
-    height: 30px;
-    margin-top: 10px;
-    background-color: #777777;
-    color: white;
-    border-radius: 15px;
+export const CreateButtonLogout =styled.button`
+outline: none;
+background: var(--colors-darkbrown);
+color: var(--colors-text-default);
+border-radius: 25px;
+border: 1px solid transparent;
+${'' /* box-shadow: inset 0 1px 0 0 hsla(0,0%,100%,0.2); */}
+padding: 10px 15px;
+min-width: 120px;
+
+font-size: var(--size-text-button);
+font-weight: var(--fonts-weight-bold);
+text-transform: uppercase;
+
+&:hover {
+background: var(--colors-button-bg-active);
+cursor: pointer;
+}
 `
 
-export const CreateButtonLogin = styled.button`
-    width: 100px;
-    height: 30px;
-    margin-top: 10px;
-    background-color: #9D5353;
-    color: white;
-    border-radius: 15px;
+export const CreateButtonLogin =styled.button`
+outline: none;
+background: var(--colors-button-bg-default);
+color: var(--colors-text-default);
+border-radius: 25px;
+border: 1px solid transparent;
+${'' /* box-shadow: inset 0 1px 0 0 hsla(0,0%,100%,0.2); */}
+padding: 10px 15px;
+min-width: 120px;
+
+font-size: var(--size-text-button);
+font-weight: var(--fonts-weight-bold);
+text-transform: uppercase;
+
+&:hover {
+background: var(--colors-button-bg-active);
+cursor: pointer;
+}
 `
 
+export const CancleButton = styled.button`
+    outline: none;
+    background: var(--colors-darkbrown);
+    color: var(--colors-text-default);
+    border-radius: 25px;
+    border: 1px solid transparent;
+    ${'' /* box-shadow: inset 0 1px 0 0 hsla(0,0%,100%,0.2); */}
+    padding: 10px 15px;
+    min-width: 120px;
+
+    font-size: var(--size-text-button);
+    font-weight: var(--fonts-weight-bold);
+    text-transform: uppercase;
+
+    &:hover {
+    background: var(--colors-button-bg-active);
+    cursor: pointer;
+}
+`
 export const ButtonBlock = styled.div`
     width: 120px;
     height: 20px;
+    display: flex;
+`
+
+export const CommentButtonBlock = styled.div`
     display: flex;
 `
 

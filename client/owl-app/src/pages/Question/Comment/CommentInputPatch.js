@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import {useState,useEffect} from "react"
+import { CommentButtonBlock,CreateButtonLogin,CancleButton} from '../Answer/AnswerStyle'
+
 
 const CommentInputWrap = styled.div`
     padding: 10px;
@@ -19,6 +21,9 @@ const CommentInputCompo = styled.input`
     .placeholder{
         color : white;
     }
+    ::-webkit-scrollbar {
+     display: none;
+}
 `
 
 const CreatButton = styled.button`
@@ -61,7 +66,11 @@ const CommentInputPatch = ({ updatedContent, setUpdatedContent, editClickHandler
             onChange={onTextChange}
             value={updatedContent}
             />
-            <CreatButton onClick={onClickCommentSubmit}>수정하기</CreatButton>
+            <CommentButtonBlock>
+
+            <CreateButtonLogin onClick={onClickCommentSubmit}>수정하기</CreateButtonLogin>
+            <CancleButton onClick={()=>setIsEditable(false)}>취소하기</CancleButton>
+            </CommentButtonBlock>
         </CommentInputWrap>
         </>
     )
