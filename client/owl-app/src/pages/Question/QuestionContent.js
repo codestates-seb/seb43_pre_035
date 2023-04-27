@@ -22,6 +22,7 @@ const ContentDetail = styled.div`
     font-size: var(--size-text-qcontent);
     word-wrap: break-word;
     white-space: pre-wrap;
+    margin-right: 20px;
 `
 
 const UserWrap = styled.div`
@@ -30,11 +31,13 @@ const UserWrap = styled.div`
     display: flex;
     align-items: flex-end;
     flex-direction: column;
+    justify-content: center;
     ${'' /* align-items: flex-start; */}
 `
 
 const ButtonWrap = styled.div`
-    padding: 20px;
+    padding: 10px;
+    padding-right: 0;
     display: flex;
     justify-content: flex-end;
 `

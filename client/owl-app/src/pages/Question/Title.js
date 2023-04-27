@@ -26,6 +26,7 @@ const TitleName = styled.div`
     padding 10px 10px 20px 0;
     font-size: 24px;
     line-height: 1.5em;
+    max-width: 900px;
 `
 const Stat = styled.span`
     min-width: 63.5px;

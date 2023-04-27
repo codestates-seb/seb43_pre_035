@@ -28,6 +28,7 @@ const StyledTextHead = styled.input`
     outline: none;
     margin-bottom: 10px;
     padding: 15px 10px;
+    ${'' /* margin-right: 20px; */}
     overflow: auto;
     border-radius: 10px;
     font-size: 1em;
@@ -54,7 +55,7 @@ const StyledTextContent = styled.input`
     resize: none;
     outline: none;
     margin-bottom: 10px;
-    padding: 15px 10px;
+    padding: 15px 10px 15px 20px;
     overflow: auto;
     border-radius: 10px;
     font-size: 1em;

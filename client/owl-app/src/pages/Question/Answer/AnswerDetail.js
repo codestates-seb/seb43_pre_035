@@ -78,7 +78,7 @@ const CreateDate = styled.div`
     padding-left: 5px;
     padding-right: 20px;
     ${'' /* height: 20px; */}
-    font-size: var(--size-text-qcontent-createdDate);
+    font-size: var(--size-text-comment-info);
     display: flex;
     justify-content: space-around;
     color: #DACC96;
