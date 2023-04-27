@@ -2,10 +2,12 @@ import styled from "styled-components";
 import AddAnswerComment from "../Comment/AddAnswerComment";
 import AnswerCommentList from '../Comment/AnswerCommentList'
 import { ClickButton,UpdateButton } from "../../../styles/UIStyles";
+import { CancelButton} from './AnswerStyle'
 import { useState } from "react";
-import axios from 'axios';
-import AnswerPatch from "./AnswerPatch";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useHistory } from "react-router-dom";
+import { axiosAuth } from "../../../utils/axiosConfig";
+import { UserContext } from "../../../App";
+import { useContext } from 'react';
 
 const AnswerBlock = styled.div`
     display: flex;
@@ -19,18 +21,28 @@ const AnsweruserBlock = styled.div`
     display: flex;
     padding: 10px;
     flex-direction: column;
-    border-bottom: 2px solid #DACC96;
+    border: 2px solid #DACC96;
+    border-radius: 10px;
 `
 const Answeruserwrap = styled.div`
     display: flex;
     padding: 10px;
+`
+const AnswerUser = styled.div`
+    display: flex;
+    padding: 10px;
+    align-items: flex-end;
 `
 
 const AnswerContent = styled.div`
     padding: 10px;
     width: 600px;
     color: white;
+    word-wrap: break-word;
+    white-space: pre-wrap;
 `
+
+
 const CreateUserA = styled.div`
     padding-top: 60px;
     width: 130px;
@@ -45,46 +57,50 @@ const CreateAvatar = styled.img`
 `
 
 const EditorInput =styled.input`
-    height: 20vh;
-    width: 100%;
+    height: 300px;
+    display: flex;
+    border: none;
+    resize: none;
+    outline: none;
+    margin-bottom: 10px;
+    padding: 15px 10px;
+    overflow: auto;
+    border-radius: 10px;
+    font-size: 1em;
+    font-family: 'TheJamsil', sans-serif;
+    font-weight: var(--fonts-weight-regular);
+    background: var(--colors-dullbrown);
+    color: var(--colors-text-default);
+
+&::placeholder{
+    color: var(--colors-text-placeholder-dark);
+    font-weight: var(--fonts-weight-regular);
+}
+
+&:focus, &:active{
+    border: 1px solid var(--colors-yellow);
+}
 `
 const ReviseButton = styled(UpdateButton) `
     ${'' /* height: 10%; */}
+    height: 20px;
     background: var(--colors-darkred);
 `
 
-
 const AnswerDetail = ({ question, answer, answers, updateAnswerHandler, deleteAnswerHandler, isLoggedIn, openModal }) => {
-
+    const { memberId } = useContext(UserContext);
+    // console.log(answer.member.memberId)
 
     const navigate= useNavigate();
     const [answerComments, setAnswerComments] = useState(answer.answerReplies);
 
     const url_acpost = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/answers/${answer.answerId}/answer_replies`;
 
-    const url_acpatch = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/answers/${answer.answerId}/answer_replies`;
-
-    const headers = { headers :
-        {Authorization : `Bearer ${process.env.REACT_APP_NGROK_TOKEN}`}};
-
-    console.log(answer.answerId.answerReplyId)
 
     const addAnswerCommentHandler = (newComment) => {
-        // setAnswerComments([...answerComments, newComment]);
-        // const newAnswerReplies = [...answerComments, newComment]; //set함수는 다음렌더링되서야 업데이트를 하기 때문에!
 
-        // const newAnswers = answers.map(el => {
-        //     // console.log("date: ", el.createdDate); //date를 나중에 id로 대치!
-        //     if (el.id === answer.id) {
-        //         if (el.answerReplies) {
-        //             el.answerReplies = [...newAnswerReplies];
-        //         }
-        //         // console.log("result:", el.answerReplies);
-        //     }
-        //     return el;
-        // });
-        console.log(newComment)
-            axios.post(url_acpost, { "content": newComment }, headers)
+
+        axiosAuth.post(url_acpost, { "content": newComment })
             .then(res => { console.log("answerReplies patch success!", res)
             navigate(0)
         })
@@ -92,29 +108,15 @@ const AnswerDetail = ({ question, answer, answers, updateAnswerHandler, deleteAn
     }
 
     const updateAnswerCommentHandler = (comment_id, updatedComment) => {
-        console.log('update answer comment being handled!');
-        const newComments = answerComments.map((el) => {
-            if (el.id === comment_id) el.content = updatedComment;
-            return el;
-        })
 
-        setAnswerComments(newComments);
-        console.log("newcomments:", newComments);
+        const url_acpatch = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/answers/${answer.answerId}/answer_replies/${comment_id}`;
 
-        const newAnswers = answers.map(el => {
-            if (el.id === answer.id){
-                el.answerReplies = el.answerReplies.map(reply => {
-                    if (reply.id === comment_id) reply.content = updatedComment;
-                    return reply;
-                })
-            }
-            return el;
-        })
-        console.log("newanswers:", newAnswers);
+        // console.log('update answer comment being handled!');
 
-        axios.patch(url_acpatch, {"answers": newAnswers})
+        axiosAuth.patch(url_acpatch, {"content": updatedComment})
             .then((res) => {
                 console.log("update answercomment success!", res);
+                navigate(0)
             })
             .catch((err) => {
                 console.log("update answercomment fail!", err);
@@ -122,20 +124,11 @@ const AnswerDetail = ({ question, answer, answers, updateAnswerHandler, deleteAn
     }
 
     const deleteAnswerCommentHandler = (comment_id) => {
-        console.log("the deleting actually happens here, comment id:", comment_id);
-        const filteredAnswerComments = answerComments.filter(el => el.id !== comment_id);
+        const url_acpatch = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/answers/${answer.answerId}/answer_replies/${comment_id}`;
 
-        setAnswerComments(filteredAnswerComments);
 
-        const newAnswers = answers.map(el => {
-            if (el.id === answer.id){
-                el.answerReplies = el.answerReplies.filter(reply => reply.id !== comment_id);
-            }
-            return el;
-        })
-
-        axios.patch(url_acpatch, {"answers": newAnswers})
-            .then(res => { console.log("delete answercomment success!", res) })
+        axiosAuth.delete(url_acpatch )
+            .then(res => { console.log("delete answercomment success!", res);navigate(0) })
             .catch(err => { console.log("delete answercomment fail!", err) })
 
     }
@@ -143,16 +136,16 @@ const AnswerDetail = ({ question, answer, answers, updateAnswerHandler, deleteAn
     const deleteClickHandler = (e) => {
         //삭제 전 묻기 - 진짜 삭제하고 싶으신가요?
         e.stopPropagation();
-        deleteAnswerHandler(answer.id);
+        deleteAnswerHandler(answer.answerId);
     }
 
     const [isEditState, setIsEditState] = useState(false);
     const [updatedAnswer, setUpdatedAnswer] = useState(answer.content);
 
     const handleEditClick = ()=>{
-        setIsEditState(!isEditState);
-        // updateAnswerHandler(answer.id, updatedAnswer)
-        // console.log("돼라:", updatedAnswer )
+
+        updateAnswerHandler(answer.answerId, updatedAnswer)
+
     }
 
     const onTextChange = (e) => {
@@ -165,16 +158,20 @@ const AnswerDetail = ({ question, answer, answers, updateAnswerHandler, deleteAn
                 <AnsweruserBlock>
         { isEditState ? <>
                     <EditorInput type="text" value={updatedAnswer} onChange={onTextChange} />
-                    <ClickButton >답변 수정하기</ClickButton> </>:
+                    <ClickButton onClick={handleEditClick} >답변 수정하기</ClickButton>
+                    <CancelButton onClick={()=>{setIsEditState(false)}}>취소하기</CancelButton>
+                     </>:
                     <Answeruserwrap>
                     <AnswerContent>{answer.content}</AnswerContent>
+                    <AnswerUser>
                     <CreateAvatar scr={answer.member.avatarLink}/>
                     <CreateUserA>{answer.member.displayName}</CreateUserA>
-                    {isLoggedIn &&
+                    {memberId === answer.member.memberId &&
                     <>
-                    <ReviseButton onClick={handleEditClick}>수정</ReviseButton>
+                    <ReviseButton onClick={()=>{setIsEditState(true)}}>수정</ReviseButton>
                     <ReviseButton onClick={deleteClickHandler}>삭제</ReviseButton>
                     </>}
+                    </AnswerUser>
                     </Answeruserwrap>
                     }
 
@@ -189,7 +186,7 @@ const AnswerDetail = ({ question, answer, answers, updateAnswerHandler, deleteAn
             </AnswerBlock>
             <AddAnswerComment addAnswerCommentHandler={addAnswerCommentHandler}
                               openModal={openModal}
-                              isLoggedIn={isLoggedIn}
+
                               ></AddAnswerComment>
         </>
 

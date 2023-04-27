@@ -29,15 +29,15 @@ const ModalWrapper = styled.div`
   width: 400px;
 `;
 
-function ModalContainer({ isOpen, onRequestClose, setIsLoggedIn, toggleLogin }) {
-    
+function ModalContainer({ isOpen, onRequestClose }) {
+
   return (
     <>
       {isOpen && (
         <Backdrop onClick={onRequestClose}>
           <ModalWrapper onClick={(e) => e.stopPropagation()}>
             <SocialLoginButtons onSubmit={onRequestClose}/>
-            <EmailPasswordForm isOpen={isOpen} onSubmit={onRequestClose} setIsLoggedIn={setIsLoggedIn} toggleLogin={toggleLogin}/>
+            <EmailPasswordForm isOpen={isOpen} onSubmit={onRequestClose}/>
           </ModalWrapper>
         </Backdrop>
       )}
