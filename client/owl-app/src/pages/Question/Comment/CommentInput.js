@@ -8,29 +8,41 @@ const CommentInputWrap = styled.div`
     ${'' /* width: 750px; */}
     height: 90px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
 `
 
 const CommentInputCompo = styled.textarea`
     padding: 10px;
-    width: 700px;
+    ${'' /* width: 700px; */}
+    font-family: inherit;
+    color: var(--colors-offwhite);
+    width: 100%;
     height: 40px;
     border: 1px solid #E7CC8F;
     background-color: #493E3B;
     word-wrap: break-word;
     white-space: pre-wrap;
+    outline: none;
+    overflow: auto;
+    margin-right: 10px;
+    ${'' /* border-style: none; */}
+    outline-style: none;
     .placeholder{
         color : white;
     }
     ::-webkit-scrollbar {
      display: none;
+     &:focus {
+        outline: none;
+     }
 }
 `
 
 const CreatButton = styled.button`
     padding: 10px;
-    width: 100px;
+    ${'' /* width: 100px; */}
+    word-break: keep-all;
     height: 30px;
     color: white;
     border: 1px solid white;

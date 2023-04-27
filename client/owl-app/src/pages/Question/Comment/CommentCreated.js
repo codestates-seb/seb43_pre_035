@@ -5,95 +5,71 @@ import CommentInputPatch from "./CommentInputPatch";
 import AnswerCommentInputPatch from "./AnswerCommentInputPatch";
 import { UserContext } from "../../../utils/UserContextConfig";
 import { useContext } from 'react';
+import * as CommentStyle from './CommentStyle';
 
 
-
-const CommentWrap = styled.div`
-    padding: 5px;
-    padding-left: 10px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: white;
-`
-
-const CommentDetail = styled.div`
-    padding: 10px;
-    width: 60vw;
-    word-wrap: break-word;
-    white-space: pre-wrap;
-`
-
-const CommentUser = styled.div`
-    padding: 10px;
-    width: 20vw;
-    color: var(--colors-lightbrown);
-    ${'' /* font-size: 12px; */}
-`
-
-const CommentDate = styled.div`
-    padding: 10px;
-    font-size: 13px;
-    width: 20vw;
-    color: var(--colors-lightbrown);
-`
 const convertDate = (string) => {
     return `${string.substring(0, 4)}년 ${String(Number(string.substring(5, 7)))}월 ${String(Number(string.substring(8, 10)))}일`
-  }
+}
 
-const CommentCreated = ({comment, commentType, deleteAnswerCommentHandler,updateQuestionCommentHandler, updateAnswerCommentHandler, deleteQuestionCommentHandler, openModal})=>{
+const CommentCreated = ({ comment, commentType, deleteAnswerCommentHandler, updateQuestionCommentHandler, updateAnswerCommentHandler, deleteQuestionCommentHandler, openModal }) => {
 
-    const  [isEditable,setIsEditable] = useState(false);
-    const  [updatedContent, setUpdatedContent] = useState(comment.content);
-    const { memberId ,isLoggedIn} = useContext(UserContext);
-
-
+    const [isEditable, setIsEditable] = useState(false);
+    const [updatedContent, setUpdatedContent] = useState(comment.content);
+    const { memberId, isLoggedIn } = useContext(UserContext);
 
     const deleteClickHandler = (e) => {
         e.stopPropagation();
         // console.log("comment delete clicked!");
-        if(!isLoggedIn) {openModal(); return;};
-        if (commentType==='qComment') deleteQuestionCommentHandler(comment.questionReplyId);
-        if (commentType==='aComment') deleteAnswerCommentHandler(comment.answerReplyId);
+        if (!isLoggedIn) { openModal(); return; };
+        if (commentType === 'qComment') deleteQuestionCommentHandler(comment.questionReplyId);
+        if (commentType === 'aComment') deleteAnswerCommentHandler(comment.answerReplyId);
 
     }
-
-
-
 
     const editClickHandler = () => {
         // console.log("comment update clicked!");
-        if(!isLoggedIn) {openModal(); return};
-        if (commentType==='qComment') updateQuestionCommentHandler(comment.questionReplyId, updatedContent);
-        if (commentType==='aComment') updateAnswerCommentHandler(comment.answerReplyId, updatedContent);
+        if (!isLoggedIn) { openModal(); return };
+        if (commentType === 'qComment') updateQuestionCommentHandler(comment.questionReplyId, updatedContent);
+        if (commentType === 'aComment') updateAnswerCommentHandler(comment.answerReplyId, updatedContent);
 
     }
 
 
 
-    return(
+    return (
         <>
-            {isEditable? (commentType === 'qComment' ? <CommentInputPatch
-                                            updatedContent={updatedContent}
-                                            setUpdatedContent={setUpdatedContent}
-                                            editClickHandler={editClickHandler}
-                                            setIsEditable={setIsEditable}/> :
-            <AnswerCommentInputPatch updatedContent={updatedContent}
-                                setUpdatedContent={setUpdatedContent}
-                                editClickHandler={editClickHandler}
-                                setIsEditable={setIsEditable}/>) :
-                            <CommentWrap>
-                            <CommentDetail>{updatedContent}</CommentDetail>
-                            <CommentUser>{comment.member.displayName}</CommentUser>
-                            <CommentDate>{convertDate(comment.updateDate)}</CommentDate>
-                            {memberId===comment.member.memberId ?
-                            <>
-                            <UpdateButton onClick={()=>{setIsEditable(true)}}>수정
-                            </UpdateButton>
-                            <UpdateButton onClick={deleteClickHandler}>삭제</UpdateButton>
-                            </> : null}
-                        </CommentWrap>
+            {isEditable ? (commentType === 'qComment' ? <CommentInputPatch
+                updatedContent={updatedContent}
+                setUpdatedContent={setUpdatedContent}
+                editClickHandler={editClickHandler}
+                setIsEditable={setIsEditable} /> :
+                <AnswerCommentInputPatch updatedContent={updatedContent}
+                    setUpdatedContent={setUpdatedContent}
+                    editClickHandler={editClickHandler}
+                    setIsEditable={setIsEditable} />) :
+                <>
+                    <CommentStyle.Wrap>
+                        <CommentStyle.Content>
+                            <div>
+                                {updatedContent}
+                            </div>
+
+                            {memberId === comment.member.memberId ?
+                                <CommentStyle.EditButtons>
+                                    <UpdateButton onClick={() => { setIsEditable(true) }}>수정
+                                    </UpdateButton>
+                                    <UpdateButton onClick={deleteClickHandler}>삭제</UpdateButton>
+                                </CommentStyle.EditButtons> : null}
+                        </CommentStyle.Content>
+
+                        <CommentStyle.Info>
+                            <CommentStyle.User>{comment.member.displayName}</CommentStyle.User>
+                            <CommentStyle.Date>{convertDate(comment.updateDate)}</CommentStyle.Date>
+                        </CommentStyle.Info>
+                    </CommentStyle.Wrap>
+
+                </>
             }
         </>
 

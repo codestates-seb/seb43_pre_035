@@ -8,10 +8,11 @@ import { axiosAuth } from "../../../utils/axiosConfig";
 
 const CommentListWrap = styled.div`
   padding: 10px;
-  width: 750px;
+  width: 100%;
+  ${'' /* width: 750px; */}
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 `;
 

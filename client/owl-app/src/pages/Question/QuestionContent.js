@@ -1,7 +1,5 @@
 import styled from "styled-components";
-import axios from 'axios';
 import { UpdateButton, ClickButton } from '../../styles/UIStyles'
-import ReactHTmlParser from 'html-react-parser'
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import FormInput from "../../components/ask/FormInput";
@@ -11,15 +9,16 @@ import { useContext } from 'react';
 
 
 const ContentWrap = styled.div`
-    ${'' /* width: 750px; */}
-    padding: 20px;
-    border-bottom: 1px solid var(--colors-qcontent-border);
     display: flex;
     justify-content: space-between;
+    padding: 20px;
+    padding-left: 0;
+    border-bottom: 1px solid var(--colors-qcontent-border);
+
 `
 
 const ContentDetail = styled.div`
-    ${'' /* width: 572px; */}
+    min-width: 400px;
     font-size: var(--size-text-qcontent);
     word-wrap: break-word;
     white-space: pre-wrap;

@@ -60,6 +60,7 @@ color: var(--colors-text-default);
 border-radius: 25px;
 border: 1px solid transparent;
 padding: 5px 15px;
+word-break: keep-all;
 
 font-size: var(--size-text-button);
 font-weight: var(--fonts-weight-bold);

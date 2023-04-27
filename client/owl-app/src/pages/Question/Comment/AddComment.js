@@ -5,10 +5,9 @@ import { UserContext } from "../../../utils/UserContextConfig";
 import { useContext } from 'react';
 
 const AddCommentWrap = styled.div`
+    margin-left: 20px;
     padding: 10px;
-    padding-left: 20px;
-    width: 750;
-    ${'' /* border : 2px solid #FFFFFF; */}
+    ${'' /* width: 750; */}
     color: #9D5353;
     cursor: pointer;
     .hover {

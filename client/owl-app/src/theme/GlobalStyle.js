@@ -42,10 +42,13 @@ ${'' /* @import url('https://fonts.googleapis.com/css2?family=Atomic+Age&family=
     --colors-answerInput-content: #493E3B;
     --colors-answerButton: #9D5353;
     --colors-qcontent-border: #E7CC8F;
+    --colors-comment-border: rgba(231,204,143, 0.3);
+    --colors-comment-border-dull: #3F3432;
 
     --spacing-topnav: 140px;
     --spacing-sidenav-top: 150px;
     --spacing-sidenav-right: 30px;
+    --spacing-comment-lineheight: 1.5rem;
 
     --size-topnav-container: 130px;
     --size-sidenav-container: 180px;
@@ -56,6 +59,9 @@ ${'' /* @import url('https://fonts.googleapis.com/css2?family=Atomic+Age&family=
     --size-text-headline: 1.5rem;
     --size-text-headline: 1.5rem;
     --size-text-qcontent: 1.1rem;
+    --size-text-qcontent-createdDate: 1rem;
+    --size-text-comment: 0.8rem;
+    --size-text-comment-info: 0.9rem;
 
     --fonts-thread-title-weight: 400;
     --fonts-weight-default: 100;
