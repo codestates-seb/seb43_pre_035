@@ -182,7 +182,6 @@ const AnswerDetail = ({ question, answer, updateAnswerHandler, deleteAnswerHandl
                                     deleteAnswerCommentHandler={deleteAnswerCommentHandler}
                                     updateAnswerCommentHandler={updateAnswerCommentHandler}
                                     openModal={openModal}
-                                    isLoggedIn={isLoggedIn}
                 ></AnswerCommentList>
             </AnswerBlock>
             <AddAnswerComment addAnswerCommentHandler={addAnswerCommentHandler}
