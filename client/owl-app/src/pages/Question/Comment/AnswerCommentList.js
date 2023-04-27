@@ -13,7 +13,7 @@ const CommentListWrap = styled.div`
 
 `
 
-const AnswerCommentList = ({answerComments, updateAnswerCommentHandler, deleteAnswerCommentHandler,isLoggedIn, openModal}) => {
+const AnswerCommentList = ({answerComments, updateAnswerCommentHandler, deleteAnswerCommentHandler, openModal}) => {
 
 
 
@@ -24,7 +24,6 @@ const AnswerCommentList = ({answerComments, updateAnswerCommentHandler, deleteAn
             <CommentCreated comment={comment}
                             openModal={openModal}
                             commentType={'aComment'}
-                            isLoggedIn={isLoggedIn}
                             updateAnswerCommentHandler={updateAnswerCommentHandler}
                             deleteAnswerCommentHandler={deleteAnswerCommentHandler}
                             key={comment.id} />)}

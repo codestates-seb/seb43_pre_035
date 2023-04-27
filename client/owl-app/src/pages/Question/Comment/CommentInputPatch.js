@@ -12,7 +12,7 @@ const CommentInputWrap = styled.div`
     align-items: center;
 `
 
-const CommentInputCompo = styled.input`
+const CommentInputCompo = styled.textarea`
     padding: 10px;
     width: 700px;
     height: 40px;

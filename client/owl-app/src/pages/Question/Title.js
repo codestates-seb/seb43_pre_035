@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBinoculars } from '@fortawesome/free-solid-svg-icons';
 import { faCommentDots } from '@fortawesome/free-regular-svg-icons';
 import { Link } from 'react-router-dom';
+import { UserContext } from "../../App";
+import { useContext } from 'react';
 
 const TitleWrap = styled.div`
     width: 750px;
@@ -53,9 +55,9 @@ const convertDate = (string) => {
     return `${string.substring(0, 4)}년 ${String(Number(string.substring(5, 7)))}월 ${String(Number(string.substring(8, 10)))}일`
   }
 
-const Title = ({question, isLoggedIn}) =>{
+const Title = ({question}) =>{
 
-    
+    const { isLoggedIn } = useContext(UserContext);
 
 
     return (

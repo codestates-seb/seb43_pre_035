@@ -18,7 +18,7 @@ const EditorBlock =styled.div`
 const EditorInput =styled.textarea`
     height: 300px;
     width: 100%;
-    white-space: pre-wrap; 
+    white-space: pre-wrap;
 `
 
 

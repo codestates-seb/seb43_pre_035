@@ -56,7 +56,7 @@ const CreateAvatar = styled.img`
     border-radius: 50%;
 `
 
-const EditorInput =styled.input`
+const EditorInput =styled.textarea`
     height: 300px;
     display: flex;
     border: none;

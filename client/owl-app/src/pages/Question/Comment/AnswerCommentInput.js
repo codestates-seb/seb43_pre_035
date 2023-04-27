@@ -66,7 +66,7 @@ const AnswerCommentInput = ({addAnswerCommentHandler})=>{
                                 value={answerCommentContent}
                                 onChange={onTextChange}
             />
-            <CreateButtonLogin onClick={onClickCommentSubmit}>작성하기</CreateButtonLogin>
+            <CreatButton onClick={onClickCommentSubmit}>작성하기</CreatButton>
         </CommentInputWrap>
         </>
     )

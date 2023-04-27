@@ -63,7 +63,8 @@ const QuestionContent = ({question, setIsEditState}) =>{
     // console.log(question.member)
     const url = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}`;
 
-    const editCLickQuestion=()=>{
+
+    const EditQuestion = () =>{
         setIsEditState(false)
     }
   
@@ -71,9 +72,8 @@ const QuestionContent = ({question, setIsEditState}) =>{
 
     const deleteQHandler = () => {
         axiosAuth.delete(url)
-            .then(res => {console.log("delete Q success!")}
-            ,navigate("/")
-            )
+            .then(res => {console.log("delete Q success!")
+            navigate("/")})
             .catch(err => {console.log("delete Q fail! ", err)})
     }
 
@@ -87,7 +87,7 @@ const QuestionContent = ({question, setIsEditState}) =>{
                 <CreateAvatar src={question.member.avatarLink}></CreateAvatar>
                 <CreateUser>{question.member.displayName}</CreateUser>
             {memberId === question.member.memberId?  <ButtonWrap>
-                <UpdateButton onClick={editCLickQuestion}>수정</UpdateButton>
+                <UpdateButton onClick={EditQuestion}>수정</UpdateButton>
                 <UpdateButton onClick={deleteQHandler}>삭제</UpdateButton>
             </ButtonWrap>: null}
             {/* {isLoggedIn  && <ButtonWrap>

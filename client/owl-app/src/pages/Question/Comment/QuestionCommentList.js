@@ -15,7 +15,7 @@ const CommentListWrap = styled.div`
   align-items: center;
 `;
 
-const QuestionCommentList = ({ question, isLoggedIn, openModal }) => {
+const QuestionCommentList = ({ question, openModal }) => {
 
   const [comments, setComments] = useState(question.questionReplies);
   

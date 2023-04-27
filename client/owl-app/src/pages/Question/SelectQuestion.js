@@ -8,8 +8,6 @@ import { useState, useEffect } from "react";
 import { ClickButton } from "../../styles/UIStyles"
 import { axiosAuth } from "../../utils/axiosConfig";
 import { useNavigate } from 'react-router-dom';
-import { UserContext } from "../../App";
-import { useContext } from 'react';
 import { CancleButton} from '../Question/Answer/AnswerStyle'
 
 const SelectedWrap = styled.div`
@@ -44,7 +42,7 @@ const StyledTextHead = styled.input`
         border: 1px solid var(--colors-yellow);
     }
 `
-const StyledTextContent = styled.textarea`
+const StyledTextContent = styled.input`
     height: 400px;
     display: flex;
     border: none;
@@ -74,16 +72,14 @@ const StyledTextContent = styled.textarea`
 
 
 
-const SelectQuestion = ({ question, openModal, dimensionsHandler, refContainer,isLoggedIn }) => {
+const SelectQuestion = ({ question, openModal, dimensionsHandler, refContainer }) => {
 
-    // const { isLoggedIn } = useContext(UserContext);
+
     const url = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}`
     const [getQuestion, setGetQuestion] = useState([question]);
     const [isEditState, setIsEditState] = useState(true);
     const [editTitleQuestion, setEditTitleQuestion] = useState(question.title)
     const [editContentQuestion, setEditContentQuestion] = useState(question.content)
-
-    // console.log(isLoggedIn)
 
     const navigate = useNavigate();
 
@@ -106,6 +102,7 @@ const SelectQuestion = ({ question, openModal, dimensionsHandler, refContainer,i
     }
 
 
+
     useEffect(() => {
         if (refContainer.current) {
             dimensionsHandler(refContainer.current.offsetWidth, refContainer.current.offsetHeight);
@@ -117,7 +114,7 @@ const SelectQuestion = ({ question, openModal, dimensionsHandler, refContainer,i
             {getQuestion.map((question) =>(
         <SelectedWrap key={question} ref={refContainer}>
             {isEditState ?
-                <Title question={question} isLoggedIn={isLoggedIn} openModal={openModal}></Title>
+                <Title question={question} openModal={openModal}></Title>
                 : <StyledTextHead
                 value={editTitleQuestion}
                 onChange={onEditTitle}/>}
@@ -144,7 +141,6 @@ const SelectQuestion = ({ question, openModal, dimensionsHandler, refContainer,i
                         >
                         <AnswerCommentList
                             openModal={openModal}
-                            
                             question={question}></AnswerCommentList>
                     </Answerlist>
 
