@@ -24,10 +24,9 @@ const ContentDetail = styled.div`
 `
 
 const UserWrap = styled.div`
-    ${'' /* width: 130px; */}
     padding: 10px;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     flex-direction: column;
     justify-content: center;
     ${'' /* align-items: flex-start; */}

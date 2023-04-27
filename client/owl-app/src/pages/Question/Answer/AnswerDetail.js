@@ -12,7 +12,7 @@ import { formatDate } from "../../../styles/DateComponent";
 
 const AnswerBlock = styled.div`
     display: flex;
-    padding: 10px;
+    padding: 10px 5px;
     flex-direction: column;
     color: white;
     z-index: 100;
@@ -36,8 +36,8 @@ const Answeruserwrap = styled.div`
 const AnswerUser = styled.div`
     display: flex;
     flex-direction: column;
-    padding: 10px;
-    align-items: flex-end;
+    ${'' /* padding: 10px; */}
+    align-items: center;
     ${'' /* flex-direction: flex-end; */}
 `
 
@@ -54,13 +54,15 @@ const UserBlock = styled.div`
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 10px;
+    font-weight: var(--fonts-weight-default);
+    font-size: var(--size-text-avatar-info);
 `
 
 const CreateUserA = styled.div`
-    ${'' /* padding-top: 60px; */}
-    font-size: 15px;
     color: #8D7B68;
-    padding: 10px 0;
+    font-weight: var(--fonts-weight-regular);
+    padding: 10px 0 5px 0;
 `
 
 const CreateAvatar = styled.img`
@@ -76,15 +78,15 @@ const ButtonBlock = styled.div`
 `
 
 const CreateDate = styled.div`
-    padding-left: 5px;
-    padding-right: 20px;
+    ${'' /* padding-left: 5px;
+    padding-right: 20px; */}
     ${'' /* height: 20px; */}
-    font-size: var(--size-text-comment-info);
     display: flex;
-    justify-content: space-around;
-    color: #DACC96;
+    justify-content: flex-end;
+    color: var(--colors-dullbrown);
     word-break: keep-all;
-    width: 150px;
+    white-space: nowrap;
+    ${'' /* width: 150px; */}
 `
 const EditorInput = styled.textarea`
     ${'' /* height: 300px; */}

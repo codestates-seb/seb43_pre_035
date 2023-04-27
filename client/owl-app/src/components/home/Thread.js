@@ -111,7 +111,7 @@ const UserInformation = styled.span`
   border: 0.5px solid var(--colors-dullbrown);
   color: white;
   text-align: left;
-  padding: 8px 6px 8px 4px;
+  padding: 8px 8px 8px 5px;
   border-radius: 6px;
   display: flex;
   flex-direction: row;

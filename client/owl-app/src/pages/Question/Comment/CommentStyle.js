@@ -54,7 +54,7 @@ export const User = styled.div`
 
 export const Date = styled.div`
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     padding: 10px;
     min-width: 150px;
     color: var(--colors-lightbrown);

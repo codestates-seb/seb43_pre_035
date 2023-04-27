@@ -31,38 +31,6 @@ const EditCancelBtn = styled(ReviseSubmitBtn)`
     padding: 0 10px;
     ${'' /* height: 16px !important; */}
 `
-// const CommentInputWrap = styled.div`
-//     padding: 10px;
-//     width: 750px;
-//     height: 90px;
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-// `
-
-// const CommentInputCompo = styled.textarea`
-//     padding: 10px;
-//     width: 700px;
-//     height: 40px;
-//     border: 1px solid #E7CC8F;
-//     background-color: #493E3B;
-//     white-space: pre-wrap;
-//     .placeholder{
-//         color : white;
-//     }
-//     ::-webkit-scrollbar {
-//      display: none;
-// }
-// `
-
-// const CreatButton = styled.button`
-//     padding: 10px;
-//     width: 100px;
-//     height: 30px;
-//     color: white;
-//     border: 1px solid white;
-//     background-color: #BF8B67;
-// `
 
 const AnswerCommentInputPatch = ({ updatedContent, setUpdatedContent, editClickHandler, setIsEditable }) => {
 
@@ -76,7 +44,7 @@ const AnswerCommentInputPatch = ({ updatedContent, setUpdatedContent, editClickH
     };
 
     const onClickCommentSubmit = (e) => {
-        e.stopPropagation();
+        if (e) e.stopPropagation();
         // console.log("this is onclickCommentSubmit!");
         // console.log("answer content: ", answerCommentContent);
         if (!answerCommentContent) { console.log("no content!"); setInvalidComment(true); return; }
@@ -87,6 +55,17 @@ const AnswerCommentInputPatch = ({ updatedContent, setUpdatedContent, editClickH
         setIsEditable(false);
     }
 
+
+    const handleKeyPress = (e) => {
+        // e.stopPropagation();
+        if (e.keyCode === 13 && e.shiftKey){
+            console.log('pressed!');
+        }
+        else if (e.keyCode === 13 || e.which === 13){
+            onClickCommentSubmit();
+        }
+    }
+
     return (
         <PatchContainer>
         <ReviseWrap>
@@ -95,6 +74,7 @@ const AnswerCommentInputPatch = ({ updatedContent, setUpdatedContent, editClickH
                     placeholder="Comment를 달아주세요"
                     value={answerCommentContent}
                     onChange={onTextChange}
+                    onKeyDown={handleKeyPress}
                 />
                 <CommentButtonBlock>
                     <EditCancelBtn onClick={onClickCommentSubmit}>수정</EditCancelBtn>

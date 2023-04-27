@@ -1,6 +1,6 @@
 import {useState, useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import GlobalStyle from './theme/GlobalStyle';
+import GlobalStyle from './styles/GlobalStyle';
 import { UserProvider } from './utils/UserContextConfig';
 import useFetch from './utils/useFetch';
 import styled from 'styled-components';
@@ -30,11 +30,11 @@ function App() {
   // const url_threads_test = `${process.env.REACT_APP_URL_NGROKTEST}/questions/?page=${pageNum}`
 
   const url_threads_test_queries = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${queries}`
-  
+
   //페이지뷰를 상태로 관리하고
   //클릭핸들러를 만들어서 해당 페이지를 클릭할 때
   //page에 맞는 걸 보여줘야 한다.
-  
+
   //page&size=10 은 10개씩 불러와진다.
   const [threads, isPending, error] = useFetch(url_threads_test);
   const [renderThreads, setRenderThreads] = useState(null);
