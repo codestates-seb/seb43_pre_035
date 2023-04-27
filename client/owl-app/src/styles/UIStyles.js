@@ -25,6 +25,7 @@ const ClickButton = styled.button`
     padding: 0;
     min-width: 40px;
     width: 10px;
+    height: 16px;
     margin: 3px;
     background: var(--colors-darkbrown);
   `

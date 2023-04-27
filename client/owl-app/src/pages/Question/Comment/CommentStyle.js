@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { UpdateButton } from "../../../styles/UIStyles"
 
 
 export const ListWrap = styled.div`
@@ -75,6 +76,7 @@ export const InputWrap = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
+    width: 100%;
 `
 
 export const InputTextArea = styled.textarea`
