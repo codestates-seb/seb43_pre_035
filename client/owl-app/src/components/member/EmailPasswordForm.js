@@ -2,7 +2,7 @@ import { useState, useContext } from 'react';
 import styled from 'styled-components';
 import HandleLogin from './HandleLogin';
 import { Link, useNavigate } from 'react-router-dom';
-import { UserContext } from '../../App';
+import { UserContext } from '../../utils/UserContextConfig';
 
 const Form = styled.form`
  display: flex;

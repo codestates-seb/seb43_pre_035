@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import AddAnswerComment from "../Comment/AddAnswerComment";
 import AnswerCommentList from '../Comment/AnswerCommentList'
-import { ClickButton,UpdateButton } from "../../../styles/UIStyles";
-import { CancelButton} from './AnswerStyle'
+import { ClickButton, UpdateButton } from "../../../styles/UIStyles";
+import { CancelButton } from './AnswerStyle'
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { axiosAuth } from "../../../utils/axiosConfig";
-import { UserContext } from "../../../App";
+import { UserContext } from "../../../utils/UserContextConfig";
 import { useContext } from 'react';
 
 const AnswerBlock = styled.div`

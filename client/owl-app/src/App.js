@@ -1,6 +1,7 @@
 import {useState, useEffect, Fragment, createContext, useReducer} from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import GlobalStyle from './theme/GlobalStyle';
+import { UserProvider } from './utils/UserContextConfig';
 //import pages
 //import with Lazy, and load Suspense while loading
 import Home from './pages/Home';
@@ -15,15 +16,7 @@ import Mypage from './components/member/MyPage';
 import useFetch from './utils/useFetch';
 import ModalContainer from './components/member/ModalContainer'; // 모달 불러오기
 
-//login state management
-import * as AuthReducer from './utils/store/reducers/authReducer';
-import * as ACTIONS from './utils/store/actions/actions';
-
-const url_threads_test_search1 = `${process.env.REACT_APP_URL_NGROKTEST}/questions/search/?title=아무거나`
-
-//로그인 context 정보
-export const UserContext = createContext();
-
+const url_threads_test_search1 = `${process.env.REACT_APP_URL_NGROKTEST}/questions/search/?title=아무거나`;
 
 function App() {
 
@@ -36,18 +29,6 @@ function App() {
   const [renderThreads, setRenderThreads] = useState(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  const storedInfo = JSON.parse(localStorage.getItem('userInfo'));
-  const [userInfo, dispatch] = useReducer(AuthReducer.AuthReducer, storedInfo ? storedInfo : AuthReducer.initialState);
-
-  const handleLogin = (data) => {
-    console.log("app handleLogin");
-    dispatch(ACTIONS.login(data));
-  }
-
-  const handleLogout = () => {
-    console.log("app handleLogout");
-    dispatch(ACTIONS.logout());
-  }
 
   const openModal = () => {
     setModalIsOpen(true);
@@ -58,17 +39,6 @@ function App() {
     setModalIsOpen(false);
     console.log("close Modal")
   };
-
-
-  useEffect(() => {
-    localStorage.setItem('userInfo', JSON.stringify({
-        isLoggedIn: userInfo.isLoggedIn,
-        memberId: userInfo.memberId,
-        name: userInfo.name,
-        avatarLink : userInfo.avatarLink,
-        displayName : userInfo.displayName,
-    }));
-  }, [userInfo]);
 
 
   //test with ngrok
@@ -93,7 +63,6 @@ function App() {
 
       // ngrok testing
       setRenderThreads(threads.content);
-      // setRenderThreads(threads);
 
     }
     // if (thread1) console.log("thread1", thread1);
@@ -106,14 +75,7 @@ function App() {
 
 
   return (
-    <UserContext.Provider value={{
-      userInfo,
-      dispatch,
-      memberId : userInfo.memberId,
-      isLoggedIn: userInfo.isLoggedIn,
-      handleUserLogin: (userInfo) => handleLogin(userInfo),
-      handleUserLogout: () => handleLogout()
-    }}>
+      <UserProvider>
         <GlobalStyle />
         <Router>
         <ModalContainer isOpen={modalIsOpen}
@@ -143,9 +105,7 @@ function App() {
                                                                             openModal={openModal}/> } />
             </Routes>
         </Router>
-      </UserContext.Provider>
+        </UserProvider>
   );
 }
-//onClick={openModal}
-//UserProvider - 전역에서 로그인 정보 사용 가능
 export default App;

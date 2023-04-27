@@ -10,7 +10,7 @@ import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 import { faCircleQuestion } from '@fortawesome/free-regular-svg-icons';
 
 import { useContext } from 'react';
-import { UserContext } from '../../App';
+import { UserContext } from '../../utils/UserContextConfig';
 
 
 const StyledIcon = styled(FontAwesomeIcon)`

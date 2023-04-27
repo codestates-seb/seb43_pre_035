@@ -3,8 +3,7 @@ import TopNav from "./TopNav";
 import TopNavlogged from "./TopNavlogged";
 import { useState, useEffect, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
-import { UserContext } from '../../App';
-// import { UserContext } from "../../utils/UserContext";
+import { UserContext } from "../../utils/UserContextConfig";
 
 const HeaderBlock = styled.header`
     display: flex;
