@@ -6,6 +6,7 @@ import { useContext } from 'react';
 
 const AddCommentWrap = styled.div`
     padding: 10px;
+    padding-left: 20px;
     width: 750;
     ${'' /* border : 2px solid #FFFFFF; */}
     color: #9D5353;

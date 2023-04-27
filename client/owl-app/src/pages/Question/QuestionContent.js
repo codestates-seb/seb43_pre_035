@@ -11,27 +11,27 @@ import { useContext } from 'react';
 
 
 const ContentWrap = styled.div`
-    width: 750px;
+    ${'' /* width: 750px; */}
     padding: 20px;
-    border-bottom: 2px solid #DACC96;
+    border-bottom: 1px solid var(--colors-qcontent-border);
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
 `
 
 const ContentDetail = styled.div`
-    width: 572px;
-    font-size: 14px;
+    ${'' /* width: 572px; */}
+    font-size: var(--size-text-qcontent);
     word-wrap: break-word;
     white-space: pre-wrap;
 `
 
 const UserWrap= styled.div`
-    width: 130px;
+    ${'' /* width: 130px; */}
     padding: 10px;
     display: flex;
-    align-items: end;
+    align-items: flex-end;
     flex-direction: column;
-    align-items: flex-start;
+    ${'' /* align-items: flex-start; */}
 `
 
 const ButtonWrap = styled.div`
@@ -42,7 +42,8 @@ const ButtonWrap = styled.div`
 
 
 const CreateUser = styled.div`
-    padding: 15px;
+    ${'' /* padding: 15px; */}
+    padding: 10px 0;
     font-size: 15px;
     color: #8D7B68;
 `

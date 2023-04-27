@@ -12,8 +12,7 @@ ${'' /* @import url('https://fonts.googleapis.com/css2?family=Atomic+Age&family=
     --colors-lightbrown: #DACC96;
     --colors-dullbrown: #8D7B68;
     --colors-mediumbrown: #3F3432;
-    --colors-dullbrown: #8D7B68;
-    --colors-mediumbrown: #3F3432;
+    --colors-inputbrown: #493E3B;
     --colors-darkbrown: #231709;
     --colors-darkred: #AB3E16;
     --colors-offwhite: #F8F8F8;
@@ -39,6 +38,10 @@ ${'' /* @import url('https://fonts.googleapis.com/css2?family=Atomic+Age&family=
     --colors-filter-text-active: #EFAA52;
     --colors-filter-text-inactive: rgba(239, 170, 82, 0.37);
     --colors-searchbar-bg: #F8F3E6;
+    --colors-answerInput-border: #9C9E91;
+    --colors-answerInput-content: #493E3B;
+    --colors-answerButton: #9D5353;
+    --colors-qcontent-border: #E7CC8F;
 
     --spacing-topnav: 140px;
     --spacing-sidenav-top: 150px;
@@ -48,10 +51,11 @@ ${'' /* @import url('https://fonts.googleapis.com/css2?family=Atomic+Age&family=
     --size-sidenav-container: 180px;
     --size-sidenavitem-minwidth: 170px;
     --size-thread-minwidth: 125px;
-    --size-thread-avatar: 40px;
+    --size-thread-avatar: 50px;
     --size-text-button: 0.9rem;
     --size-text-headline: 1.5rem;
     --size-text-headline: 1.5rem;
+    --size-text-qcontent: 1.1rem;
 
     --fonts-thread-title-weight: 400;
     --fonts-weight-default: 100;

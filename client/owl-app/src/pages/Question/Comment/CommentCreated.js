@@ -9,13 +9,12 @@ import { useContext } from 'react';
 
 
 const CommentWrap = styled.div`
-    padding: 10px;
-    padding-left: 50px;
-    width: 750px;
+    padding: 5px;
+    padding-left: 10px;
+    width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    border-bottom: 2px solid #E7CC8F;
     color: white;
 `
 
@@ -30,6 +29,7 @@ const CommentUser = styled.div`
     padding: 10px;
     width: 20vw;
     color: var(--colors-lightbrown);
+    ${'' /* font-size: 12px; */}
 `
 
 const CommentDate = styled.div`
