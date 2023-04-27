@@ -87,7 +87,7 @@ const ReviseButton = styled(UpdateButton) `
     background: var(--colors-darkred);
 `
 
-const AnswerDetail = ({ question, answer, answers, updateAnswerHandler, deleteAnswerHandler, isLoggedIn, openModal }) => {
+const AnswerDetail = ({ question, answer, updateAnswerHandler, deleteAnswerHandler, openModal }) => {
     const { memberId } = useContext(UserContext);
     // console.log(answer.member.memberId)
 
@@ -177,7 +177,8 @@ const AnswerDetail = ({ question, answer, answers, updateAnswerHandler, deleteAn
 
                 </AnsweruserBlock>
 
-                <AnswerCommentList answerComments={answerComments}
+                <AnswerCommentList  key={answer.answerId}
+                                    answerComments={answerComments}
                                     deleteAnswerCommentHandler={deleteAnswerCommentHandler}
                                     updateAnswerCommentHandler={updateAnswerCommentHandler}
                                     openModal={openModal}
