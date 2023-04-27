@@ -134,10 +134,6 @@ const UserInfomation = styled.span`
     }
 `
 
-const convertDate = (string) => {
-    return `${string.substring(0, 4)}년 ${String(Number(string.substring(5, 7)))}월 ${String(Number(string.substring(8, 10)))}일`
-  }
-
 const Thread = ({thread}) => {
     
 
@@ -153,10 +149,12 @@ const Thread = ({thread}) => {
                         <UserInfomation className='tooltiptext'>
                             <AvatarImg src={thread.member.avatarLink}/>
                             <div>{thread.member.displayName}님</div>
+                            <div>{thread.member.name}</div>
+                            <div>{thread.member.email}</div>
                             {<DateComponent date={thread.updateDate}/>}
                             </UserInfomation> 
                         </Contributor>
-                                <span>님께서{formatDate(thread.updateDate)}에 질문 </span>
+                                <span>님께서 {formatDate(thread.updateDate)}에 질문 </span>
                     </TextAlign>
                 </ThreadContribution>
             </ThreadContent>

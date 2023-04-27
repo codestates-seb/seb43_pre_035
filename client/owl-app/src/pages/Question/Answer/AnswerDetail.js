@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { axiosAuth } from "../../../utils/axiosConfig";
 import { UserContext } from "../../../utils/UserContextConfig";
 import { useContext } from 'react';
+import { formatDate }   from '../../../styles/formatDate'
 
 const AnswerBlock = styled.div`
     display: flex;
@@ -188,9 +189,7 @@ const AnswerDetail = ({ question, answer, updateAnswerHandler, deleteAnswerHandl
         setUpdatedAnswer(e.target.value);
     }
 
-    const convertDate = (string) => {
-        return `${string.substring(0, 4)}년 ${String(Number(string.substring(5, 7)))}월 ${String(Number(string.substring(8, 10)))}일`
-    }
+    
 
     return (
             <AnswerBlock>
@@ -206,7 +205,7 @@ const AnswerDetail = ({ question, answer, updateAnswerHandler, deleteAnswerHandl
                                 <UserBlock>
                                     <CreateAvatar src={answer.member.avatarLink} />
                                     <CreateUserA>{answer.member.displayName}</CreateUserA>
-                                    <CreateDate>{convertDate(answer.createdDate)}</CreateDate>
+                                    <CreateDate>{formatDate(answer.createdDate)}</CreateDate>
                                 </UserBlock>
                                 {memberId === answer.member.memberId &&
                                     <ButtonBlock>

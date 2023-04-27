@@ -6,11 +6,8 @@ import AnswerCommentInputPatch from "./AnswerCommentInputPatch";
 import { UserContext } from "../../../utils/UserContextConfig";
 import { useContext } from 'react';
 import * as CommentStyle from './CommentStyle';
+import { formatDate } from "../../../styles/DateComponent";
 
-
-const convertDate = (string) => {
-    return `${string.substring(0, 4)}년 ${String(Number(string.substring(5, 7)))}월 ${String(Number(string.substring(8, 10)))}일`
-}
 
 const CommentCreated = ({ comment, commentType, deleteAnswerCommentHandler, updateQuestionCommentHandler, updateAnswerCommentHandler, deleteQuestionCommentHandler, openModal }) => {
 
@@ -65,7 +62,7 @@ const CommentCreated = ({ comment, commentType, deleteAnswerCommentHandler, upda
 
                         <CommentStyle.Info>
                             <CommentStyle.User>{comment.member.displayName}</CommentStyle.User>
-                            <CommentStyle.Date>{convertDate(comment.updateDate)}</CommentStyle.Date>
+                            <CommentStyle.Date>{formatDate(comment.updateDate)}</CommentStyle.Date>
                         </CommentStyle.Info>
                     </CommentStyle.Wrap>
 

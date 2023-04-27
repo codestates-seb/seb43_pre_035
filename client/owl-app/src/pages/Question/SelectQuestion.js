@@ -9,7 +9,7 @@ import { ClickButton } from "../../styles/UIStyles"
 import { axiosAuth } from "../../utils/axiosConfig";
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from "../../utils/UserContextConfig";
-import { CancelButton} from '../Question/Answer/AnswerStyle';
+import { CancelButton } from '../Question/Answer/AnswerStyle';
 
 
 const SelectedWrap = styled.div`
