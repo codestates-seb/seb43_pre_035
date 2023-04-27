@@ -11,12 +11,12 @@ import { useContext } from 'react';
 
 
 const QuestionWrap = styled.div`
-    padding: 10px;
+    padding: 10px 0;
     width: 100%;
     color: white;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: flex-start;
     line-height: 2rem;
 

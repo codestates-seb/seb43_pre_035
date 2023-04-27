@@ -66,6 +66,8 @@ export const Date = styled.div`
 
 export const AddWrap = styled.div`
     margin: 0 30px 0 20px;
+    display: flex;
+    justify-content: flex-start;
     padding: 10px;
     ${'' /* width: 750; */}
     color: #9D5353;
