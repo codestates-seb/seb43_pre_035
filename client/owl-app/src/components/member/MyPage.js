@@ -2,9 +2,8 @@ import { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from "styled-components";
 import EditProfileModal from './EditProfileModal';
-import { UserContext } from '../../App';
+import { UserContext } from '../../utils/UserContextConfig';
 import { axiosAuth2 } from '../../utils/axiosConfig';
-// import useFetch from '../../utils/useFetch'; 
 
 const MypageWrap = styled.div`
     width: 100%;
@@ -48,7 +47,7 @@ const UserAvatar = styled.div`
 const DisplayName = styled.div`
     width: 185px;
     height: 40px;
-    margin-left:20px;   
+    margin-left:20px;
     font-size: x-large;
     font-weight: bold;
 `
@@ -157,11 +156,11 @@ const Mypage = () => {
     const { userInfo } = useContext(UserContext);
     const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
     const [userFullInfo, setUserFullInfo] = useState(null);
-    // const userFullInfo = null; 
-    // const navigate = useNavigate(); 
-    //navigate(0); 
+    // const userFullInfo = null;
+    // const navigate = useNavigate();
+    //navigate(0);
 
-    // const updateMemberInfoHandler 
+    // const updateMemberInfoHandler
     // const deleteMemberHandle
     // AnwserList - addInfoHandler 참고
     const getMemberInfo = async (member_id) => {
@@ -182,7 +181,7 @@ const Mypage = () => {
 
     // userFullInfo.email
     // userFullInfo.avatarLink
-    
+
     useEffect(() => {
         const fetchUserData = async () => {
             const tempInfo = await getMemberInfo(userInfo.memberId);
@@ -190,9 +189,9 @@ const Mypage = () => {
             console.log(tempInfo);
         }
         fetchUserData();
-    
+
     }, [userInfo.memberId]);
-    
+
     const openEditProfile = () => {
         setIsEditProfileOpen(true);
     };

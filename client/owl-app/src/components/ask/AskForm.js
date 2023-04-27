@@ -1,14 +1,12 @@
 import styled from 'styled-components';
-import axios from 'axios';
 import FormInput from './FormInput';
-import { useState, useEffect, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { ClickButton } from '../../styles/UIStyles.js';
 import { useNavigate } from 'react-router-dom';
 import { axiosAuth } from '../../utils/axiosConfig';
 import { UserContext } from '../../utils/UserContextConfig';
 
 
-// import  useApiHeaders from '../../utils/useApiHeaders';
 const FormWrapper = styled.form`
     display: flex;
     flex-direction: column;
@@ -29,19 +27,31 @@ const SubmitButton = styled(ClickButton)`
     padding: 10px 30px;
 `
 
+const ErrorMessage = styled.span`
+    display: flex;
+    align-self: flex-end;
+    ${'' /* align: right; */}
+    padding-right: 5px;
+    padding-bottom: 10px;
+    color: var(--colors-error);
+`
+
+const validityCheck = (title, content) => {
+    if (!title || !content) return false;
+    return true;
+}
+
 
 
 const AskForm = ({openModal}) => {
 
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
+    const [isValid, setIsValid] = useState(true);
     const navigate = useNavigate();
-    // const token = localStorage.getItem('token');
 
     const { isLoggedIn } = useContext(UserContext);
-    // const token = localStorage.getItem('token');
 
-    // const url_threads = `${process.env.REACT_APP_URL_JSON_QUESTIONS}`;
     const url_threads_test = `${process.env.REACT_APP_URL_NGROKTEST}/questions`
 
     const submitThreadHandler = (e) => {
@@ -49,25 +59,20 @@ const AskForm = ({openModal}) => {
         e.stopPropagation();
 
         if(!isLoggedIn) {openModal(); return;}
-        console.log('question submitted!');
+        if(!validityCheck(title, content)) {
+            setIsValid(false);
+            return;
+        }else{
+            setIsValid(true);
+        }
+        // console.log('question submitted!');
 
         axiosAuth.post(url_threads_test, {'title': title, 'content': content})
         .then((res) => {console.log("axios ask post request success!", res)
-
           navigate('/');
-        //   console.log('token:', token);
           navigate(0);
         })
         .catch((err) => {console.log("axios post request fail!", err)})
-        // .then(() => {
-        //     navigate('/');
-        //     navigate(0);
-        // })
-
-    }
-
-    const notLoggedHandler = () => {
-
     }
 
     return (
@@ -86,6 +91,7 @@ const AskForm = ({openModal}) => {
                         value={content}
                         setValue={setContent}
             />
+           { !isValid ? <ErrorMessage>제목과 내용을 작성해주세요.</ErrorMessage>: ''}
             <SubmitButton>작성하기</SubmitButton>
         </FormWrapper>
     )
