@@ -16,8 +16,8 @@ const CommentInputCompo = styled.textarea`
     width: 700px;
     height: 40px;
     border: 1px solid #E7CC8F;
-    background-color: #493E3B;    
-    white-space: pre-wrap;    
+    background-color: #493E3B;
+    white-space: pre-wrap;
     .placeholder{
         color : white;
     }
@@ -34,6 +34,11 @@ const CreatButton = styled.button`
     background-color: #BF8B67;
 `
 
+const ErrorMessage = styled.span`
+    color: var(--colors-error);
+    ${'' /* padding-left: 10px; */}
+`
+
 const AnswerCommentInput = ({addAnswerCommentHandler})=>{
 
     const [answerCommentContent, setAnswerCommentContent] =useState('');
@@ -46,10 +51,10 @@ const AnswerCommentInput = ({addAnswerCommentHandler})=>{
 
     const onClickCommentSubmit = (e) => {
         e.stopPropagation();
-        
+
         // console.log("answer content: ", answerCommentContent);
         if (!answerCommentContent) {console.log("no content!"); setInvalidComment(true); return;}
-       
+
 
 
         addAnswerCommentHandler(answerCommentContent);
@@ -60,8 +65,8 @@ const AnswerCommentInput = ({addAnswerCommentHandler})=>{
     return (
         <>
         <CommentInputWrap>
-            {invalidComment ? <div>내용을 적어주셔야 합니다.</div> : null}
-            <CommentInputCompo 
+            {invalidComment ? <ErrorMessage>내용을 적어주셔야 합니다.</ErrorMessage> : null}
+            <CommentInputCompo
                                 placeholder="Comment를 달아주세요"
                                 value={answerCommentContent}
                                 onChange={onTextChange}

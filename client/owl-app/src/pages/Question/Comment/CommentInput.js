@@ -4,7 +4,8 @@ import { CreateButtonLogin} from '../Answer/AnswerStyle'
 
 const CommentInputWrap = styled.div`
     padding: 10px;
-    width: 750px;
+    padding-left: 20px;
+    ${'' /* width: 750px; */}
     height: 90px;
     display: flex;
     flex-direction: column;
@@ -17,8 +18,8 @@ const CommentInputCompo = styled.textarea`
     height: 40px;
     border: 1px solid #E7CC8F;
     background-color: #493E3B;
-    word-wrap: break-word;      
-    white-space: pre-wrap;    
+    word-wrap: break-word;
+    white-space: pre-wrap;
     .placeholder{
         color : white;
     }
@@ -46,10 +47,10 @@ const CommentInput = ({addCommentHandler})=>{
 
     const onClickCommentSubmit = (e)=>{
         e.stopPropagation();
-        
+
         // console.log("comment content: ", newCommentContent);
         if (!newCommentContent) {console.log("no content!"); setInvalidComment(true); return;};
-        
+
         addCommentHandler(newCommentContent);
         setInvalidComment(false);
         setNewCommentContent('');

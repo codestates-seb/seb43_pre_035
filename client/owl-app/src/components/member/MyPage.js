@@ -61,6 +61,7 @@ const EmailText = styled.div`
         margin-top: 2vh;
         margin-left : 2vh ;
     `
+
 const EditProfile = styled.button`
         width: 10vh;
         height: 3vh;
@@ -177,6 +178,7 @@ const CreatedDate = styled.span`
   max-width: 20%;
 `;
 
+
 const StyledIcon = styled(FontAwesomeIcon)`
     color: var(--colors-yellow);
     padding-right: 6px;
@@ -189,8 +191,6 @@ const ViewCount = styled.span`
   max-width: 20%;
 `;
 
-
-
 const Mypage = () => {
 
     const { userInfo } = useContext(UserContext);
@@ -201,6 +201,7 @@ const Mypage = () => {
     //navigate(0); 
 
     // const updateMemberInfoHandler 
+
     // const deleteMemberHandle
     // AnwserList - addInfoHandler 참고
     const getMemberInfo = async (member_id) => {
