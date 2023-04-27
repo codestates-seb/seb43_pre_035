@@ -12,43 +12,54 @@ import { useContext } from 'react';
 const AnswerBlock = styled.div`
     display: flex;
     padding: 10px;
-    ${'' /* padding-bottom: 0; */}
     flex-direction: column;
     color: white;
     z-index: 100;
+    width: 100%;
 `
 
 const AnsweruserBlock = styled.div`
     display: flex;
     padding: 10px;
     flex-direction: column;
-    border: 2px solid #DACC96;
+    border: 1px solid #DACC96;
     border-radius: 10px;
+    width: 100%;
 `
 const Answeruserwrap = styled.div`
     display: flex;
     padding: 10px;
+    flex-direction: row;
+    justify-content: center;
 `
 const AnswerUser = styled.div`
     display: flex;
+    flex-direction: column;
     padding: 10px;
     align-items: flex-end;
+    ${'' /* flex-direction: flex-end; */}
 `
 
 const AnswerContent = styled.div`
-    padding: 10px;
+    padding: 10px 0;
     width: 100%;
     color: white;
     word-wrap: break-word;
     white-space: pre-wrap;
 `
 
+const UserBlock = styled.div`
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+`
 
 const CreateUserA = styled.div`
-    padding-top: 60px;
-    ${'' /* width: 130px; */}
+    ${'' /* padding-top: 60px; */}
     font-size: 15px;
     color: #8D7B68;
+    padding: 10px 0;
 `
 
 const CreateAvatar = styled.img`
@@ -57,8 +68,25 @@ const CreateAvatar = styled.img`
     border-radius: 50%;
 `
 
+const ButtonBlock = styled.div`
+    display: flex;
+    flex-direction: row;
+    ${'' /* align-items: flex-end; */}
+`
+
+const CreateDate = styled.div`
+    padding-left: 5px;
+    padding-right: 20px;
+    ${'' /* height: 20px; */}
+    font-size: var(--size-text-qcontent-createdDate);
+    display: flex;
+    justify-content: space-around;
+    color: #DACC96;
+    word-break: keep-all;
+    width: 150px;
+`
 const EditorInput = styled.input`
-    height: 300px;
+    ${'' /* height: 300px; */}
     display: flex;
     border: none;
     resize: none;
@@ -82,11 +110,11 @@ const EditorInput = styled.input`
     border: 1px solid var(--colors-yellow);
 }
 `
-const ReviseButton = styled(UpdateButton)`
-    ${'' /* height: 10%; */}
-    height: 20px;
-    background: var(--colors-darkred);
-`
+// const ReviseButton = styled(UpdateButton)`
+//     ${'' /* height: 10%; */}
+//     height: 20px;
+//     background: var(--colors-darkred);
+// `
 
 const AnswerDetail = ({ question, answer, updateAnswerHandler, deleteAnswerHandler, openModal }) => {
     const { memberId } = useContext(UserContext);
@@ -160,8 +188,11 @@ const AnswerDetail = ({ question, answer, updateAnswerHandler, deleteAnswerHandl
         setUpdatedAnswer(e.target.value);
     }
 
+    const convertDate = (string) => {
+        return `${string.substring(0, 4)}년 ${String(Number(string.substring(5, 7)))}월 ${String(Number(string.substring(8, 10)))}일`
+    }
+
     return (
-        <>
             <AnswerBlock>
                 <AnsweruserBlock>
                     {isEditState ? <>
@@ -172,14 +203,18 @@ const AnswerDetail = ({ question, answer, updateAnswerHandler, deleteAnswerHandl
                         <Answeruserwrap>
                             <AnswerContent>{answer.content}</AnswerContent>
                             <AnswerUser>
-                                <CreateAvatar scr={answer.member.avatarLink} />
-                                <CreateUserA>{answer.member.displayName}</CreateUserA>
+                                <UserBlock>
+                                    <CreateAvatar scr={answer.member.avatarLink} />
+                                    <CreateUserA>{answer.member.displayName}</CreateUserA>
+                                    <CreateDate>{convertDate(answer.createdDate)}</CreateDate>
+                                </UserBlock>
                                 {memberId === answer.member.memberId &&
-                                    <>
-                                        <ReviseButton onClick={() => { setIsEditState(true) }}>수정</ReviseButton>
-                                        <ReviseButton onClick={deleteClickHandler}>삭제</ReviseButton>
-                                    </>}
+                                    <ButtonBlock>
+                                        <UpdateButton onClick={() => { setIsEditState(true) }}>수정</UpdateButton>
+                                        <UpdateButton onClick={deleteClickHandler}>삭제</UpdateButton>
+                                    </ButtonBlock>}
                             </AnswerUser>
+
                         </Answeruserwrap>
                     }
 
@@ -195,8 +230,6 @@ const AnswerDetail = ({ question, answer, updateAnswerHandler, deleteAnswerHandl
                     openModal={openModal}
                 ></AddAnswerComment>
             </AnswerBlock>
-
-        </>
 
 
     )

@@ -9,7 +9,7 @@ const AnswerWrap = styled.div`
     padding-top: 10px;
     height: 100%;
 
-    width: 750px;
+    width: 100%:
     display: flex;
     flex-direction: column;
 `
@@ -18,24 +18,13 @@ const Answerlist = ({ question, openModal }) => {
 
     const [answers, setAnswers] = useState(question.answers);
 
-    const navigate = useNavigate();
-
-
-
-    // const headers = { headers :
-    //         {Authorization : `Bearer ${process.env.REACT_APP_NGROK_TOKEN}`
-    //             }};
+    // const navigate = useNavigate();
 
     const addAnswerHandler = (newAnswer) => {
 
 
         const url_apost = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/answers`
 
-        // const newAnswers = answers? [...answers, newAnswer] : [newAnswer];
-        // if (answers) setAnswers(newAnswers);
-        // else setAnswers(newAnswers);
-
-        //patch, add answers
 
         axiosAuth.post(url_apost, { "content": newAnswer })
             .then(res => {

@@ -24,7 +24,7 @@ const ContentDetail = styled.div`
     white-space: pre-wrap;
 `
 
-const UserWrap= styled.div`
+const UserWrap = styled.div`
     ${'' /* width: 130px; */}
     padding: 10px;
     display: flex;
@@ -53,7 +53,7 @@ const CreateAvatar = styled.img`
     border-radius: 50%;
 `
 
-const QuestionContent = ({question, setIsEditState}) =>{
+const QuestionContent = ({ question, setIsEditState }) => {
 
     const { memberId } = useContext(UserContext);
     const navigate = useNavigate()
@@ -61,7 +61,7 @@ const QuestionContent = ({question, setIsEditState}) =>{
     // console.log(question.member)
     const url = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}`;
 
-    const editClickQuestion=()=>{
+    const editClickQuestion = () => {
         setIsEditState(false)
     }
 
@@ -74,26 +74,22 @@ const QuestionContent = ({question, setIsEditState}) =>{
                 navigate('/');
                 navigate(0);
             })
-            .catch(err => {console.log("delete Q fail! ", err)})
+            .catch(err => { console.log("delete Q fail! ", err) })
     }
 
 
     return (
         <>
-        <ContentWrap>
-            <ContentDetail>{question.content}</ContentDetail>
-            <UserWrap>
-                <CreateAvatar src={question.member.avatarLink}></CreateAvatar>
-                <CreateUser>{question.member.displayName}</CreateUser>
-            {memberId === question.member.memberId?  <ButtonWrap>
-                <UpdateButton onClick={editClickQuestion}>수정</UpdateButton>
-                <UpdateButton onClick={deleteQHandler}>삭제</UpdateButton>
-            </ButtonWrap>: null}
-            {/* {isLoggedIn  && <ButtonWrap>
-                <UpdateButton onClick={EditQuestion}>수정</UpdateButton>
-                <UpdateButton onClick={deleteQHandler}>삭제</UpdateButton>
-            </ButtonWrap>} */}
-            </UserWrap>
+            <ContentWrap>
+                <ContentDetail>{question.content}</ContentDetail>
+                <UserWrap>
+                    <CreateAvatar src={question.member.avatarLink}></CreateAvatar>
+                    <CreateUser>{question.member.displayName}</CreateUser>
+                    {memberId === question.member.memberId ? <ButtonWrap>
+                        <UpdateButton onClick={editClickQuestion}>수정</UpdateButton>
+                        <UpdateButton onClick={deleteQHandler}>삭제</UpdateButton>
+                    </ButtonWrap> : null}
+                </UserWrap>
             </ContentWrap>
         </>
     )
