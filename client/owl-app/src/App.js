@@ -82,7 +82,6 @@ function App() {
                         onRequestClose={closeModal} />
             <Header threads={renderThreads}
                     setSidebarStatus={setSidebarStatus}
-                    openModal={openModal}
             ></Header>
             <Routes>
                   <Route path ="/" element = {<Home threads={renderThreads}

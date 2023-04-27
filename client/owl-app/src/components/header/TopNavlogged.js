@@ -18,7 +18,7 @@ const StyledIcon = styled(FontAwesomeIcon)`
     padding-right: 6px;
 `
 
-const TopNavlogged = ({toggleLogin, openModal }) => {
+const TopNavlogged = () => {
 
     const { handleUserLogout } = useContext(UserContext);
 
@@ -43,7 +43,7 @@ const TopNavlogged = ({toggleLogin, openModal }) => {
                         <Link to = '/'><StyledIcon icon={faArrowRightFromBracket} /></Link>
                     </IconButton>
                     <IconButton >
-                        <StyledIcon icon={faCircleQuestion} onClick={openModal}/>
+                        <StyledIcon icon={faCircleQuestion}/>
                     </IconButton>
             </TopnavTemplate>
         </>

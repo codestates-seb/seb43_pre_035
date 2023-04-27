@@ -23,7 +23,7 @@ const HeaderWrap = styled.div`
     height: 100%;
 `
 
-const Header = ({threads, setSidebarStatus, openModal}) => {
+const Header = ({threads, setSidebarStatus}) => {
 
     const location = useLocation();
     const { isLoggedIn } = useContext(UserContext);
@@ -48,7 +48,7 @@ const Header = ({threads, setSidebarStatus, openModal}) => {
     return(
         <HeaderBlock>
             <HeaderWrap >
-                {isLoggedIn ? <TopNavlogged openModal={openModal}/> : <TopNav openModal={openModal}/> }
+                {isLoggedIn ? <TopNavlogged /> : <TopNav /> }
             </HeaderWrap>
         </HeaderBlock>
  )
