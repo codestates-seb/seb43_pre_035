@@ -55,10 +55,14 @@ const Answerlist = ({ question, openModal }) => {
 
         axiosAuth
             .patch(url_apatch, { "content": updateAnswer })
-            .then((res) => {
+            .then(res => {
                 console.log("update answer success!")
+                setAnswers(answers.map(el => {
+                    if(el.answerId === answer_id) el.content = updateAnswer;
+                    return el;
+                }))
             })
-            .catch((err) => {
+            .catch(err => {
                 console.log("update answer fail!", err)
             })
     }

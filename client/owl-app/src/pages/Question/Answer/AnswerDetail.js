@@ -151,7 +151,8 @@ const AnswerDetail = ({ question, answer, updateAnswerHandler, deleteAnswerHandl
 
     const handleEditClick = () => {
 
-        updateAnswerHandler(answer.answerId, updatedAnswer)
+        updateAnswerHandler(answer.answerId, updatedAnswer);
+        setIsEditState(false);
 
     }
 
