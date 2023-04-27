@@ -4,7 +4,7 @@ import AnswerCommentList from '../Comment/AnswerCommentList'
 import { ClickButton,UpdateButton } from "../../../styles/UIStyles";
 import { CancelButton} from './AnswerStyle'
 import { useState } from "react";
-import { useNavigate,useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { axiosAuth } from "../../../utils/axiosConfig";
 import { UserContext } from "../../../App";
 import { useContext } from 'react';
