@@ -78,20 +78,20 @@ const LoginCheckBtn = styled.button`
     }
 `
 
-const SideNav = ({toggleLogin, sidebarStatus, isLoggedIn, clickSidebarHandler}) => {
+const SideNav = ({sidebarStatus, clickSidebarHandler}) => {
 
-  const [logState, setLogState] = useState(isLoggedIn ? "LOGOUT" : "LOGIN");
+  // const [logState, setLogState] = useState(isLoggedIn ? "LOGOUT" : "LOGIN");
 
-  const logHandler = () => {
-    toggleLogin();
-    if(logState === 'LOGIN') setLogState('LOGOUT');
-    else setLogState('LOGIN');
-  }
+  // const logHandler = () => {
+  //   toggleLogin();
+  //   if(logState === 'LOGIN') setLogState('LOGOUT');
+  //   else setLogState('LOGIN');
+  // }
 
-  useEffect(()=> {
-    // console.log('useEffect! sidenav text change');
-    setLogState(isLoggedIn ? "LOGOUT" : "LOGIN");
-  }, [isLoggedIn]);
+  // useEffect(()=> {
+  //   // console.log('useEffect! sidenav text change');
+  //   setLogState(isLoggedIn ? "LOGOUT" : "LOGIN");
+  // }, [isLoggedIn]);
 
   return (
     <SideNavContainer>
@@ -106,7 +106,7 @@ const SideNav = ({toggleLogin, sidebarStatus, isLoggedIn, clickSidebarHandler}) 
       </SideNavStickyContainer>
     </SideNavContainer>
   );
-}; 
+};
 
 
 

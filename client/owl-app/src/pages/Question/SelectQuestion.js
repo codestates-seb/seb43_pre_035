@@ -10,7 +10,7 @@ import { axiosAuth } from "../../utils/axiosConfig";
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from "../../App";
 import { useContext } from 'react';
-import { CancleButton} from '../Question/Answer/AnswerStyle'
+import { CancelButton} from '../Question/Answer/AnswerStyle'
 
 const SelectedWrap = styled.div`
     padding: 10px;
@@ -74,9 +74,9 @@ const StyledTextContent = styled.input`
 
 
 
-const SelectQuestion = ({ question, openModal, dimensionsHandler, refContainer,isLoggedIn }) => {
+const SelectQuestion = ({ question, openModal, dimensionsHandler, refContainer }) => {
 
-    // const { isLoggedIn } = useContext(UserContext);
+    const { isLoggedIn } = useContext(UserContext);
     const url = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}`
     const [getQuestion, setGetQuestion] = useState([question]);
     const [isEditState, setIsEditState] = useState(true);
@@ -127,14 +127,14 @@ const SelectQuestion = ({ question, openModal, dimensionsHandler, refContainer,i
                 question={question}
                 setIsEditState={setIsEditState}
                 ></QuestionContent>)
-                :    
+                :
                      <>
                         <StyledTextContent
                           value={editContentQuestion}
                          onChange={onEditContent} />
                           <ClickButton onClick={updateQHandler} >수정하기</ClickButton>
-                          <CancleButton onClick={()=>setIsEditState(true)}>취소하기</CancleButton>
-                        </> 
+                          <CancelButton onClick={()=>setIsEditState(true)}>취소하기</CancelButton>
+                    </>
                     }
                     <QuestionCommentList
                         question={question}
@@ -145,7 +145,6 @@ const SelectQuestion = ({ question, openModal, dimensionsHandler, refContainer,i
                         >
                         <AnswerCommentList
                             openModal={openModal}
-                            
                             question={question}></AnswerCommentList>
                     </Answerlist>
 

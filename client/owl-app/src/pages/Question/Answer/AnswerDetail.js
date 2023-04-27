@@ -2,7 +2,7 @@ import styled from "styled-components";
 import AddAnswerComment from "../Comment/AddAnswerComment";
 import AnswerCommentList from '../Comment/AnswerCommentList'
 import { ClickButton,UpdateButton } from "../../../styles/UIStyles";
-import { CancleButton} from './AnswerStyle'
+import { CancelButton} from './AnswerStyle'
 import { useState } from "react";
 import { useNavigate,useHistory } from "react-router-dom";
 import { axiosAuth } from "../../../utils/axiosConfig";
@@ -38,8 +38,8 @@ const AnswerContent = styled.div`
     padding: 10px;
     width: 600px;
     color: white;
-    word-wrap: break-word;      
-    white-space: pre-wrap; 
+    word-wrap: break-word;
+    white-space: pre-wrap;
 `
 
 
@@ -98,8 +98,8 @@ const AnswerDetail = ({ question, answer, answers, updateAnswerHandler, deleteAn
 
 
     const addAnswerCommentHandler = (newComment) => {
-        
-        
+
+
         axiosAuth.post(url_acpost, { "content": newComment })
             .then(res => { console.log("answerReplies patch success!", res)
             navigate(0)
@@ -112,7 +112,7 @@ const AnswerDetail = ({ question, answer, answers, updateAnswerHandler, deleteAn
         const url_acpatch = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/answers/${answer.answerId}/answer_replies/${comment_id}`;
 
         // console.log('update answer comment being handled!');
-        
+
         axiosAuth.patch(url_acpatch, {"content": updatedComment})
             .then((res) => {
                 console.log("update answercomment success!", res);
@@ -126,7 +126,7 @@ const AnswerDetail = ({ question, answer, answers, updateAnswerHandler, deleteAn
     const deleteAnswerCommentHandler = (comment_id) => {
         const url_acpatch = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/answers/${answer.answerId}/answer_replies/${comment_id}`;
 
-        
+
         axiosAuth.delete(url_acpatch )
             .then(res => { console.log("delete answercomment success!", res);navigate(0) })
             .catch(err => { console.log("delete answercomment fail!", err) })
@@ -143,9 +143,9 @@ const AnswerDetail = ({ question, answer, answers, updateAnswerHandler, deleteAn
     const [updatedAnswer, setUpdatedAnswer] = useState(answer.content);
 
     const handleEditClick = ()=>{
-       
+
         updateAnswerHandler(answer.answerId, updatedAnswer)
-       
+
     }
 
     const onTextChange = (e) => {
@@ -159,7 +159,7 @@ const AnswerDetail = ({ question, answer, answers, updateAnswerHandler, deleteAn
         { isEditState ? <>
                     <EditorInput type="text" value={updatedAnswer} onChange={onTextChange} />
                     <ClickButton onClick={handleEditClick} >답변 수정하기</ClickButton>
-                    <CancleButton onClick={()=>{setIsEditState(false)}}>취소하기</CancleButton>
+                    <CancelButton onClick={()=>{setIsEditState(false)}}>취소하기</CancelButton>
                      </>:
                     <Answeruserwrap>
                     <AnswerContent>{answer.content}</AnswerContent>
@@ -186,7 +186,7 @@ const AnswerDetail = ({ question, answer, answers, updateAnswerHandler, deleteAn
             </AnswerBlock>
             <AddAnswerComment addAnswerCommentHandler={addAnswerCommentHandler}
                               openModal={openModal}
-                              
+
                               ></AddAnswerComment>
         </>
 

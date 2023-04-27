@@ -5,7 +5,7 @@ import Users from '../components/home/Users';
 
 import styled from 'styled-components';
 import { useState, useRef, useEffect, useContext } from 'react';
-import { UserContext } from '../App';
+// import { UserContext } from '../App';
 
 
 const Main = styled.div`
@@ -34,15 +34,14 @@ const Home = ({threads, isPending, toggleLogin, sidebarStatus, setSidebarStatus}
         setDimensions({width, height});
     }
 
-    const {userInfo, isLoggedIn} = useContext(UserContext);
+    // const {userInfo, isLoggedIn} = useContext(UserContext);
 
 
     // console.log("is logged in? ", isLoggedIn);
     // console.log("home: ", userInfo);
-    console.log("home is logged in: ", `${userInfo.isLoggedIn}`);
-    console.log("home: memberId ", userInfo.memberId);
-
-    console.log("is token erased? ", localStorage.getItem('token'));
+    // console.log("home is logged in: ", `${userInfo.isLoggedIn}`);
+    // console.log("home: memberId ", userInfo.memberId);
+    // console.log("is token erased? ", localStorage.getItem('token'));
     // console.log(userInfo);
 
     const clickSidebarHandler = (item) => {
@@ -59,10 +58,8 @@ const Home = ({threads, isPending, toggleLogin, sidebarStatus, setSidebarStatus}
                 {`${isLoggedIn}`}
                  token: {`${userInfo.token}`}
             </div> */}
-            <SideNav toggleLogin={toggleLogin}
-                    sidebarStatus={sidebarStatus}
-                    clickSidebarHandler={clickSidebarHandler}
-                    isLoggedIn={isLoggedIn}/>
+            <SideNav sidebarStatus={sidebarStatus}
+                    clickSidebarHandler={clickSidebarHandler}/>
             {sidebarStatus.homeOn ? threads && <Threads threads={threads}
                                                         dimensionsHandler={dimensionsHandler}
                                                         refContainer={refContainer}/>
