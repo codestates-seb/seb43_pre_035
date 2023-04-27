@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from "styled-components";
 import EditProfileModal from './EditProfileModal';
-import { UserContext } from '../../App';
+import { UserContext } from '../../utils/UserContextConfig';
 import { axiosAuth2 } from '../../utils/axiosConfig';
 // import useFetch from '../../utils/useFetch'; 
 
