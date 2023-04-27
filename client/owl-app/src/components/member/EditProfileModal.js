@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
-import { useUserDispatch, useUserState } from './UserContext';
-import { useNavigate } from 'react-router-dom'; //회원정보 삭제기능
+import { useNavigate } from 'react-router-dom';
+import { axiosAuth2 } from '../../utils/axiosConfig';
 
 
 const ModalBackdrop = styled.div`
@@ -52,7 +51,7 @@ const FormField = styled.div`
 
 const EmailText = styled.label`
   margin-bottom: 5px;
-  font-size: 30px;
+  font-size: 20px;
   font-weight: bold;
 `;
 
@@ -104,100 +103,109 @@ const validateDisplayName = (displayName) => {
     return re.test(displayName);
 };
 
-const EditProfileModal = ({ isOpen, onRequestClose }) => {
-    const userState = useUserState();
-    const userDispatch = useUserDispatch();
-    const [name, setName] = useState(userState.user.name);
-    const [displayName, setDisplayName] = useState(userState.user.displayName);
+const EditProfileModal = ({ isOpen, onRequestClose, userFullInfo: propsUserFullInfo }) => {
+    const [name, setName] = useState(propsUserFullInfo?.name);
+    const [displayName, setDisplayName] = useState(propsUserFullInfo?.displayName);
     const [password, setPassword] = useState('');
+    const [member_id, setMember_id] = useState(propsUserFullInfo);
     const [displayNameAlert, setDisplayNameAlert] = useState(false);
     const [passwordAlert, setPasswordAlert] = useState(false);
-    const [prevDisplayName, setPrevDisplayName] = useState(userState.user.displayName);
-    const [prevPassword, setPrevPassword] = useState(userState.user.password);
     const history = useNavigate();
 
+    // console.log("displayname:",propsUserFullInfo?.displayName)
+    // console.log("displayname2:",displayName)
 
-    const handleNameChange = (event) => {
-        setName(event.target.value);
-    };
-    const handleDisplayNameChange = (event) => {
-        setDisplayName(event.target.value);
-
-        // 유효성 검사에 따라 경고 삽입
-        if (!validateDisplayName(event.target.value)) {
-            setDisplayNameAlert(true);
-        } else {
-            setDisplayNameAlert(false);
-        }
-        setPrevDisplayName(userState.user.displayName);
-    };
-
-    const handlePasswordChange = (event) => {
-        setPassword(event.target.value);
-        if (!validatePassword(event.target.value)) {
-            setPasswordAlert(true);
-        } else {
-            setPasswordAlert(false);
-        }
-        setPrevPassword(userState.user.displayName);
-    };
-
-
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-
-        if (displayName === prevDisplayName) {
-            alert('이전 정보와 다른 디스플레이 네임을 입력해주세요.');
-            return;
-        }
-        if (password === prevPassword) {
-            alert('이전과 다른 비밀번호를 입력해주세요.');
-            return;
-        }
-
-        if (!validatePassword(password)) {
-            alert('비밀번호는 8~16자 영문 대소문자, 숫자, 특수문자를 포함해야 합니다.');
-            return;
-        }
-
-        if (!validateDisplayName(displayName)) {
-            alert('디스플레이 네임은 특수문자를 제외한 2~15자리여야 합니다.');
-            return;
-        }
-
-        try {
-            const response = await axios.put(`${process.env.REACT_APP_URL_NGROKTEST}users/${userState.user.memberId}`, {
-                name,
-                displayName,
-                password,
-            });
-
-            // 업데이트된 사용자 정보를 UserProvider에 반영
-            userDispatch({ type: 'UPDATE_USER', payload: response.data });
-
-            onRequestClose();
-        } catch (error) {
-            console.error('Error updating profile:', error);
-        }
-    };
     
-    const handleDelete = async () => {
-        if (window.confirm('정말로 회원 정보를 삭제하시겠습니까?')) {
-            try {
-                await axios.delete(`${process.env.REACT_APP_URL_NGROKTEST}users/${userState.user.memberId}`);
-
-                // 회원 정보 삭제 후 로그아웃 처리 및 리디렉션
-                userDispatch({ type: 'LOGOUT' });
-                onRequestClose();
-                history.push('/login');
-            } catch (error) {
-                console.error('Error deleting profile:', error);
-            }
+    
+    const handleNameChange = (event) => {
+      setName(event.target.value);
+    };
+  
+    const handleDisplayNameChange = (event) => {
+      setDisplayName(event.target.value);
+  
+      if (!validateDisplayName(event.target.value)) {
+        setDisplayNameAlert(true);
+      } else {
+        setDisplayNameAlert(false);
+      }
+    };
+  
+    const handlePasswordChange = (event) => {
+      setPassword(event.target.value);
+      if (!validatePassword(event.target.value)) {
+        setPasswordAlert(true);
+      } else {
+        setPasswordAlert(false);
+      }
+    };
+  
+    const handleSubmit = async (event) => {
+      event.preventDefault();
+  
+      const updatedData = {};
+  
+      if (name !== propsUserFullInfo?.name) {
+        updatedData.name = name;
+      }
+  
+      if (displayName !== propsUserFullInfo?.displayName) {
+        if (!validateDisplayName(displayName)) {
+          alert('디스플레이 네임은 특수문자를 제외한 2~15자리여야 합니다.');
+          return;
         }
+        updatedData.displayName = displayName;
+      }
+  
+      if (password) {
+        if (!validatePassword(password)) {
+          alert('비밀번호는 8~16자 영문 대소문자, 숫자, 특수문자를 포함해야 합니다.');
+          return;
+        }
+        updatedData.password = password;
+      }
+  
+      if (Object.keys(updatedData).length === 0) {
+        alert('변경된 정보가 없습니다.');
+        return;
+      }
+
+      updateProfile(updatedData);
     };
 
-
+    const updateProfile = async (updatedData) => {
+        try {
+          const response = await axiosAuth2.patch(
+            `${process.env.REACT_APP_URL_NGROKTEST}/users/${propsUserFullInfo?.memberId}`,
+            updatedData
+          );
+          console.log(updatedData)
+          setMember_id(response.data);
+          onRequestClose();
+          alert('회원 정보가 수정되었습니다.');
+          history(0)
+        } catch (error) {
+          console.error('Error updating profile:', error);
+          alert('회원 정보 수정 중 오류가 발생했습니다. 다시 시도해주세요.');
+        }
+      };
+      
+      const deleteProfile = async () => {
+        if (window.confirm('정말로 회원 탈퇴를 하시겠습니까?')) {
+          try {
+            await axiosAuth2.delete(
+              `${process.env.REACT_APP_URL_NGROKTEST}/users/${propsUserFullInfo.memberId}`
+            );
+            alert('회원 탈퇴가 완료되었습니다.');
+            onRequestClose();
+            history.push('/');
+          } catch (error) {
+            console.error('Error deleting profile:', error);
+            alert('회원 탈퇴 중 오류가 발생했습니다. 다시 시도해주세요.');
+          }
+        }
+      };
+      
 
     return (
         <>
@@ -206,8 +214,8 @@ const EditProfileModal = ({ isOpen, onRequestClose }) => {
                     <ModalWrapper onClick={(e) => e.stopPropagation()}>
                         <CloseButton onClick={onRequestClose}>&times;</CloseButton>
                         <EditProfileForm onSubmit={handleSubmit}>
-                                <EmailText htmlFor="Email">{userState?.user?.email}</EmailText>
-                                <DeleteButton type="button" onClick={handleDelete}>Delete Profile</DeleteButton>
+                            <EmailText htmlFor="Email">{propsUserFullInfo?.email}</EmailText>
+                            <DeleteButton type="button" onClick={deleteProfile}>Delete Profile</DeleteButton>
                             <FormField>
                                 <Label htmlFor="name">Name</Label>
                                 <Input
@@ -230,11 +238,6 @@ const EditProfileModal = ({ isOpen, onRequestClose }) => {
                                         디스플레이 네임은 특수문자를 제외한 2~15자리여야 합니다.
                                     </AlertText>
                                 )}
-                                {prevDisplayName && (
-                                    <AlertText>
-                                        이전 정보와 다른 디스플레이 네임을 입력해주세요.
-                                    </AlertText>
-                                )}
                             </FormField>
                             <FormField>
                                 <Label htmlFor="password">Password</Label>
@@ -247,11 +250,6 @@ const EditProfileModal = ({ isOpen, onRequestClose }) => {
                                 {passwordAlert && (
                                     <AlertText>
                                         비밀번호는 8~16자 영문 대소문자, 숫자, 특수문자를 포함해야 합니다.
-                                    </AlertText>
-                                )}
-                                {prevPassword && (
-                                    <AlertText>
-                                        이전과 다른 비밀번호를 입력해주세요.
                                     </AlertText>
                                 )}
                             </FormField>

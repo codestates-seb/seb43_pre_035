@@ -20,28 +20,7 @@ const StyledIcon = styled(FontAwesomeIcon)`
 
 const TopNavlogged = ({toggleLogin, openModal }) => {
 
-<<<<<<< HEAD
-    //     //여기서부터 로그아웃 버튼구현
-    //     const { user } = useUserState();
-    //     const dispatch = useUserDispatch();
-      
-    //     const handleLogout = () => {
-    //       // 로컬 스토리지에서 토큰 제거
-    //       localStorage.removeItem('token');
-      
-    //       // 전역 상태에서 사용자 정보 제거
-    //       dispatch({ type: 'LOGOUT' });
-    //     };
-      
-    //     if (!user) {
-    //       return null;
-    //     }
-    //    버튼에 onClick={handleLogout} 입력하면 구현인데 충돌남...
-    //여기까지 로그아웃 버튼 기능 구현
-    //null 대신 유저
-=======
     const { handleUserLogout } = useContext(UserContext);
->>>>>>> c45cfc4b5595b170944f659a02f5987b1eb791ab
 
     return (
         <>
