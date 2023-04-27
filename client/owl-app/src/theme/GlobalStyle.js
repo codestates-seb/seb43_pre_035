@@ -18,6 +18,7 @@ ${'' /* @import url('https://fonts.googleapis.com/css2?family=Atomic+Age&family=
     --colors-darkred: #AB3E16;
     --colors-offwhite: #F8F8F8;
     --colors-border: #8D7B68;
+    --colors-error: #991e1e;
     --colors-button-bg-default: #AB3E16;
     ${'' /* --colors-button-bg-default: #b92b27; */}
     --colors-button-bg-active: #A82723;
