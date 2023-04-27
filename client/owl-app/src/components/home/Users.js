@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import axios from "axios";
 import styled from 'styled-components';
 import { TempContainer } from './Threads';
 // const url = "https://koreanjson.com/users";
@@ -7,8 +6,6 @@ import { TempContainer } from './Threads';
 
 
 const url_signup = "https://2a51-124-61-224-204.ngrok-free.app/users/signup";
-// const url_login = "https://1ec1-124-61-224-204.ngrok-free.app/users/login";
-// const url_mypage = "https://1ec1-124-61-224-204.ngrok-free.app/users/1";
 
 // axios.interceptors.request.use(config => {
 //     console.log('Request was sent');
