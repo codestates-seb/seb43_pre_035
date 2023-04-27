@@ -73,7 +73,7 @@ function App() {
     }
     // if (thread1) console.log("thread1", thread1);
 
-  },[threads]);
+  }, [threads]);
 
   // useEffect(() => {
   //   console.log("search results", thread1);

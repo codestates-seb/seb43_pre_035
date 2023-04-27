@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import styled from "styled-components";
-// import { useUserState } from "./UserContext"; // UserContext에서 useUserState 불러오기
 import EditProfileModal from './EditProfileModal';
-
+import { UserContext } from '../../App';
+import { axiosAuth2 } from '../../utils/axiosConfig';
+// import useFetch from '../../utils/useFetch'; 
 
 const MypageWrap = styled.div`
     width: 100%;
@@ -46,15 +48,16 @@ const UserAvatar = styled.div`
 const DisplayName = styled.div`
     width: 185px;
     height: 40px;
-    margin-left:20px;
+    margin-left:20px;   
     font-size: x-large;
     font-weight: bold;
 `
 
 const EmailText = styled.div`
     width: 185px;
-    height: 40px;
+    height: 20px;
     margin-top: 10px;
+    margin-left: -40px;
 `
 const EditProfile = styled.button`
     position: absolute;
@@ -120,19 +123,76 @@ const QnAList = styled.div`
     margin-bottom: 20px;
     border: 1px solid #48120E;
     border-radius: 5px;
+    overflow-y: scroll;
+    padding: 0 8px 0 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+    &::-webkit-scrollbar-track {
+        background-color: #BF8B67;
+        margin-right: 4px;
+        border-radius: 5px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: #AB3E16;
+        border-radius: 5px;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+        background-color: #48120E;
+    }
+    & > div {
+        margin-right: 4px;
+        padding-right: 10px;
+    }
 `
 
 
 
-const Mypage = ({ user_id }) => {
-    // const user_id = //
+const Mypage = () => {
 
-    // axios.get(`http:localhost:8080/users/${user_id}`, )
-    // const userState = useUserState(); // userState 불러옴
-    // const userData = userState.user; // userData를 userState 불러옴
-
+    const { userInfo } = useContext(UserContext);
     const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
+    const [userFullInfo, setUserFullInfo] = useState(null);
+    // const userFullInfo = null; 
+    // const navigate = useNavigate(); 
+    //navigate(0); 
 
+    // const updateMemberInfoHandler 
+    // const deleteMemberHandle
+    // AnwserList - addInfoHandler 참고
+    const getMemberInfo = async (member_id) => {
+        try {
+            const response = await axiosAuth2.get(`${process.env.REACT_APP_URL_NGROKTEST}/users/${member_id}`);
+            return response.data;
+        } catch (err) {
+            console.error(err);
+            alert('회원 정보를 불러오는 도중 오류가 발생했습니다. 새로고침 후 다시 시도해주세요.');
+        }
+    }
+    // const [memberInfo, isPending, error] = useFetch(`${process.env.REACT_APP_URL_NGROKTEST}/users/${userInfo.memberId}`);
+    // const getMemberInfo = async (member_id) => {
+    //             axiosAuth2.get(`${process.env.REACT_APP_URL_NGROKTEST}/users/${member_id}`)
+    //             .then(res => res.data)
+    //             .catch(err => {console.log(err)})
+    // }
+
+    // userFullInfo.email
+    // userFullInfo.avatarLink
+    
+    useEffect(() => {
+        const fetchUserData = async () => {
+            const tempInfo = await getMemberInfo(userInfo.memberId);
+            setUserFullInfo(tempInfo);
+            console.log(tempInfo);
+        }
+        fetchUserData();
+    
+    }, [userInfo.memberId]);
+    
     const openEditProfile = () => {
         setIsEditProfileOpen(true);
     };
@@ -141,59 +201,66 @@ const Mypage = ({ user_id }) => {
         setIsEditProfileOpen(false);
     };
 
-    // return (
-    //     <MypageWrap>
-    //         <MypageBlock>
-    //             <UserBlock>
-    //                 <UserAvatar
-    //                     style={{ backgroundImage: `url(${userData?.avatarLink})` }}
-    //                 ></UserAvatar>
-    //                 <DisplayName>{userData?.displayName}</DisplayName>
-    //                 <EmailText>/ {userData?.email}</EmailText>
-    //                 <EditProfile onClick={openEditProfile}>Edit profile</EditProfile>
-    //             </UserBlock>
-    //             <StatusBlock>
-    //                 <StatusText>Stats</StatusText>
-    //                 <StatusStateBlock>
-    //                     <div>
-    //                         <QnAText>Questions</QnAText>
-    //                         <StatusState>{userData?.question?.length}</StatusState>
-    //                     </div>
-    //                     <div>
-    //                         <QnAText>Answers</QnAText>
-    //                         <StatusState>{userData?.answer?.length}</StatusState>
-    //                     </div>
-    //                 </StatusStateBlock>
-    //             </StatusBlock>
-    //             <QnABlock>
-    //                 <div>
-    //                     <QnAText>Questions</QnAText>
-    //                     <QnAList>
-    //                         {userData?.question?.map((question) => (
-    //                             <div key={question.id}>{question.title}</div>
-    //                         ))}
-    //                     </QnAList>
-    //                 </div>
-    //                 <div>
-    //                     <QnAText>Answers</QnAText>
-    //                     <QnAList>
-    //                         {userData?.answer?.map((answer) => (
-    //                             <div key={answer.id}>{answer.content}</div>
-    //                         ))}
-    //                     </QnAList>
-    //                 </div>
-    //             </QnABlock>
-    //         </MypageBlock>
-    //         <EditProfileModal isOpen={isEditProfileOpen} onRequestClose={closeEditProfile} />
-    //     </MypageWrap>
-    // )
+    return (
+
+        // {userFullInfo && <MyPageWrap}
+        <MypageWrap>
+            <MypageBlock>
+                <UserBlock>
+                    <UserAvatar
+                        style={{ backgroundImage: `url(${userFullInfo?.avatarLink})` }}
+                    ></UserAvatar>
+                    <DisplayName>{userFullInfo?.displayName}</DisplayName>
+                    <EmailText>/ {userFullInfo?.email}</EmailText>
+                    <EditProfile onClick={openEditProfile}>Edit profile</EditProfile>
+                </UserBlock>
+                <StatusBlock>
+                    <StatusText>Stats</StatusText>
+                    <StatusStateBlock>
+                        <div>
+                            <QnAText>Questions</QnAText>
+                            <StatusState>{userFullInfo?.question?.length}</StatusState>
+                        </div>
+                        <div>
+                            <QnAText>Answers</QnAText>
+                            <StatusState>{userFullInfo?.answer?.length}</StatusState>
+                        </div>
+                    </StatusStateBlock>
+                </StatusBlock>
+                <QnABlock>
+                    <div>
+                        <QnAText>Questions</QnAText>
+                        <QnAList>
+                            {userFullInfo?.question?.length > 0 ? (
+                                userFullInfo?.question?.map((question, index) => (
+                                    <Link to={`/questions/${question.questionId}`} key={`question-${question.questionId || index}`}>
+                                        <div>{question.title}</div>
+                                    </Link>
+                                ))
+                            ) : (
+                                <div>No questions found.</div>
+                            )}
+                        </QnAList>
+                    </div>
+                    <div>
+                        <QnAText>Answers</QnAText>
+                        <QnAList>
+                            {userFullInfo?.answer?.length > 0 ? (
+                                userFullInfo?.answer?.map((answer, index) => (
+                                    <Link to={`/questions/${answer.question.questionId}`} key={`answer-${answer.answerId || index}`}>
+                                        <div>{answer.content}</div>
+                                    </Link>
+                                ))
+                            ) : (
+                                <div>No answers found.</div>
+                            )}
+                        </QnAList>
+                    </div>
+                </QnABlock>
+            </MypageBlock>
+            <EditProfileModal isOpen={isEditProfileOpen} onRequestClose={closeEditProfile} userFullInfo={userFullInfo} />
+        </MypageWrap>
+    )
 }
 
 export default Mypage;
-
-//회원가입 아바타 링크 지우기
-//셔플 아바타 해서 8개의 아바타중에 하나 하기
-//회원 가입, 로그인 후 이전 페이지 -1로 가기
-//마이 페이지 수정 가능하게 까지 정보 받아오기 까지
-
-//userprovider로 정보를 받아오고 정보 수정까지 가능하게-> modal?
