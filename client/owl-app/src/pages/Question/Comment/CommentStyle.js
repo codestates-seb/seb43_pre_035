@@ -9,6 +9,7 @@ export const ListWrap = styled.div`
   align-items: center;
   padding: 10px 10px 0 10px;
   width: 100%;
+  word-break: keep-all;
 `
 
 export const Wrap = styled.div`
@@ -36,6 +37,7 @@ export const Content = styled.div`
 export const EditButtons = styled.div`
     display: flex;
     justify-content: flex-end;
+    align-items: center;
 `
 
 export const Info = styled.div`

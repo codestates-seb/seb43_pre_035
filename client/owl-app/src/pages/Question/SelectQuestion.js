@@ -19,9 +19,7 @@ const SelectedWrap = styled.div`
     flex-direction: column;
     color: white;
     max-width: 900px;
-    min-width: 800px;
-    max-width: 900px;
-    min-width: 800px;
+    min-width: 500px;
 `
 const StyledTextHead = styled.input`
     display: flex;

@@ -48,6 +48,7 @@ const AnswerContent = styled.div`
     color: white;
     word-wrap: break-word;
     white-space: pre-wrap;
+    word-break: keep-all;
 `
 
 const UserBlock = styled.div`
