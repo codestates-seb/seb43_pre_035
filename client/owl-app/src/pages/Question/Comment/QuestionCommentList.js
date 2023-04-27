@@ -1,20 +1,9 @@
-import styled from "styled-components";
 import CommentCreated from "./CommentCreated";
 import { useState } from "react";
 import AddComment from "./AddComment";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { axiosAuth } from "../../../utils/axiosConfig";
 import { ListWrap } from './CommentStyle';
-
-// const CommentListWrap = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: space-between;
-//   align-items: center;
-//   padding: 10px;
-//   width: 100%;
-// `;
 
 const QuestionCommentList = ({ question, openModal }) => {
 

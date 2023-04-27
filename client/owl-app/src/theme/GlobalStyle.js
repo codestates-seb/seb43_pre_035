@@ -18,11 +18,13 @@ ${'' /* @import url('https://fonts.googleapis.com/css2?family=Atomic+Age&family=
     --colors-offwhite: #F8F8F8;
     --colors-border: #8D7B68;
     --colors-error: #991e1e;
+    --colors-error-invalid: rgb(157, 83, 83);
     --colors-button-bg-default: #AB3E16;
     ${'' /* --colors-button-bg-default: #b92b27; */}
     --colors-button-bg-active: #A82723;
     ${'' /* --colors-button-bg-active: #7E2B0D; */}
     --colors-text-default: #F8F8F8;
+    --colors-text-default-inactive:  rgb(248, 248, 248, 0.5);
     --colors-text-title: #F8F8F8;
     --colors-text-placeholder: #C3C1C1;
     --colors-text-placeholder-dark: #BEB7B7;
@@ -62,6 +64,7 @@ ${'' /* @import url('https://fonts.googleapis.com/css2?family=Atomic+Age&family=
     --size-text-qcontent-createdDate: 1rem;
     --size-text-comment: 0.8rem;
     --size-text-comment-info: 0.9rem;
+    --size-text-comment-error: 0.8rem;
 
     --fonts-thread-title-weight: 400;
     --fonts-weight-default: 100;
