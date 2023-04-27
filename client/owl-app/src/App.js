@@ -16,6 +16,7 @@ const QuestionDetail = lazy(() => import ('./pages/Question/QuestionDetail'));
 const Mypage = lazy(() => import ('./components/member/MyPage'));
 const ModalContainer = lazy(()=> import('./components/member/ModalContainer'));
 
+
 const LoadingBg = styled.div`
     background: #322A28;
 `
@@ -32,7 +33,6 @@ function App() {
   const [threads, isPending, error] = useFetch(url_threads_test);
   const [renderThreads, setRenderThreads] = useState(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
-
 
   const openModal = () => {
     setModalIsOpen(true);
