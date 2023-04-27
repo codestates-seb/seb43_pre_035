@@ -4,6 +4,7 @@ import { useState,useRef } from "react"
 import Editor from './Editor'
 
 
+
 const EditorBlock =styled.div`
     height: 500px;
   min-height: 400px;
@@ -27,6 +28,7 @@ font-weight: var(--fonts-weight-regular);
 background: var(--colors-dullbrown);
 color: var(--colors-text-default);
 white-space: pre-line;
+
 
 &::placeholder{
     color: var(--colors-text-placeholder-dark);
@@ -61,7 +63,7 @@ const AnswerLogin = ({addAnswerHandler}) => {
         addAnswerHandler(newAnswerContent);
         setNewAnswerContent('');
         setInvalidAnswer(false);
-        
+
     }
   
 

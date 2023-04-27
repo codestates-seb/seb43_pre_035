@@ -44,7 +44,7 @@ const StyledTextHead = styled.input`
         border: 1px solid var(--colors-yellow);
     }
 `
-const StyledTextContent = styled.textarea`
+const StyledTextContent = styled.input`
     height: 400px;
     display: flex;
     border: none;
@@ -104,6 +104,7 @@ const SelectQuestion = ({ question, openModal, dimensionsHandler, refContainer,i
             })
             .catch(err => {console.log(err.message)})
     }
+
 
 
     useEffect(() => {
