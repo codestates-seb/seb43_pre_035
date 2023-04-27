@@ -1,7 +1,5 @@
 import styled from "styled-components";
-import axios from 'axios';
 import { UpdateButton, ClickButton } from '../../styles/UIStyles'
-import ReactHTmlParser from 'html-react-parser'
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import FormInput from "../../components/ask/FormInput";
@@ -11,31 +9,35 @@ import { useContext } from 'react';
 
 
 const ContentWrap = styled.div`
-    ${'' /* width: 750px; */}
-    padding: 20px;
-    border-bottom: 1px solid var(--colors-qcontent-border);
     display: flex;
     justify-content: space-between;
+    padding: 20px;
+    padding-left: 0;
+    border-bottom: 1px solid var(--colors-qcontent-border);
+
 `
 
 const ContentDetail = styled.div`
-    ${'' /* width: 572px; */}
+    min-width: 400px;
     font-size: var(--size-text-qcontent);
     word-wrap: break-word;
     white-space: pre-wrap;
+    margin-right: 20px;
 `
 
-const UserWrap= styled.div`
+const UserWrap = styled.div`
     ${'' /* width: 130px; */}
     padding: 10px;
     display: flex;
     align-items: flex-end;
     flex-direction: column;
+    justify-content: center;
     ${'' /* align-items: flex-start; */}
 `
 
 const ButtonWrap = styled.div`
-    padding: 20px;
+    padding: 10px;
+    padding-right: 0;
     display: flex;
     justify-content: flex-end;
 `
@@ -54,7 +56,7 @@ const CreateAvatar = styled.img`
     border-radius: 50%;
 `
 
-const QuestionContent = ({question, setIsEditState}) =>{
+const QuestionContent = ({ question, setIsEditState }) => {
 
     const { memberId } = useContext(UserContext);
     const navigate = useNavigate()
@@ -62,7 +64,7 @@ const QuestionContent = ({question, setIsEditState}) =>{
     // console.log(question.member)
     const url = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}`;
 
-    const editClickQuestion=()=>{
+    const editClickQuestion = () => {
         setIsEditState(false)
     }
 
@@ -75,26 +77,22 @@ const QuestionContent = ({question, setIsEditState}) =>{
                 navigate('/');
                 navigate(0);
             })
-            .catch(err => {console.log("delete Q fail! ", err)})
+            .catch(err => { console.log("delete Q fail! ", err) })
     }
 
 
     return (
         <>
-        <ContentWrap>
-            <ContentDetail>{question.content}</ContentDetail>
-            <UserWrap>
-                <CreateAvatar src={question.member.avatarLink}></CreateAvatar>
-                <CreateUser>{question.member.displayName}</CreateUser>
-            {memberId === question.member.memberId?  <ButtonWrap>
-                <UpdateButton onClick={editClickQuestion}>수정</UpdateButton>
-                <UpdateButton onClick={deleteQHandler}>삭제</UpdateButton>
-            </ButtonWrap>: null}
-            {/* {isLoggedIn  && <ButtonWrap>
-                <UpdateButton onClick={EditQuestion}>수정</UpdateButton>
-                <UpdateButton onClick={deleteQHandler}>삭제</UpdateButton>
-            </ButtonWrap>} */}
-            </UserWrap>
+            <ContentWrap>
+                <ContentDetail>{question.content}</ContentDetail>
+                <UserWrap>
+                    <CreateAvatar src={question.member.avatarLink}></CreateAvatar>
+                    <CreateUser>{question.member.displayName}</CreateUser>
+                    {memberId === question.member.memberId ? <ButtonWrap>
+                        <UpdateButton onClick={editClickQuestion}>수정</UpdateButton>
+                        <UpdateButton onClick={deleteQHandler}>삭제</UpdateButton>
+                    </ButtonWrap> : null}
+                </UserWrap>
             </ContentWrap>
         </>
     )

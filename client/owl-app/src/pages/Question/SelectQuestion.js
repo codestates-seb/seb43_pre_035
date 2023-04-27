@@ -18,6 +18,8 @@ const SelectedWrap = styled.div`
     justify-content: center;
     flex-direction: column;
     color: white;
+    max-width: 900px;
+    min-width: 800px;
 `
 const StyledTextHead = styled.input`
     display: flex;
@@ -26,6 +28,7 @@ const StyledTextHead = styled.input`
     outline: none;
     margin-bottom: 10px;
     padding: 15px 10px;
+    ${'' /* margin-right: 20px; */}
     overflow: auto;
     border-radius: 10px;
     font-size: 1em;
@@ -46,12 +49,13 @@ const StyledTextHead = styled.input`
 `
 const StyledTextContent = styled.input`
     height: 400px;
+    width: 100%;
     display: flex;
     border: none;
     resize: none;
     outline: none;
     margin-bottom: 10px;
-    padding: 15px 10px;
+    padding: 15px 10px 15px 20px;
     overflow: auto;
     border-radius: 10px;
     font-size: 1em;
@@ -83,7 +87,6 @@ const SelectQuestion = ({ question, openModal, dimensionsHandler, refContainer }
     const [editTitleQuestion, setEditTitleQuestion] = useState(question.title)
     const [editContentQuestion, setEditContentQuestion] = useState(question.content)
 
-    // console.log(isLoggedIn)
 
     const navigate = useNavigate();
 
@@ -132,8 +135,8 @@ const SelectQuestion = ({ question, openModal, dimensionsHandler, refContainer }
                         <StyledTextContent
                           value={editContentQuestion}
                          onChange={onEditContent} />
-                          <ClickButton onClick={updateQHandler} >수정하기</ClickButton>
-                          <CancelButton onClick={()=>setIsEditState(true)}>취소하기</CancelButton>
+                          <ClickButton onClick={updateQHandler} >수정</ClickButton>
+                          <CancelButton onClick={()=>setIsEditState(true)}>취소</CancelButton>
                     </>
                     }
                     <QuestionCommentList

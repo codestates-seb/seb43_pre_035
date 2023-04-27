@@ -19,17 +19,17 @@ const TitleHeader = styled.div`
 const TitleBlock = styled.div`
     display: flex;
     padding-top: 15px;
-    ${'' /* height: 20px; */}
     color: #E7CC8F;
 `
 
-const TitleName = styled.h1`
-    padding-top: 10px;
-    height: 60px;
+const TitleName = styled.div`
+    padding 10px 10px 20px 0;
     font-size: 24px;
+    line-height: 1.5em;
+    max-width: 900px;
 `
 const Stat = styled.span`
-    width: 63.5px;
+    min-width: 63.5px;
 `
 
 const StyledIcon = styled(FontAwesomeIcon)`
@@ -40,10 +40,10 @@ const StyledIcon = styled(FontAwesomeIcon)`
 
 
 const CreateDate = styled.div`
-    ${'' /* width: 200px; */}
+    padding-left: 5px;
     padding-right: 20px;
-    height: 20px;
-    font-size: 15px;
+    ${'' /* height: 20px; */}
+    font-size: var(--size-text-qcontent-createdDate);
     display: flex;
     justify-content: space-around;
     color: #DACC96;

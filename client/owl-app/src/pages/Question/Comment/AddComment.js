@@ -1,40 +1,24 @@
-import styled from "styled-components";
-import {useState} from 'react'
+import { useState, useContext } from 'react'
 import CommentInput from "./CommentInput"
 import { UserContext } from "../../../utils/UserContextConfig";
-import { useContext } from 'react';
+import { AddWrap } from "./CommentStyle";
 
-const AddCommentWrap = styled.div`
-    padding: 10px;
-    padding-left: 20px;
-    width: 750;
-    ${'' /* border : 2px solid #FFFFFF; */}
-    color: #9D5353;
-    cursor: pointer;
-    .hover {
-
-    }
-`
-
-
-const AddComment = ({addCommentHandler, openModal}) => {
+const AddComment = ({ addCommentHandler, openModal }) => {
     const { isLoggedIn } = useContext(UserContext);
-    const [commentAllow,setCommentAllow] = useState(false);
+    const [commentAllow, setCommentAllow] = useState(false);
 
     const loginCheck = () => {
-        if (!isLoggedIn) {openModal(); return;}
+        if (!isLoggedIn) { openModal(); return; }
         setCommentAllow(true);
     }
 
     return (
-        <>
-            <AddCommentWrap onClick={loginCheck}>
+        <AddWrap onClick={loginCheck}>
             {isLoggedIn && commentAllow ?
-            (<CommentInput addCommentHandler={addCommentHandler} />) :
-            <div> Add a Comment </div>
+                (<CommentInput addCommentHandler={addCommentHandler} />) :
+                <div> Add a Comment </div>
             }
-            </AddCommentWrap>
-        </>
+        </AddWrap>
     )
 }
 

@@ -26,7 +26,6 @@ const url_threads_test_search1 = `${process.env.REACT_APP_URL_NGROKTEST}/questio
 function App() {
 
   const [queries, setQueries] = useState('');
-  const url_threads = `${process.env.REACT_APP_URL_JSON_QUESTIONS}`;
   const url_threads_test = `${process.env.REACT_APP_URL_NGROKTEST}/questions`
   const url_threads_test_queries = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${queries}`
 
@@ -38,7 +37,10 @@ function App() {
     setModalIsOpen(true);
     console.log("open Modal")
   };
-
+//1 2 3 4 ..... pageCount - totalElements....4 *30 (totalPages)  61....
+//totalElements 51..... 삭제된거 제외 (10개 삭제)
+//검색기능 search.... totalElements (61개) 삭제된거 포함 ---- pageCount: 늘어날수도 있다 ...
+//
   const closeModal = () => {
     setModalIsOpen(false);
     console.log("close Modal")

@@ -1,19 +1,9 @@
-import styled from "styled-components";
 import CommentCreated from "./CommentCreated";
 import { useState } from "react";
 import AddComment from "./AddComment";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { axiosAuth } from "../../../utils/axiosConfig";
-
-const CommentListWrap = styled.div`
-  padding: 10px;
-  width: 750px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-`;
+import { ListWrap } from './CommentStyle';
 
 const QuestionCommentList = ({ question, openModal }) => {
 
@@ -33,7 +23,8 @@ const QuestionCommentList = ({ question, openModal }) => {
         .post(url_qpost, {"content" : newComment})
         .then((res) => {
           console.log("add QComment success! id: ", res.questionReplyId);
-          navigate(0)
+          setComments([...comments, res.data]);
+          // navigate(0)
         })
         .catch((err) => {
           console.log("add QComment fail!", err);
@@ -42,15 +33,15 @@ const QuestionCommentList = ({ question, openModal }) => {
 
 
   const updateQuestionCommentHandler = (comment_id, updatedComment) => {
-    console.log("comment update is being handled");
-    //use map to change the comment_id content
+    // console.log("comment update is being handled");
     const url_qpatch = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/question_replies/${comment_id}`;
 
     axiosAuth
       .patch(url_qpatch, { "content" : updatedComment })
       .then((res) => {
         console.log("update Qcomment success!", res.questionReplyId);
-        navigate(0);
+        // setComments([...comments, res.data]);
+        // navigate(0);
 
       })
       .catch((err) => {
@@ -68,7 +59,8 @@ const QuestionCommentList = ({ question, openModal }) => {
       .delete(url_qpatch)
       .then((res) => {
         console.log("delete Qcomment success!", res);
-        navigate(0)
+        setComments([...comments.filter(el => el.questionReplyId !== comment_id)]);
+        // navigate(0);
       })
       .catch((err) => {
         console.log("delete Qcomment fail!", err);
@@ -78,7 +70,7 @@ const QuestionCommentList = ({ question, openModal }) => {
   return (
     <>
       {!!comments.length && (
-        <CommentListWrap>
+        <ListWrap>
           {comments.map((comment) => (
             <CommentCreated
               comment={comment}
@@ -89,7 +81,7 @@ const QuestionCommentList = ({ question, openModal }) => {
               openModal={openModal}
             ></CommentCreated>
           ))}
-        </CommentListWrap>
+        </ListWrap>
       )}
       <AddComment
         openModal={openModal}

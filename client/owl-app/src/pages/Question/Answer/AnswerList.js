@@ -9,39 +9,29 @@ const AnswerWrap = styled.div`
     padding-top: 10px;
     height: 100%;
 
-    width: 750px;
+    width: 100%:
     display: flex;
     flex-direction: column;
 `
 
-const Answerlist = ({ question, openModal}) => {
+const Answerlist = ({ question, openModal }) => {
 
     const [answers, setAnswers] = useState(question.answers);
 
-    const navigate = useNavigate();
-
-
-
-    // const headers = { headers :
-    //         {Authorization : `Bearer ${process.env.REACT_APP_NGROK_TOKEN}`
-    //             }};
+    // const navigate = useNavigate();
 
     const addAnswerHandler = (newAnswer) => {
 
 
         const url_apost = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/answers`
 
-        // const newAnswers = answers? [...answers, newAnswer] : [newAnswer];
-        // if (answers) setAnswers(newAnswers);
-        // else setAnswers(newAnswers);
-
-        //patch, add answers
 
         axiosAuth.post(url_apost, { "content": newAnswer })
-        .then(res => { console.log("answer patch success!", res)
-        navigate(0)
-    })
-        .catch(err => { console.log("answer patch fail!", err) });
+            .then(res => {
+                console.log("answer patch success!", res);
+                setAnswers([...answers, res.data]);
+            })
+            .catch(err => { console.log("answer patch fail!", err) });
 
     }
 
@@ -49,27 +39,34 @@ const Answerlist = ({ question, openModal}) => {
 
     const updateAnswerHandler = (answer_id, updateAnswer) => {
 
-    const url_apatch = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/answers/${answer_id}`
+        const url_apatch = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/answers/${answer_id}`
 
 
-    axiosAuth
-            .patch(url_apatch, { "content" : updateAnswer})
-            .then((res) => {
-                navigate(0)
+        axiosAuth
+            .patch(url_apatch, { "content": updateAnswer })
+            .then(res => {
+                console.log("update answer success!")
+                setAnswers(answers.map(el => {
+                    if(el.answerId === answer_id) el.content = updateAnswer;
+                    return el;
+                }))
             })
-            .catch((err)=>{
-                console.log("update EditAnswer fail!", err)
+            .catch(err => {
+                console.log("update answer fail!", err)
             })
     }
 
     const deleteAnswerHandler = (answer_id) => {
         // console.log('delete clicked!');
-    const url_apatch = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/answers/${answer_id}`
+        const url_apatch = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/answers/${answer_id}`
 
         //this should be replaced with 'delete'
         axiosAuth.delete(url_apatch)
-            .then(res => navigate(0))
-            .catch(err => {console.log("delete answer fail!", err)});
+            .then(res => {
+                setAnswers([...answers.filter(el => el.answerId !== answer_id)]);
+                // navigate(0);
+            })
+            .catch(err => { console.log("delete answer fail!", err) });
     }
 
 
@@ -77,13 +74,13 @@ const Answerlist = ({ question, openModal}) => {
         <>
             <AnswerWrap>
                 {answers ? answers.map((answer) => <AnswerDetail
-                                                    question={question}
-                                                    q_id={question.id}
-                                                    answer={answer}
-                                                    updateAnswerHandler={updateAnswerHandler}
-                                                    deleteAnswerHandler={deleteAnswerHandler}
-                                                    openModal={openModal}
-                                                    key={answer.answerId}></AnswerDetail>) : null}
+                    question={question}
+                    q_id={question.id}
+                    answer={answer}
+                    updateAnswerHandler={updateAnswerHandler}
+                    deleteAnswerHandler={deleteAnswerHandler}
+                    openModal={openModal}
+                    key={answer.answerId}></AnswerDetail>) : null}
             </AnswerWrap>
             <AnswerCreate
                 openModal={openModal}

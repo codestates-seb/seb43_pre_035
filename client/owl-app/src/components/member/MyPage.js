@@ -6,7 +6,6 @@ import { UserContext } from '../../utils/UserContextConfig';
 import { axiosAuth2 } from '../../utils/axiosConfig';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBinoculars } from '@fortawesome/free-solid-svg-icons';
-// import useFetch from '../../utils/useFetch'; 
 
 const MypageWrap = styled.div`
         width: 100%;
@@ -50,7 +49,7 @@ const UserAvatar = styled.div`
 const DisplayName = styled.div`
         width: 8vh;
         height: 2vh;
-        margin-left:2vh;   
+        margin-left:2vh;
         font-size: x-large;
         font-weight: bold;
     `
@@ -196,11 +195,11 @@ const Mypage = () => {
     const { userInfo } = useContext(UserContext);
     const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
     const [userFullInfo, setUserFullInfo] = useState(null);
-    // const userFullInfo = null; 
-    // const navigate = useNavigate(); 
-    //navigate(0); 
+    // const userFullInfo = null;
+    // const navigate = useNavigate();
+    //navigate(0);
 
-    // const updateMemberInfoHandler 
+    // const updateMemberInfoHandler
 
     // const deleteMemberHandle
     // AnwserList - addInfoHandler 참고

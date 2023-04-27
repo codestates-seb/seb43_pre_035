@@ -18,7 +18,10 @@ const ThreadsWrapper = styled.section`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-basis: 70%;
+    width: 70%;
+    min-width: 615px;
+    max-width: 1000px;
+    ${'' /* flex-basis: 70%; */}
     flex-grow: 1;
 `
 
