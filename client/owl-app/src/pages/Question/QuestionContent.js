@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import { UpdateButton, ClickButton } from '../../styles/UIStyles'
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import FormInput from "../../components/ask/FormInput";
 import { axiosAuth } from "../../utils/axiosConfig";
 import { UserContext } from "../../utils/UserContextConfig";
 import { useContext } from 'react';

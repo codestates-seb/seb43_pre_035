@@ -27,8 +27,15 @@ function App() {
 
   const [queries, setQueries] = useState('');
   const url_threads_test = `${process.env.REACT_APP_URL_NGROKTEST}/questions`
-  const url_threads_test_queries = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${queries}`
+  // const url_threads_test = `${process.env.REACT_APP_URL_NGROKTEST}/questions/?page=${pageNum}`
 
+  const url_threads_test_queries = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${queries}`
+  
+  //페이지뷰를 상태로 관리하고
+  //클릭핸들러를 만들어서 해당 페이지를 클릭할 때
+  //page에 맞는 걸 보여줘야 한다.
+  
+  //page&size=10 은 10개씩 불러와진다.
   const [threads, isPending, error] = useFetch(url_threads_test);
   const [renderThreads, setRenderThreads] = useState(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -51,7 +58,6 @@ function App() {
 
   //test with ngrok
   // const [thread1, isPending1, error1] = useFetch(url_threads_test_search1);
-
   const [sidebarStatus, setSidebarStatus] = useState({
     homeOn: true,
     tagsOn: false,

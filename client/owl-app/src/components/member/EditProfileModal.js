@@ -208,7 +208,7 @@ const EditProfileModal = ({ isOpen, onRequestClose, userFullInfo: propsUserFullI
         `${process.env.REACT_APP_URL_NGROKTEST}/users/${propsUserFullInfo?.memberId}`,
         updatedData
       );
-      console.log(updatedData)
+      
       setMember_id(response.data);
       onRequestClose();
       alert('회원 정보가 수정되었습니다.');

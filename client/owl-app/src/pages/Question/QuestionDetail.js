@@ -22,7 +22,7 @@ const QuestionWrap = styled.div`
 
 const QuestionDetail = ({ toggleLogin, sidebarStatus, setSidebarStatus, openModal }) => {
 
-    const { isLoggedIn } = useContext(UserContext);
+    
 
     const { questionId } = useParams();
     // const url = `http://localhost:3001/questions/${questionId}`;
@@ -55,14 +55,13 @@ const QuestionDetail = ({ toggleLogin, sidebarStatus, setSidebarStatus, openModa
                 <SideNav toggleLogin={toggleLogin}
                     sidebarStatus={sidebarStatus}
                     setSidebarStatus={setSidebarStatus}
-                    isLoggedIn={isLoggedIn}
                     clickSidebarHandler={clickSidebarHandler}
                 ></SideNav>
                 {isPending && <div>로딩중..</div>}
                 {error && <div>error</div>}
                 {question && sidebarStatus.qOn && (
                     <SelectQuestion question={question}
-                                    isLoggedIn={isLoggedIn}
+                                    
                                     openModal={openModal}
                                     refContainer={refContainer}
                                     dimensionsHandler={dimensionsHandler}

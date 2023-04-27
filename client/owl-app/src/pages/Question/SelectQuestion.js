@@ -9,7 +9,7 @@ import { ClickButton } from "../../styles/UIStyles"
 import { axiosAuth } from "../../utils/axiosConfig";
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from "../../utils/UserContextConfig";
-import { CancelButton} from '../Question/Answer/AnswerStyle';
+import { CancelButton } from '../Question/Answer/AnswerStyle';
 
 
 const SelectedWrap = styled.div`
@@ -18,6 +18,8 @@ const SelectedWrap = styled.div`
     justify-content: center;
     flex-direction: column;
     color: white;
+    max-width: 900px;
+    min-width: 800px;
     max-width: 900px;
     min-width: 800px;
 `
@@ -47,7 +49,7 @@ const StyledTextHead = styled.input`
         border: 1px solid var(--colors-yellow);
     }
 `
-const StyledTextContent = styled.input`
+const StyledTextContent = styled.textarea`
     height: 400px;
     width: 100%;
     display: flex;
@@ -87,9 +89,7 @@ const SelectQuestion = ({ question, openModal, dimensionsHandler, refContainer }
     const [editTitleQuestion, setEditTitleQuestion] = useState(question.title)
     const [editContentQuestion, setEditContentQuestion] = useState(question.content)
 
-
     const navigate = useNavigate();
-
     const onEditTitle = (e) => {
         setEditTitleQuestion(e.target.value)
     }
@@ -121,7 +121,7 @@ const SelectQuestion = ({ question, openModal, dimensionsHandler, refContainer }
             {getQuestion.map((question) =>(
         <SelectedWrap key={question} ref={refContainer}>
             {isEditState ?
-                <Title question={question} isLoggedIn={isLoggedIn} openModal={openModal}></Title>
+                <Title question={question} openModal={openModal}></Title>
                 : <StyledTextHead
                 value={editTitleQuestion}
                 onChange={onEditTitle}/>}

@@ -206,7 +206,7 @@ const Mypage = () => {
     const getMemberInfo = async (member_id) => {
         try {
             const response = await axiosAuth2.get(`${process.env.REACT_APP_URL_NGROKTEST}/users/${member_id}`);
-            console.log('getMemberInfo response:', response);
+            
             return response.data;
         } catch (err) {
             console.error(err);
@@ -216,11 +216,11 @@ const Mypage = () => {
 
     useEffect(() => {
         const fetchUserData = async () => {
-            console.log('fetchUserData called');
+            
             const tempInfo = await getMemberInfo(userInfo.memberId);
-            console.log('fetched userFullInfo:', tempInfo);
+            
             setUserFullInfo(tempInfo);
-            console.log("setUserFullInfo", tempInfo);
+            
         }
         fetchUserData();
 

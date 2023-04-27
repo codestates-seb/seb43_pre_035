@@ -21,7 +21,7 @@ const ReviseWrap = styled(Wrap)`
 const ErrorContainer = styled.div`
     display: flex;
     justify-content: flex-start;
-    width: 100%%;
+    width: 100%;
     padding-left: 20px;
     ${'' /* background: black; */}
 

@@ -129,4 +129,5 @@ export const ReviseSubmitBtn = styled.button`
         color: var(--colors-text-default);
     ${'' /* background: var(--colors-button-bg-active); */}
     cursor: pointer;
+    }
 `

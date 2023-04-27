@@ -1,7 +1,6 @@
 import styled from "styled-components"
 import {CreateWrap,CreateBlock, CreateHeader,CreateButtonLogin} from './AnswerStyle'
-import { useState,useRef } from "react"
-import Editor from './Editor'
+import { useState } from "react"
 
 
 
@@ -35,7 +34,6 @@ border: 1px solid var(--colors-answerInput-border);
     color: var(--colors-text-placeholder-dark);
     font-weight: var(--fonts-weight-regular);
 }
-
 &:focus, &:active{
     border: 1px solid var(--colors-yellow);
 }
@@ -49,9 +47,6 @@ const ErrorMessage = styled.span`
 const AnswerLogin = ({addAnswerHandler}) => {
     const [newAnswerContent, setNewAnswerContent] = useState('');
     const [invalidAnswer, setInvalidAnswer] = useState(false);
-
-    const editorRef = useRef();
-
 
     const onAnswerTextChange = (e) => {
 
@@ -79,7 +74,6 @@ const AnswerLogin = ({addAnswerHandler}) => {
                 <CreateHeader>답변작성</CreateHeader>
                 {invalidAnswer ? <ErrorMessage>내용을 입력해주세요.</ErrorMessage> : null}
                 <EditorBlock>
-                    {/* <Editor onChange={onAnswerTextChange} value={newAnswerContent}></Editor> */}
                     <EditorInput type='text' onChange={onAnswerTextChange} value={newAnswerContent} />
                 <CreateButtonLogin onClick={onClickSubmit}>작성하기</CreateButtonLogin>
                 </EditorBlock>
