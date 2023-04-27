@@ -54,7 +54,6 @@ const CommentInputPatch = ({ updatedContent, setUpdatedContent, editClickHandler
     }
 
     const handleKeyPress = (e) => {
-        // e.stopPropagation();
         if (e.keyCode === 13 && e.shiftKey){
             console.log('pressed!');
         }
@@ -66,7 +65,6 @@ const CommentInputPatch = ({ updatedContent, setUpdatedContent, editClickHandler
 
     return (
         <PatchContainer>
-
             <ReviseWrap>
                 <InputWrap>
                     <InputTextArea type="text" placeholder="Comment를 달아주세요"

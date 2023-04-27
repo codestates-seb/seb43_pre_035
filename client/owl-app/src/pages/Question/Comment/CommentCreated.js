@@ -2,7 +2,6 @@ import styled from "styled-components"
 import { UpdateButton } from "../../../styles/UIStyles";
 import { useState } from "react";
 import CommentInputPatch from "./CommentInputPatch";
-import AnswerCommentInputPatch from "./AnswerCommentInputPatch";
 import { UserContext } from "../../../utils/UserContextConfig";
 import { useContext } from 'react';
 import * as CommentStyle from './CommentStyle';
@@ -36,15 +35,11 @@ const CommentCreated = ({ comment, commentType, deleteAnswerCommentHandler, upda
 
     return (
         <>
-            {isEditable ? (commentType === 'qComment' ? <CommentInputPatch
+            {isEditable ? (<CommentInputPatch
                 updatedContent={updatedContent}
                 setUpdatedContent={setUpdatedContent}
                 editClickHandler={editClickHandler}
-                setIsEditable={setIsEditable} /> :
-                <AnswerCommentInputPatch updatedContent={updatedContent}
-                    setUpdatedContent={setUpdatedContent}
-                    editClickHandler={editClickHandler}
-                    setIsEditable={setIsEditable} />) :
+                setIsEditable={setIsEditable} />) :
                 <>
                     <CommentStyle.Wrap>
                         <CommentStyle.Content>
