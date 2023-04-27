@@ -37,9 +37,6 @@ export function UserProvider({children}){
             dispatch,
             memberId : userInfo.memberId,
             isLoggedIn: userInfo.isLoggedIn,
-            name: userInfo.name,
-            avatarLink : userInfo.avatarLink,
-            displayName : userInfo.displayName,
             handleUserLogin: (userInfo) => handleLogin(userInfo),
             handleUserLogout: () => handleLogout()
           }}>

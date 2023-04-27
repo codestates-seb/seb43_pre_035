@@ -26,8 +26,6 @@ const url_threads_test_search1 = `${process.env.REACT_APP_URL_NGROKTEST}/questio
 function App() {
 
   const [queries, setQueries] = useState('');
-  const url_threads = `${process.env.REACT_APP_URL_JSON_QUESTIONS}`;
-  const [pageNum,setPageNum] = useState(0)
   const url_threads_test = `${process.env.REACT_APP_URL_NGROKTEST}/questions`
   // const url_threads_test = `${process.env.REACT_APP_URL_NGROKTEST}/questions/?page=${pageNum}`
 
@@ -41,15 +39,15 @@ function App() {
   const [threads, isPending, error] = useFetch(url_threads_test);
   const [renderThreads, setRenderThreads] = useState(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  
-  
-  
 
   const openModal = () => {
     setModalIsOpen(true);
     console.log("open Modal")
   };
-
+//1 2 3 4 ..... pageCount - totalElements....4 *30 (totalPages)  61....
+//totalElements 51..... 삭제된거 제외 (10개 삭제)
+//검색기능 search.... totalElements (61개) 삭제된거 포함 ---- pageCount: 늘어날수도 있다 ...
+//
   const closeModal = () => {
     setModalIsOpen(false);
     console.log("close Modal")
@@ -60,7 +58,6 @@ function App() {
 
   //test with ngrok
   // const [thread1, isPending1, error1] = useFetch(url_threads_test_search1);
-  // console.log(threads)
   const [sidebarStatus, setSidebarStatus] = useState({
     homeOn: true,
     tagsOn: false,
@@ -84,12 +81,12 @@ function App() {
     }
     // if (thread1) console.log("thread1", thread1);
 
-  },[threads]);
+  }, [threads]);
 
-  
   // useEffect(() => {
   //   console.log("search results", thread1);
   // }, [thread1]);
+
 
   return (
       <Suspense fallback={renderLoader()}>

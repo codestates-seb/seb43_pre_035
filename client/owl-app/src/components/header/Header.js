@@ -2,7 +2,7 @@ import styled from "styled-components";
 import TopNav from "./TopNav";
 import TopNavlogged from "./TopNavlogged";
 import { useState, useEffect, useContext } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { UserContext } from "../../utils/UserContextConfig";
 
 const HeaderBlock = styled.header`
@@ -27,11 +27,18 @@ const Header = ({threads, setSidebarStatus}) => {
 
     const location = useLocation();
     const { isLoggedIn } = useContext(UserContext);
+    const navigate = useNavigate();
 
     const clickRouteHandler = (pathName) => {
-        if (pathName === 'Home') setSidebarStatus({homeOn: true, tagsOn: false, usersOn: false, qOn: false});
-        if (pathName === 'Question') setSidebarStatus({homeOn: false, tagsOn: false, usersOn: false, qOn: true});
-
+        if (pathName === 'Home') {
+            setSidebarStatus({homeOn: true, tagsOn: false, usersOn: false, qOn: false
+            });
+            // navigate(0);
+        }
+        if (pathName === 'Question') {setSidebarStatus({
+            homeOn: false, tagsOn: false, usersOn: false, qOn: true}
+            );
+}
     }
 
     useEffect(() => {

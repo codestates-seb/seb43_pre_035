@@ -12,17 +12,19 @@ ${'' /* @import url('https://fonts.googleapis.com/css2?family=Atomic+Age&family=
     --colors-lightbrown: #DACC96;
     --colors-dullbrown: #8D7B68;
     --colors-mediumbrown: #3F3432;
-    --colors-dullbrown: #8D7B68;
-    --colors-mediumbrown: #3F3432;
+    --colors-inputbrown: #493E3B;
     --colors-darkbrown: #231709;
     --colors-darkred: #AB3E16;
     --colors-offwhite: #F8F8F8;
     --colors-border: #8D7B68;
+    --colors-error: #991e1e;
+    --colors-error-invalid: rgb(157, 83, 83);
     --colors-button-bg-default: #AB3E16;
     ${'' /* --colors-button-bg-default: #b92b27; */}
     --colors-button-bg-active: #A82723;
     ${'' /* --colors-button-bg-active: #7E2B0D; */}
     --colors-text-default: #F8F8F8;
+    --colors-text-default-inactive:  rgb(248, 248, 248, 0.5);
     --colors-text-title: #F8F8F8;
     --colors-text-placeholder: #C3C1C1;
     --colors-text-placeholder-dark: #BEB7B7;
@@ -38,19 +40,31 @@ ${'' /* @import url('https://fonts.googleapis.com/css2?family=Atomic+Age&family=
     --colors-filter-text-active: #EFAA52;
     --colors-filter-text-inactive: rgba(239, 170, 82, 0.37);
     --colors-searchbar-bg: #F8F3E6;
+    --colors-answerInput-border: #9C9E91;
+    --colors-answerInput-content: #493E3B;
+    --colors-answerButton: #9D5353;
+    --colors-qcontent-border: #E7CC8F;
+    --colors-comment-border: rgba(231,204,143, 0.3);
+    --colors-comment-border-dull: #3F3432;
 
     --spacing-topnav: 140px;
     --spacing-sidenav-top: 150px;
     --spacing-sidenav-right: 30px;
+    --spacing-comment-lineheight: 1.5rem;
 
     --size-topnav-container: 130px;
     --size-sidenav-container: 180px;
     --size-sidenavitem-minwidth: 170px;
     --size-thread-minwidth: 125px;
-    --size-thread-avatar: 40px;
+    --size-thread-avatar: 50px;
     --size-text-button: 0.9rem;
     --size-text-headline: 1.5rem;
     --size-text-headline: 1.5rem;
+    --size-text-qcontent: 1.1rem;
+    --size-text-qcontent-createdDate: 1rem;
+    --size-text-comment: 0.8rem;
+    --size-text-comment-info: 0.9rem;
+    --size-text-comment-error: 0.8rem;
 
     --fonts-thread-title-weight: 400;
     --fonts-weight-default: 100;

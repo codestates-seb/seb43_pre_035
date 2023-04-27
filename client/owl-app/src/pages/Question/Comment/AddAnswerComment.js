@@ -1,19 +1,8 @@
 import styled from "styled-components";
-import {useState} from 'react'
+import {useState, useContext} from 'react'
 import AnswerCommentInput from "./AnswerCommentInput"
 import { UserContext } from "../../../utils/UserContextConfig";
-import { useContext } from 'react';
-
-const AddCommentWrap = styled.div`
-    padding: 10px;
-    width: 750;
-    ${'' /* border : 2px solid #FFFFFF; */}
-    color: #9D5353;
-    cursor: pointer;
-    .hover {
-
-    }
-`
+import { AddWrap } from "./CommentStyle";
 
 
 const AddAnswerComment = ({addAnswerCommentHandler, openModal}) => {
@@ -28,14 +17,12 @@ const AddAnswerComment = ({addAnswerCommentHandler, openModal}) => {
 
 
     return (
-        <>
-        <AddCommentWrap onClick={loginCheckAnswer}>
+        <AddWrap onClick={loginCheckAnswer}>
             {isLoggedIn && comment ?
             <AnswerCommentInput addAnswerCommentHandler={addAnswerCommentHandler}/> :
             <div> Add a Comment </div>
             }
-            </AddCommentWrap>
-        </>
+            </AddWrap>
     )
 }
 export default AddAnswerComment
