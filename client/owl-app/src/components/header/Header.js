@@ -42,7 +42,6 @@ const Header = ({threads, setSidebarStatus}) => {
     }
 
     useEffect(() => {
-        console.log(location);
         if (location.pathname === '/' && threads) {
             clickRouteHandler('Home');
         }

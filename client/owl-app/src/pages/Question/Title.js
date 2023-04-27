@@ -4,6 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBinoculars } from '@fortawesome/free-solid-svg-icons';
 import { faCommentDots } from '@fortawesome/free-regular-svg-icons';
 import { Link } from 'react-router-dom';
+import { UserContext } from "../../utils/UserContextConfig.js"
+import { useContext } from 'react';
+import { convertDate } from "../../styles/DateComponent.js";
 
 const TitleWrap = styled.div`
     display: flex;
@@ -55,6 +58,9 @@ const convertDate = (string) => {
 const Title = ({ question, isLoggedIn }) => {
 
 
+const Title = ({question}) =>{
+
+    const { isLoggedIn } = useContext(UserContext);
 
 
     return (

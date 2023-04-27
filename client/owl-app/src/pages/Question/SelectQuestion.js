@@ -87,9 +87,8 @@ const SelectQuestion = ({ question, openModal, dimensionsHandler, refContainer }
     const [editTitleQuestion, setEditTitleQuestion] = useState(question.title)
     const [editContentQuestion, setEditContentQuestion] = useState(question.content)
 
-
     const navigate = useNavigate();
-
+    
     const onEditTitle = (e) => {
         setEditTitleQuestion(e.target.value)
     }
@@ -121,7 +120,7 @@ const SelectQuestion = ({ question, openModal, dimensionsHandler, refContainer }
             {getQuestion.map((question) =>(
         <SelectedWrap key={question} ref={refContainer}>
             {isEditState ?
-                <Title question={question} isLoggedIn={isLoggedIn} openModal={openModal}></Title>
+                <Title question={question} openModal={openModal}></Title>
                 : <StyledTextHead
                 value={editTitleQuestion}
                 onChange={onEditTitle}/>}

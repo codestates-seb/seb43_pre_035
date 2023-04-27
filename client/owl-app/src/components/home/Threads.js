@@ -1,11 +1,12 @@
-import { Fragment, useEffect } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-
 import { ClickButton } from '../../styles/UIStyles.js';
-
 import Thread from './Thread';
 import Filters from './Filters';
+import Pagination from './Pagenation'
+import {axiosApi} from '../../utils/axiosConfig.js'
+import useFetch from '../../utils/useFetch.js';
 
 //findIndex, find... tempQuestion = //새로운퀘스천 (새로운 답변이 들어가있는것)
 //tempQuestions = [...questions, ]
@@ -49,6 +50,15 @@ const TempContainer = styled(ThreadsContainer)`
 `
 
 const Threads = ({threads, dimensionsHandler, refContainer}) => {
+    // const [limit, setLimit] = useState(10); 페이지네이션
+    // const [page, setPage] = useState(1);
+    // const offset = (page - 1) * limit; 
+    // totalpage = 페이지 수 totalelements = 총 게시물 갯수
+    // const url_page = `${process.env.REACT_APP_URL_NGROKTEST}/questions/?page`
+    // const [allPage] = useFetch(url_page)
+
+
+    // console.log("allPage:", threads)
 
     //임시로 스레드 컨테이너 크기대로 tags, users 페이지 설정
     useEffect(() => {
@@ -56,7 +66,6 @@ const Threads = ({threads, dimensionsHandler, refContainer}) => {
           dimensionsHandler(refContainer.current.offsetWidth, refContainer.current.offsetHeight);
         }
       }, []);
-
 
     return (
         <ThreadsWrapper>
@@ -68,7 +77,9 @@ const Threads = ({threads, dimensionsHandler, refContainer}) => {
             </HeaderContainer>
             <ThreadsContainer ref={refContainer}>
             {threads.map((thread, idx) => <Thread thread={thread} key={idx}/>)}
+            {/* {threads.slice(offset, offset + limit).map((thread, idx) => <Thread thread={thread} key={idx}/>)} */}
             </ThreadsContainer>
+            {/* <Pagination total={threads.length} limit={limit} page={page} setPage={setPage}></Pagination> */}
         </ThreadsWrapper>
     )
 }

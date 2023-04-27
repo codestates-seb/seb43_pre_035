@@ -106,7 +106,7 @@ const SideNav = ({sidebarStatus, clickSidebarHandler}) => {
       </SideNavStickyContainer>
     </SideNavContainer>
   );
-}; 
+};
 
 
 

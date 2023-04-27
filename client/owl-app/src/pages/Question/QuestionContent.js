@@ -18,11 +18,12 @@ const ContentWrap = styled.div`
 `
 
 const ContentDetail = styled.div`
-    min-width: 400px;
-    font-size: var(--size-text-qcontent);
-    word-wrap: break-word;
-    white-space: pre-wrap;
-    margin-right: 20px;
+    width: 572px;
+    font-size: 14px;
+    
+    word-wrap: break-word;      
+    white-space: pre-wrap;      
+   
 `
 
 const UserWrap = styled.div`
