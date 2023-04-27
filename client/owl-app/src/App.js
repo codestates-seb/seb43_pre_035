@@ -39,6 +39,7 @@ function App() {
   const [threads, isPending, error] = useFetch(url_threads_test);
   const [renderThreads, setRenderThreads] = useState(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [pageNum, setPageNum] = useState(0);
 
   const openModal = () => {
     setModalIsOpen(true);
@@ -110,8 +111,7 @@ function App() {
                       />} />
                     <Route path ="/signup" element = {<SignUp />} />
                     <Route path ="/mypage" element = {<Mypage />} />
-                    <Route path ="/ask" element = {<CreateThread threads={renderThreads}
-                                                                openModal={openModal}
+                    <Route path ="/ask" element = {<CreateThread openModal={openModal}
                     />} />
                     <Route path ="/questions/:questionId" element = {<QuestionDetail  isPending={isPending}
                                                                               sidebarStatus={sidebarStatus}

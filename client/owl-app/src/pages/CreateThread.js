@@ -23,7 +23,7 @@ const Headline = styled.h1`
     letter-spacing: .1rem;
 `
 
-const CreateThread = ({threads, openModal}) => {
+const CreateThread = ({openModal}) => {
 
     return (
         <AskFormWrapper>
