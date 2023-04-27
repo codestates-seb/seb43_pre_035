@@ -5,6 +5,7 @@ import com.hoot.member.MemberService;
 import com.hoot.security.CustomAuthorityUtils;
 import com.hoot.security.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
@@ -46,7 +47,13 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
         Random random = new Random();
         String randomNum = String.valueOf(random.nextInt(7) + 1);
         postDto.setAvatarLink("https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl0" + randomNum + ".png");
-        memberService.signup(postDto);
+        // 회원이 존재하지 않으면 회원 가입, 회원이 존재하면 로그인
+        try {
+            memberService.signup(postDto);
+        } catch (DataIntegrityViolationException e) {
+            MemberDto.Login login = new MemberDto.Login(email, "password123!!");
+            memberService.login(login);
+        }
 
         redirect(request, response, email, roles);
     }
