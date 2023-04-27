@@ -60,8 +60,6 @@ const AnswerLogin = ({addAnswerHandler}) => {
         setNewAnswerContent('');
         setInvalidAnswer(false);
 
-
-        // console.log(newAnswerContent)
     }
   
 
