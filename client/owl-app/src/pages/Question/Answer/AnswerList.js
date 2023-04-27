@@ -14,7 +14,7 @@ const AnswerWrap = styled.div`
     flex-direction: column;
 `
 
-const Answerlist = ({ question, openModal}) => {
+const Answerlist = ({ question, openModal }) => {
 
     const [answers, setAnswers] = useState(question.answers);
 
@@ -38,10 +38,11 @@ const Answerlist = ({ question, openModal}) => {
         //patch, add answers
 
         axiosAuth.post(url_apost, { "content": newAnswer })
-        .then(res => { console.log("answer patch success!", res)
-        navigate(0)
-    })
-        .catch(err => { console.log("answer patch fail!", err) });
+            .then(res => {
+                console.log("answer patch success!", res);
+                setAnswers([...answers, res.data]);
+            })
+            .catch(err => { console.log("answer patch fail!", err) });
 
     }
 
@@ -49,27 +50,30 @@ const Answerlist = ({ question, openModal}) => {
 
     const updateAnswerHandler = (answer_id, updateAnswer) => {
 
-    const url_apatch = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/answers/${answer_id}`
+        const url_apatch = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/answers/${answer_id}`
 
 
-    axiosAuth
-            .patch(url_apatch, { "content" : updateAnswer})
+        axiosAuth
+            .patch(url_apatch, { "content": updateAnswer })
             .then((res) => {
-                navigate(0)
+                console.log("update answer success!")
             })
-            .catch((err)=>{
-                console.log("update EditAnswer fail!", err)
+            .catch((err) => {
+                console.log("update answer fail!", err)
             })
     }
 
     const deleteAnswerHandler = (answer_id) => {
         // console.log('delete clicked!');
-    const url_apatch = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/answers/${answer_id}`
+        const url_apatch = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/answers/${answer_id}`
 
         //this should be replaced with 'delete'
         axiosAuth.delete(url_apatch)
-            .then(res => navigate(0))
-            .catch(err => {console.log("delete answer fail!", err)});
+            .then(res => {
+                setAnswers([...answers.filter(el => el.answerId !== answer_id)]);
+                // navigate(0);
+            })
+            .catch(err => { console.log("delete answer fail!", err) });
     }
 
 
@@ -77,13 +81,13 @@ const Answerlist = ({ question, openModal}) => {
         <>
             <AnswerWrap>
                 {answers ? answers.map((answer) => <AnswerDetail
-                                                    question={question}
-                                                    q_id={question.id}
-                                                    answer={answer}
-                                                    updateAnswerHandler={updateAnswerHandler}
-                                                    deleteAnswerHandler={deleteAnswerHandler}
-                                                    openModal={openModal}
-                                                    key={answer.answerId}></AnswerDetail>) : null}
+                    question={question}
+                    q_id={question.id}
+                    answer={answer}
+                    updateAnswerHandler={updateAnswerHandler}
+                    deleteAnswerHandler={deleteAnswerHandler}
+                    openModal={openModal}
+                    key={answer.answerId}></AnswerDetail>) : null}
             </AnswerWrap>
             <AnswerCreate
                 openModal={openModal}
