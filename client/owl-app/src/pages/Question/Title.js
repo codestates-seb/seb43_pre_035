@@ -26,7 +26,7 @@ const TitleBlock = styled.div`
 `
 
 const TitleName = styled.div`
-    padding 10px 10px 20px 0;
+    padding: 10px 10px 20px 0;
     font-size: 24px;
     line-height: 1.5em;
     max-width: 900px;
@@ -51,13 +51,6 @@ const CreateDate = styled.div`
     justify-content: space-around;
     color: #DACC96;
 `
-const convertDate = (string) => {
-    return `${string.substring(0, 4)}년 ${String(Number(string.substring(5, 7)))}월 ${String(Number(string.substring(8, 10)))}일`
-}
-
-const Title = ({ question, isLoggedIn }) => {
-
-
 const Title = ({question}) =>{
 
     const { isLoggedIn } = useContext(UserContext);

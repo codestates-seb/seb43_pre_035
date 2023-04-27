@@ -47,7 +47,7 @@ const StyledTextHead = styled.input`
         border: 1px solid var(--colors-yellow);
     }
 `
-const StyledTextContent = styled.input`
+const StyledTextContent = styled.textarea`
     height: 400px;
     width: 100%;
     display: flex;
