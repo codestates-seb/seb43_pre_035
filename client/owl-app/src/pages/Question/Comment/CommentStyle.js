@@ -1,6 +1,15 @@
 import styled from "styled-components"
 
 
+export const ListWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  width: 100%;
+`;
+
 export const Wrap = styled.div`
     padding: 5px;
     padding-left: 10px;
