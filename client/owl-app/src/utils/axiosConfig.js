@@ -35,5 +35,20 @@ const axiosAuthApi = (url, options) => {
     return instance;
 }
 
+const axiosAuthUserApi = (url, options) => {
+    if (!token) token = localStorage.getItem('token');
+    const instance = axios.create({
+        baseURL: url,
+        headers: { 
+            'ngrok-skip-browser-warning': '69420',
+            'Access-Control-Allow-Origin': 'http://localhost:3000',
+            Authorization: token 
+        },
+        ...options
+    })
+    return instance;
+}
+
 export const axiosDefault = axiosApi(BASE_URL)
 export const axiosAuth = axiosAuthApi(BASE_URL)
+export const axiosAuth2 = axiosAuthUserApi(BASE_URL)
