@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import AddAnswerComment from "../Comment/AddAnswerComment";
+import AddComment from "../Comment/AddComment";
 import AnswerCommentList from '../Comment/AnswerCommentList'
 import { ClickButton, UpdateButton } from "../../../styles/UIStyles";
 import { CancelButton } from './AnswerStyle'
@@ -17,6 +17,7 @@ const AnswerBlock = styled.div`
     color: white;
     z-index: 100;
     width: 100%;
+    line-height: 2rem;
 `
 
 const AnsweruserBlock = styled.div`
@@ -57,6 +58,7 @@ const UserBlock = styled.div`
     padding-bottom: 10px;
     font-weight: var(--fonts-weight-default);
     font-size: var(--size-text-avatar-info);
+    line-height: 1rem;
 `
 
 const CreateUserA = styled.div`
@@ -226,9 +228,9 @@ const AnswerDetail = ({ question, answer, updateAnswerHandler, deleteAnswerHandl
                     updateAnswerCommentHandler={updateAnswerCommentHandler}
                     openModal={openModal}
                 ></AnswerCommentList>
-                <AddAnswerComment addAnswerCommentHandler={addAnswerCommentHandler}
+                <AddComment addCommentHandler={addAnswerCommentHandler}
                     openModal={openModal}
-                ></AddAnswerComment>
+                ></AddComment>
             </AnswerBlock>
 
 

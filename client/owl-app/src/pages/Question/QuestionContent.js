@@ -10,7 +10,7 @@ const ContentWrap = styled.div`
     display: flex;
     justify-content: space-between;
     padding: 20px;
-    padding-left: 0;
+    padding-left: 10px;
     border-bottom: 1px solid var(--colors-qcontent-border);
 
 `

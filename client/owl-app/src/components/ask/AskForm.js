@@ -15,6 +15,8 @@ const FormWrapper = styled.form`
     height: 100%;
     background: var(--colors-mediumbrown);
     padding: 10px 20px 30px 20px;
+    max-width: 1000px;
+
     ${'' /* padding-bottom: 30px; */}
     border-radius: 25px;
 `

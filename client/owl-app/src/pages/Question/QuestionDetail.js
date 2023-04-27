@@ -18,11 +18,13 @@ const QuestionWrap = styled.div`
     flex-direction: row;
     justify-content: center;
     align-items: flex-start;
+    line-height: 2rem;
+
 `
 
 const QuestionDetail = ({ toggleLogin, sidebarStatus, setSidebarStatus, openModal }) => {
 
-    
+
 
     const { questionId } = useParams();
     // const url = `http://localhost:3001/questions/${questionId}`;
@@ -61,7 +63,7 @@ const QuestionDetail = ({ toggleLogin, sidebarStatus, setSidebarStatus, openModa
                 {error && <div>error</div>}
                 {question && sidebarStatus.qOn && (
                     <SelectQuestion question={question}
-                                    
+
                                     openModal={openModal}
                                     refContainer={refContainer}
                                     dimensionsHandler={dimensionsHandler}
