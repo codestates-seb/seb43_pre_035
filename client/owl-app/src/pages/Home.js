@@ -4,8 +4,7 @@ import Tags from '../components/home/Tags';
 import Users from '../components/home/Users';
 
 import styled from 'styled-components';
-import { useState, useRef, useEffect, useContext } from 'react';
-// import { UserContext } from '../App';
+import { useState, useRef } from 'react';
 
 
 const Main = styled.div`
@@ -24,7 +23,7 @@ const Main = styled.div`
 
 
 
-const Home = ({threads, isPending, toggleLogin, sidebarStatus, setSidebarStatus}) => {
+const Home = ({threads, sidebarStatus, setSidebarStatus}) => {
 
     //for setting the tags/users pages
     const refContainer = useRef(null);

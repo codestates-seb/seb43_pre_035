@@ -1,20 +1,36 @@
-import {useState, useEffect, Fragment, createContext, useReducer} from 'react';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import {useState, useEffect, lazy, Suspense } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import GlobalStyle from './theme/GlobalStyle';
 import { UserProvider } from './utils/UserContextConfig';
-//import pages
-//import with Lazy, and load Suspense while loading
-import Home from './pages/Home';
-import Login from './pages/Login';
-import SignUp from './pages/SignUp';
-import QuestionDetail from './pages/Question/QuestionDetail';
-import Header from './components/header/Header';
-import CreateThread from './pages/CreateThread';
-import Mypage from './components/member/MyPage';
+import useFetch from './utils/useFetch';
+import styled from 'styled-components';
+// import Header from './components/header/Header';
+
+//import pages with Lazy, and load Suspense while loading
+
+const Home = lazy(() => import('./pages/Home'));
+const Login = lazy(() => import('./pages/Login'));
+const SignUp = lazy(() => import('./pages/SignUp'));
+const Header = lazy(() => import('./components/header/Header'));
+const CreateThread = lazy(() => import('./pages/CreateThread'));
+const QuestionDetail = lazy(() => import ('./pages/Question/QuestionDetail'));
+const Mypage = lazy(() => import ('./components/member/MyPage'));
+const ModalContainer = lazy(()=> import('./components/member/ModalContainer'));
+
+// import Home from './pages/Home';
+// import Login from './pages/Login';
+// import SignUp from './pages/SignUp';
+// import QuestionDetail from './pages/Question/QuestionDetail';
+// import Header from './components/header/Header';
+// import CreateThread from './pages/CreateThread';
+// import Mypage from './components/member/MyPage';
 
 //import data
-import useFetch from './utils/useFetch';
-import ModalContainer from './components/member/ModalContainer'; // 모달 불러오기
+
+const LoadingBg = styled.div`
+    background: #322A28;
+`
+
 
 const url_threads_test_search1 = `${process.env.REACT_APP_URL_NGROKTEST}/questions/search/?title=아무거나`;
 
@@ -39,6 +55,8 @@ function App() {
     setModalIsOpen(false);
     console.log("close Modal")
   };
+
+  const renderLoader = () => <LoadingBg>Loading...</LoadingBg>;
 
 
   //test with ngrok
@@ -75,36 +93,38 @@ function App() {
 
 
   return (
-      <UserProvider>
-        <GlobalStyle />
-        <Router>
-        <ModalContainer isOpen={modalIsOpen}
-                        onRequestClose={closeModal} />
-            <Header threads={renderThreads}
-                    setSidebarStatus={setSidebarStatus}
-            ></Header>
-            <Routes>
-                  <Route path ="/" element = {<Home threads={renderThreads}
-                                                    isPending={isPending}
-                                                    sidebarStatus={sidebarStatus}
-                                                    setSidebarStatus={setSidebarStatus}
-                                                    openModal={openModal}/>} />
-                  <Route path ="/login" element = {<Login
-                                                    isOpen={modalIsOpen}
-                                                    onRequestClose={closeModal}
+      <Suspense fallback={renderLoader()}>
+        <UserProvider>
+          <GlobalStyle />
+          <Router>
+          <ModalContainer isOpen={modalIsOpen}
+                          onRequestClose={closeModal} />
+              <Header threads={renderThreads}
+                      setSidebarStatus={setSidebarStatus}
+              ></Header>
+              <Routes>
+                    <Route path ="/" element = {<Home threads={renderThreads}
+                                                      isPending={isPending}
+                                                      sidebarStatus={sidebarStatus}
+                                                      setSidebarStatus={setSidebarStatus}
+                                                      openModal={openModal}/>} />
+                    <Route path ="/login" element = {<Login
+                                                      isOpen={modalIsOpen}
+                                                      onRequestClose={closeModal}
+                      />} />
+                    <Route path ="/signup" element = {<SignUp />} />
+                    <Route path ="/mypage" element = {<Mypage />} />
+                    <Route path ="/ask" element = {<CreateThread threads={renderThreads}
+                                                                openModal={openModal}
                     />} />
-                  <Route path ="/signup" element = {<SignUp />} />
-                  <Route path ="/mypage" element = {<Mypage />} />
-                  <Route path ="/ask" element = {<CreateThread threads={renderThreads}
-                                                               openModal={openModal}
-                  />} />
-                  <Route path ="/questions/:questionId" element = {<QuestionDetail  isPending={isPending}
-                                                                            sidebarStatus={sidebarStatus}
-                                                                            setSidebarStatus={setSidebarStatus}
-                                                                            openModal={openModal}/> } />
-            </Routes>
-        </Router>
-        </UserProvider>
+                    <Route path ="/questions/:questionId" element = {<QuestionDetail  isPending={isPending}
+                                                                              sidebarStatus={sidebarStatus}
+                                                                              setSidebarStatus={setSidebarStatus}
+                                                                              openModal={openModal}/> } />
+              </Routes>
+          </Router>
+          </UserProvider>
+        </Suspense>
   );
 }
 export default App;
