@@ -10,7 +10,7 @@ import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 import { faCircleQuestion } from '@fortawesome/free-regular-svg-icons';
 
 import { useContext } from 'react';
-import { UserContext } from '../../App';
+import { UserContext } from '../../utils/UserContextConfig';
 
 
 const StyledIcon = styled(FontAwesomeIcon)`
@@ -18,7 +18,7 @@ const StyledIcon = styled(FontAwesomeIcon)`
     padding-right: 6px;
 `
 
-const TopNavlogged = ({toggleLogin, openModal }) => {
+const TopNavlogged = () => {
 
     const { handleUserLogout } = useContext(UserContext);
 
@@ -43,7 +43,7 @@ const TopNavlogged = ({toggleLogin, openModal }) => {
                         <Link to = '/'><StyledIcon icon={faArrowRightFromBracket} /></Link>
                     </IconButton>
                     <IconButton >
-                        <StyledIcon icon={faCircleQuestion} onClick={openModal}/>
+                        <StyledIcon icon={faCircleQuestion}/>
                     </IconButton>
             </TopnavTemplate>
         </>

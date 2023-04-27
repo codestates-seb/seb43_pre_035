@@ -5,7 +5,7 @@ import { useState, useEffect, useContext } from 'react';
 import { ClickButton } from '../../styles/UIStyles.js';
 import { useNavigate } from 'react-router-dom';
 import { axiosAuth } from '../../utils/axiosConfig';
-import { UserContext } from '../../App';
+import { UserContext } from '../../utils/UserContextConfig';
 
 
 // import  useApiHeaders from '../../utils/useApiHeaders';

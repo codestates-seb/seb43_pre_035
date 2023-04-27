@@ -1,29 +1,27 @@
-import {useState, useEffect, Fragment, createContext, useReducer} from 'react';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import {useState, useEffect, lazy, Suspense } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import GlobalStyle from './theme/GlobalStyle';
-//import pages
-//import with Lazy, and load Suspense while loading
-import Home from './pages/Home';
-import Login from './pages/Login';
-import SignUp from './pages/SignUp';
-import QuestionDetail from './pages/Question/QuestionDetail';
-import Header from './components/header/Header';
-import CreateThread from './pages/CreateThread';
-import Mypage from './components/member/MyPage';
-
-//import data
+import { UserProvider } from './utils/UserContextConfig';
 import useFetch from './utils/useFetch';
-import ModalContainer from './components/member/ModalContainer'; // 모달 불러오기
+import styled from 'styled-components';
 
-//login state management
-import * as AuthReducer from './utils/store/reducers/authReducer';
-import * as ACTIONS from './utils/store/actions/actions';
+//import pages with Lazy, and load Suspense while loading
 
-const url_threads_test_search1 = `${process.env.REACT_APP_URL_NGROKTEST}/questions/search/?title=아무거나`
+const Home = lazy(() => import('./pages/Home'));
+const Login = lazy(() => import('./pages/Login'));
+const SignUp = lazy(() => import('./pages/SignUp'));
+const Header = lazy(() => import('./components/header/Header'));
+const CreateThread = lazy(() => import('./pages/CreateThread'));
+const QuestionDetail = lazy(() => import ('./pages/Question/QuestionDetail'));
+const Mypage = lazy(() => import ('./components/member/MyPage'));
+const ModalContainer = lazy(()=> import('./components/member/ModalContainer'));
 
-//로그인 context 정보
-export const UserContext = createContext();
 
+const LoadingBg = styled.div`
+    background: #322A28;
+`
+
+const url_threads_test_search1 = `${process.env.REACT_APP_URL_NGROKTEST}/questions/search/?title=아무거나`;
 
 function App() {
 
@@ -36,19 +34,6 @@ function App() {
   const [renderThreads, setRenderThreads] = useState(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  const storedInfo = JSON.parse(localStorage.getItem('userInfo'));
-  const [userInfo, dispatch] = useReducer(AuthReducer.AuthReducer, storedInfo ? storedInfo : AuthReducer.initialState);
-
-  const handleLogin = (data) => {
-    console.log("app handleLogin");
-    dispatch(ACTIONS.login(data));
-  }
-
-  const handleLogout = () => {
-    console.log("app handleLogout");
-    dispatch(ACTIONS.logout());
-  }
-
   const openModal = () => {
     setModalIsOpen(true);
     console.log("open Modal")
@@ -59,16 +44,7 @@ function App() {
     console.log("close Modal")
   };
 
-
-  useEffect(() => {
-    localStorage.setItem('userInfo', JSON.stringify({
-        isLoggedIn: userInfo.isLoggedIn,
-        memberId: userInfo.memberId,
-        name: userInfo.name,
-        avatarLink : userInfo.avatarLink,
-        displayName : userInfo.displayName,
-    }));
-  }, [userInfo]);
+  const renderLoader = () => <LoadingBg>Loading...</LoadingBg>;
 
 
   //test with ngrok
@@ -93,7 +69,6 @@ function App() {
 
       // ngrok testing
       setRenderThreads(threads.content);
-      // setRenderThreads(threads);
 
     }
     // if (thread1) console.log("thread1", thread1);
@@ -106,46 +81,38 @@ function App() {
 
 
   return (
-    <UserContext.Provider value={{
-      userInfo,
-      dispatch,
-      memberId : userInfo.memberId,
-      isLoggedIn: userInfo.isLoggedIn,
-      handleUserLogin: (userInfo) => handleLogin(userInfo),
-      handleUserLogout: () => handleLogout()
-    }}>
-        <GlobalStyle />
-        <Router>
-        <ModalContainer isOpen={modalIsOpen}
-                        onRequestClose={closeModal} />
-            <Header threads={renderThreads}
-                    setSidebarStatus={setSidebarStatus}
-                    openModal={openModal}
-            ></Header>
-            <Routes>
-                  <Route path ="/" element = {<Home threads={renderThreads}
-                                                    isPending={isPending}
-                                                    sidebarStatus={sidebarStatus}
-                                                    setSidebarStatus={setSidebarStatus}
-                                                    openModal={openModal}/>} />
-                  <Route path ="/login" element = {<Login
-                                                    isOpen={modalIsOpen}
-                                                    onRequestClose={closeModal}
+      <Suspense fallback={renderLoader()}>
+        <UserProvider>
+          <GlobalStyle />
+          <Router>
+          <ModalContainer isOpen={modalIsOpen}
+                          onRequestClose={closeModal} />
+              <Header threads={renderThreads}
+                      setSidebarStatus={setSidebarStatus}
+              ></Header>
+              <Routes>
+                    <Route path ="/" element = {<Home threads={renderThreads}
+                                                      isPending={isPending}
+                                                      sidebarStatus={sidebarStatus}
+                                                      setSidebarStatus={setSidebarStatus}
+                                                      openModal={openModal}/>} />
+                    <Route path ="/login" element = {<Login
+                                                      isOpen={modalIsOpen}
+                                                      onRequestClose={closeModal}
+                      />} />
+                    <Route path ="/signup" element = {<SignUp />} />
+                    <Route path ="/mypage" element = {<Mypage />} />
+                    <Route path ="/ask" element = {<CreateThread threads={renderThreads}
+                                                                openModal={openModal}
                     />} />
-                  <Route path ="/signup" element = {<SignUp />} />
-                  <Route path ="/mypage" element = {<Mypage />} />
-                  <Route path ="/ask" element = {<CreateThread threads={renderThreads}
-                                                               openModal={openModal}
-                  />} />
-                  <Route path ="/questions/:questionId" element = {<QuestionDetail  isPending={isPending}
-                                                                            sidebarStatus={sidebarStatus}
-                                                                            setSidebarStatus={setSidebarStatus}
-                                                                            openModal={openModal}/> } />
-            </Routes>
-        </Router>
-      </UserContext.Provider>
+                    <Route path ="/questions/:questionId" element = {<QuestionDetail  isPending={isPending}
+                                                                              sidebarStatus={sidebarStatus}
+                                                                              setSidebarStatus={setSidebarStatus}
+                                                                              openModal={openModal}/> } />
+              </Routes>
+          </Router>
+          </UserProvider>
+        </Suspense>
   );
 }
-//onClick={openModal}
-//UserProvider - 전역에서 로그인 정보 사용 가능
 export default App;

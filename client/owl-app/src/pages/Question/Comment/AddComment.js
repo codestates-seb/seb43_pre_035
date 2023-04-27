@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {useState} from 'react'
 import CommentInput from "./CommentInput"
-import { UserContext } from "../../../App";
+import { UserContext } from "../../../utils/UserContextConfig";
 import { useContext } from 'react';
 
 const AddCommentWrap = styled.div`
@@ -28,7 +28,7 @@ const AddComment = ({addCommentHandler, openModal}) => {
     return (
         <>
             <AddCommentWrap onClick={loginCheck}>
-            {isLoggedIn && commentAllow ?  
+            {isLoggedIn && commentAllow ?
             (<CommentInput addCommentHandler={addCommentHandler} />) :
             <div> Add a Comment </div>
             }

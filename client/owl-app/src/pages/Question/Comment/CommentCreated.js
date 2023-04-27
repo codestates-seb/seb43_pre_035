@@ -1,10 +1,9 @@
-import { Button } from "react-bootstrap"
 import styled from "styled-components"
 import { UpdateButton } from "../../../styles/UIStyles";
 import { useState } from "react";
 import CommentInputPatch from "./CommentInputPatch";
 import AnswerCommentInputPatch from "./AnswerCommentInputPatch";
-import { UserContext } from "../../../App";
+import { UserContext } from "../../../utils/UserContextConfig";
 import { useContext } from 'react';
 
 
@@ -23,8 +22,8 @@ const CommentWrap = styled.div`
 const CommentDetail = styled.div`
     padding: 10px;
     width: 60vw;
-    word-wrap: break-word;      
-    white-space: pre-wrap;    
+    word-wrap: break-word;
+    white-space: pre-wrap;
 `
 
 const CommentUser = styled.div`
@@ -42,14 +41,14 @@ const CommentDate = styled.div`
 const convertDate = (string) => {
     return `${string.substring(0, 4)}년 ${String(Number(string.substring(5, 7)))}월 ${String(Number(string.substring(8, 10)))}일`
   }
-  
+
 const CommentCreated = ({comment, commentType, deleteAnswerCommentHandler,updateQuestionCommentHandler, updateAnswerCommentHandler, deleteQuestionCommentHandler, openModal})=>{
 
     const  [isEditable,setIsEditable] = useState(false);
     const  [updatedContent, setUpdatedContent] = useState(comment.content);
     const { memberId ,isLoggedIn} = useContext(UserContext);
 
-    
+
 
     const deleteClickHandler = (e) => {
         e.stopPropagation();
@@ -57,25 +56,25 @@ const CommentCreated = ({comment, commentType, deleteAnswerCommentHandler,update
         if(!isLoggedIn) {openModal(); return;};
         if (commentType==='qComment') deleteQuestionCommentHandler(comment.questionReplyId);
         if (commentType==='aComment') deleteAnswerCommentHandler(comment.answerReplyId);
-        
+
     }
 
-    
-     
+
+
 
     const editClickHandler = () => {
         // console.log("comment update clicked!");
         if(!isLoggedIn) {openModal(); return};
         if (commentType==='qComment') updateQuestionCommentHandler(comment.questionReplyId, updatedContent);
         if (commentType==='aComment') updateAnswerCommentHandler(comment.answerReplyId, updatedContent);
-        
+
     }
-    
+
 
 
     return(
         <>
-            {isEditable? (commentType === 'qComment' ? <CommentInputPatch     
+            {isEditable? (commentType === 'qComment' ? <CommentInputPatch
                                             updatedContent={updatedContent}
                                             setUpdatedContent={setUpdatedContent}
                                             editClickHandler={editClickHandler}

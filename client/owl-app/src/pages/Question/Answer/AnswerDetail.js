@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import AddAnswerComment from "../Comment/AddAnswerComment";
 import AnswerCommentList from '../Comment/AnswerCommentList'
-import { ClickButton,UpdateButton } from "../../../styles/UIStyles";
-import { CancelButton} from './AnswerStyle'
+import { ClickButton, UpdateButton } from "../../../styles/UIStyles";
+import { CancelButton } from './AnswerStyle'
 import { useState } from "react";
-import { useNavigate,useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { axiosAuth } from "../../../utils/axiosConfig";
-import { UserContext } from "../../../App";
+import { UserContext } from "../../../utils/UserContextConfig";
 import { useContext } from 'react';
 
 const AnswerBlock = styled.div`
@@ -87,7 +87,7 @@ const ReviseButton = styled(UpdateButton) `
     background: var(--colors-darkred);
 `
 
-const AnswerDetail = ({ question, answer, answers, updateAnswerHandler, deleteAnswerHandler, isLoggedIn, openModal }) => {
+const AnswerDetail = ({ question, answer, updateAnswerHandler, deleteAnswerHandler, openModal }) => {
     const { memberId } = useContext(UserContext);
     // console.log(answer.member.memberId)
 
@@ -177,11 +177,11 @@ const AnswerDetail = ({ question, answer, answers, updateAnswerHandler, deleteAn
 
                 </AnsweruserBlock>
 
-                <AnswerCommentList answerComments={answerComments}
+                <AnswerCommentList  key={answer.answerId}
+                                    answerComments={answerComments}
                                     deleteAnswerCommentHandler={deleteAnswerCommentHandler}
                                     updateAnswerCommentHandler={updateAnswerCommentHandler}
                                     openModal={openModal}
-                                    isLoggedIn={isLoggedIn}
                 ></AnswerCommentList>
             </AnswerBlock>
             <AddAnswerComment addAnswerCommentHandler={addAnswerCommentHandler}
