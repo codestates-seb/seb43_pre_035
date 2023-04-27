@@ -118,7 +118,7 @@ const QnABlock = styled.div`
 `
 
 const QnAList = styled.div`
-width: 280px;
+    width: 280px;
     height: 130px;
     margin-bottom: 20px;
     border: 1px solid #48120E;

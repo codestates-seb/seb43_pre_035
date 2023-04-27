@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from "axios";
+import { axiosDefault } from './axiosConfig';
 
 const useFetch = (url) => {
 
@@ -9,10 +9,7 @@ const useFetch = (url) => {
 
   useEffect(() => {
 
-        axios.get(url, {headers : {
-            'ngrok-skip-browser-warning': '69420',
-            'Access-Control-Allow-Origin': 'http://localhost:3000',
-        }})
+        axiosDefault.get(url)
             .then(res => {
                 return res.data;
             })

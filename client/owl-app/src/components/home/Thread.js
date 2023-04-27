@@ -21,11 +21,11 @@ const ThreadContainer = styled.li`
 const ThreadContent = styled.div`
     display: flex;
     flex-direction: column;
-    flex-basis: 15em;
-    flex-grow: 5;
+    flex-basis: 20em;
+    flex-grow: 8;
     align-items: flex-start;
     min-width: 210px;
-    padding: 0 10px 10px 3px;
+    padding: 0 20px 10px 3px;
     color: var(--colors-text-default);
 
 `
@@ -121,7 +121,7 @@ const Thread = ({thread}) => {
                 </Stat>
                 <Stat>
                     <StyledIcon icon={faCommentDots} />
-                    <span>{thread.answer?.length ? 1 : 0}</span>
+                    <span>{thread.answers.length}</span>
                 </Stat>
             </ThreadStats>
         </ThreadContainer>

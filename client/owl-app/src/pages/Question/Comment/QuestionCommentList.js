@@ -4,6 +4,7 @@ import { useState } from "react";
 import AddComment from "./AddComment";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { axiosAuth } from "../../../utils/axiosConfig";
 
 const CommentListWrap = styled.div`
   padding: 10px;
@@ -14,9 +15,10 @@ const CommentListWrap = styled.div`
   align-items: center;
 `;
 
-const QuestionCommentList = ({ question, isLoggedIn, openModal }) => {
+const QuestionCommentList = ({ question, openModal }) => {
+
   const [comments, setComments] = useState(question.questionReplies);
-  // const replies = question.questionReplies
+
   const navigate = useNavigate();
 
   const url_qpost = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/question_replies`;
@@ -24,21 +26,11 @@ const QuestionCommentList = ({ question, isLoggedIn, openModal }) => {
 
 
 
-  const headers = { headers :
-    {Authorization : `Bearer ${process.env.REACT_APP_NGROK_TOKEN}`
-}
-};
-  console.log(question.questionReplies)
-
-
   const addCommentHandler = (newComment) => {
-    // console.log("comments: ", newComment);
-    // setComments([...comments, newComment]);
 
     //axios.patch to add comments...-----> with real server, revise to use post to add comments
-    axios
-        .post(url_qpost, {"content" : newComment}, headers)
-        //   questionReplies: [...question.questionReplies, newComment],
+    axiosAuth
+        .post(url_qpost, {"content" : newComment})
         .then((res) => {
           console.log("add QComment success! id: ", res.questionReplyId);
           navigate(0)
@@ -48,14 +40,14 @@ const QuestionCommentList = ({ question, isLoggedIn, openModal }) => {
         });
       }
 
+
   const updateQuestionCommentHandler = (comment_id, updatedComment) => {
     console.log("comment update is being handled");
     //use map to change the comment_id content
-  const url_qpatch = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/question_replies/${comment_id}`;
+    const url_qpatch = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/question_replies/${comment_id}`;
 
-    console.log(updatedComment)
-    axios
-      .patch(url_qpatch, { "content" : updatedComment },headers)
+    axiosAuth
+      .patch(url_qpatch, { "content" : updatedComment })
       .then((res) => {
         console.log("update Qcomment success!", res.questionReplyId);
         navigate(0);
@@ -69,16 +61,14 @@ const QuestionCommentList = ({ question, isLoggedIn, openModal }) => {
 
 
   const deleteQuestionCommentHandler = (comment_id) => {
-    //can only use patch ...
-    console.log("delete question comment!");
-    const newComments = comments.filter((el) => el.id !== comment_id);
-    setComments(newComments);
+
     const url_qpatch = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/question_replies/${comment_id}`;
 
-    axios
-      .patch(url_qpatch, { ...question, questionReplies: newComments })
+    axiosAuth
+      .delete(url_qpatch)
       .then((res) => {
         console.log("delete Qcomment success!", res);
+        navigate(0)
       })
       .catch((err) => {
         console.log("delete Qcomment fail!", err);
@@ -92,23 +82,21 @@ const QuestionCommentList = ({ question, isLoggedIn, openModal }) => {
           {comments.map((comment) => (
             <CommentCreated
               comment={comment}
-              key={comment.id}
+              key={comment.questionReplyId}
               commentType='qComment'
-              deleteAnswerCommentHandler={deleteQuestionCommentHandler}
+              deleteQuestionCommentHandler={deleteQuestionCommentHandler}
               updateQuestionCommentHandler={updateQuestionCommentHandler}
               openModal={openModal}
-              isLoggedIn={isLoggedIn}
             ></CommentCreated>
           ))}
         </CommentListWrap>
       )}
       <AddComment
         openModal={openModal}
-        isLoggedIn={isLoggedIn}
         addCommentHandler={addCommentHandler}
       ></AddComment>
     </>
   );
-};
+ };
 
 export default QuestionCommentList;

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import HandleSignup from '../components/member/HandleSignup';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
   display: flex;
@@ -207,6 +207,7 @@ function SignUp() {
   const url_avatars = "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com";
   const avatarRandom = `${url_avatars}/owl0${randomIntFromInterval(1, 8)}.png`;
 
+  const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState({
     Name: '',
     displayName: '',
@@ -262,6 +263,8 @@ function SignUp() {
       password: userInfo.password,
       avatarLink: userInfo.avatarLink
     });
+
+    navigate('/login');
   };
 
 

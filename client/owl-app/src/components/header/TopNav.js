@@ -14,7 +14,7 @@ const StyledIcon = styled(FontAwesomeIcon)`
     padding-right: 6px;
 `
 
-const TopNav = ({openModal}) => {
+const TopNav = () => {
 
     return (
         <>
@@ -37,7 +37,7 @@ const TopNav = ({openModal}) => {
                         <Link to = '/signup'><StyledIcon icon={faUserPlus} /></Link>
                     </IconButton>
                     <IconButton>
-                    <StyledIcon icon={faCircleQuestion} onClick={openModal}/>
+                    <StyledIcon icon={faCircleQuestion}/>
                     </IconButton>
             </TopnavTemplate>
         </>

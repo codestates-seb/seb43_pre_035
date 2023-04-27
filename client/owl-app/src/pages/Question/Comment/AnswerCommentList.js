@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import CommentCreated from "./CommentCreated";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+
 
 const CommentListWrap = styled.div`
     padding: 10px;
@@ -14,10 +13,7 @@ const CommentListWrap = styled.div`
 
 `
 
-const AnswerCommentList = ({answerComments, updateAnswerCommentHandler, deleteAnswerCommentHandler,isLoggedIn, openModal}) => {
-
-
-    console.log(answerComments)
+const AnswerCommentList = ({answerComments, updateAnswerCommentHandler, deleteAnswerCommentHandler, openModal}) => {
 
 
 
@@ -28,10 +24,9 @@ const AnswerCommentList = ({answerComments, updateAnswerCommentHandler, deleteAn
             <CommentCreated comment={comment}
                             openModal={openModal}
                             commentType={'aComment'}
-                            isLoggedIn={isLoggedIn}
                             updateAnswerCommentHandler={updateAnswerCommentHandler}
                             deleteAnswerCommentHandler={deleteAnswerCommentHandler}
-                            key={comment.id} />)}
+                            key={comment.answerReplyId} />)}
         </CommentListWrap>
         </>
 

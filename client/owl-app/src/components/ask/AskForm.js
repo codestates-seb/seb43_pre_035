@@ -5,8 +5,7 @@ import { useState, useEffect, useContext } from 'react';
 import { ClickButton } from '../../styles/UIStyles.js';
 import { useNavigate } from 'react-router-dom';
 import { axiosAuth } from '../../utils/axiosConfig';
-import { UserContext } from '../../App';
-
+import { UserContext } from '../../utils/UserContextConfig';
 
 
 // import  useApiHeaders from '../../utils/useApiHeaders';
@@ -45,15 +44,12 @@ const AskForm = ({openModal}) => {
     // const url_threads = `${process.env.REACT_APP_URL_JSON_QUESTIONS}`;
     const url_threads_test = `${process.env.REACT_APP_URL_NGROKTEST}/questions`
 
-
     const submitThreadHandler = (e) => {
         e.preventDefault();
         e.stopPropagation();
 
-
         if(!isLoggedIn) {openModal(); return;}
         console.log('question submitted!');
-
 
         axiosAuth.post(url_threads_test, {'title': title, 'content': content})
         .then((res) => {console.log("axios ask post request success!", res)

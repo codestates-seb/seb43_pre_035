@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {useState} from "react"
+import { CreateButtonLogin} from '../Answer/AnswerStyle'
 
 const CommentInputWrap = styled.div`
     padding: 10px;
@@ -10,15 +11,20 @@ const CommentInputWrap = styled.div`
     align-items: center;
 `
 
-const CommentInputCompo = styled.input`
+const CommentInputCompo = styled.textarea`
     padding: 10px;
     width: 700px;
     height: 40px;
     border: 1px solid #E7CC8F;
     background-color: #493E3B;
+    word-wrap: break-word;      
+    white-space: pre-wrap;    
     .placeholder{
         color : white;
     }
+    ::-webkit-scrollbar {
+     display: none;
+}
 `
 
 const CreatButton = styled.button`
@@ -33,7 +39,6 @@ const CreatButton = styled.button`
 const CommentInput = ({addCommentHandler})=>{
     const [newCommentContent, setNewCommentContent] = useState('');
     const [invalidComment, setInvalidComment] = useState(false);
-    const[cId, setcId] = useState(Math.floor(Math.random()*1000));
 
     const onTextChange = (e) => {
         setNewCommentContent(e.target.value);
@@ -41,22 +46,10 @@ const CommentInput = ({addCommentHandler})=>{
 
     const onClickCommentSubmit = (e)=>{
         e.stopPropagation();
-        const date = new Date();
-        const userName = "null"
-        const userAvatarLink = "null"
+        
         // console.log("comment content: ", newCommentContent);
         if (!newCommentContent) {console.log("no content!"); setInvalidComment(true); return;};
-        // console.log(addCommentHandler)
-        // let newComment = {
-        //     "member" : {
-        //       "displayName": userName, 
-        //       "avatarLink" : userAvatarLink
-        //     },
-        //     "content" : newCommentContent,
-        //     "createdDate": date.toISOString(),
-        //     "updateDate": date.toISOString(),
-        // }
-
+        
         addCommentHandler(newCommentContent);
         setInvalidComment(false);
         setNewCommentContent('');
@@ -71,7 +64,7 @@ const CommentInput = ({addCommentHandler})=>{
             onChange={onTextChange}
             value={newCommentContent}
             />
-            <CreatButton onClick={onClickCommentSubmit}>작성하기</CreatButton>
+            <CreateButtonLogin onClick={onClickCommentSubmit}>작성하기</CreateButtonLogin>
         </CommentInputWrap>
         </>
     )
