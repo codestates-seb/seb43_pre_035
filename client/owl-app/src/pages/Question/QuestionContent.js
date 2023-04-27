@@ -21,6 +21,10 @@ const ContentWrap = styled.div`
 const ContentDetail = styled.div`
     width: 572px;
     font-size: 14px;
+    
+    word-wrap: break-word;      
+    white-space: pre-wrap;      
+   
 `
 
 const UserWrap= styled.div`
@@ -59,11 +63,9 @@ const QuestionContent = ({question, setIsEditState}) =>{
     // console.log(question.member)
     const url = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}`;
 
-
-    const EditQuestion = () =>{
+    const editClickQuestion=()=>{
         setIsEditState(false)
     }
-
   
 
 
@@ -75,6 +77,7 @@ const QuestionContent = ({question, setIsEditState}) =>{
             .catch(err => {console.log("delete Q fail! ", err)})
     }
 
+  
 
     return (
         <>
@@ -84,7 +87,7 @@ const QuestionContent = ({question, setIsEditState}) =>{
                 <CreateAvatar src={question.member.avatarLink}></CreateAvatar>
                 <CreateUser>{question.member.displayName}</CreateUser>
             {memberId === question.member.memberId?  <ButtonWrap>
-                <UpdateButton onClick={EditQuestion}>수정</UpdateButton>
+                <UpdateButton onClick={editClickQuestion}>수정</UpdateButton>
                 <UpdateButton onClick={deleteQHandler}>삭제</UpdateButton>
             </ButtonWrap>: null}
             {/* {isLoggedIn  && <ButtonWrap>

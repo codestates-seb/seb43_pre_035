@@ -2,8 +2,9 @@ import styled from "styled-components";
 import AddAnswerComment from "../Comment/AddAnswerComment";
 import AnswerCommentList from '../Comment/AnswerCommentList'
 import { ClickButton,UpdateButton } from "../../../styles/UIStyles";
+import { CancleButton} from './AnswerStyle'
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useHistory } from "react-router-dom";
 import { axiosAuth } from "../../../utils/axiosConfig";
 import { UserContext } from "../../../App";
 import { useContext } from 'react';
@@ -37,6 +38,8 @@ const AnswerContent = styled.div`
     padding: 10px;
     width: 600px;
     color: white;
+    word-wrap: break-word;      
+    white-space: pre-wrap; 
 `
 
 
@@ -87,6 +90,7 @@ const ReviseButton = styled(UpdateButton) `
 const AnswerDetail = ({ question, answer, answers, updateAnswerHandler, deleteAnswerHandler, isLoggedIn, openModal }) => {
     const { memberId } = useContext(UserContext);
     // console.log(answer.member.memberId)
+
     const navigate= useNavigate();
     const [answerComments, setAnswerComments] = useState(answer.answerReplies);
 
@@ -154,7 +158,9 @@ const AnswerDetail = ({ question, answer, answers, updateAnswerHandler, deleteAn
                 <AnsweruserBlock>
         { isEditState ? <>
                     <EditorInput type="text" value={updatedAnswer} onChange={onTextChange} />
-                    <ClickButton onClick={handleEditClick} >답변 수정하기</ClickButton> </>:
+                    <ClickButton onClick={handleEditClick} >답변 수정하기</ClickButton>
+                    <CancleButton onClick={()=>{setIsEditState(false)}}>취소하기</CancleButton>
+                     </>:
                     <Answeruserwrap>
                     <AnswerContent>{answer.content}</AnswerContent>
                     <AnswerUser>
@@ -180,7 +186,7 @@ const AnswerDetail = ({ question, answer, answers, updateAnswerHandler, deleteAn
             </AnswerBlock>
             <AddAnswerComment addAnswerCommentHandler={addAnswerCommentHandler}
                               openModal={openModal}
-                              isLoggedIn={isLoggedIn}
+                              
                               ></AddAnswerComment>
         </>
 
