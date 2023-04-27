@@ -4,7 +4,6 @@ import GlobalStyle from './theme/GlobalStyle';
 import { UserProvider } from './utils/UserContextConfig';
 import useFetch from './utils/useFetch';
 import styled from 'styled-components';
-// import Header from './components/header/Header';
 
 //import pages with Lazy, and load Suspense while loading
 
@@ -17,20 +16,9 @@ const QuestionDetail = lazy(() => import ('./pages/Question/QuestionDetail'));
 const Mypage = lazy(() => import ('./components/member/MyPage'));
 const ModalContainer = lazy(()=> import('./components/member/ModalContainer'));
 
-// import Home from './pages/Home';
-// import Login from './pages/Login';
-// import SignUp from './pages/SignUp';
-// import QuestionDetail from './pages/Question/QuestionDetail';
-// import Header from './components/header/Header';
-// import CreateThread from './pages/CreateThread';
-// import Mypage from './components/member/MyPage';
-
-//import data
-
 const LoadingBg = styled.div`
     background: #322A28;
 `
-
 
 const url_threads_test_search1 = `${process.env.REACT_APP_URL_NGROKTEST}/questions/search/?title=아무거나`;
 
