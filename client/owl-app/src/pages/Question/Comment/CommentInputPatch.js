@@ -1,17 +1,30 @@
 import styled from "styled-components";
 import { useState } from "react"
-import { CommentButtonBlock, CreateButtonLogin, CancelButton } from '../Answer/AnswerStyle'
+import { CommentButtonBlock } from '../Answer/AnswerStyle'
 import { InputWrap, InputTextArea, InvalidError, ReviseSubmitBtn, Wrap } from './CommentStyle';
 
+const PatchContainer = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+`
 
 const ReviseWrap = styled(Wrap)`
     display: flex;
     width: 100%;
-    justify-content: space-between;
     padding: 0 20px;
+    justify-content: space-between;
+    flex-direction: column;
 `
 
+const ErrorContainer = styled.div`
+    display: flex;
+    justify-content: flex-start;
+    width: 100%%;
+    padding-left: 20px;
+    ${'' /* background: black; */}
 
+`
 
 const EditCancelBtn = styled(ReviseSubmitBtn)`
     padding: 0 10px;
@@ -42,20 +55,25 @@ const CommentInputPatch = ({ updatedContent, setUpdatedContent, editClickHandler
 
 
     return (
-        <ReviseWrap>
-            <InputWrap>
-                <InputTextArea type="text" placeholder="Comment를 달아주세요"
-                    onChange={onTextChange}
-                    value={updatedContent}
-                />
-                <CommentButtonBlock>
-                    <EditCancelBtn onClick={onClickCommentSubmit}>수정</EditCancelBtn>
-                    <EditCancelBtn onClick={() => setIsEditable(false)}>취소</EditCancelBtn>
-                </CommentButtonBlock>
-            </InputWrap>
-            {invalidComment ? <InvalidError>내용이 없습니다</InvalidError> : null}
+        <PatchContainer>
 
-        </ReviseWrap>
+            <ReviseWrap>
+                <InputWrap>
+                    <InputTextArea type="text" placeholder="Comment를 달아주세요"
+                        onChange={onTextChange}
+                        value={updatedContent}
+                    />
+                    <CommentButtonBlock>
+                        <EditCancelBtn onClick={onClickCommentSubmit}>수정</EditCancelBtn>
+                        <EditCancelBtn onClick={() => setIsEditable(false)}>취소</EditCancelBtn>
+                    </CommentButtonBlock>
+                </InputWrap>
+            </ReviseWrap>
+            <ErrorContainer>
+            {invalidComment ? <InvalidError>내용을 적어주셔야 합니다.</InvalidError> : null}
+            </ErrorContainer>
+
+        </PatchContainer>
     )
 }
 

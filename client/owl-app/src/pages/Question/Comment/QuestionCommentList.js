@@ -59,7 +59,8 @@ const QuestionCommentList = ({ question, openModal }) => {
       .delete(url_qpatch)
       .then((res) => {
         console.log("delete Qcomment success!", res);
-        navigate(0);
+        setComments([...comments.filter(el => el.questionReplyId !== comment_id)]);
+        // navigate(0);
       })
       .catch((err) => {
         console.log("delete Qcomment fail!", err);

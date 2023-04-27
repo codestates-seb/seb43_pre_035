@@ -7,7 +7,7 @@ export const ListWrap = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 10px 10px 0 10px;
   width: 100%;
 `
 
@@ -27,7 +27,6 @@ export const Content = styled.div`
     display: flex;
     padding: 10px;
     width: 100%;
-    ${'' /* flex-basis: 5; */}
     word-wrap: break-word;
     white-space: pre-wrap;
     line-height: var(--spacing-comment-lineheight);
@@ -109,6 +108,9 @@ export const InvalidError = styled.div`
     color: var(--colors-error-invalid);
     font-size: var(--size-text-comment-error);
     margin-top: 10px;
+    align: left;
+    ${'' /* display: flex;
+    justify-content: flex-start; */}
 `
 
 export const ReviseSubmitBtn = styled.button`

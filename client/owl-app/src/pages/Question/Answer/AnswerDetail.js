@@ -12,6 +12,7 @@ import { useContext } from 'react';
 const AnswerBlock = styled.div`
     display: flex;
     padding: 10px;
+    ${'' /* padding-bottom: 0; */}
     flex-direction: column;
     color: white;
     z-index: 100;
@@ -36,7 +37,7 @@ const AnswerUser = styled.div`
 
 const AnswerContent = styled.div`
     padding: 10px;
-    width: 600px;
+    width: 100%;
     color: white;
     word-wrap: break-word;
     white-space: pre-wrap;
@@ -45,7 +46,7 @@ const AnswerContent = styled.div`
 
 const CreateUserA = styled.div`
     padding-top: 60px;
-    width: 130px;
+    ${'' /* width: 130px; */}
     font-size: 15px;
     color: #8D7B68;
 `
@@ -56,7 +57,7 @@ const CreateAvatar = styled.img`
     border-radius: 50%;
 `
 
-const EditorInput =styled.input`
+const EditorInput = styled.input`
     height: 300px;
     display: flex;
     border: none;
@@ -81,7 +82,7 @@ const EditorInput =styled.input`
     border: 1px solid var(--colors-yellow);
 }
 `
-const ReviseButton = styled(UpdateButton) `
+const ReviseButton = styled(UpdateButton)`
     ${'' /* height: 10%; */}
     height: 20px;
     background: var(--colors-darkred);
@@ -91,7 +92,7 @@ const AnswerDetail = ({ question, answer, updateAnswerHandler, deleteAnswerHandl
     const { memberId } = useContext(UserContext);
     // console.log(answer.member.memberId)
 
-    const navigate= useNavigate();
+    const navigate = useNavigate();
     const [answerComments, setAnswerComments] = useState(answer.answerReplies);
 
     const url_acpost = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/answers/${answer.answerId}/answer_replies`;
@@ -101,10 +102,12 @@ const AnswerDetail = ({ question, answer, updateAnswerHandler, deleteAnswerHandl
 
 
         axiosAuth.post(url_acpost, { "content": newComment })
-            .then(res => { console.log("answerReplies patch success!", res)
-            navigate(0)
-        })
-                .catch(err => { console.log("answerReplies patch fail!", err) })
+            .then(res => {
+                console.log("answerReplies patch success!", res)
+                setAnswerComments([...answerComments, res.data]);
+                // navigate(0)
+            })
+            .catch(err => { console.log("answerReplies patch fail!", err) })
     }
 
     const updateAnswerCommentHandler = (comment_id, updatedComment) => {
@@ -113,10 +116,10 @@ const AnswerDetail = ({ question, answer, updateAnswerHandler, deleteAnswerHandl
 
         // console.log('update answer comment being handled!');
 
-        axiosAuth.patch(url_acpatch, {"content": updatedComment})
+        axiosAuth.patch(url_acpatch, { "content": updatedComment })
             .then((res) => {
                 console.log("update answercomment success!", res);
-                navigate(0)
+                // navigate(0)
             })
             .catch((err) => {
                 console.log("update answercomment fail!", err);
@@ -127,8 +130,12 @@ const AnswerDetail = ({ question, answer, updateAnswerHandler, deleteAnswerHandl
         const url_acpatch = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/answers/${answer.answerId}/answer_replies/${comment_id}`;
 
 
-        axiosAuth.delete(url_acpatch )
-            .then(res => { console.log("delete answercomment success!", res);navigate(0) })
+        axiosAuth.delete(url_acpatch)
+            .then(res => {
+                console.log("delete answercomment success!", res);
+                setAnswerComments([...answerComments.filter(el => el.answerReplyId !== comment_id)]);
+                // navigate(0);
+            })
             .catch(err => { console.log("delete answercomment fail!", err) })
 
     }
@@ -142,7 +149,7 @@ const AnswerDetail = ({ question, answer, updateAnswerHandler, deleteAnswerHandl
     const [isEditState, setIsEditState] = useState(false);
     const [updatedAnswer, setUpdatedAnswer] = useState(answer.content);
 
-    const handleEditClick = ()=>{
+    const handleEditClick = () => {
 
         updateAnswerHandler(answer.answerId, updatedAnswer)
 
@@ -156,38 +163,38 @@ const AnswerDetail = ({ question, answer, updateAnswerHandler, deleteAnswerHandl
         <>
             <AnswerBlock>
                 <AnsweruserBlock>
-        { isEditState ? <>
-                    <EditorInput type="text" value={updatedAnswer} onChange={onTextChange} />
-                    <ClickButton onClick={handleEditClick} >답변 수정하기</ClickButton>
-                    <CancelButton onClick={()=>{setIsEditState(false)}}>취소하기</CancelButton>
-                     </>:
-                    <Answeruserwrap>
-                    <AnswerContent>{answer.content}</AnswerContent>
-                    <AnswerUser>
-                    <CreateAvatar scr={answer.member.avatarLink}/>
-                    <CreateUserA>{answer.member.displayName}</CreateUserA>
-                    {memberId === answer.member.memberId &&
-                    <>
-                    <ReviseButton onClick={()=>{setIsEditState(true)}}>수정</ReviseButton>
-                    <ReviseButton onClick={deleteClickHandler}>삭제</ReviseButton>
-                    </>}
-                    </AnswerUser>
-                    </Answeruserwrap>
+                    {isEditState ? <>
+                        <EditorInput type="text" value={updatedAnswer} onChange={onTextChange} />
+                        <ClickButton onClick={handleEditClick} >답변 수정하기</ClickButton>
+                        <CancelButton onClick={() => { setIsEditState(false) }}>취소하기</CancelButton>
+                    </> :
+                        <Answeruserwrap>
+                            <AnswerContent>{answer.content}</AnswerContent>
+                            <AnswerUser>
+                                <CreateAvatar scr={answer.member.avatarLink} />
+                                <CreateUserA>{answer.member.displayName}</CreateUserA>
+                                {memberId === answer.member.memberId &&
+                                    <>
+                                        <ReviseButton onClick={() => { setIsEditState(true) }}>수정</ReviseButton>
+                                        <ReviseButton onClick={deleteClickHandler}>삭제</ReviseButton>
+                                    </>}
+                            </AnswerUser>
+                        </Answeruserwrap>
                     }
 
                 </AnsweruserBlock>
 
-                <AnswerCommentList  key={answer.answerId}
-                                    answerComments={answerComments}
-                                    deleteAnswerCommentHandler={deleteAnswerCommentHandler}
-                                    updateAnswerCommentHandler={updateAnswerCommentHandler}
-                                    openModal={openModal}
+                <AnswerCommentList key={answer.answerId}
+                    answerComments={answerComments}
+                    deleteAnswerCommentHandler={deleteAnswerCommentHandler}
+                    updateAnswerCommentHandler={updateAnswerCommentHandler}
+                    openModal={openModal}
                 ></AnswerCommentList>
+                <AddAnswerComment addAnswerCommentHandler={addAnswerCommentHandler}
+                    openModal={openModal}
+                ></AddAnswerComment>
             </AnswerBlock>
-            <AddAnswerComment addAnswerCommentHandler={addAnswerCommentHandler}
-                              openModal={openModal}
 
-                              ></AddAnswerComment>
         </>
 
 
