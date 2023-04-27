@@ -18,16 +18,16 @@ const CommentListWrap = styled.div`
 const QuestionCommentList = ({ question, openModal }) => {
 
   const [comments, setComments] = useState(question.questionReplies);
-  
+
   const navigate = useNavigate();
 
   const url_qpost = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/question_replies`;
-  
 
 
-  
+
+
   const addCommentHandler = (newComment) => {
-    
+
     //axios.patch to add comments...-----> with real server, revise to use post to add comments
     axiosAuth
         .post(url_qpost, {"content" : newComment})
@@ -40,12 +40,12 @@ const QuestionCommentList = ({ question, openModal }) => {
         });
       }
 
-  
+
   const updateQuestionCommentHandler = (comment_id, updatedComment) => {
     console.log("comment update is being handled");
     //use map to change the comment_id content
     const url_qpatch = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/question_replies/${comment_id}`;
-   
+
     axiosAuth
       .patch(url_qpatch, { "content" : updatedComment })
       .then((res) => {
@@ -82,7 +82,7 @@ const QuestionCommentList = ({ question, openModal }) => {
           {comments.map((comment) => (
             <CommentCreated
               comment={comment}
-              key={comment.id}
+              key={comment.questionReplyId}
               commentType='qComment'
               deleteQuestionCommentHandler={deleteQuestionCommentHandler}
               updateQuestionCommentHandler={updateQuestionCommentHandler}

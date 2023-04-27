@@ -23,6 +23,7 @@ export const AuthReducer = (state, action) => {
             // token: action.token
         };
         case ACTION_TYPES.LOGOUT:
+        localStorage.setItem('token', '');
         return {
             ...state,
             isLoggedIn: false,

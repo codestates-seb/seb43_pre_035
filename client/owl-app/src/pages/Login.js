@@ -16,16 +16,14 @@ const Logo = styled.img`
   margin-bottom: 20px;
 `;
 
-function Login({isOpen, onRequestClose, setIsLoggedIn, toggleLogin}) {
+function Login({isOpen, onRequestClose}) {
 
   return (
     <Container>
       <Logo src="/logo/logo_pink_2.svg" />
       <SocialLoginButtons/>
       <EmailPasswordForm  isOpen={isOpen}
-                          setIsLoggedIn={setIsLoggedIn}
-                          onSubmit={onRequestClose}
-                          toggleLogin={toggleLogin} />
+                          onSubmit={onRequestClose} />
     </Container>
   );
 }

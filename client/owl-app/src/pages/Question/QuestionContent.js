@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import FormInput from "../../components/ask/FormInput";
 import { axiosAuth } from "../../utils/axiosConfig";
-import { UserContext } from "../../App";
+import { UserContext } from "../../utils/UserContextConfig";
 import { useContext } from 'react';
 
 
@@ -21,10 +21,8 @@ const ContentWrap = styled.div`
 const ContentDetail = styled.div`
     width: 572px;
     font-size: 14px;
-    
-    word-wrap: break-word;      
-    white-space: pre-wrap;      
-   
+    word-wrap: break-word;
+    white-space: pre-wrap;
 `
 
 const UserWrap= styled.div`
@@ -67,17 +65,19 @@ const QuestionContent = ({question, setIsEditState}) =>{
     const EditQuestion = () =>{
         setIsEditState(false)
     }
-  
+
 
 
     const deleteQHandler = () => {
         axiosAuth.delete(url)
-            .then(res => {console.log("delete Q success!")
-            navigate("/")})
+            .then(res => {
+                console.log("delete Q success!")
+                navigate('/');
+                navigate(0);
+            })
             .catch(err => {console.log("delete Q fail! ", err)})
     }
 
-  
 
     return (
         <>

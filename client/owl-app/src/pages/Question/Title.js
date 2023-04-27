@@ -4,8 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBinoculars } from '@fortawesome/free-solid-svg-icons';
 import { faCommentDots } from '@fortawesome/free-regular-svg-icons';
 import { Link } from 'react-router-dom';
-import { UserContext } from "../../App";
+import { UserContext } from "../../utils/UserContextConfig.js"
 import { useContext } from 'react';
+import { convertDate } from "../../styles/DateComponent.js";
 
 const TitleWrap = styled.div`
     width: 750px;
@@ -51,9 +52,7 @@ const CreateDate = styled.div`
     justify-content: space-around;
     color: #DACC96;
 `
-const convertDate = (string) => {
-    return `${string.substring(0, 4)}년 ${String(Number(string.substring(5, 7)))}월 ${String(Number(string.substring(8, 10)))}일`
-  }
+
 
 const Title = ({question}) =>{
 

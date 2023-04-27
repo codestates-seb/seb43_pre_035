@@ -4,15 +4,13 @@ import * as ACTIONS from './store/actions/actions';
 
 export const UserContext = createContext();
 
-export function UserProvider(props){
+export function UserProvider({children}){
 
     const storedInfo = JSON.parse(localStorage.getItem('userInfo'));
     const [userInfo, dispatch] = useReducer(AuthReducer.AuthReducer, storedInfo ? storedInfo : AuthReducer.initialState);
 
     const handleLogin = (data) => {
         console.log("app handleLogin");
-        console.log(JSON.parse(localStorage.getItem('userInfo')));    console.log(JSON.parse(localStorage.getItem('userInfo')));
-        console.log(localStorage.getItem('token'));
         dispatch(ACTIONS.login(data));
       }
 
@@ -22,16 +20,6 @@ export function UserProvider(props){
       }
 
       useEffect(() => {
-        const savedUserInfo = JSON.parse(localStorage.getItem('userInfo'));
-        const savedToken = localStorage.getItem('token');
-
-        if (savedUserInfo && savedToken){
-            handleLogin(savedUserInfo);
-        }
-
-      }, []);
-
-      useEffect(() => {
         localStorage.setItem('userInfo', JSON.stringify({
             isLoggedIn: userInfo.isLoggedIn,
             memberId: userInfo.memberId,
@@ -39,9 +27,6 @@ export function UserProvider(props){
             avatarLink : userInfo.avatarLink,
             displayName : userInfo.displayName,
         }));
-
-        localStorage.setItem('token', '');
-
       }, [userInfo]);
 
 
@@ -50,11 +35,15 @@ export function UserProvider(props){
         <UserContext.Provider value={{
             userInfo,
             dispatch,
+            memberId : userInfo.memberId,
             isLoggedIn: userInfo.isLoggedIn,
-            handleUserLogin: (userInfo, token) => handleLogin(userInfo, token),
+            name: userInfo.name,
+            avatarLink : userInfo.avatarLink,
+            displayName : userInfo.displayName,
+            handleUserLogin: (userInfo) => handleLogin(userInfo),
             handleUserLogout: () => handleLogout()
           }}>
-            {props.children}
+            {children}
         </UserContext.Provider>
       )
 }

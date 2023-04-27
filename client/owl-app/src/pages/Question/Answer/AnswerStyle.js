@@ -15,7 +15,7 @@ export const CreateBlock = styled.div`
 export const CreateHeader = styled.span`
     height: 30px;
     padding-right: 10px;
-    
+
 `
 export const CreateEditorLogout = styled.div`
     height: 200px;
@@ -71,7 +71,7 @@ cursor: pointer;
 }
 `
 
-export const CancleButton = styled.button`
+export const CancelButton = styled.button`
     outline: none;
     background: var(--colors-darkbrown);
     color: var(--colors-text-default);

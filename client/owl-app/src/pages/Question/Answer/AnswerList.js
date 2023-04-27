@@ -8,7 +8,7 @@ import { axiosAuth } from "../../../../src/utils/axiosConfig";
 const AnswerWrap = styled.div`
     padding-top: 10px;
     height: 100%;
-    
+
     width: 750px;
     display: flex;
     flex-direction: column;
@@ -21,14 +21,14 @@ const Answerlist = ({ question, openModal}) => {
     const navigate = useNavigate();
 
 
-    
+
     // const headers = { headers :
     //         {Authorization : `Bearer ${process.env.REACT_APP_NGROK_TOKEN}`
     //             }};
-    
+
     const addAnswerHandler = (newAnswer) => {
-        
-        
+
+
         const url_apost = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/answers`
 
         // const newAnswers = answers? [...answers, newAnswer] : [newAnswer];
@@ -51,7 +51,7 @@ const Answerlist = ({ question, openModal}) => {
 
     const url_apatch = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}/answers/${answer_id}`
 
-        
+
     axiosAuth
             .patch(url_apatch, { "content" : updateAnswer})
             .then((res) => {
@@ -77,15 +77,13 @@ const Answerlist = ({ question, openModal}) => {
         <>
             <AnswerWrap>
                 {answers ? answers.map((answer) => <AnswerDetail
-                                                    
                                                     question={question}
                                                     q_id={question.id}
                                                     answer={answer}
-                                                    answers={answers}
                                                     updateAnswerHandler={updateAnswerHandler}
                                                     deleteAnswerHandler={deleteAnswerHandler}
                                                     openModal={openModal}
-                                                    key={answer.id}></AnswerDetail>) : null}
+                                                    key={answer.answerId}></AnswerDetail>) : null}
             </AnswerWrap>
             <AnswerCreate
                 openModal={openModal}

@@ -2,7 +2,7 @@ import { useState, useContext } from 'react';
 import styled from 'styled-components';
 import HandleLogin from './HandleLogin';
 import { Link, useNavigate } from 'react-router-dom';
-import { UserContext } from '../../App';
+import { UserContext } from '../../utils/UserContextConfig';
 
 const Form = styled.form`
  display: flex;
@@ -90,7 +90,7 @@ const SignUpContainer = styled.div`
  width: 300px;
 `;
 
-function EmailPasswordForm({ isOpen, onSubmit, setIsLoggedIn, toggleLogin }) {
+function EmailPasswordForm({ isOpen, onSubmit }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const { handleUserLogin } = useContext(UserContext);
@@ -115,12 +115,12 @@ function EmailPasswordForm({ isOpen, onSubmit, setIsLoggedIn, toggleLogin }) {
         console.log('Password:', password);
 
         const userData  = await HandleLogin({ email, password });
-        console.log('handling: ', userData);
+        console.log('login success! token: ', localStorage.getItem('token'));
         handleUserLogin(userData);
-        console.log('token', localStorage.getItem('token'));
+        // console.log('token', localStorage.getItem('token'));
 
-        if (isOpen) onSubmit();
-        if (!isOpen) navigate('/');
+        if (isOpen) {onSubmit();}
+        if (!isOpen) {navigate('/');}
 
     };
 
@@ -129,11 +129,11 @@ function EmailPasswordForm({ isOpen, onSubmit, setIsLoggedIn, toggleLogin }) {
         return regex.test(email);
     };
 
-    const handleLogin = () => {
-        if (isOpen) onSubmit(); //closing the modal window
-        setIsLoggedIn(true);
-        if (!isOpen) navigate(-1);
-    }
+    // const handleLogin = () => {
+    //     if (isOpen) onSubmit(); //onclosing the modal window
+    //     setIsLoggedIn(true);
+    //     if (!isOpen) navigate(-1);
+    // }
 
     return (
         <>
@@ -154,7 +154,7 @@ function EmailPasswordForm({ isOpen, onSubmit, setIsLoggedIn, toggleLogin }) {
                 <Link to="/signup" onClick={onSubmit}>
                     <SignUp>Sign up</SignUp>
                 </Link>
-                <SignUp onClick={handleLogin}>Test Login</SignUp>
+                {/* <SignUp onClick={handleLogin}>Test Login</SignUp> */}
             </SignUpContainer>
         </>
     );

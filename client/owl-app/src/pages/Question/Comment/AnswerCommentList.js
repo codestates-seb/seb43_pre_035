@@ -26,7 +26,7 @@ const AnswerCommentList = ({answerComments, updateAnswerCommentHandler, deleteAn
                             commentType={'aComment'}
                             updateAnswerCommentHandler={updateAnswerCommentHandler}
                             deleteAnswerCommentHandler={deleteAnswerCommentHandler}
-                            key={comment.id} />)}
+                            key={comment.answerReplyId} />)}
         </CommentListWrap>
         </>
 

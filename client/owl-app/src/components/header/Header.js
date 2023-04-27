@@ -3,8 +3,7 @@ import TopNav from "./TopNav";
 import TopNavlogged from "./TopNavlogged";
 import { useState, useEffect, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
-import { UserContext } from '../../App';
-// import { UserContext } from "../../utils/UserContext";
+import { UserContext } from "../../utils/UserContextConfig";
 
 const HeaderBlock = styled.header`
     display: flex;
@@ -24,7 +23,7 @@ const HeaderWrap = styled.div`
     height: 100%;
 `
 
-const Header = ({threads, setSidebarStatus, toggleLogin, openModal}) => {
+const Header = ({threads, setSidebarStatus}) => {
 
     const location = useLocation();
     const { isLoggedIn } = useContext(UserContext);
@@ -36,12 +35,11 @@ const Header = ({threads, setSidebarStatus, toggleLogin, openModal}) => {
     }
 
     useEffect(() => {
-        console.log(location);
         if (location.pathname === '/' && threads) {
             clickRouteHandler('Home');
         }
         if (location.pathname.includes('/questions')){
-            console.log('routed to question page!');
+            // console.log('routed to question page!');
             clickRouteHandler('Question');
         }
     }, [location]);
@@ -49,7 +47,7 @@ const Header = ({threads, setSidebarStatus, toggleLogin, openModal}) => {
     return(
         <HeaderBlock>
             <HeaderWrap >
-                {isLoggedIn ? <TopNavlogged toggleLogin={toggleLogin} openModal={openModal}/> : <TopNav openModal={openModal}/> }
+                {isLoggedIn ? <TopNavlogged /> : <TopNav /> }
             </HeaderWrap>
         </HeaderBlock>
  )

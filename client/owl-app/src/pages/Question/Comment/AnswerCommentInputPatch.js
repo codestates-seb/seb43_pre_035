@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import React,{useState} from "react"
-import { CommentButtonBlock,CreateButtonLogin,CancleButton} from '../Answer/AnswerStyle'
+import { CommentButtonBlock,CreateButtonLogin,CancelButton} from '../Answer/AnswerStyle'
 
 const CommentInputWrap = styled.div`
     padding: 10px;
@@ -17,7 +17,7 @@ const CommentInputCompo = styled.textarea`
     height: 40px;
     border: 1px solid #E7CC8F;
     background-color: #493E3B;
-    white-space: pre-wrap; 
+    white-space: pre-wrap;
     .placeholder{
         color : white;
     }
@@ -69,7 +69,7 @@ const AnswerCommentInputPatch = ({updatedContent, setUpdatedContent, editClickHa
             />
             <CommentButtonBlock>
             <CreateButtonLogin onClick={onClickCommentSubmit}>수정하기</CreateButtonLogin>
-            <CancleButton onClick={()=>setIsEditable(false)}>취소하기</CancleButton>
+            <CancelButton onClick={()=>setIsEditable(false)}>취소하기</CancelButton>
             </CommentButtonBlock>
         </CommentInputWrap>
         </>

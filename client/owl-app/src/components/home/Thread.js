@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
-
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBinoculars } from '@fortawesome/free-solid-svg-icons';
 import { faCommentDots } from '@fortawesome/free-regular-svg-icons';
+import {DateComponent,formatDate} from '../../styles/DateComponent'
 
 const ThreadContainer = styled.li`
     display: flex;
@@ -21,11 +21,11 @@ const ThreadContainer = styled.li`
 const ThreadContent = styled.div`
     display: flex;
     flex-direction: column;
-    flex-basis: 15em;
-    flex-grow: 5;
+    flex-basis: 20em;
+    flex-grow: 8;
     align-items: flex-start;
     min-width: 210px;
-    padding: 0 10px 10px 3px;
+    padding: 0 20px 10px 3px;
     color: var(--colors-text-default);
 
 `
@@ -62,21 +62,12 @@ const TextAlign = styled.div`
     text-align: left;
 `
 
-const Contributor = styled.span`
-    font-weight: var(--fonts-weight-semibold);
-    height: 14px;
-
-    &:hover {
-        color: var(--colors-yellow);
-        cursor: pointer;
-    }
-`
 
 const AvatarImg = styled.img`
     width: var(--size-thread-avatar);
     height: var(--size-thread-avatar);
     border-radius: 50%;
-`
+    `
 
 const ThreadStats = styled.div`
     display: flex;
@@ -84,23 +75,72 @@ const ThreadStats = styled.div`
     color: var(--colors-lightbrown);
     margin: 0 10px;
     font-size: var(--fonts-size-icons);
-`
+    `
 
 const Stat = styled.span`
     padding-left: 8px;
     width: 63.5px;
-
-`
+    
+    `
 
 const StyledIcon = styled(FontAwesomeIcon)`
     color: var(--colors-yellow);
     padding-right: 6px;
+    `
+
+const Contributor = styled.span`
+    font-weight: var(--fonts-weight-semibold);
+    position: relative;
+    display: inline-block;
+    color: var(--colors-yellow);
+
+    &:hover .tooltiptext {
+        cursor: pointer;
+        visibility: visible;
+        opacity: 1;
+    }
+`
+const UserInfomation = styled.span`
+    visibility: hidden;
+  width: 120px;
+  background-color: #bf8b67;
+  color: white;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content :center;
+  align-items: center;
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+
+  /* Fade in tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+    &::after{
+        content: "";
+    position: absolute;
+    top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+    }
 `
 
 const convertDate = (string) => {
     return `${string.substring(0, 4)}년 ${String(Number(string.substring(5, 7)))}월 ${String(Number(string.substring(8, 10)))}일`
   }
+
 const Thread = ({thread}) => {
+    
+
     return (
         <ThreadContainer>
             <ThreadContent>
@@ -109,7 +149,14 @@ const Thread = ({thread}) => {
                 </Link>
                 <ThreadContribution>
                     <TextAlign>
-                        <Contributor>{thread.member.displayName} </Contributor><span>님께서 {convertDate(thread.createdDate)}에 질문 </span>
+                        <Contributor >{thread.member.displayName}
+                        <UserInfomation className='tooltiptext'>
+                            <AvatarImg src={thread.member.avatarLink}/>
+                            <div>{thread.member.displayName}님</div>
+                            {<DateComponent date={thread.updateDate}/>}
+                            </UserInfomation> 
+                        </Contributor>
+                                <span>님께서{formatDate(thread.updateDate)}에 질문 </span>
                     </TextAlign>
                 </ThreadContribution>
             </ThreadContent>
@@ -121,7 +168,7 @@ const Thread = ({thread}) => {
                 </Stat>
                 <Stat>
                     <StyledIcon icon={faCommentDots} />
-                    <span>{thread.answer?.length ? 1 : 0}</span>
+                    <span>{thread.answers.length}</span>
                 </Stat>
             </ThreadStats>
         </ThreadContainer>

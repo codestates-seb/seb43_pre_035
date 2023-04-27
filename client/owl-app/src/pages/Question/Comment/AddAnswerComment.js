@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {useState} from 'react'
 import AnswerCommentInput from "./AnswerCommentInput"
-import { UserContext } from "../../../App";
+import { UserContext } from "../../../utils/UserContextConfig";
 import { useContext } from 'react';
 
 const AddCommentWrap = styled.div`

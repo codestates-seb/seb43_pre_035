@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import {useState,useEffect} from "react"
-import { CommentButtonBlock,CreateButtonLogin,CancleButton} from '../Answer/AnswerStyle'
+import { CommentButtonBlock,CreateButtonLogin,CancelButton} from '../Answer/AnswerStyle'
 
 
 const CommentInputWrap = styled.div`
@@ -69,7 +69,7 @@ const CommentInputPatch = ({ updatedContent, setUpdatedContent, editClickHandler
             <CommentButtonBlock>
 
             <CreateButtonLogin onClick={onClickCommentSubmit}>수정하기</CreateButtonLogin>
-            <CancleButton onClick={()=>setIsEditable(false)}>취소하기</CancleButton>
+            <CancelButton onClick={()=>setIsEditable(false)}>취소하기</CancelButton>
             </CommentButtonBlock>
         </CommentInputWrap>
         </>

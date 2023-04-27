@@ -6,7 +6,8 @@ import useFetch from "../../utils/useFetch";
 import SideNav from "../../components/SideNav";
 import Tags from "../../components/home/Tags";
 import Users from "../../components/home/Users";
-
+import { UserContext } from "../../utils/UserContextConfig";
+import { useContext } from 'react';
 
 
 const QuestionWrap = styled.div`

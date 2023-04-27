@@ -4,11 +4,13 @@ import QuestionContent from "./QuestionContent"
 import Answerlist from "./Answer/AnswerList"
 import QuestionCommentList from "./Comment/QuestionCommentList";
 import AnswerCommentList from './Comment/AnswerCommentList'
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { ClickButton } from "../../styles/UIStyles"
 import { axiosAuth } from "../../utils/axiosConfig";
 import { useNavigate } from 'react-router-dom';
-import { CancleButton} from '../Question/Answer/AnswerStyle'
+import { UserContext } from "../../utils/UserContextConfig";
+import { CancelButton} from '../Question/Answer/AnswerStyle';
+
 
 const SelectedWrap = styled.div`
     padding: 10px;
@@ -74,7 +76,7 @@ const StyledTextContent = styled.input`
 
 const SelectQuestion = ({ question, openModal, dimensionsHandler, refContainer }) => {
 
-
+    const { isLoggedIn } = useContext(UserContext);
     const url = `${process.env.REACT_APP_URL_NGROKTEST}/questions/${question.questionId}`
     const [getQuestion, setGetQuestion] = useState([question]);
     const [isEditState, setIsEditState] = useState(true);
@@ -82,7 +84,7 @@ const SelectQuestion = ({ question, openModal, dimensionsHandler, refContainer }
     const [editContentQuestion, setEditContentQuestion] = useState(question.content)
 
     const navigate = useNavigate();
-
+    
     const onEditTitle = (e) => {
         setEditTitleQuestion(e.target.value)
     }
@@ -123,14 +125,14 @@ const SelectQuestion = ({ question, openModal, dimensionsHandler, refContainer }
                 question={question}
                 setIsEditState={setIsEditState}
                 ></QuestionContent>)
-                :    
+                :
                      <>
                         <StyledTextContent
                           value={editContentQuestion}
                          onChange={onEditContent} />
                           <ClickButton onClick={updateQHandler} >수정하기</ClickButton>
-                          <CancleButton onClick={()=>setIsEditState(true)}>취소하기</CancleButton>
-                        </> 
+                          <CancelButton onClick={()=>setIsEditState(true)}>취소하기</CancelButton>
+                    </>
                     }
                     <QuestionCommentList
                         question={question}
