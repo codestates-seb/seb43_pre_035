@@ -169,11 +169,11 @@ const DisplayName = styled.div`
 
 
 
-const Thread = ({ thread }) => {
+const Thread = ({ thread, measureRef }) => {
 
 
-    return (
-        <ThreadContainer>
+    return (<>
+        <ThreadContainer ref={measureRef}>
             <ThreadContent>
                 <Link to={`/questions/${thread.questionId}`}>
                     <ThreadTitle>{thread.title}</ThreadTitle>
@@ -209,6 +209,8 @@ const Thread = ({ thread }) => {
                 </Stat>
             </ThreadStats>
         </ThreadContainer>
+        {/* <div ref={measureRef}></div> */}
+    </>
     )
 }
 
