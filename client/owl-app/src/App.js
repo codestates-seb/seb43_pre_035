@@ -75,7 +75,7 @@ function App() {
       const threads = await axiosDefault.get(`${process.env.REACT_APP_URL_NGROKTEST}/questions/?page=${pageNum}`)
         .then(res => res.data)
         .then(data => {
-          console.log('data fetched! pageNum: ', pageNum, ' ', data);
+          // console.log('data fetched! pageNum: ', pageNum, ' ', data);
           if ((pageNum !== -1 && pageNum !== 0) && renderThreads.length) {
             console.log('not 0!');
             setRenderThreads(prev => [...prev, ...threads]);
@@ -94,7 +94,7 @@ function App() {
   }, [pageNum]);
 
   const loadMore = useCallback(() => {
-    console.log('load more');
+    // console.log('load more');
     setPageNum((page) => page + 1);
     setIsLoading(true);
   }, []);
