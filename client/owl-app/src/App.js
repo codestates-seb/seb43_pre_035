@@ -76,9 +76,16 @@ function App() {
         .then(res => res.data)
         .then(data => {
           console.log('data fetched! pageNum: ', pageNum, ' ', data);
-          setRenderThreads((prev) => [...prev, ...threads]);
+          if ((pageNum !== -1 && pageNum !== 0) && renderThreads.length) {
+            console.log('not 0!');
+            setRenderThreads(prev => [...prev, ...threads]);
+          }
+          else if (pageNum === 0) {
+            console.log('0!');
+            setRenderThreads(() => threads);
+          }
           setIsLoading(false);
-          setHasMore(data.totalPages > pageNum);
+          setHasMore(data.totalPages > pageNum + 1);
           return data.content;
         })
         .catch(err => console.log(err.message))
@@ -91,27 +98,6 @@ function App() {
     setPageNum((page) => page + 1);
     setIsLoading(true);
   }, []);
-
-  // useEffect(() => {
-  //   observer.current = new IntersectionObserver(
-  //     ([entry]) => {
-  //       if (entry.isIntersecting && !isLoading && hasMore){
-  //         setPageNum((prev) => prev + 1);
-  //       }
-  //     }, {
-  //       root: null,
-  //       rootMargin: "0px",
-  //       threshold: 1.0
-  //     }
-  //   )
-  // }, []);
-
-  // useEffect(() => {
-  //   if (observer.current){
-  //     observer.current.disconnect();
-  //   }
-  //   observer.current.observe(document.querySelector('#observer'))
-  // }. [renderThreads]);
 
   return (
     <Suspense fallback={renderLoader()}>
