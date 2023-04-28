@@ -44,7 +44,7 @@ const CommentInputPatch = ({ updatedContent, setUpdatedContent, editClickHandler
 
 
     const onClickCommentSubmit = (e) => {
-        e.stopPropagation();
+        if (e) e.stopPropagation();
         // console.log("comment content: ", newCommentContent);
         if (!newCommentContent) { console.log("no content!"); setInvalidComment(true); return; };
         setUpdatedContent(newCommentContent);
@@ -53,15 +53,24 @@ const CommentInputPatch = ({ updatedContent, setUpdatedContent, editClickHandler
         setIsEditable(false);
     }
 
+    const handleKeyPress = (e) => {
+        if (e.keyCode === 13 && e.shiftKey){
+            console.log('pressed!');
+        }
+        else if (e.keyCode === 13 || e.which === 13){
+            onClickCommentSubmit();
+        }
+    }
+
 
     return (
         <PatchContainer>
-
             <ReviseWrap>
                 <InputWrap>
                     <InputTextArea type="text" placeholder="Comment를 달아주세요"
                         onChange={onTextChange}
                         value={updatedContent}
+                        onKeyDown={handleKeyPress}
                     />
                     <CommentButtonBlock>
                         <EditCancelBtn onClick={onClickCommentSubmit}>수정</EditCancelBtn>

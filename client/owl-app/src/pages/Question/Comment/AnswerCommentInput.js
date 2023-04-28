@@ -13,7 +13,7 @@ const AnswerCommentInput = ({addAnswerCommentHandler})=>{
       };
 
     const onClickCommentSubmit = (e) => {
-        e.stopPropagation();
+        if(e) e.stopPropagation();
 
         // console.log("answer content: ", answerCommentContent);
         if (!answerCommentContent) {console.log("no content!"); setInvalidComment(true); return;}

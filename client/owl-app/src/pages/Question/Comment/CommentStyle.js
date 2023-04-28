@@ -9,6 +9,7 @@ export const ListWrap = styled.div`
   align-items: center;
   padding: 10px 10px 0 10px;
   width: 100%;
+  word-break: keep-all;
 `
 
 export const Wrap = styled.div`
@@ -36,6 +37,7 @@ export const Content = styled.div`
 export const EditButtons = styled.div`
     display: flex;
     justify-content: flex-end;
+    align-items: center;
 `
 
 export const Info = styled.div`
@@ -54,7 +56,7 @@ export const User = styled.div`
 
 export const Date = styled.div`
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     padding: 10px;
     min-width: 150px;
     color: var(--colors-lightbrown);
@@ -64,6 +66,8 @@ export const Date = styled.div`
 
 export const AddWrap = styled.div`
     margin: 0 30px 0 20px;
+    display: flex;
+    justify-content: flex-start;
     padding: 10px;
     ${'' /* width: 750; */}
     color: #9D5353;

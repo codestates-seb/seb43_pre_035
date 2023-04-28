@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBinoculars } from '@fortawesome/free-solid-svg-icons';
 import { faCommentDots } from '@fortawesome/free-regular-svg-icons';
-import {DateComponent,formatDate} from '../../styles/DateComponent'
+import { DateComponent, formatDate } from '../../styles/DateComponent'
 
 const ThreadContainer = styled.li`
     display: flex;
@@ -69,6 +69,10 @@ const AvatarImg = styled.img`
     border-radius: 50%;
     `
 
+const HoverImg = styled(AvatarImg)`
+    margin-right: 10px;
+`
+
 const ThreadStats = styled.div`
     display: flex;
     flex-direction: row;
@@ -80,7 +84,7 @@ const ThreadStats = styled.div`
 const Stat = styled.span`
     padding-left: 8px;
     width: 63.5px;
-    
+
     `
 
 const StyledIcon = styled(FontAwesomeIcon)`
@@ -100,24 +104,30 @@ const Contributor = styled.span`
         opacity: 1;
     }
 `
-const UserInfomation = styled.span`
-    visibility: hidden;
-  width: 120px;
-  background-color: #bf8b67;
+const UserInformation = styled.span`
+  visibility: hidden;
+  width: auto;
+  background-color: var(--colors-inputbrown);
+  border: 0.5px solid var(--colors-dullbrown);
   color: white;
-  text-align: center;
-  padding: 5px 0;
+  text-align: left;
+  padding: 8px 8px 8px 5px;
   border-radius: 6px;
   display: flex;
-  flex-direction: column;
-  justify-content :center;
-  align-items: center;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
   /* Position the tooltip text */
   position: absolute;
   z-index: 1;
-  bottom: 125%;
+  bottom: 150%;
   left: 50%;
-  margin-left: -60px;
+  margin-left: -80px;
+
+  ${'' /* word-break: break-all; */}
+  white-space: nowrap;
+  line-height: 1.2rem;
+
 
   /* Fade in tooltip */
   opacity: 0;
@@ -134,11 +144,36 @@ const UserInfomation = styled.span`
     }
 `
 
-const Thread = ({thread}) => {
-    
+const UserTextBlock = styled.div`
+    display: flex;
+    flex-direction: column;
+    font-weight: var(--fonts-weight-default);
+    ${'' /* justify-content: flex-start; */}
+`
 
-    return (
-        <ThreadContainer>
+const UserName = styled.div`
+    display: flex;
+    flex-direction: row;
+    ${'' /* justify-content: space-between; */}
+
+`
+
+const DisplayName = styled.div`
+    font-weight: var(--fonts-weight-semibold);
+    margin-right: 6px;
+`
+
+// const RealName = styled.div`
+//     font-weight: var(--fonts-weight-default);
+// `
+
+
+
+const Thread = ({ thread, measureRef }) => {
+
+
+    return (<>
+        <ThreadContainer ref={measureRef}>
             <ThreadContent>
                 <Link to={`/questions/${thread.questionId}`}>
                     <ThreadTitle>{thread.title}</ThreadTitle>
@@ -146,15 +181,19 @@ const Thread = ({thread}) => {
                 <ThreadContribution>
                     <TextAlign>
                         <Contributor >{thread.member.displayName}
-                        <UserInfomation className='tooltiptext'>
-                            <AvatarImg src={thread.member.avatarLink}/>
-                            <div>{thread.member.displayName}님</div>
-                            <div>{thread.member.name}</div>
-                            <div>{thread.member.email}</div>
-                            {<DateComponent date={thread.updateDate}/>}
-                            </UserInfomation> 
+                            <UserInformation className='tooltiptext'>
+                                <HoverImg src={thread.member.avatarLink} />
+                                <UserTextBlock>
+                                    <UserName>
+                                        <DisplayName>{thread.member.displayName}</DisplayName>
+                                        {thread.member.name}
+                                    </UserName>
+                                    <div>{thread.member.email}</div>
+                                {<DateComponent date={thread.updateDate} />}
+                                </UserTextBlock>
+                            </UserInformation>
                         </Contributor>
-                                <span>님께서 {formatDate(thread.updateDate)}에 질문 </span>
+                        <span>님이 {formatDate(thread.updateDate)}에 질문 </span>
                     </TextAlign>
                 </ThreadContribution>
             </ThreadContent>
@@ -170,6 +209,8 @@ const Thread = ({thread}) => {
                 </Stat>
             </ThreadStats>
         </ThreadContainer>
+        {/* <div ref={measureRef}></div> */}
+    </>
     )
 }
 

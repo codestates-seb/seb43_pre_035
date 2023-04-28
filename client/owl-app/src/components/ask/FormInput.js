@@ -27,6 +27,7 @@ const StyledTextArea = styled.textarea`
     font-weight: var(--fonts-weight-regular);
     background: var(--colors-dullbrown);
     color: var(--colors-text-default);
+    line-height: 1.5rem;
 
     &::placeholder{
         color: var(--colors-text-placeholder-dark);

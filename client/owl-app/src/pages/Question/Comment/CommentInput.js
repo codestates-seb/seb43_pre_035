@@ -42,7 +42,7 @@ const CommentInput = ({addCommentHandler})=>{
             />
             <ReviseSubmitBtn onClick={onClickCommentSubmit}>작성하기</ReviseSubmitBtn>
         </InputWrap>
-        {invalidComment ? <InvalidError>내용이 없습니다</InvalidError>: null}
+        {invalidComment ? <InvalidError>내용을 적어주셔야 합니다</InvalidError>: null}
         </>
     )
 }

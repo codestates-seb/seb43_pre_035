@@ -65,10 +65,10 @@ ${'' /* @import url('https://fonts.googleapis.com/css2?family=Atomic+Age&family=
     --size-text-comment: 0.8rem;
     --size-text-comment-info: 0.9rem;
     --size-text-comment-error: 0.8rem;
+    --size-text-avatar-info: 0.8rem;
 
     --fonts-thread-title-weight: 400;
     --fonts-weight-default: 100;
-    --fonts-weight-regular: 300;
     --fonts-weight-regular: 300;
     --fonts-weight-semibold: 500;
     --fonts-weight-bold: 700;

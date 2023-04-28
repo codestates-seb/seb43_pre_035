@@ -23,14 +23,14 @@ const Main = styled.div`
 
 
 
-const Home = ({threads, sidebarStatus, setSidebarStatus}) => {
+const Home = ({ threads, sidebarStatus, setSidebarStatus, hasMore, isLoading, loadMore }) => {
 
     //for setting the tags/users pages
     const refContainer = useRef(null);
-    const [dimensions, setDimensions] = useState({width: 0, height: 0});
+    const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
     const dimensionsHandler = (width, height) => {
-        setDimensions({width, height});
+        setDimensions({ width, height });
     }
 
     // const {userInfo, isLoggedIn} = useContext(UserContext);
@@ -44,27 +44,31 @@ const Home = ({threads, sidebarStatus, setSidebarStatus}) => {
     // console.log(userInfo);
 
     const clickSidebarHandler = (item) => {
-        if (item === 'Home') setSidebarStatus({homeOn: true, tagsOn: false, usersOn: false, qOn: false});
-        if (item === 'Tags') setSidebarStatus({homeOn: false, tagsOn: true, usersOn: false, qOn: false});
-        if (item === 'Users') setSidebarStatus({homeOn: false, usersOn: false, usersOn: true, qOn: false});
+        if (item === 'Home') setSidebarStatus({ homeOn: true, tagsOn: false, usersOn: false, qOn: false });
+        if (item === 'Tags') setSidebarStatus({ homeOn: false, tagsOn: true, usersOn: false, qOn: false });
+        if (item === 'Users') setSidebarStatus({ homeOn: false, usersOn: false, usersOn: true, qOn: false });
     }
 
     return (
         <Main>
-           {/* { isLoggedIn ? <div>only show when logged in</div>: null} */}
+            {/* { isLoggedIn ? <div>only show when logged in</div>: null} */}
             {/* <div>
                 login userInfo? {`${userInfo.isLoggedIn}`}
                 {`${isLoggedIn}`}
                  token: {`${userInfo.token}`}
             </div> */}
             <SideNav sidebarStatus={sidebarStatus}
-                    clickSidebarHandler={clickSidebarHandler}/>
+                clickSidebarHandler={clickSidebarHandler} />
             {sidebarStatus.homeOn ? threads && <Threads threads={threads}
-                                                        dimensionsHandler={dimensionsHandler}
-                                                        refContainer={refContainer}/>
-                                : null}
-            {sidebarStatus.tagsOn ? <Tags dimensions={dimensions}/> : null}
-            {sidebarStatus.usersOn ? <Users dimensions={dimensions}/> : null}
+                dimensionsHandler={dimensionsHandler}
+                refContainer={refContainer}
+                hasMore={hasMore}
+                isLoading={isLoading}
+                loadMore={loadMore}
+            />
+                : null}
+            {sidebarStatus.tagsOn ? <Tags dimensions={dimensions} /> : null}
+            {sidebarStatus.usersOn ? <Users dimensions={dimensions} /> : null}
         </Main>
     )
 }

@@ -11,18 +11,20 @@ import { useContext } from 'react';
 
 
 const QuestionWrap = styled.div`
-    padding: 10px;
+    padding: 10px 0;
     width: 100%;
     color: white;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: flex-start;
+    line-height: 2rem;
+
 `
 
 const QuestionDetail = ({ toggleLogin, sidebarStatus, setSidebarStatus, openModal }) => {
 
-    
+
 
     const { questionId } = useParams();
     // const url = `http://localhost:3001/questions/${questionId}`;
@@ -61,7 +63,7 @@ const QuestionDetail = ({ toggleLogin, sidebarStatus, setSidebarStatus, openModa
                 {error && <div>error</div>}
                 {question && sidebarStatus.qOn && (
                     <SelectQuestion question={question}
-                                    
+
                                     openModal={openModal}
                                     refContainer={refContainer}
                                     dimensionsHandler={dimensionsHandler}

@@ -7,6 +7,7 @@ import Filters from './Filters';
 import Pagination from './Pagenation'
 import {axiosApi} from '../../utils/axiosConfig.js'
 import useFetch from '../../utils/useFetch.js';
+import useOnScreen from '../../utils/useOnScreen.js'
 
 //findIndex, find... tempQuestion = //새로운퀘스천 (새로운 답변이 들어가있는것)
 //tempQuestions = [...questions, ]
@@ -49,13 +50,15 @@ const TempContainer = styled(ThreadsContainer)`
     padding-top: 20px;
 `
 
-const Threads = ({threads, dimensionsHandler, refContainer}) => {
+const Threads = ({threads, dimensionsHandler, refContainer, hasMore, isLoading, loadMore}) => {
     // const [limit, setLimit] = useState(10); 페이지네이션
     // const [page, setPage] = useState(1);
-    // const offset = (page - 1) * limit; 
+    // const offset = (page - 1) * limit;
     // totalpage = 페이지 수 totalelements = 총 게시물 갯수
     // const url_page = `${process.env.REACT_APP_URL_NGROKTEST}/questions/?page`
     // const [allPage] = useFetch(url_page)
+
+    const { measureRef, isIntersecting, observer } = useOnScreen();
 
 
     // console.log("allPage:", threads)
@@ -65,10 +68,14 @@ const Threads = ({threads, dimensionsHandler, refContainer}) => {
         if (refContainer.current) {
           dimensionsHandler(refContainer.current.offsetWidth, refContainer.current.offsetHeight);
         }
-      }, []);
+        if (isIntersecting && hasMore) {
+            loadMore();
+            observer.disconnect();
+          }
+        }, [isIntersecting, hasMore, loadMore]);
 
     return (
-        <ThreadsWrapper>
+        <ThreadsWrapper ref={measureRef}>
             <HeaderContainer>
                 <Filters />
                 <Link to ='/ask'>
@@ -76,9 +83,10 @@ const Threads = ({threads, dimensionsHandler, refContainer}) => {
                 </Link>
             </HeaderContainer>
             <ThreadsContainer ref={refContainer}>
-            {threads.map((thread, idx) => <Thread thread={thread} key={idx}/>)}
+            {threads.map((thread, idx) => <Thread thread={thread} key={idx} />)}
             {/* {threads.slice(offset, offset + limit).map((thread, idx) => <Thread thread={thread} key={idx}/>)} */}
             </ThreadsContainer>
+            <div ref={measureRef}></div>
             {/* <Pagination total={threads.length} limit={limit} page={page} setPage={setPage}></Pagination> */}
         </ThreadsWrapper>
     )

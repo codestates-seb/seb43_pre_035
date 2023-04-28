@@ -6,7 +6,7 @@ const AskFormWrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: center;
     margin-top: 50px;
     height: 100%;
     width: 90vw;
@@ -23,7 +23,7 @@ const Headline = styled.h1`
     letter-spacing: .1rem;
 `
 
-const CreateThread = ({threads, openModal}) => {
+const CreateThread = ({openModal}) => {
 
     return (
         <AskFormWrapper>
