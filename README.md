@@ -16,11 +16,17 @@
 </br>
 
 ## 🧑‍🤝‍🧑 Team members
-| 이연수<br>(BE Leader) | 전지영<br>(BE) | 고유강<br>(BE) | <span style="display: inline-block; width:300px">장성아</span><br>(FE Leader) | 지우석<br>(FE) | 고상민<br>(FE) |
-|:--------:| :--------: | :--------: | :--------: | :--------: | :--------: |
-| <img src="./images/member/owl05.png" alt="이연수" width="100" height="100">| <img src="./images/member/owl03.png" alt="전지영" width="100" height="100"> | <img src="./images/member/owl07.png" alt="고유강" width="100" height="100"> | <img src="./images/member/owl08.png" alt="장성아" width="100" height="100"> | <img src="./images/member/owl01.png" alt="지우석" width="100" height="100"> | <img src="./images/member/owl04.png" alt="고상민" width="100" height="100"> |
-|[@yeonssu](https://github.com/yeonssu) | [@jyoungGrace](https://github.com/jyoungGrace) | [@KYOOKANG](https://github.com/KYOOKANG) | [@splazt](https://github.com/splazt) | [@Zeereoreo](https://github.com/Zeereoreo) | [@Gorden-Dosi](https://github.com/Gorden-Dosi) |
-| <p align="left"><br/>- Signup <br/>- Automated welcome email<br/>- Spring Security<br/>(Authentication, Authorization,<br/> JWT, OAuth)<br/>- Member CRUD<br/>- AWS deployment | <p align="left">- Question CRUD<br/>- Answer CUD<br/>- Search by title, content<br>- viewCount increase function <br>- Adopt answers | <p align="left">- Question Reply CUD<br/>- Answer Reply CUD <br/>- Exception Code | <p align="left">- Main Page (Inf. Scroll)<br/>- UI Design Head<br/>- Token Authentication, Members-Only Access<br/>- Ask Page (C)<br/>- Q&A & Replies CRUD<br/>- Header / Sidebar <br/>- Responsive Design<br/>|<p align="left">- Question Page<br/>- Question UD<br/>- Answer CRUD<br/>- QA-Replies CRUD<br/>- Member-Only Features Access<br/>- Header<br/>- AWS Deployment / Release <br/>|<p align="left">- Member Info Page (RUD)<br/>- Login (R), Signup (C) Page<br/>- ID/PW Validation<br/> - Logo Design<br/>||||
+| 이연수<br>(BE Leader) | 전지영<br>(BE) | 고유강<br>(BE) |
+|:--------:| :--------: | :--------: |
+| <img src="./images/member/owl05.png" alt="이연수" width="100" height="100">| <img src="./images/member/owl03.png" alt="전지영" width="100" height="100"> | <img src="./images/member/owl07.png" alt="고유강" width="100" height="100"> | 
+|[@yeonssu](https://github.com/yeonssu) | [@jyoungGrace](https://github.com/jyoungGrace) | [@KYOOKANG](https://github.com/KYOOKANG) | 
+| <p align="left"><br/>- Signup <br/>- Automated welcome email<br/>- Spring Security<br/>(Authentication, Authorization,<br/> JWT, OAuth)<br/>- Member CRUD<br/>- AWS deployment | <p align="left">- Question CRUD<br/>- Answer CUD<br/>- Search by title, content<br>- viewCount increase function <br>- Adopt answers | <p align="left">- Question Reply CUD<br/>- Answer Reply CUD <br/>- Exception Code | 
+
+| 장성아<br>(FE Leader) | 지우석<br>(FE) | 고상민<br>(FE) |
+| :--------: | :--------: | :--------: |
+| <img src="./images/member/owl08.png" alt="장성아" width="100" height="100"> | <img src="./images/member/owl01.png" alt="지우석" width="100" height="100"> | <img src="./images/member/owl04.png" alt="고상민" width="100" height="100"> |
+| [@splazt](https://github.com/splazt) | [@Zeereoreo](https://github.com/Zeereoreo) | [@Gorden-Dosi](https://github.com/Gorden-Dosi) |
+| <p align="left">- Main Page (Infinite Scroll)<br/>- UI Design & User Flow Head<br/>- Token Authentication<br/>- Login Status & <br/>&nbsp; &nbsp; Member Access Control<br/>- Ask Page (C)<br/>- Q&A & Replies CRUD<br/>- Header / Sidebar <br/>- Responsive Design<br/>|<p align="left">- Question Page<br/>- Question UD<br/>- Answer CRUD<br/>- QA-Replies CRUD<br/>- Members-Only Features<br/>- Header<br/>- AWS Deployment / Release <br/>|<p align="left">- Member Info Page (RUD)<br/>- Login (R), Signup (C) Page<br/>- ID/PW Validation<br/> - Logo Design<br/>||||
 
 </br>
 
@@ -98,7 +104,9 @@
 
 #### UI Style (Figma)
 
-<img alt="UI style" src="./docs/seb43_pre_35_UIstyle.png" width="1000" height=auto>
+<img alt="UI style" src="./docs/seb43_pre_35_UIstyle1.png" width="600" height=auto>
+<img alt="UI style" src="./docs/seb43_pre_35_UIstyle2.png" width="600" height=auto>
+
 
 #### Prototype (Figma)
 
