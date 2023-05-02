@@ -137,3 +137,11 @@
 - `fe-dev` : FE 개발 환경 브랜치
 - `be-feat/[feature name]` : BE 기능 개발 브랜치
 - `fe-feat/[feature name]` : FE 기능 개발 브랜치
+
+### Upcoming Features 
+
+- 질문 목록 필터링 및 검색 기능 
+- 답변 채택 기능
+- 웹에디터
+- Google OAuth 
+- 모바일 반응형 디자인 (내비게이션, 사이드바)
