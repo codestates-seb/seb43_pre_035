@@ -8,10 +8,10 @@
 
 * Team Name : Hoot
 * Project Name : Owly
-* Project Explanation
     * A Website For Programmers To Ask And Answer Questions
     * Stack Overflow Clone Coding
-* Project Duration : 2023.04.14 - 2023.04.27
+* Duration : 2023.04.14 - 2023.04.27
+* Link : Click <a href="http://pre-project-43-035.s3-website.ap-northeast-2.amazonaws.com/">HERE</a> to experience Owly!
 
 </br>
 
