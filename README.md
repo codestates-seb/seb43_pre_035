@@ -26,7 +26,7 @@
 | :--------: | :--------: | :--------: |
 | <img src="./images/member/owl08.png" alt="장성아" width="100" height="100"> | <img src="./images/member/owl01.png" alt="지우석" width="100" height="100"> | <img src="./images/member/owl04.png" alt="고상민" width="100" height="100"> |
 | [@splazt](https://github.com/splazt) | [@Zeereoreo](https://github.com/Zeereoreo) | [@Gorden-Dosi](https://github.com/Gorden-Dosi) |
-| <p align="left">- Main Page (Infinite Scroll)<br/>- UI Design & User Flow Head<br/>- Token Authentication<br/>- Login Status & <br/>&nbsp; &nbsp; Member Access Control<br/>- Ask Page (C)<br/>- Q&A & Replies CRUD<br/>- Header / Sidebar <br/>- Responsive Design<br/>|<p align="left">- Question Page<br/>- Question UD<br/>- Answer CRUD<br/>- QA-Replies CRUD<br/>- Members-Only Features<br/>- Header<br/>- AWS Deployment / Release <br/>|<p align="left">- Member Info Page (RUD)<br/>- Login (R), Signup (C) Page<br/>- ID/PW Validation<br/> - Logo Design<br/>||||
+| <p align="left">- Main Page (Inf. Scroll)<br/>- UI Design & User Flow Head<br/>- Token Authentication<br/>- Login Status & Member <br/>&nbsp; &nbsp; Access Control<br/>- Ask Page (C)<br/>- Q&A & QA-Replies CRUD<br/>- Header / Sidebar <br/>- Responsive Design<br/>|<p align="left">- Question Page<br/>- Question UD<br/>- Answer CRUD<br/>- QA-Replies CRUD<br/>- Members-Only Features<br/>- Header<br/>- AWS Deployment / Release <br/>|<p align="left">- Member Info Page (RUD)<br/>- Login (R), Signup (C) Page<br/>- ID/PW Validation<br/> - Logo Design<br/>||||
 
 </br>
 
