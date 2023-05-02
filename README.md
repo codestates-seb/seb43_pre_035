@@ -138,7 +138,7 @@
 - `be-feat/[feature name]` : BE 기능 개발 브랜치
 - `fe-feat/[feature name]` : FE 기능 개발 브랜치
 
-### Upcoming Features 
+## Upcoming Features 
 
 - 질문 목록 필터링 및 검색 기능 
 - 답변 채택 기능
