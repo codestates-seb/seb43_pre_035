@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@toast-ui/react-editor": "^3.2.3",
+    "react-icons": "^4.8.0"
+  }
+}
