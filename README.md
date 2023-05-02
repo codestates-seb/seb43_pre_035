@@ -90,10 +90,19 @@
 ### DB Diagram
 <img alt="schema" src="./docs/table.png" width="500" height=auto>
 
-### Wireframe
+### Prototyping
 [Wireframe Link (Figma)](https://www.figma.com/file/MaOjCuQ53oy3nMzOpHCvfi/화면-정의서?node-id=38%3A176&t=hsQJoweA07WvGrFY-1)
 
-<img alt="wireframe" src=""" width="600" height=auto>
+#### User Flow
+<img alt="userflow" src="./docs/seb43_pre_35_userflow.png" width="600" height=auto>
+
+#### UI Style (Figma)
+
+<img alt="UI style" src="./docs/seb43_pre_35_UIstyle.png" width="1000" height=auto>
+
+#### Prototype (Figma)
+
+<img alt="Prototype" src="./docs/seb43_pre_35_figma.png" width="900" height=auto>
 
 </br>
 
