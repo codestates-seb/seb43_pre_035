@@ -18,7 +18,6 @@ const ButtonContainer = styled.div`
   align-items: center;
   margin-bottom: 20px;
 `;
-
 const GoogleButton = styled.button`
   border: 1px solid #fff;
   border-radius: 5px;

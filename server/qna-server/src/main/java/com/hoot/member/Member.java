@@ -1,32 +1,43 @@
 package com.hoot.member;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.hoot.audit.Timestamped;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.time.LocalDateTime;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor
-public class Member {
+public class Member extends Timestamped {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public long memberId;
+    private long memberId;
 
-    public String email;
+    @Column(nullable = false, unique = true)
+    private String email;
 
-    public String password;
+    @Column(nullable = false)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String password;
 
-    public String name;
+    private String name;
 
-    public String displayName;
+    private String avatarLink;
 
-    public LocalDateTime createdDate = LocalDateTime.now();
+    @Column(unique = true)
+    private String displayName;
 
-    public LocalDateTime updateDate;
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> roles = new ArrayList<>();
 
+    public void encodePassword(PasswordEncoder passwordEncoder) {
+        this.password = passwordEncoder.encode(password);
+    }
 }
