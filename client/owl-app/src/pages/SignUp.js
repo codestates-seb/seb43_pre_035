@@ -1,11 +1,14 @@
+import { useState } from 'react';
 import styled from 'styled-components';
+import HandleSignup from '../components/member/HandleSignup';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 110%;
   background-color:#322A28 ;
 `;
 
@@ -15,7 +18,6 @@ const ButtonContainer = styled.div`
   align-items: center;
   margin-bottom: 20px;
 `;
- 
 const GoogleButton = styled.button`
   border: 1px solid #fff;
   border-radius: 5px;
@@ -27,7 +29,7 @@ const GoogleButton = styled.button`
   justify-content: space-between;
   margin: 0 0 10px;
   padding: 10px;
-  width: 340px;
+  width: 300px;
   background-color: rgba(157, 83, 83, 0.2);
   &:hover {
     cursor: pointer;
@@ -37,11 +39,11 @@ const GoogleButton = styled.button`
 const GoogleButtonLogo = styled.img`
   height: 25px;
   margin-right: 10px;
-  margin-left: 40px;
+  margin-left: 10px;
 `;
 
 const GoogleButtonText = styled.span`
-  margin-right: 80px;
+  margin-right: 50px;
   margin-left: -20px;
 `;
 
@@ -56,7 +58,7 @@ const KakaoButton = styled.button`
   justify-content: space-between;
   margin: 0 0 10px;
   padding: 10px;
-  width: 340px;
+  width: 300px;
   background-color: rgba(157, 83, 83, 0.2);
 
   &:hover {
@@ -66,13 +68,13 @@ const KakaoButton = styled.button`
 
 const KakaoButtonLogo = styled.img`
   height: 25px;
-  margin-right: 15px;
-  margin-left: 40px;
+  margin-right: 30px;
+  margin-left: 10px;
 `;
 
 const KakaoButtonText = styled.span`
-  margin-right: 60px;
-  margin-left: -10px;
+  margin-right: 30px;
+  margin-left: 0px;
 `;
 
 const GithubButton = styled.button`
@@ -86,7 +88,7 @@ const GithubButton = styled.button`
   justify-content: space-between;
   margin: 0 0 10px;
   padding: 10px;
-  width: 340px;
+  width: 300px;
   background-color: rgba(157, 83, 83, 0.2);
 
   &:hover {
@@ -96,17 +98,17 @@ const GithubButton = styled.button`
 
 const GithubButtonLogo = styled.img`
   height: 25px;
-  margin-right: 10px;
-  margin-left: 40px;
+  margin-right: 0px;
+  margin-left: 10px;
 `;
 
 const GithubButtonText = styled.span`
-  margin-right: 85px;
-  margin-left: 0px;
+  margin-right: 50px;
+  margin-left: 10px;
 `;
 
 
-const SignUpcontainer = styled.form`
+const SignupContainer = styled.form`
  border: 2px solid #9D5353;
  display: flex;
  flex-direction: column;
@@ -117,7 +119,7 @@ const SignUpcontainer = styled.form`
  width: 300px;
 `;
 
-const InputContainer = styled.div` 
+const InputContainer = styled.div`
  display: flex;
  flex-direction: column;
  width: 100%;
@@ -138,8 +140,10 @@ const Input = styled.input`
 
 
 const Guide = styled.div`
-text-align: left;
+ text-align: left;
  margin-bottom: 10px;
+ margin-left: 30px;
+ margin-right: 5px;
  font-size: 12px;
  cursor: pointer;
  width: 300px;
@@ -156,7 +160,7 @@ const BeforeLogin = styled.div`
 `;
 
 
-const Login = styled.div`
+const LoginButton = styled.div`
  font-size: 14px;
  text-align: left;
  width: 50px;
@@ -179,58 +183,136 @@ const SignUpButton = styled.button`
  border-radius: 5px;
  border: none;
  margin-bottom: 10px;
- width: 300px;
+ width: 280px;
  &:hover {
     cursor: pointer;
   }
 `;
 
-const SignUpContainer = styled.div`
+const LoginContainer = styled.div`
  display: flex;
  justify-content: flex-end;
  width: 300px;
 `;
 
-function App() {
-return (
-<Container>
-<ButtonContainer>
-<GoogleButton>
-      <GoogleButtonLogo src="glogo.svg" />
-      <GoogleButtonText>Sign up with Google</GoogleButtonText>
-</GoogleButton>
-<KakaoButton>
-      <KakaoButtonLogo src="kakaotalk.svg" />
-      <KakaoButtonText>Sign up with KakaoTalk</KakaoButtonText>
-</KakaoButton>
-<GithubButton>
-    <GithubButtonLogo src="github.svg" />
-    <GithubButtonText>Sign up with Github</GithubButtonText>
-</GithubButton>
-</ButtonContainer>
-<SignUpcontainer>
-<InputContainer>
-<InputLabel htmlFor="DisplayName">Display name</InputLabel>
-<Input type="DisplayName" id="DisplayName" />
-</InputContainer>
-<InputContainer>
-<InputLabel htmlFor="email">Email</InputLabel>
-<Input type="email" id="email" />
-</InputContainer>
-<InputContainer>
-<InputLabel htmlFor="password">Password</InputLabel>
-<Input type="password" id="password" />
-</InputContainer>
-<Guide>Passwords must contain at least eight characters, including at least 1 letter and 1 number.</Guide>
-<SignUpButton>Sign Up</SignUpButton>
-<Guide>By clicking “Sign up”, you agree to our terms of service, privacy policy and cookie policy</Guide>
-</SignUpcontainer>
-<SignUpContainer>
-<BeforeLogin>Already have an account?</BeforeLogin>
-<Login>Log in</Login>
-</SignUpContainer>
-</Container>
-);
+
+function randomIntFromInterval(min, max) { // min and max included
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-export default App;
+
+function SignUp() {
+
+  const url_avatars = "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com";
+  const avatarRandom = `${url_avatars}/owl0${randomIntFromInterval(1, 8)}.png`;
+
+  const navigate = useNavigate();
+  const [userInfo, setUserInfo] = useState({
+    Name: '',
+    displayName: '',
+    email: '',
+    password: '',
+    avatarLink: avatarRandom
+  });
+
+  const validateEmail = (email) => {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  };
+
+  const validatePassword = (password) => {
+    const re = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,16}$/;
+    return re.test(password);
+  };
+
+  const validateDisplayName = (displayName) => {
+    const re = /^[a-zA-Z0-9가-힣]{2,15}$/;
+    return re.test(displayName);
+  };
+
+  const updateUserInfo = (e) => {
+    setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
+  }
+
+  const handleSignup = async (event) => {
+    event.preventDefault();
+
+    if (!validateEmail(userInfo.email)) {
+      alert('이메일이 올바른 형식이 아닙니다.');
+      return;
+    }
+
+    if (!validatePassword(userInfo.password)) {
+      alert('비밀번호는 8~16자 영문 대소문자, 숫자, 특수문자를 포함해야 합니다.');
+      return;
+    }
+
+    if (!validateDisplayName(userInfo.displayName)) {
+      alert('닉네임은 특수문자를 제외한 2~15자리여야 합니다.');
+      return;
+    }
+
+    // console.log('name:', userInfo.Name, ' displayName:', userInfo.displayName,
+    //     ' email:', userInfo.email, ' password:', userInfo.password, " link:", userInfo.avatarLink
+    // );
+    await HandleSignup({
+      Name: userInfo.Name,
+      displayName: userInfo.displayName,
+      email: userInfo.email,
+      password: userInfo.password,
+      avatarLink: userInfo.avatarLink
+    });
+
+    navigate('/login');
+  };
+
+
+  return (
+    <Container>
+      <ButtonContainer>
+        <GoogleButton>
+          <GoogleButtonLogo src="glogo.svg" />
+          <GoogleButtonText>Sign up with Google</GoogleButtonText>
+        </GoogleButton>
+        <KakaoButton>
+          <KakaoButtonLogo src="kakaotalk.svg" />
+          <KakaoButtonText>Sign up with KakaoTalk</KakaoButtonText>
+        </KakaoButton>
+        <GithubButton>
+          <GithubButtonLogo src="github.svg" />
+          <GithubButtonText>Sign up with Github</GithubButtonText>
+        </GithubButton>
+      </ButtonContainer>
+      <SignupContainer onSubmit={handleSignup}>
+        <InputContainer>
+          <InputLabel htmlFor="DisplayName">Display name</InputLabel>
+          <Input type="text" name="displayName" value={userInfo.displayName} onChange={updateUserInfo} />
+        </InputContainer>
+        <InputContainer>
+          <InputLabel htmlFor="Name">Name</InputLabel>
+          <Input type="text" name="Name" value={userInfo.Name} onChange={updateUserInfo} />
+        </InputContainer>
+        <InputContainer>
+          <InputLabel htmlFor="email">Email</InputLabel>
+          <Input type="email" name="email" value={userInfo.email} onChange={updateUserInfo} />
+        </InputContainer>
+        <InputContainer>
+          <InputLabel htmlFor="password">Password</InputLabel>
+          <Input type="password" name="password" value={userInfo.password} onChange={updateUserInfo} />
+        </InputContainer>
+
+        <Guide>Passwords must contain at least eight characters, including at least 1 letter and 1 number.</Guide>
+        <SignUpButton type="submit">Sign Up</SignUpButton>
+        <Guide>By clicking “Sign up”, you agree to our terms of service, privacy policy and cookie policy</Guide>
+      </SignupContainer>
+      <LoginContainer>
+        <BeforeLogin>Already have an account?</BeforeLogin>
+        <Link to="/login">
+          <LoginButton>Log in</LoginButton>
+        </Link>
+      </LoginContainer>
+    </Container>
+  );
+}
+
+export default SignUp;

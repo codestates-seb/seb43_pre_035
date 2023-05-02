@@ -1,0 +1,373 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "questionId": 1,
+      "title": "koans 과제 진행 중 npm install 오류로 인해 정상 작동 되지 않습니다",
+      "content": "컨텐츠입니다.",
+      "member": {
+        "memberId": "dubipy",
+        "email": "hgd@gmail.com",
+        "name": "홍길동",
+        "displayName": "길동이",
+        "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png",
+        "roles": [
+          "ROLE_USER"
+        ]
+      },
+      "createdDate": "2022-05-16T01:02:17Z",
+      "updateDate": "2022-05-16T01:02:17Z",
+      "questionReplies": [
+        {
+          "questionReplyId": "1",
+          "member": {
+            "memberId": "dubipy2",
+            "email": "hgd2@gmail.com",
+            "name": "홍길동2",
+            "displayName": "길동이2",
+            "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png",
+            "roles": [
+              "ROLE_USER"
+            ]
+          },
+          "content": "그저 그런 댓글입니다.",
+          "createdDate": "2023-04-24T15:38:43.6677143",
+          "updateDate": "2023-04-24T15:38:43.6677143"
+        }
+      ],
+      "answers": [
+        {
+          "questionId": "1",
+          "answerId": "2",
+          "member": {
+            "memberId": "dubipy3",
+            "email": "hgd3@gmail.com",
+            "name": "홍길동3",
+            "displayName": "길동이3",
+            "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png",
+            "roles": [
+              "ROLE_USER"
+            ]
+          },
+          "content": "<p dir=\"auto\">안녕하세요. <a class=\"user-mention notranslate\" data-hovercard-type=\"user\" data-hovercard-\"url\"=\"/users/dubipy/hovercard\" data-octo-click=\"hovercard-link-click\" data-octo-dimensions=\"link_type:self\" href=\"https://github.com/dubipy\">@dubipy</a> 님!<br>\n코드스테이츠 교육 엔지니어 권준혁 입니다. <g-emoji class=\"g-emoji\" alias=\"raised_hands\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/1f64c.png\">🙌</g-emoji></p>\n<p dir=\"auto\">질문 주신 내용은 노드 환경이 구성되어 있지 않기 때문에 발생되는 문제로 확인됩니다.</p>\n<p dir=\"auto\">",
+          "createdDate": "2022-05-16T02:09:52Z",
+          "updateDate": "2022-05-16T02:09:52Z",
+          "selection": false,
+          "answerReplies": [
+            {
+              "anwerReplyId": "1",
+              "member": {
+                "memberId": "dubipy4",
+                "email": "hgd@gmail.com",
+                "name": "홍길동4",
+                "displayName": "길동이4",
+                "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png",
+                "roles": [
+                  "ROLE_USER"
+                ]
+              },
+              "content": "bash파일이 꼬여있어서 삭제 후 다시 설치하고 경로 잡아줬습니다 node 부분도 설치는 되어있는데 패키지 쪽에 에러가 발생해서 모두 삭제 후 재설치 해주고 npm install 하니 해결됐습니다 감사합니다",
+              "createdDate": "2022-05-16T01:02:17Z",
+              "updateDate": "2022-05-16T01:02:17Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "questionId": "2",
+      "title": "반복되는 문자 리턴 문제에서 ' '(공백하나인 문자열)입력시 오류가 발생합니다.",
+      "contente": "=\"auto\">\n<li>어떠한 부분에서 이해가 안 되었나요?</li>\n</ul>\n<p dir=\"auto\">빈 문자열을 입력받은 경우, 빈 문자열을 리턴해야 합니다.<br>\n라는 주의사항에 맞게 조건문을   <code class=\"notranslate\">if(str === ' '){ return bigChar;}</code> 추가했습니다.<br>\n그런데 테스트 실행할때 주석처리한 아래 3줄이 활성화 되어있으면</p>\n<blockquote>\n<p dir=\"auto\">' '을(를) 입력받은 경우, 빈 문자열을 리턴해야 합니다 \"</p>\n</blockquote>\n<p dir=\"auto\">이라는 지문에서 통과가 안되고 ' '(공백하나인 문자열)이 리턴된다고 나옵니다.<br>\n크롬 디버거할때는<br>\n<a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://user-images.githubusercontent.com/90553688/.",
+      "member": {
+        "memberId": "dubipy5",
+        "email": "hgd5@gmail.com",
+        "name": "홍길동5",
+        "displayName": "길동이5",
+        "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png",
+        "roles": [
+          "ROLE_USER"
+        ]
+      },
+      "createdDate": "2022-05-16T01:02:17Z",
+      "updateDate": "2022-05-16T01:02:17Z",
+      "questionReplies": [
+        {
+          "questionReplyId": "1",
+          "member": {
+            "memberId": "dubipy6",
+            "email": "hgd@gmail.com",
+            "name": "홍길동6",
+            "displayName": "길동이6",
+            "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png",
+            "roles": [
+              "ROLE_USER"
+            ]
+          },
+          "content": "그저 그런 댓글입니다.2",
+          "createdDate": "2023-04-24T15:38:43.6677143",
+          "updateDate": "2023-04-24T15:38:43.6677143"
+        }
+      ],
+      "answers": [
+        {
+          "questionId": "2",
+          "answerId": "2",
+          "member": {
+            "memberId": "dubipy7",
+            "email": "hgd7@gmail.com",
+            "name": "홍길동7",
+            "displayName": "길동이7",
+            "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png",
+            "roles": [
+              "ROLE_USER"
+            ]
+          },
+          "content": "<p dir=\"auto\">안녕하세요. <a class=\"user-mention notranslate\" data-hovercard-type=\"user\" data-hovercard-\"url\"=\"/users/dubipy/hovercard\" data-octo-click=\"hovercard-link-click\" data-octo-dimensions=\"link_type:self\" href=\"https://github.com/dubipy\">@dubipy</a> 님!<br>\n코드스테이츠 교육 엔지니어 권준혁 입니다. <g-emoji class=\"g-emoji\" alias=\"raised_hands\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/1f64c.png\">🙌</g-emoji></p>\n<p dir=\"auto\">질문 주신 내용은 노드 환경이 구성되어 있지 않기 때문에 발생되는 문제로 확인됩니다.</p>\n<p dir=\"auto\">",
+          "createdDate": "2022-05-16T02:09:52Z",
+          "updateDate": "2022-05-16T02:09:52Z",
+          "selection": false,
+          "answerReplies": [
+            {
+              "anwerReplyId": "1",
+              "member": {
+                "memberId": "dubipy8",
+                "email": "hgd8@gmail.com",
+                "name": "홍길동8",
+                "displayName": "길동이8",
+                "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png",
+                "roles": [
+                  "ROLE_USER"
+                ]
+              },
+              "content": "bash파일이 꼬여있어서 삭제 후 다시 설치하고 경로 잡아줬습니다 node 부분도 설치는 되어있는데 패키지 쪽에 에러가 발생해서 모두 삭제 후 재설치 해주고 npm install 하니 해결됐습니다 감사합니다",
+              "createdDate": "2022-05-16T01:02:17Z",
+              "updateDate": "2022-05-16T01:02:17Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "questionId": "3",
+      "title": "코플릿 배열 18번 인스턴스(주소값 동일)에 대해 알고 싶습니다.",
+      "contente": "<p dir=\"auto\">객체를 변수에 저장하게되면 실제 객체를 저장하는것이 아닌 객체를 저장한 메모리의 주소(참조)값을 변수에 저장하게돼요.</p>\n<p dir=\"auto\"><code class=\"notranslate\">입력받은 배열과 동일한 인스턴스(주소값 동일)을(를) 리턴해야 합니다</code></p>\n<p dir=\"auto\">이 조건이 만족 안된 이유는 slice() 메소드는 문자열 슬라이싱을 한 뒤 새로운 배열 객체에 저장하여 반환하게됩니다. 그렇기에 반환값(객체)이 arr객체와 다른 객체이기 때문에 다른 주소값을 가르키게되고 주솟값이 동일해야한다는 조건을 만족시키지 못하게됩니다.</p>\n<p dir=\"auto\">",
+      "member": {
+        "memberId": "dubipy9",
+        "email": "hgd9@gmail.com",
+        "name": "홍길동9",
+        "displayName": "길동이9",
+        "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png",
+        "roles": [
+          "ROLE_USER"
+        ]
+      },
+      "createdDate": "2022-05-16T01:02:17Z",
+      "updateDate": "2022-05-16T01:02:17Z",
+      "questionReplies": [
+        {
+          "questionReplyId": "1",
+          "member": {
+            "memberId": "dubipy10",
+            "email": "hgd10@gmail.com",
+            "name": "홍길동10",
+            "displayName": "길동이10",
+            "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png",
+            "roles": [
+              "ROLE_USER"
+            ]
+          },
+          "content": "그저 그런 댓글입니다.3",
+          "createdDate": "2023-04-24T15:38:43.6677143",
+          "updateDate": "2023-04-24T15:38:43.6677143"
+        }
+      ],
+      "answers": [
+        {
+          "questionId": "3",
+          "answerId": "1",
+          "member": {
+            "memberId": "dubipy11",
+            "email": "hgd11@gmail.com",
+            "name": "홍길동11",
+            "displayName": "길동이11",
+            "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png",
+            "roles": [
+              "ROLE_USER"
+            ]
+          },
+          "content": "<p dir=\"auto\">아래 작성해주신 코드내용처럼 isShow를 전역변수로 선언해서 실행하셔도 크게 문제는 일어나지 않습니다.</p>\n<p dir=\"auto\">다만 isShow를 굳이 클로저를 활용해 접근하는 이유는 클로저를 사용하는 것이 ",
+          "createdDate": "2022-05-16T02:09:52Z",
+          "updateDate": "2022-05-16T02:09:52Z",
+          "selection": false,
+          "answerReplies": [
+            {
+              "anwerReplyId": "1",
+              "member": {
+                "memberId": "dubipy12",
+                "email": "hgd12@gmail.com",
+                "name": "홍길동12",
+                "displayName": "길동이12",
+                "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png",
+                "roles": [
+                  "ROLE_USER"
+                ]
+              },
+              "content": "<p dir=\"auto\">아래 코드의 경우 isShow가 전역 스코프에 있기 때문에 toggle함수 말고도, 다른 모든 부분에서도 isShow를 참조할 수 있고, 변경할 수 있습니다.</p>",
+              "createdDate": "2022-05-16T01:02:17Z",
+              "updateDate": "2022-05-16T01:02:17Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "questionId": "4",
+      "title": "만약 splice() 메소드를 사용하실 때 첫 번째 요소를 제거해야하니 0번째 인덱스에서 1개의 요소를 제거하고 기존 객체인 arr을 반환하게 된다면 모든 조건을 통과하실거에요",
+      "member": {
+        "memberId": "dubipy13",
+        "email": "hgd13@gmail.com",
+        "name": "홍길동13",
+        "displayName": "길동이13",
+        "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png",
+        "roles": [
+          "ROLE_USER"
+        ]
+      },
+      "createdDate": "2022-05-16T01:02:17Z",
+      "updateDate": "2022-05-16T01:02:17Z",
+      "questionReplies": [
+        {
+          "questionReplyId": "1",
+          "member": {
+            "memberId": "dubipy14",
+            "email": "hgd14@gmail.com",
+            "name": "홍길동14",
+            "displayName": "길동이14",
+            "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png",
+            "roles": [
+              "ROLE_USER"
+            ]
+          },
+          "content": "그저 그런 댓글입니다.4",
+          "createdDate": "2023-04-24T15:38:43.6677143",
+          "updateDate": "2023-04-24T15:38:43.6677143"
+        }
+      ],
+      "answers": [
+        {
+          "questionId": "4",
+          "answerId": "1",
+          "member": {
+            "memberId": "dubipy15",
+            "email": "hgd15@gmail.com",
+            "name": "홍길동15",
+            "displayName": "길동이15",
+            "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png",
+            "roles": [
+              "ROLE_USER"
+            ]
+          },
+          "content": "질문 주신 내용은 노드 환경이 구성되어 있지 않기 때문에 발생되는 문제로 확인됩니다.",
+          "createdDate": "2022-05-16T02:09:52Z",
+          "updateDate": "2022-05-16T02:09:52Z",
+          "selection": false,
+          "answerReplies": [
+            {
+              "anwerReplyId": "1",
+              "member": {
+                "memberId": "dubipy16",
+                "email": "hgd16@gmail.com",
+                "name": "홍길동16",
+                "displayName": "길동이16",
+                "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png",
+                "roles": [
+                  "ROLE_USER"
+                ]
+              },
+              "content": "감사합니다",
+              "createdDate": "2022-05-16T01:02:17Z",
+              "updateDate": "2022-05-16T01:02:17Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "questionId": "5",
+      "title": "결과값에서 쌍따옴표 \"\" 를 지울 수 있을까요?",
+      "contente": "표현되는 형태'일 뿐이지 대괄호를 씌운 문자열로 만들어 억지로 배열을 만들어낼 수는 없습니다.",
+      "member": {
+        "memberId": "dubipy17",
+        "email": "hgd17@gmail.com",
+        "name": "홍길동17",
+        "displayName": "길동이17",
+        "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png",
+        "roles": [
+          "ROLE_USER"
+        ]
+      },
+      "createdDate": "2022-05-16T01:02:17Z",
+      "updateDate": "2022-05-16T01:02:17Z",
+      "questionReplies": [
+        {
+          "questionReplyId": "1",
+          "member": {
+            "memberId": "dubipy18",
+            "email": "hgd18@gmail.com",
+            "name": "홍길동18",
+            "displayName": "길동이18",
+            "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png",
+            "roles": [
+              "ROLE_USER"
+            ]
+          },
+          "content": "그저 그런 댓글입니다.5",
+          "createdDate": "2023-04-24T15:38:43.6677143",
+          "updateDate": "2023-04-24T15:38:43.6677143"
+        }
+      ],
+      "answers": [
+        {
+          "questionId": "5",
+          "answerId": "1",
+          "member": {
+            "memberId": "dubipy19",
+            "email": "hgd19@gmail.com",
+            "name": "홍길동19",
+            "displayName": "길동이19",
+            "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png",
+            "roles": [
+              "ROLE_USER"
+            ]
+          },
+          "content": "<p dir=\"auto\">안녕하세요. <a class=\"user-mention notranslate\" data-hovercard-type=\"user\" data-hovercard-\"url\"=\"/users/dubipy/hovercard\" data-octo-click=\"hovercard-link-click\" data-octo-dimensions=\"link_type:self\" href=\"https://github.com/dubipy\">@dubipy</a> 님!<br>\n코드스테이츠 교육 엔지니어 권준혁 입니다. <g-emoji class=\"g-emoji\" alias=\"raised_hands\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/1f64c.png\">🙌</g-emoji></p>\n<p dir=\"auto\">질문 주신 내용은 노드 환경이 구성되어 있지 않기 때문에 발생되는 문제로 확인됩니다.</p>\n<p dir=\"auto\">",
+          "createdDate": "2022-05-16T02:09:52Z",
+          "updateDate": "2022-05-16T02:09:52Z",
+          "selection": false,
+          "answerReplies": [
+            {
+              "anwerReplyId": "1",
+              "member": {
+                "memberId": "dubipy20",
+                "email": "hgd20@gmail.com",
+                "name": "홍길동20",
+                "displayName": "길동이20",
+                "avatarLink": "https://mypreprojecttempbucket.s3.ap-northeast-2.amazonaws.com/owl08.png",
+                "roles": [
+                  "ROLE_USER"
+                ]
+              },
+              "content": "bash파일이 꼬여있어서 삭제 후 다시 설치하고 경로 잡아줬습니다 node 부분도 설치는 되어있는데 패키지 쪽에 에러가 발생해서 모두 삭제 후 재설치 해주고 npm install 하니 해결됐습니다 감사합니다",
+              "createdDate": "2022-05-16T01:02:17Z",
+              "updateDate": "2022-05-16T01:02:17Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
